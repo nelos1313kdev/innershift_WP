@@ -1,0 +1,89 @@
+/*Cocoon用記事ボックス*/
+
+/* リボン部分 */
+/*  リボンCSSはnxworld様のページの斜めリボンを改変して利用。
+多くのカスタマイズを公開していらっしゃるので 「リボン css nxworld」などgoogle検索すると便利。
+Copyright (c)
+https://www.nxworld.net/tips/pure-css-corner-ribbon.html
+https://codepen.io/nxworld/pen/oLdoWb
+*/
+
+.ribbon {
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  position: absolute;
+  z-index: 1;
+  &:before, &:after {
+    position: absolute;
+    z-index: 0;
+    content: '';
+    display: block;
+    border: 4px solid #224963;
+  }
+  span {
+    position: absolute;
+    display: block;
+    width: 185px;
+    padding: 5px 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    color: var(--cocoon-white-color);
+    font: 700 11px/1 'Lato',sans-serif;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    text-align: center;
+  }
+}
+
+.ribbon-color-1 span {
+  background-color: #ea7e7e;
+}
+
+.ribbon-color-2 span {
+  background-color: #7e95ea;
+}
+
+.ribbon-color-3 span {
+  background-color: #f7c114;
+}
+
+.ribbon-color-4 span {
+  background-color: #dc669b;
+}
+
+.ribbon-color-5 span {
+  background-color: #e9546b;
+}
+
+/* top left*/
+.ribbon-top-left {
+  top: -3px;
+  left: -9px;
+  &::before, &::after {
+    border-top-color: transparent;
+    border-left-color: transparent;
+  }
+  &:before {
+    top: -1px;
+    right: 4px;
+  }
+  &::after {
+    bottom: 5px;
+    left: 1px;
+  }
+  span {
+    right: -45px;
+    top: 18px;
+    transform: rotate(-45deg);
+  }
+}
+
+.border-square .ribbon-top-left {
+  top: -13px;
+  left: -13px;
+}
+
+.card-large-image .ribbon-top-left {
+  top: -7px;
+  left: -9px;
+}

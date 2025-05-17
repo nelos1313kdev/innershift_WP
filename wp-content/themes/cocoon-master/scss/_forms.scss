@@ -1,0 +1,88 @@
+/************************************
+** 入力フォーム
+************************************/
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea,
+select{
+  @extend %form_common;
+}
+
+input[type="search"]{
+  width: auto;
+  flex-grow: 1;
+}
+
+.wp-block-search__button{
+  width: 60px;
+  border-radius: var(--cocoon-basic-border-radius);
+  border: 1px solid var(--cocoon-basic-border-color);
+  cursor: pointer;
+}
+
+// textarea{
+//   min-height: 260px;
+// }
+
+option{
+  padding: 12px;
+}
+
+// /*Firefoxだけに適用されるCSSハック*/
+// @-moz-document url-prefix() {
+//   select {
+//     padding: 0 12px;
+//   }
+// }
+
+
+input[type='submit'],
+#bbp_reply_submit,
+.bp-login-widget-register-link a{
+  padding: $form_padding;
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+input[type='submit']{
+  -webkit-appearance: none;
+  border: 1px solid var(--cocoon-thin-color);
+  background-color: #f5f8fa;
+  color: #333;
+}
+
+.bp-login-widget-register-link{
+  display: block;
+  margin-top: 10px;
+  a{
+    @include link_cancel;
+
+    display: block;
+    text-align: center;
+    border: 1px solid #777;
+    padding: 6px;
+    border-radius: var(--cocoon-badge-border-radius);
+
+    &:hover{
+      @include bgc_hover;
+    }
+  }
+}
+
+.widget.buddypress #bp-login-widget-form input#bp-login-widget-submit{
+  margin: 0;
+}
+
+#wp-comment-cookies-consent{
+  margin-right: 5px;
+}

@@ -1,0 +1,128 @@
+///////////////////////////////////////////
+// インデックス
+///////////////////////////////////////////
+.index-tab-buttons{
+  margin: 1em 0 1.4em;
+  // border-radius: 5px;
+  // overflow: hidden;
+  display: flex;
+  // //flex-wrap: wrap;
+  // border: 1px solid var(--cocoon-thin-color);
+  // border-radius: 4px;
+  // // box-shadow: 0 3px 10px -2px rgba(0,0,0,.2);
+}
+.index-tab-buttons .index-tab-button{
+  padding: 12px 16px;
+  font-size: 14px;
+  margin: 2px;
+  border-radius: 4px;
+  background-color: var(--cocoon-white-color);
+  border: 1px solid var(--cocoon-thin-color);
+  // min-width: calc(100% / 4);
+  width: 100%;
+  text-align: center;
+}
+#index-tab-1:checked ~ .index-tab-buttons .index-tab-button[for="index-tab-1"],
+#index-tab-2:checked ~ .index-tab-buttons .index-tab-button[for="index-tab-2"],
+#index-tab-3:checked ~ .index-tab-buttons .index-tab-button[for="index-tab-3"],
+#index-tab-4:checked ~ .index-tab-buttons .index-tab-button[for="index-tab-4"]//,
+// #index-tab-5:checked ~ .index-tab-buttons .index-tab-button[for="index-tab-5"],
+// #index-tab-6:checked ~ .index-tab-buttons .index-tab-button[for="index-tab-6"],
+// #index-tab-7:checked ~ .index-tab-buttons .index-tab-button[for="index-tab-7"],
+// #index-tab-8:checked ~ .index-tab-buttons .index-tab-button[for="index-tab-8"],
+//.index-tab-buttons .index-tab-button:hover
+{
+  background: none var(--cocoon-tab-label-active-color);
+  border: 1px solid var(--cocoon-tab-label-active-color);
+  color: var(--cocoon-white-color);
+  font-weight: 700;
+  // //background: #aaa;
+  // z-index: 4;
+  // // border: 1px solid #aaa;
+  // box-shadow: 0 0 5px 1px rgba(0,0,0,.2);
+  // background-color: var(--cocoon-white-color);
+  // opacity: 1;
+  // //font-weight: 900;
+}
+// .index-tab-buttons .index-tab-button:last-of-type{
+//   border-right: none;
+// }
+.tab-cont,
+input[name="tab_item"]{
+  display: none;
+}
+
+//タブのアニメーション
+@keyframes tab-index-show {
+  0%   { opacity: 0;padding-top: 100px; }
+  20%  { padding-top: 20px; }
+  80%  { opacity: 0.5; }
+  100% { opacity: 1;padding-top: 0; }
+}
+
+#index-tab-1:checked ~ .tab-cont.tb1,
+#index-tab-2:checked ~ .tab-cont.tb2,
+#index-tab-3:checked ~ .tab-cont.tb3,
+#index-tab-4:checked ~ .tab-cont.tb4 //,
+// #index-tab-5:checked ~ .tab-cont.tb5,
+// #index-tab-6:checked ~ .tab-cont.tb6,
+// #index-tab-7:checked ~ .tab-cont.tb7,
+// #index-tab-8:checked ~ .tab-cont.tb8
+{
+  display: block;
+  animation: tab-index-show .3s ease-in;
+}
+
+//リストタイトル
+.list-title{
+  text-align: center;
+  font-size: 18px;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.list-title-in{
+  position: relative;
+  display: inline-block;
+  padding: 0 75px;
+  white-space: nowrap;
+}
+
+.list-title-in:before,
+.list-title-in:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  display: inline-block;
+  width: 55px;
+  height: 1px;
+  background-color: black;
+}
+
+.list-title-in:before {
+  left:0;
+  margin-right: 10px;
+}
+.list-title-in:after {
+  right: 0;
+  margin-left: 10px;
+}
+
+//ボタン
+.list-more-button-wrap{
+  text-align: center;
+}
+.list-more-button{
+  display: inline-block;
+  padding: 0.3em 2em;
+  text-decoration: none;
+  color: #333;
+  border: solid 2px var(--cocoon-basic-border-color);
+  transition: .4s;
+  margin: 1em 0 2em;
+  font-size: 16px;
+  border-radius: 99px;
+}
+.list-more-button:hover {
+  @include bgc_hover;
+}

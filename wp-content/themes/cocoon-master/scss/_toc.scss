@@ -1,0 +1,145 @@
+/************************************
+** 目次
+************************************/
+.toc{
+  border: 1px solid var(--cocoon-basic-border-color);
+  font-size: 0.9em;
+  padding: 1em 1.6em;
+  // margin-bottom: 1.2em;
+  display: table;
+
+  .toc-list{
+    padding-left: 1em;
+    ul, ol{
+      padding-left: 1em;
+      margin: 0;
+    }
+  }
+
+
+  li{
+    margin: 0;
+  }
+
+  ul{
+    list-style: none;
+  }
+
+  a{
+    color: var(--cocoon-text-color);
+    text-decoration: none;
+
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
+
+// .toc-center{
+//   margin-bottom: 1.2em;
+// }
+
+.toc-title{
+  font-size: 1.1em;
+  text-align: center;
+  display: block;
+  padding: 2px 16px;
+}
+
+// .toc-widget-box{
+//   .toc-title{
+//     display: none;
+//   }
+//   .toc-content{
+//     visibility: visible;
+//     opacity: 1;
+//     height: 100%;
+//   }
+// }
+
+.nwa .toc{
+  border: 0;
+  padding: 0 1em;
+}
+
+.tnt-none,
+.tnt-number-detail{
+  .toc-list{
+    padding-left: 0;
+  }
+}
+
+/************************************
+** h2-h6の見出し目次に連番を振る
+************************************/
+.toc.tnt-number-detail{
+  ol{
+    list-style: none;
+    counter-reset:toc;
+    li:before{
+      margin-right: 6px;
+      counter-increment:toc;
+      content:counters(toc, ".") ".";
+    }
+  }
+
+  // ol{
+  //   >li{
+  //     counter-increment: c-h2;
+  //     counter-reset: c-h3;
+  //   }
+
+  //   >li:before{
+  //     content: counter(c-h2)".";
+  //   }
+
+  //   >li > ol > li{
+  //     counter-increment: c-h3;
+  //     counter-reset: c-h4;
+  //   }
+
+  //   >li > ol > li:before{
+  //     content: counter(c-h2)"."counter(c-h3)".";
+  //   }
+
+  //   >li > ol > li > ol > li{
+  //     counter-increment: c-h4;
+  //     counter-reset: c-h5;
+  //   }
+
+  //   >li > ol > li > ol > li:before{
+  //     content: counter(c-h2)"."counter(c-h3)"."counter(c-h4)".";
+  //   }
+
+  //   >li > ol > li > ol > li > ol > li{
+  //     counter-increment: c-h5;
+  //     counter-reset: c-h6;
+  //   }
+
+  //   >li > ol > li > ol > li > ol > li:before{
+  //     content: counter(c-h2)"."counter(c-h3)"."counter(c-h4)"."counter(c-h5)".";
+  //   }
+
+  //   >li > ol > li > ol > li > ol > li > ol > li{
+  //     counter-increment: c-h6;
+  //   }
+
+  //   >li > ol > li > ol > li > ol > li > ol > li:before{
+  //     content: counter(c-h2)"."counter(c-h3)"."counter(c-h4)"."counter(c-h5)"."counter(c-h6)".";
+  //   }
+  // }
+}
+
+.tnt-disc ol{
+  list-style-type: disc;
+}
+.tnt-circle ol{
+  list-style-type: circle;
+}
+.tnt-square ol{
+  list-style-type: square;
+}
+
+.toc-center {
+  margin: 1em auto;
+}

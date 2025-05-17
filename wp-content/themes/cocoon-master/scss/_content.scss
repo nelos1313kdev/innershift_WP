@@ -1,0 +1,458 @@
+/************************************
+** 内容
+************************************/
+.content{
+  margin-top: 24px;
+}
+
+/*エントリー・アーカイブの見出し*/
+.entry-title,
+.archive-title{
+  font-size: 26px;
+  margin: 16px 0;
+  line-height: 1.3;
+}
+
+.archive-title{
+  span{
+    margin-right: 10px;
+  }
+}
+
+.entry-content{
+  margin-top: 1em;
+  margin-bottom: 3em;
+}
+
+pre{
+  line-height: 1.6;
+  word-wrap: normal;
+}
+
+/*本文下カテゴリーとタグ*/
+.entry-categories-tags{
+  @extend %bottom_margin;
+  >div{
+    margin-bottom: 0.5em;
+  }
+
+  .tax-icon{
+    margin-right: 0.4em;
+  }
+}
+
+.ctdt-one-row{
+  >div{
+    display: inline;
+  }
+}
+
+.ctdt-category-only{
+  .entry-tags{
+    display: none;
+  }
+}
+
+.ctdt-tag-only{
+  .entry-categories{
+    display: none;
+  }
+}
+
+.ctdt-none{
+  display: none;
+}
+
+/*本文下カテゴリ*/
+.cat-link{
+  @include link_cancel(var(--cocoon-white-color));
+  display: inline-block;
+  margin-right: 5px;
+  padding: 2px 6px;
+  font-size: 12px;
+  background-color: var(--cocoon-text-color);
+  border-radius: var(--cocoon-badge-border-radius);
+  word-break: break-all;
+
+  &:hover{
+    opacity: 0.5;
+    color: var(--cocoon-white-color);
+    // @include bgc_hover;
+    // color: var(--cocoon-text-color);
+  }
+}
+
+/*本文下タグ*/
+.tag-link{
+  @include link_cancel;
+  display: inline-block;
+  margin-right: 5px;
+  padding: 1px 5px;
+  font-size: 12px;
+  border: 1px solid var(--cocoon-x-pallid-text-color);
+  border-radius: var(--cocoon-badge-border-radius);
+  word-break: break-all;
+
+  &:hover{
+    @include bgc_hover;
+  }
+}
+
+/************************************
+** 投稿・固定ページで使うHTML要素
+************************************/
+table {
+  margin-bottom: 20px;
+  max-width: 100%;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  th,
+  td{
+    position: relative;
+    padding: 0.5em;
+  }
+
+  th{
+    background-color: var(--cocoon-xx-thin-color);
+  }
+
+  tr{
+    &:nth-of-type(2n+1){
+      background-color: var(--cocoon-xxx-thin-color);
+    }
+
+    // &:hover{
+    //   @include bgc_hover;
+    // }
+  }
+
+  &:not(.has-border-color) {
+    :where(th, td) {
+      border: 1px solid var(--cocoon-x-thin-color);
+      // padding: 6px;
+    }
+  }
+
+  // :is(th, td):has(.s-circle, .d-circle, .triangle, .cross, .b-question, .b-check){
+  //   height: 60px;
+  //   min-width: 80px;
+  // }
+
+}
+//:is(th, td):has(.s-circle, .d-circle, .triangle, .cross, .b-question, .b-check)
+//上記のようなCSSセレクターだとブロックエディターで不要な.editor-styles-wrapperがついてしまうため以下のように記入
+th, td{
+  &:has(.s-circle),
+  &:has(.d-circle),
+  &:has(.triangle),
+  &:has(.cross),
+  &:has(.b-question),
+  &:has(.b-check){
+    height: 60px;
+    min-width: 80px;
+  }
+}
+
+//比較表
+
+.s-circle:before,
+.d-circle:before,
+.triangle:before,
+.cross:before,
+.b-check:before,
+.b-question:before,
+.b-none:before {
+  content: '';
+  display: block;
+  height: 40px;
+  left: 50%;
+  opacity: 0.3;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  pointer-events: none;
+}
+
+.s-circle:before {
+  background-color: #00bcd4;
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M16 32q-3.313 0-6.219-1.25-2.906-1.281-5.078-3.453t-3.453-5.078q-1.25-2.906-1.25-6.219t1.25-6.219q1.281-2.906 3.453-5.078t5.078-3.453q2.906-1.25 6.219-1.25t6.219 1.25q2.906 1.281 5.078 3.453t3.453 5.078q1.25 2.906 1.25 6.219t-1.25 6.219q-1.281 2.906-3.453 5.078t-5.078 3.453q-2.906 1.25-6.219 1.25zM16 2.906q-2.719 0-5.094 1.031t-4.156 2.813-2.813 4.156-1.031 5.094 1.031 5.094 2.813 4.156 4.156 2.813 5.094 1.031 5.094-1.031 4.156-2.813 2.813-4.156 1.031-5.094-1.031-5.094-2.813-4.156-4.156-2.813-5.094-1.031z"></path></svg>');
+}
+
+.d-circle:before {
+  background-color: #8bc34a;
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M16 32q-3.313 0-6.219-1.25-2.906-1.281-5.078-3.453t-3.453-5.078q-1.25-2.906-1.25-6.219t1.25-6.219q1.281-2.906 3.453-5.078t5.078-3.453q2.906-1.25 6.219-1.25t6.219 1.25q2.906 1.281 5.078 3.453t3.453 5.078q1.25 2.906 1.25 6.219t-1.25 6.219q-1.281 2.906-3.453 5.078t-5.078 3.453q-2.906 1.25-6.219 1.25zM16 2.906q-2.719 0-5.094 1.031t-4.156 2.813-2.813 4.156-1.031 5.094 1.031 5.094 2.813 4.156 4.156 2.813 5.094 1.031 5.094-1.031 4.156-2.813 2.813-4.156 1.031-5.094-1.031-5.094-2.813-4.156-4.156-2.813-5.094-1.031zM16 26.875q-2.25 0-4.219-0.875-1.969-0.844-3.453-2.328t-2.328-3.453q-0.875-1.969-0.875-4.219t0.875-4.219q0.844-1.969 2.328-3.453t3.453-2.328q1.969-0.875 4.219-0.875t4.219 0.875q1.969 0.844 3.453 2.328t2.328 3.453q0.875 1.969 0.875 4.219t-0.875 4.219q-0.844 1.969-2.328 3.453t-3.453 2.328q-1.969 0.875-4.219 0.875zM16 8.063q-1.656 0-3.094 0.625t-2.516 1.703-1.703 2.516-0.625 3.094 0.625 3.094 1.703 2.516 2.516 1.703 3.094 0.625 3.094-0.625 2.516-1.703 1.703-2.516 0.625-3.094v0q0-1.656-0.625-3.094t-1.703-2.516-2.516-1.703-3.094-0.625v0 0z"></path></svg>');
+}
+
+.triangle:before {
+  background-color: #ffc107;
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M31.719 29.281h-31.313l15.656-27.094zM4.625 26.844h22.875l-11.438-19.813z"></path></svg>');
+}
+
+.cross:before {
+  background-color: #f44336;
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M16 18.125l-11.938 11.938-2.094-2.125 11.906-11.938-11.906-11.938 2.094-2.094 11.938 11.906 11.938-11.906 2.125 2.094-11.938 11.938 11.938 11.938-2.125 2.125-11.938-11.938z"></path></svg>');
+}
+
+.b-check:before {
+  background-color: #8bc34a;
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="m 28.824393,3.176485 a 1.7150643,1.7150643 0 0 1 2.696082,2.1198195 L 13.301347,28.473683 a 2.5725964,2.5725964 0 0 1 -3.9858105,0.07203 L 0.56184852,18.200448 A 1.7150643,1.7150643 0 1 1 3.1790365,15.984585 l 8.0745235,9.542617 z"></path></svg>');
+}
+
+.b-question:before {
+  background-color: #ffc107;
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="m 10.104966,7.8117416 c 0.66516,-1.9555889 2.863256,-3.6160779 5.730897,-3.6160779 3.545604,0 5.953994,2.4620552 5.953994,4.9616606 0,2.4996047 -2.40839,4.9616597 -5.953994,4.9616597 -1.09613,0 -1.984664,0.888534 -1.984664,1.984664 v 3.96933 c 0,1.09613 0.888534,1.984664 1.984664,1.984664 1.096131,0 1.984665,-0.888534 1.984665,-1.984664 V 17.90612 c 4.372217,-0.809942 7.938658,-4.242418 7.938658,-8.7487957 0,-5.173087 -4.699883,-8.93098904 -9.923323,-8.93098904 -4.324644,0 -8.2020622,2.52419514 -9.4887993,6.30724294 C 5.994111,7.5712796 6.5492216,8.6986483 7.5869231,9.0516013 8.6246444,9.4045734 9.752013,8.8494632 10.104966,7.8117416 Z m 5.730897,24.1692214 c 1.644295,0 2.976997,-1.3329 2.976997,-2.976996 0,-1.644096 -1.332702,-2.976996 -2.976997,-2.976996 -1.644096,0 -2.976996,1.3329 -2.976996,2.976996 0,1.644096 1.3329,2.976996 2.976996,2.976996 z"></path></svg>');
+}
+
+.b-none:before {
+  background-color: #777;
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 4,12 H 20"></path></svg>');
+}
+
+
+///////////////////////////////////////
+// レスポンシブテーブル
+///////////////////////////////////////
+.scrollable-table{
+  -webkit-overflow-scrolling: touch;
+  margin: 0;
+
+  //1列目を固定
+  &.stfc-sticky table:not(.wp-calendar-table) {
+    tr{
+      >*:first-child {
+        background-color: #e9eff2;
+        color: var(--cocoon-text-color);
+        position: sticky;
+        position: -webkit-sticky;
+        left: 0;
+        z-index: 2;
+      }
+    }
+  }
+}
+
+.scrollable-table table{
+  border-collapse: collapse;
+  max-width: none;
+  margin: 0;
+}
+
+.scrollable-table th{
+  background-color: #eee;
+}
+
+.scrollable-table th,
+.scrollable-table td{
+  // padding: 3px 5px;
+  white-space: nowrap;
+}
+
+//テーブルブロックデフォルト機能の「表のセル幅を固定」を有効にした場合は横スクロール表示しない
+.scrollable-table .has-fixed-layout th,
+.scrollable-table .has-fixed-layout td {
+  white-space: normal;
+}
+
+.scrollable-table {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+}
+
+// figure.wp-block-table.scrollable-block-table{
+//   &.aligncenter,
+//   &.alignleft,
+//   &.alignright{
+//     display: block;
+//   }
+// }
+
+///////////////////////////////////////////
+// テーブル修正
+// 草村さん案
+///////////////////////////////////////////
+figure.wp-block-table table {
+  width: auto;
+}
+// figure.wp-block-table[class*="align"] {
+//   max-width: 100%;
+//   display: block;
+// }
+// figure.wp-block-table[class*="align"] table {
+//   width: auto;
+//   margin-left: auto;
+//   margin-right: auto;
+// }
+figure.wp-block-table.alignwide table,
+figure.wp-block-table.alignfull table{
+  width: 100%;
+}
+.main figure.wp-block-table {
+  width: auto;
+  max-width: 100%;
+  display: block;
+}
+figure.wp-block-table{
+  table {
+    margin-right: auto;
+  }
+  &.aligncenter table {
+    margin-left: auto;
+  }
+  &.aligncenter figcaption {
+    text-align: center;
+  }
+  &.alignright table {
+    margin-left: 0;
+  }
+}
+
+// figure.wp-block-table table {
+//   margin-right: auto;
+// }
+// figure.wp-block-table.aligncenter table {
+//   margin-left: auto;
+// }
+// figure.wp-block-table.aligncenter figcaption {
+//   text-align: center;
+// }
+// figure.wp-block-table.alignright table {
+//   margin-left: 0;
+// }
+
+.scroll-hint-icon-wrap {
+  overflow: hidden;
+}
+
+
+.article{
+  @import "article";
+  margin-bottom: 2em;
+}
+
+/************************************
+** 引用（blockquote）
+************************************/
+blockquote {
+  background-color: var(--cocoon-xxx-thin-color);
+  border: 1px solid var(--cocoon-thin-color);
+  padding: 1.4em 1.8em;
+  position: relative;
+
+  &::before,
+  &::after{
+    color: #C8C8C8;
+    font-family: serif;
+    position: absolute;
+    font-size: 300%;
+
+  }
+
+  &::before {
+    content: "“";
+    line-height: 1.1;
+    left: 10px;
+    top: 0;
+  }
+
+  &::after {
+    content: "”";
+    line-height: 0;
+    right: 10px;
+    bottom: 0px;
+  }
+
+  cite{
+    font-size: 0.7em;
+  }
+}
+
+/*本文下情報*/
+.footer-meta{
+  font-size: 0.8em;
+  text-align: right;
+}
+
+/*投稿者*/
+.author-info .post-author{
+  font-size: 14px;
+}
+
+/************************************
+** ページ管理画面の設定で「本文のみ」表示
+************************************/
+.content-only{
+  .header-container,
+  .appeal,
+  .ad-area,
+  .sns-share,
+  .date-tags,
+  .sns-follow,
+  .article-footer,
+  .under-entry-content,
+  .breadcrumb,
+  .main-scroll,
+  .footer,
+  .go-to-top-button,
+  .notice-area,
+  .content-top,
+  .content-bottom,
+  .recommended
+  {
+    display: none;
+  }
+  .carousel{
+    display: none !important;
+  }
+}
+
+/************************************
+** 外部リンク・内部リンク
+************************************/
+span.external-icon,
+span.internal-icon{
+  margin-left: 3px;
+  font-size: 0.8em;
+}
+
+///////////////////////////////////////
+// ログインして意外ユーザーに表示するメッセージ
+///////////////////////////////////////
+.login-user-only{
+  text-align: center;
+  padding: 2em;
+  background-color: var(--cocoon-xxx-thin-color);
+  border: 1px solid var(--cocoon-basic-border-color);
+  // margin-bottom: 1.2em;
+}
+
+///////////////////////////////////////
+// 投稿関連情報を表示
+///////////////////////////////////////
+.no-post-date .article-header .post-date,
+.no-post-update .article-header .post-update,
+.no-post-author .author-info {
+  display: none;
+}
+
+.read-time{
+  text-align: center;
+  font-size: 0.7em;
+  border-top: 4px double var(--cocoon-x-thin-color);
+  border-bottom: 4px double var(--cocoon-x-thin-color);
+  margin: 0 3%;
+  margin-bottom: 1em;
+
+  .hourglass-half-icon {
+    margin-right: 3px;
+  }
+}
+
+///////////////////////////////////////
+// タイトルを表示しない
+///////////////////////////////////////
+.no-page-title .entry-title {
+  display: none;
+}

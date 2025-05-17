@@ -1,0 +1,26 @@
+{
+  "apiVersion": 2,
+  "name": "cocoon-blocks/icon-box",
+  "category": "cocoon-block",
+  "keywords": [ "icon", "box" ],
+
+  "attributes": {
+    "style": {
+      "type": "string",
+      "default": "information-box"
+    }
+  },
+  "example": {
+    "innerBlocks": [
+      {
+        "name": "core/paragraph",
+        "attributes": {
+          "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius facilis in molestiae quod! Aut doloribus est illum iure porro sunt. Eius illo iusto maxime nihil possimus quae tempora voluptas voluptates."
+        }
+      }
+    ]
+  },
+  "supports": {
+    "anchor": true
+  }
+}

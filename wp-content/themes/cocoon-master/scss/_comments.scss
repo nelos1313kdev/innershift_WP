@@ -1,0 +1,95 @@
+/************************************
+** コメント
+************************************/
+.commets-list{
+  @include list_cancel;
+
+  .avatar{
+    float: right;
+  }
+
+  .reply{
+    text-align: right;
+    font-size: var(--cocoon-text-size-s);
+  }
+
+  .comment-meta{
+    font-size:var(--cocoon-text-size-s);
+  }
+
+  .comment-body,
+  .st-comment-body{
+    margin-bottom: 1em;
+  }
+
+  .children{
+    list-style: none;
+    padding-left: 20px;
+  }
+}
+
+.st-comment-id{
+  display: none;
+}
+
+.st-comment-edit{
+  font-size: 0.8em;
+  margin-left: 6px;
+}
+
+.st-comment-author .fn{
+  font-weight: bold;
+}
+
+.comment-form{
+  .required{
+    color: red;
+  }
+
+  .logged-in-as{
+    margin: 0.2em;
+    font-size: 0.8em;
+  }
+
+  .submit{
+    margin: 1em 0;
+  }
+}
+
+// .comment-area{
+//   margin-bottom: 3em;
+// }
+
+.comment-area.website-hide{
+  .comment-form-url{
+    display: none;
+  }
+}
+
+//編集リンクの余白
+.comment-edit-link {
+  margin-left: 0.4em;
+}
+
+//返信ボタン
+.comment-reply-link{
+  @extend .tag-link;
+  font-size: 14px;
+  display: inline;
+  padding: 5px 8px;
+  .comment-icon{
+    margin-right: 3px;
+  }
+}
+
+//コメントのページネーション
+.comment-page-link{
+  margin: 24px 0;
+  display: inline-flex;
+  justify-content: center;
+  width: 100%;
+
+  .current{
+    background-color:#eee;
+  }
+}

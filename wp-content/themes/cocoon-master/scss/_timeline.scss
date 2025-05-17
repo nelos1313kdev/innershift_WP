@@ -1,0 +1,79 @@
+.timeline-box{
+  @extend .ranking-item;
+  padding: 16px 5px;
+  overflow: auto;
+  --cocoon-custom-point-color:#6fc173;
+  --cocoon-custom-background-color: transparent;
+  --cocoon-custom-text-color: var(--cocoon-text-color);
+  --cocoon-custom-border-color: var(--cocoon-basic-border-color);
+  background-color: var(--cocoon-custom-background-color);
+  color: var(--cocoon-custom-text-color);
+  border-color: var(--cocoon-custom-border-color);
+  background-clip: padding-box;
+}
+.timeline-box .timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.timeline-title{
+  font-weight: bold;
+  font-size: 1.1em;
+  text-align: center;
+}
+.timeline > li {
+  margin-bottom: 60px;
+}
+
+//タイムライン内の印
+ul.timeline ul {
+  list-style-type: disc;
+}
+ul.timeline ul ul {
+  list-style-type: circle;
+}
+ul.timeline ul ul ul {
+  list-style-type: square;
+}
+
+/* for Desktop */
+//@media ( min-width : 481px ){
+  .timeline > li.timeline-item {
+    overflow: hidden;
+    margin: 0;
+    position: relative;
+  }
+  .timeline-item-label {
+    width: 110px;
+    float: left;
+    padding-top: 18px;
+    text-align: right;
+    padding-right: 1em;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .timeline-item-title {
+    font-weight: bold;
+  }
+  .timeline-item-content {
+    width: calc(100% - 110px);
+    float: left;
+    padding: .8em 1.4em;
+    border-left: 3px #e5e5d1 solid;
+  }
+  .timeline-item:before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: var(--cocoon-custom-point-color);
+    position: absolute;
+    left: 105px;
+    top: 24px;
+    border-radius: 100%;
+  }
+  .has-point-color > .timeline > .timeline-item:before {
+    background: var(--cocoon-custom-point-color);
+  }
+//}

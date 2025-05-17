@@ -1,0 +1,115 @@
+{
+  "apiVersion": 2,
+  "name": "cocoon-blocks/timeline",
+  "category": "cocoon-block",
+  "keywords": [ "timeline", "box" ],
+
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "タイムラインのタイトル"
+    },
+    "items": {
+      "type": "number",
+      "default": 1
+    },
+    "backgroundColor": {
+      "type": "string"
+    },
+    "textColor": {
+      "type": "string"
+    },
+    "borderColor": {
+      "type": "string"
+    },
+    "customBackgroundColor": {
+      "type": "string"
+    },
+    "customTextColor": {
+      "type": "string"
+    },
+    "customBorderColor": {
+      "type": "string"
+    },
+    "pointColor": {
+      "type": "string"
+    },
+    "customPointColor": {
+      "type": "string"
+    },
+    "fontSize": {
+      "type": "string"
+    },
+    "notNestedStyle": {
+      "type": "boolean",
+      "default": true
+    },
+    "backgroundColorValue": {
+      "type": "string"
+    },
+    "textColorValue": {
+      "type": "string"
+    },
+    "borderColorValue": {
+      "type": "string"
+    },
+    "pointColorValue": {
+      "type": "string"
+    }
+  },
+  "example": {
+    "attributes": {
+      "title": "Title"
+    },
+    "innerBlocks": [
+      {
+        "name": "cocoon-blocks/timeline-item",
+        "attributes": {
+          "label": "STEP 1",
+          "title": "Volutpat consequat mauris nunc congue"
+        },
+        "innerBlocks": [
+          {
+            "name": "core/paragraph",
+            "attributes": {
+              "content": "Adipiscing enim eu turpis egestas pretium aenean pharetra magna ac."
+            }
+          }
+        ]
+      },
+      {
+        "name": "cocoon-blocks/timeline-item",
+        "attributes": {
+          "label": "STEP 2",
+          "title": "Elementum curabitur vitae nunc sed"
+        },
+        "innerBlocks": [
+          {
+            "name": "core/paragraph",
+            "attributes": {
+              "content": "Suspendisse in est ante in nibh mauris cursus mattis molestie."
+            }
+          }
+        ]
+      },
+      {
+        "name": "cocoon-blocks/timeline-item",
+        "attributes": {
+          "label": "STEP 3",
+          "title": "Adipiscing bibendum est ultricies integer"
+        },
+        "innerBlocks": [
+          {
+            "name": "core/paragraph",
+            "attributes": {
+              "content": "Donec ac odio tempor orci dapibus ultrices in iaculis nunc."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "supports": {
+    "anchor": true
+  }
+}

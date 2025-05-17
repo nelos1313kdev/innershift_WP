@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+/*!
+Theme Name: Cocoon Child
+Description: Cocoon専用の子テーマ
+Theme URI: https://wp-cocoon.com/
+Author: わいひら
+Author URI: https://nelog.jp/
+Template:   cocoon-master
+Version:    1.1.3
+*/
+
+/************************************
+** 子テーマ用のスタイルを書く
+************************************/
+/*必要ならばここにコードを書く*/
+
+/************************************
+** レスポンシブデザイン用のメディアクエリ
+************************************/
+/*1023px以下*/
+@media screen and (max-width: 1023px){
+  /*必要ならばここにコードを書く*/
+}
+
+/*834px以下*/
+@media screen and (max-width: 834px){
+  /*必要ならばここにコードを書く*/
+}
+
+/*480px以下*/
+@media screen and (max-width: 480px){
+  /*必要ならばここにコードを書く*/
+}

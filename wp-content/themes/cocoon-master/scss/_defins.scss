@@ -1,0 +1,548 @@
+//変数などの定義
+
+//ブランドカラー
+@import '_root';
+
+$transparent_border_color: transparent;
+$transpalent_black_bgc: rgba(51,51,51,0.7);
+
+//メインカラム
+$main_inner_width: 800px;
+$main_border_width: 1px;
+$main_border_style: solid ;
+$main_border_color: var(--cocoon-basic-border-color);
+$main_padding_width: 29px;
+
+//メインカラムとサイドバーの余白
+$between_main_and_sidebar: 20px;
+
+//サイドバー
+$sidebar_inner_width: 336px;
+$sidebar_border_width: 1px;
+$sidebar_border_style: solid ;
+$sidebar_border_color: var(--cocoon-basic-border-color);
+$sidebar_padding_width: 19px;
+
+$main_outer_width: $main_inner_width + $main_border_width*2 + $main_padding_width*2;
+$sidebar_outer_width: $sidebar_inner_width + $sidebar_border_width*2 + $sidebar_padding_width*2;
+
+$site_width: $main_outer_width + $between_main_and_sidebar + $sidebar_outer_width;
+
+//ウィジェットの最大幅
+$widget_max_width: 400px;
+
+
+$emtry_card_thumb_margin_top: 3px;
+
+$thumb_content_margin: 1.6%;
+
+$bct-none: '\f0c8';
+$bct-none-text: 'ラベルなし';
+$bct-related: '\f15c';
+$bct-related-text: '関連記事';
+$bct-reference: '\f19d';
+$bct-reference-text: '参考記事';
+$bct-reference-link: '\f19d';
+$bct-reference-link-text: '参考リンク';
+$bct-popular: '\f005';
+$bct-popular-text: '人気記事';
+$bct-pickup: '\f005';
+$bct-pickup-text: 'ピックアップ';
+$bct-check: '\f00c';
+$bct-check-text: 'チェック';
+$bct-together: '\f02d';
+$bct-together-text: 'あわせて読みたい';
+$bct-detail: '\f15c';
+$bct-detail-text: '詳細はこちら';
+$bct-official: '\f024';
+$bct-official-text: '公式サイト';
+$bct-dl: '\f019';
+$bct-dl-text: 'ダウンロード';
+$bct-prev: '\f137';
+$bct-prev-text: '前回の記事';
+$bct-next: '\f138';
+$bct-next-text: '続きの記事';
+
+//背景ホバー
+$bgc_hover_color: #f5f8fa;
+$bgc_hover_anime: all .3s ease-in-out;
+@mixin bgc_hover($color: $bgc_hover_color) {
+  background-color: $color;
+  transition: $bgc_hover_anime;
+  color: var(--cocoon-text-color);
+}
+
+//Font Awesomeアイコンを出力するとき
+@mixin fontawesome($unicode:'/f004') {
+  // font-family: FontAwesome;
+  content: $unicode;
+  //padding-right: 4px;
+}
+
+.faw::before{
+  font-family: FontAwesome;
+  padding-right: 4px;
+}
+
+//リンクキャンセル
+@mixin link_cancel($color: var(--cocoon-text-color)) {
+  color: $color;
+  text-decoration: none;
+}
+
+//リストキャンセル
+@mixin list_cancel {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+//リストキャンセル
+@mixin card_padding {
+  padding: 1.6% 2.2% 2%;
+}
+
+%list_cancel {
+  padding: 0;
+  list-style: none;
+}
+
+@mixin base_font{
+  /* フォントの種類 */
+  font-family: var(--cocoon-default-font);
+
+  /* フォントのサイズ */
+  font-size: var(--cocoon-default-text-size);
+
+  /* フォントの色 */
+  color: var(--cocoon-text-color);
+
+  /* カーニングの設定 */
+  //letter-spacing: 1.2px;
+  //font-feature-settings: "palt" 1;
+  //font-kerning: auto;
+
+  /* 行間の設定 */
+  line-height: 1.8;
+
+  margin: 0;
+
+  //word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+///////////////////////////////////////
+// エントリーカード
+///////////////////////////////////////
+%card{
+  position: relative;
+  height: 100%;
+}
+
+%card_thumb{
+  float: left;
+  margin-top: $emtry_card_thumb_margin_top;
+  position: relative;
+  margin-bottom: 0.4em;
+}
+
+%card_content{
+  padding-bottom: 1.2em;
+}
+
+%card_title{
+  font-size: 18px;
+  margin: 0 0 0.4em 0;
+  line-height: 1.6;
+  font-weight: bold;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+%card_snippet{
+  font-size: var(--cocoon-text-size-s);
+  margin: 0 0 0.4em 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+%card_meta{
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  line-height: 1;
+}
+
+///////////////////////////////////////
+// コンテンツ
+///////////////////////////////////////
+%bottom_margin{
+  margin-bottom: 18px;
+}
+
+%sns_message{
+  text-align: center;
+  margin-bottom: 3px;
+}
+
+%background_image{
+  /* 画像を常に左右の中央に配置 */
+  background-position: top center;
+
+  /* 画像をタイル状に繰り返し表示しない */
+  background-repeat: no-repeat;
+
+  /* 表示するコンテナの大きさに基づいて、背景画像を調整 */
+  background-size: 100% auto;
+
+  &.ba-fixed{
+    /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
+    background-attachment: fixed;
+  }
+}
+
+///////////////////////////////////////
+// プロフィール
+///////////////////////////////////////
+@mixin author_box_nallow{
+  .author-box{
+    font-size: 0.9em;
+    line-height: 1.3;
+
+    .author-thumb{
+      // float: none;
+      // width: auto;
+      // text-align: center;
+      width: 24%;
+    }
+
+    .author-content{
+      // float: none;
+      // margin: 0;
+      margin-left: 26%;
+    }
+
+  }
+
+
+}
+
+///////////////////////////////////////
+// Facebookボックス
+///////////////////////////////////////
+@mixin fb_like_box($max_width: 640px){
+  .fb-like-box{
+    max-width: $max_width;
+    //display: block;
+    flex-direction: column;
+    // >div,
+    // >figure{
+    //   width: 100%;
+    //   max-width: none;
+    // }
+  }
+}
+
+///////////////////////////////////////
+// CTA
+///////////////////////////////////////
+@mixin cta_box_nallow{
+  .cta-heading{
+    font-size: 20px;
+    padding: 8px;
+  }
+
+  .cta-left-and-right,
+  .cta-right-and-left {
+    .cta-content{
+      flex-direction: column;
+    }
+  }
+
+  .cta-button{
+    .btn-l{
+      padding: 1em;
+      font-size: 16px;
+    }
+  }
+}
+
+///////////////////////////////////////
+// シェア数
+///////////////////////////////////////
+@mixin service_count {
+  // font-family: Arial, sans-serif;
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  font-size: 12px;
+  line-height: 1;
+}
+
+///////////////////////////////////////
+// 投稿カテゴリ
+///////////////////////////////////////
+%entry_category{
+  padding: 2px;
+  //margin-right: 8px;
+  display: inline;
+  font-size: 0.7em;
+}
+
+///////////////////////////////////////
+// ブログカード（狭い）
+///////////////////////////////////////
+@mixin blog_card_834{
+  .blogcard-wrap{
+    width: 100%;
+  }
+
+  .blogcard-thumbnail{
+    width: 120px;
+  }
+
+  .blogcard-title{
+    font-size: 0.9em;
+    margin-bottom: 0;
+  }
+
+  .blogcard-snippet{
+    font-size: 12px;
+  }
+
+  .blogcard-content{
+    margin-left: 130px;
+    margin-right: 0;
+    max-height: 120px;
+    min-height: 70px;
+    font-size: 0.9em;
+    line-height: 1.2;
+  }
+
+  .blogcard-footer{
+    font-size: 14px;
+  }
+
+  .ib-right,
+  .eb-right{
+    .blogcard-content{
+      margin-right: 31.6%;
+      margin-left: 0;
+    }
+  }
+}
+
+///////////////////////////////////////////
+// タグクラウド
+///////////////////////////////////////////
+@mixin tagcloud_a {
+  border: 1px solid var(--cocoon-x-thin-color);
+  border-radius: 2px;
+  color: var(--cocoon-text-color);
+  padding: 3px 8px;
+  text-decoration: none;
+  font-size: 12px;
+  margin: 2px;
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: space-between;
+  transition: $bgc_hover_anime;
+
+  &:hover {
+    @include bgc_hover;
+  }
+
+  .tag-caption{
+    word-break: break-all;
+    .tax-icon {
+      margin-right:0.4em;
+    }
+  }
+
+  .tag-link-count{
+    margin-left: 8px;
+  }
+}
+
+///////////////////////////////////////
+// フォーム共通
+///////////////////////////////////////
+$form_padding: 11px;
+%form_common {
+  padding: $form_padding;
+  border: 1px solid var(--cocoon-basic-border-color);
+  border-radius: var(--cocoon-basic-border-radius);
+  font-size: inherit;
+  width: 100%;
+}
+
+///////////////////////////////////////////
+// おすすめカード（狭いエリア）
+///////////////////////////////////////////
+@mixin recommended_nallow{
+  .recommended{
+    .navi-entry-cards{
+      flex-wrap: wrap;
+      a{
+        width: 50%;
+      }
+    }
+    &.rcs-card-margin{
+      a{
+        margin: 1%;
+        width: 48%;
+        &:last-child{
+          margin-right: 1%;
+        }
+      }
+    }
+  }
+}
+
+///////////////////////////////////////////
+// タブボックス
+///////////////////////////////////////////
+@mixin tabbox_label{
+  background-color: var(--cocoon-custom-border-color);
+  font-family: Aharoni, "Arial Black", Impact, Arial, sans-serif;
+  position: absolute;
+  font-size: 13px;
+  top: -27px;
+  height: 24px;
+  color: var(--cocoon-white-color);
+  left: -3px;
+  border-radius: 6px 6px 0 0;
+  padding: 0 1em 0 .8em;
+}
+
+$bb-check: "\f00c";
+$bb-check-text: "CHECK";
+$bb-comment: "\f075";
+$bb-comment-text: "COMMENT";
+$bb-point: "\f0eb";
+$bb-point-text: "POINT";
+$bb-tips: "\f19d";
+$bb-tips-text: "TIPS";
+$bb-hint: "\f0f3";
+$bb-hint-text: "HINT";
+$bb-pickup: "\f005";
+$bb-pickup-text: "PICKUP";
+$bb-bookmark: "\f02e";
+$bb-bookmark-text: "BOOKMARK";
+$bb-memo: "\f249";
+$bb-memo-text: "MEMO";
+$bb-download: "\f019";
+$bb-download-text: "DOWNLOAD";
+$bb-break: "\f0f4";
+$bb-break-text: "BREAK";
+$bb-amazon: "\f270";
+$bb-amazon-text: "AMAZON";
+$bb-ok: "\f10c";
+$bb-ok-text: "OK";
+$bb-ng: "\f00d";
+$bb-ng-text: "NG";
+$bb-good: "\f164";
+$bb-good-text: "GOOD";
+$bb-bad: "\f165";
+$bb-bad-text: "BAD";
+$bb-profile: "\f007";
+$bb-profile-text: "PROFILE";
+
+
+%follow_amp_button{
+  text-decoration: none;
+  text-align: center;
+  margin: 0 auto;
+  padding: 4px 7px 6px;
+  // top: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--cocoon-white-color);
+  position: relative;
+  border-radius: var(--cocoon-basic-border-radius);
+
+  &:hover{
+    color: var(--cocoon-white-color);
+    opacity: 0.7;
+  }
+}
+
+@mixin follow_amp_button($unicode, $bc_color){
+  background-color: $bc_color;
+  margin-bottom: 0.6em;
+  &::before{
+    @include fontawesome($unicode);
+    font-family: FontAwesome;
+    margin: 0 3px;
+    font-weight: normal;
+  }
+}
+
+@mixin toggle{
+  .toggle{
+    .toggle-link{
+      font-size: 0.8em;
+      cursor: pointer;
+
+      margin-left: 6px;
+
+      text-decoration: underline;
+      color: #0073aa;
+      transition-duration: 0.05s;
+      transition-property: border, background, color;
+      transition-timing-function: ease-in-out;
+
+      &:hover{
+        color: #00a0d2;
+      }
+    }
+
+    .toggle-content{
+      display: none;
+      width: 100%;
+    }
+  }
+}
+
+@mixin toggle_link {
+  .toggle-link {
+    font-size: 0.8em;
+    cursor: pointer;
+    margin-left: 6px;
+    text-decoration: underline;
+    color: #0073aa;
+    transition-duration: 0.05s;
+    transition-property: border, background, color;
+    transition-timing-function: ease-in-out;
+
+    &:hover {
+      color: #00a0d2;
+    }
+  }
+
+  .toggle-content {
+    display: none;
+    width: 100%;
+  }
+}
+
+%copy_info{
+  display: none;
+  /*初期状態は非表示*/padding: 1em 2em;
+  color: #fff;
+  border-radius: 8px;
+  /*画面上部に表示*/position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--cocoon-text-color);
+  opacity: 0.8;
+  box-shadow: 0 4px 8px var(--cocoon-x-pallid-text-color);
+  z-index: 2;
+}

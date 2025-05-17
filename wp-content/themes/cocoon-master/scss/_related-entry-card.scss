@@ -1,0 +1,151 @@
+/************************************
+** 関連記事
+************************************/
+.related-list{
+  display: flex;
+  flex-direction: column;
+  row-gap: .8em;
+  margin-bottom: 2em;
+}
+.related-entry-card{
+  @extend %card;
+
+  .cat-label{
+    font-size: 9px;
+  }
+}
+
+/*関連エントリーカード*/
+.related-entry-heading,
+.comment-title{
+  margin: 22px 0;
+  font-size: 24px;
+}
+
+.related-entry-card-thumb{
+  @extend %card_thumb;
+}
+
+.related-entry-card-content{
+  @extend %card_content;
+  margin-left: 170px;
+}
+
+.related-entry-card-title{
+  @extend %card_title;
+}
+
+.related-entry-card-snippet{
+  @extend %card_snippet;
+  -webkit-line-clamp: 3;
+}
+
+.related-entry-card-meta {
+  @extend %card_meta;
+}
+
+/************************************
+** 関連記事表示タイプがミニカードの時
+************************************/
+.rect-mini-card{
+  .related-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 1%;
+  }
+  .related-entry-card-wrap{
+    width: 49.5%;
+    padding: 7px;
+  }
+
+  .related-entry-card-thumb{
+    width: 120px;
+  }
+
+  .related-entry-card-content{
+    margin-left: 130px;
+  }
+
+  .related-entry-card-title{
+    font-size: 16px;
+  }
+
+  .related-entry-card-snippet{
+    display: none;
+  }
+}
+
+/************************************
+** 縦型カード
+************************************/
+.rect-vertical-card{
+
+  .related-list{
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 1%;
+  }
+
+  .related-entry-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .related-entry-card-wrap{
+    padding: 5px;
+  }
+
+  .related-entry-card-thumb{
+    float: none;
+    width: 100%;
+    img{
+      width: 100%;
+    }
+  }
+
+  .related-entry-card-content{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-bottom: 0;
+  }
+
+  .related-entry-card-title{
+    font-size: 16px;
+  }
+
+  .related-entry-card-meta {
+    margin-top: auto;
+    padding-top: 5px;
+    position: unset;
+  }
+}
+
+.rect-vertical-card-3{
+  .related-list{
+    column-gap: calc(1%/2);
+  }
+  .related-entry-card-wrap{
+    width: 33%;
+  }
+}
+
+.rect-vertical-card-4{
+  .related-list{
+    column-gap: calc(2%/3);
+  }
+  .related-entry-card-wrap{
+    width: 24.5%;
+  }
+}
+
+/************************************
+** 関連記事ボーダー
+************************************/
+.recb-entry-border{
+  .related-entry-card-wrap{
+    border: 1px solid var(--cocoon-basic-border-color);
+  }
+}

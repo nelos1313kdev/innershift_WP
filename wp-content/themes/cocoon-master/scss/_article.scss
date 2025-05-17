@@ -1,0 +1,99 @@
+//.article内専用のタグ
+
+$margin-bottom: 60px;
+
+// dl{
+//   margin-bottom: 1.2em;
+// }
+
+dd{
+  margin-left: 40px;
+}
+
+ul,
+ol{
+  // margin: 1em 0;
+  // padding-left: 40px;
+
+  li{
+    margin: 0.2em;
+  }
+
+  ul, ol{
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 0;
+  }
+}
+
+.wp-block-gallery{
+  ul{
+    padding-left: 0;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.25;
+  font-weight: bold;
+}
+
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//   margin: 2.4em 0 1em;
+//   // margin-top: 35px;
+//   // margin-bottom: 20px;
+// }
+
+h4,
+h5,
+h6{
+  font-size: 20px;
+  padding: 9px 10px;
+}
+
+h2 {
+  font-size: 24px;
+  //margin-top: 40px;
+  //margin-bottom: 20px;
+  padding: 25px;
+  background-color: var(--cocoon-xx-thin-color);
+  border-radius: var(--cocoon-badge-border-radius);
+}
+
+h3 {
+  border-left: 7px solid var(--cocoon-middle-thickness-color);
+  border-right: 1px solid var(--cocoon-thin-color);
+  border-top: 1px solid var(--cocoon-thin-color);
+  border-bottom: 1px solid var(--cocoon-thin-color);
+  font-size: 22px;
+  padding: 12px 20px;
+
+}
+
+h4 {
+  border-top: 2px solid var(--cocoon-thin-color);
+  border-bottom: 2px solid var(--cocoon-thin-color);
+}
+
+h5 {
+  border-bottom: 2px solid var(--cocoon-thin-color);
+}
+
+h6 {
+  border-bottom: 1px solid var(--cocoon-thin-color);
+}
+
+.column-wrap{
+  h1,h2,h3,h4,h5,h6{
+    margin-top: 0;
+  }
+}

@@ -1,0 +1,659 @@
+# Translation of Themes - Twenty Twenty-Four in Japanese
+# This file is distributed under the same license as the Themes - Twenty Twenty-Four package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2024-06-21 13:37:41+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/4.0.1\n"
+"Language: ja_JP\n"
+"Project-Id-Version: Themes - Twenty Twenty-Four\n"
+
+#. Description of the theme
+#: style.css
+#, gp-priority: high
+msgid "Twenty Twenty-Four is designed to be flexible, versatile and applicable to any website. Its collection of templates and patterns tailor to different needs, such as presenting a business, blogging and writing or showcasing work. A multitude of possibilities open up with just a few adjustments to color and typography. Twenty Twenty-Four comes with style variations and full page designs to help speed up the site building process, is fully compatible with the site editor, and takes advantage of new design tools introduced in WordPress 6.4."
+msgstr "Twenty Twenty-Four は、柔軟で用途が広く、あらゆるウェブサイトに適用できるように設計されています。テンプレートとパターンのコレクションは、ビジネス紹介、ブログ、執筆、作品の紹介など、さまざまなニーズに合わせて調整されています。色とタイポグラフィを少し調整するだけで、多くの可能性が広がります。Twenty Twenty-Fourは、サイトの構築プロセスを加速するためのスタイルバリエーションとフルページデザインを備え、サイトエディターと完全に互換性があり、WordPress 6.4で導入された新しいデザインツールを活用しています。"
+
+#. Theme Name of the theme
+#: style.css
+#, gp-priority: high
+msgid "Twenty Twenty-Four"
+msgstr "Twenty Twenty-Four"
+
+#: patterns/footer.php:96
+msgid "Twitter/X"
+msgstr "Twitter/X"
+
+#: patterns/footer.php:73
+msgid "Terms and Conditions"
+msgstr "利用規約"
+
+#: patterns/footer.php:72
+msgid "Privacy Policy"
+msgstr "プライバシーポリシー"
+
+#: patterns/footer.php:74
+msgid "Contact Us"
+msgstr "お問い合わせ"
+
+#: patterns/footer.php:51
+msgid "Careers"
+msgstr "採用情報"
+
+#: patterns/footer.php:50
+msgid "History"
+msgstr "沿革"
+
+#: patterns/footer.php:49
+msgid "Team"
+msgstr "メンバー"
+
+#: patterns/posts-list.php
+msgctxt "Pattern title"
+msgid "List of posts without images, 1 column"
+msgstr "画像のないポスト一覧、1カラム"
+
+#: patterns/hidden-portfolio-hero.php:16
+msgid "I’m <em>Leia Acosta</em>, a passionate photographer who finds inspiration in capturing the fleeting beauty of life."
+msgstr "私は<em>Leia Acosta</em>です。移りゆく生命の美しさを捉える情熱的な写真家です。"
+
+#: functions.php:200
+msgid "A collection of full page layouts."
+msgstr "フルページレイアウトのコレクション"
+
+#: functions.php:199
+msgctxt "Block pattern category"
+msgid "Pages"
+msgstr "固定ページ"
+
+#. Author URI of the theme
+#. Translators: WordPress link.
+#: style.css patterns/footer-centered-logo-nav.php:22
+#: patterns/footer-colophon-3-col.php:91 patterns/footer.php:117
+msgid "https://wordpress.org"
+msgstr "https://ja.wordpress.org"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header"
+msgstr "ヘッダー"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Footer"
+msgstr "フッター"
+
+#: styles/fossil.json styles/ice.json theme.json
+msgctxt "Font family name"
+msgid "Inter"
+msgstr "インター"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Post Meta"
+msgstr "投稿メタ"
+
+#: styles/fossil.json styles/ice.json styles/maelstrom.json theme.json
+msgctxt "Font size name"
+msgid "Extra Large"
+msgstr "特大"
+
+#: styles/fossil.json styles/ice.json styles/maelstrom.json theme.json
+msgctxt "Font size name"
+msgid "Large"
+msgstr "大"
+
+#: styles/fossil.json styles/ice.json styles/maelstrom.json theme.json
+msgctxt "Font size name"
+msgid "Medium"
+msgstr "中"
+
+#: theme.json
+msgctxt "Space size name"
+msgid "6"
+msgstr "6"
+
+#: theme.json
+msgctxt "Space size name"
+msgid "5"
+msgstr "5"
+
+#: theme.json
+msgctxt "Space size name"
+msgid "4"
+msgstr "4"
+
+#: theme.json
+msgctxt "Space size name"
+msgid "3"
+msgstr "3"
+
+#: theme.json
+msgctxt "Space size name"
+msgid "2"
+msgstr "2"
+
+#: theme.json
+msgctxt "Space size name"
+msgid "1"
+msgstr "1"
+
+#: styles/ember.json styles/fossil.json styles/ice.json styles/maelstrom.json
+#: styles/mint.json styles/onyx.json styles/rust.json theme.json
+msgctxt "Color name"
+msgid "Contrast"
+msgstr "コントラスト"
+
+#: styles/ember.json styles/fossil.json styles/ice.json styles/maelstrom.json
+#: styles/mint.json styles/onyx.json styles/rust.json theme.json
+msgctxt "Color name"
+msgid "Base"
+msgstr "ベース"
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Single with Sidebar"
+msgstr "サイドバー付きの投稿"
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Page with Sidebar"
+msgstr "サイドバー付きの固定ページ"
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Page No Title"
+msgstr "タイトルのない固定ページ"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Sidebar"
+msgstr "サイドバー"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Vertical hard pewter to white"
+msgstr "濃いグレーからホワイトへの垂直方向に明確なグラデーション"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Vertical hard mint to white"
+msgstr "ミントグリーンからホワイトへの垂直方向に明確なグラデーション"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Vertical hard sage to white"
+msgstr "セージグリーンからホワイトへの垂直方向に明確なグラデーション"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Vertical hard rust to white"
+msgstr "錆色からホワイトへの垂直方向に明確なグラデーション"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Vertical hard sandstone to white"
+msgstr "サンドストーン色からホワイトへの垂直方向に明確なグラデーション"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Vertical hard beige to white"
+msgstr "ベージュからホワイトへの垂直方向に明確なグラデーション"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Vertical soft pewter to white"
+msgstr "ライトグレーからホワイトへの垂直方向になめらかなグラデーション"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Vertical soft mint to white"
+msgstr "ミントグリーンからホワイトへの垂直方向になめらかなグラデーション"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Vertical soft sage to white"
+msgstr "セージグリーンからホワイトへの垂直方向になめらかなグラデーション"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Vertical soft rust to white"
+msgstr "錆色からホワイトへの垂直方向になめらかなグラデーション"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Vertical soft sandstone to white"
+msgstr "サンドストーン色からホワイトへの垂直方向になめらかなグラデーション"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Vertical soft beige to white"
+msgstr "ベージュからホワイトへの垂直方向になめらかなグラデーション"
+
+#: theme.json
+msgctxt "Duotone name"
+msgid "Black and pastel blue"
+msgstr "ブラックとパステルブルー"
+
+#: theme.json
+msgctxt "Duotone name"
+msgid "Black and sage"
+msgstr "ブラックとセージグリーン"
+
+#: theme.json
+msgctxt "Duotone name"
+msgid "Black and rust"
+msgstr "ブラックと錆色"
+
+#: theme.json
+msgctxt "Duotone name"
+msgid "Black and sandstone"
+msgstr "ブラックとサンドストーン色"
+
+#: theme.json
+msgctxt "Duotone name"
+msgid "Black and white"
+msgstr "ブラックとホワイト"
+
+#: styles/rust.json
+msgctxt "Color name"
+msgid "Base / 2"
+msgstr "ベース / 2"
+
+#: styles/rust.json
+msgctxt "Gradient name"
+msgid "Vertical hard rust to beige"
+msgstr "錆色からベージュへの垂直方向に明確なグラデーション"
+
+#: styles/rust.json
+msgctxt "Gradient name"
+msgid "Vertical rust to beige"
+msgstr "錆色からベージュへの垂直方向のグラデーション"
+
+#: styles/rust.json
+msgctxt "Gradient name"
+msgid "Vertical hard transparent rust to beige"
+msgstr "透明感のある錆色からベージュへの垂直方向に明確なグラデーション"
+
+#: styles/rust.json
+msgctxt "Gradient name"
+msgid "Vertical transparent rust to beige"
+msgstr "透明感のある錆色からベージュへの垂直方向のグラデーション"
+
+#: styles/rust.json
+msgctxt "Duotone name"
+msgid "Dark rust to beige"
+msgstr "暗い錆色からベージュ"
+
+#: styles/rust.json
+msgctxt "Style variation name"
+msgid "Rust"
+msgstr "錆"
+
+#: styles/onyx.json theme.json
+msgctxt "Color name"
+msgid "Accent / Five"
+msgstr "アクセント / 5"
+
+#: styles/onyx.json theme.json
+msgctxt "Color name"
+msgid "Accent / Four"
+msgstr "アクセント / 4"
+
+#: styles/onyx.json theme.json
+msgctxt "Color name"
+msgid "Accent / Three"
+msgstr "アクセント / 3"
+
+#: styles/onyx.json theme.json
+msgctxt "Color name"
+msgid "Accent / Two"
+msgstr "アクセント / 2"
+
+#: styles/onyx.json theme.json
+msgctxt "Color name"
+msgid "Accent"
+msgstr "アクセント"
+
+#: styles/onyx.json
+msgctxt "Gradient name"
+msgid "Vertical hard pewter to dark gray"
+msgstr "ピューターグレーからダークグレーへの垂直方向に明確なグラデーション"
+
+#: styles/onyx.json
+msgctxt "Gradient name"
+msgid "Vertical hard steel to dark gray"
+msgstr "スチールグレーからダークグレーへの垂直方向に明確なグラデーション"
+
+#: styles/onyx.json
+msgctxt "Gradient name"
+msgid "Vertical hard olive to dark gray"
+msgstr "オリーブグリーンからダークグレーへの垂直方向に明確なグラデーション"
+
+#: styles/onyx.json
+msgctxt "Gradient name"
+msgid "Vertical hard cinnamon to dark gray"
+msgstr "シナモン色からダークグレーへの垂直方向に明確なグラデーション"
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Page with Wide Image"
+msgstr "広幅画像付き固定ページ"
+
+#: styles/onyx.json
+msgctxt "Gradient name"
+msgid "Vertical hard walnut to dark gray"
+msgstr "ウォールナット色からダークグレーへの垂直方向に明確なグラデーション"
+
+#: styles/onyx.json
+msgctxt "Gradient name"
+msgid "Vertical soft pewter to dark gray"
+msgstr "ピューターグレーからダークグレーへの垂直方向になめらかなグラデーション"
+
+#: styles/onyx.json
+msgctxt "Gradient name"
+msgid "Vertical soft steel to dark gray"
+msgstr "スチールグレーからダークグレーへの垂直方向になめらかなグラデーション"
+
+#: styles/onyx.json
+msgctxt "Gradient name"
+msgid "Vertical soft olive to dark gray"
+msgstr "オリーブグリーンからダークグレーへの垂直方向になめらかなグラデーション"
+
+#: styles/onyx.json
+msgctxt "Gradient name"
+msgid "Vertical soft cinnamon to dark gray"
+msgstr "シナモン色からダークグレーへの垂直方向になめらかなグラデーション"
+
+#: styles/onyx.json
+msgctxt "Gradient name"
+msgid "Vertical soft walnut to dark gray"
+msgstr "ウォールナット色からダークグレーへの垂直方向になめらかなグラデーション"
+
+#: styles/onyx.json
+msgctxt "Gradient name"
+msgid "Vertical hard beige to dark gray"
+msgstr "ベージュからダークグレーへの垂直方向に明確なグラデーション"
+
+#: styles/fossil.json styles/ice.json styles/maelstrom.json theme.json
+msgctxt "Font size name"
+msgid "Extra Extra Large"
+msgstr "超特大"
+
+#: styles/fossil.json styles/ice.json styles/maelstrom.json theme.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr "小"
+
+#: patterns/text-title-left-image-right.php:35
+msgctxt "Call to Action button text"
+msgid "About us"
+msgstr "私たちについて"
+
+#: patterns/text-project-details.php
+msgctxt "Pattern title"
+msgid "Project details"
+msgstr "プロジェクトの詳細"
+
+#: patterns/text-feature-grid-3-col.php:96
+msgctxt "Sample feature heading"
+msgid "Project Management"
+msgstr "プロジェクト管理"
+
+#: patterns/text-feature-grid-3-col.php:84
+msgctxt "Sample feature heading"
+msgid "Consulting"
+msgstr "コンサルティング"
+
+#: patterns/text-faq.php:12
+msgctxt "Name of the FAQ pattern"
+msgid "FAQs"
+msgstr "FAQ"
+
+#: patterns/text-faq.php:15
+msgctxt "Heading of the FAQs"
+msgid "FAQs"
+msgstr "FAQ"
+
+#: patterns/text-faq.php
+msgctxt "Pattern title"
+msgid "FAQ"
+msgstr "FAQ"
+
+#: patterns/hidden-sidebar.php:72
+msgid "Search the website"
+msgstr "サイト内検索"
+
+#: patterns/hidden-sidebar.php:49
+msgid "Useful Links"
+msgstr "便利なリンク"
+
+#: patterns/hidden-sidebar.php:33
+msgid "Popular Categories"
+msgstr "人気のカテゴリー"
+
+#: patterns/hidden-sidebar.php:17
+msgid "About the author"
+msgstr "投稿者について"
+
+#: patterns/hidden-sidebar.php
+msgctxt "Pattern title"
+msgid "Sidebar"
+msgstr "サイドバー"
+
+#: patterns/hidden-search.php:9
+msgctxt "search button text"
+msgid "Search"
+msgstr "検索"
+
+#: patterns/hidden-search.php:9 patterns/hidden-sidebar.php:75
+msgctxt "search form label"
+msgid "Search"
+msgstr "検索"
+
+#: patterns/hidden-search.php
+msgctxt "Pattern title"
+msgid "Search"
+msgstr "検索"
+
+#: patterns/hidden-post-navigation.php:12
+msgctxt "Label before the title of the next post. There is a space after the colon."
+msgid "Next: "
+msgstr "次: "
+
+#: patterns/hidden-post-navigation.php:11
+msgctxt "Label before the title of the previous post. There is a space after the colon."
+msgid "Previous: "
+msgstr "前: "
+
+#: patterns/hidden-post-navigation.php:9 patterns/hidden-post-navigation.php:10
+#: patterns/hidden-posts-heading.php:10
+#: patterns/template-index-portfolio.php:16
+msgid "Posts"
+msgstr "投稿"
+
+#: patterns/hidden-post-navigation.php
+msgctxt "Pattern title"
+msgid "Post navigation"
+msgstr "投稿ナビゲーション"
+
+#: patterns/hidden-post-meta.php:25
+msgctxt "Prefix for the post category block: in category name"
+msgid "in "
+msgstr "in "
+
+#: patterns/hidden-post-meta.php:20
+msgctxt "Prefix for the post author block: By author name"
+msgid "by"
+msgstr "by"
+
+#: patterns/hidden-post-meta.php
+msgctxt "Pattern title"
+msgid "Post meta"
+msgstr "投稿メタ"
+
+#: patterns/hidden-no-results.php:9
+msgctxt "Message explaining that there are no results returned from a search"
+msgid "No posts were found."
+msgstr "投稿が見つかりませんでした。"
+
+#: patterns/hidden-no-results.php
+msgctxt "Pattern title"
+msgid "No results"
+msgstr "見つかりませんでした。"
+
+#: patterns/hidden-comments.php:12
+msgid "Comments"
+msgstr "コメント"
+
+#: patterns/hidden-comments.php
+msgctxt "Pattern title"
+msgid "Comments"
+msgstr "コメント"
+
+#: patterns/hidden-404.php:10
+msgctxt "Heading for a webpage that is not found"
+msgid "Page Not Found"
+msgstr "ページが見つかりませんでした"
+
+#: patterns/hidden-404.php
+msgctxt "Pattern title"
+msgid "404"
+msgstr "404"
+
+#: patterns/footer.php:92
+msgid "Social Media"
+msgstr "ソーシャルメディア"
+
+#: patterns/footer.php:86
+msgid "Social"
+msgstr "ソーシャル"
+
+#: patterns/footer.php:64 patterns/footer.php:70
+msgid "Privacy"
+msgstr "プライバシー"
+
+#: patterns/footer-colophon-3-col.php:82
+msgid "&copy;"
+msgstr "&copy;"
+
+#: patterns/footer-colophon-3-col.php:60 patterns/footer.php:94
+msgid "Facebook"
+msgstr "Facebook"
+
+#: patterns/footer-colophon-3-col.php:60 patterns/footer.php:95
+msgid "Instagram"
+msgstr "Instagram"
+
+#: patterns/footer-colophon-3-col.php:57
+msgid "Follow"
+msgstr "フォロー"
+
+#: patterns/footer-colophon-3-col.php:42
+msgctxt "Example email in site footer"
+msgid "info@example.com"
+msgstr "info@example.com"
+
+#: patterns/footer-colophon-3-col.php:39
+msgid "Contact"
+msgstr "お問い合わせ"
+
+#: patterns/cta-subscribe-centered.php:31
+msgctxt "Sample text for Sign Up Button"
+msgid "Sign up"
+msgstr "登録"
+
+#: patterns/cta-pricing.php:162
+msgctxt "Sample price for the third pricing level"
+msgid "$28"
+msgstr "$28"
+
+#: patterns/cta-pricing.php:157
+msgctxt "Sample heading for the third pricing level"
+msgid "Expert"
+msgstr "エキスパート"
+
+#: patterns/cta-pricing.php:145
+msgctxt "Button text for the second pricing level"
+msgid "Subscribe"
+msgstr "購読"
+
+#: patterns/cta-pricing.php:104
+msgctxt "Sample price for the second pricing level"
+msgid "$12"
+msgstr "$12"
+
+#: patterns/cta-pricing.php:87
+msgctxt "Button text for the first pricing level"
+msgid "Subscribe"
+msgstr "購読"
+
+#: patterns/cta-pricing.php:42
+msgctxt "Sample price for the first pricing level"
+msgid "$0"
+msgstr "$0"
+
+#: patterns/cta-pricing.php:37
+msgctxt "Sample heading for the first pricing level"
+msgid "Free"
+msgstr "無料"
+
+#: patterns/cta-pricing.php
+msgctxt "Pattern title"
+msgid "Pricing"
+msgstr "価格"
+
+#: patterns/cta-pricing.php:11
+msgctxt "Name for the pricing pattern"
+msgid "Pricing Table"
+msgstr "価格表"
+
+#: patterns/cta-pricing.php:18
+msgctxt "Sample heading for pricing pattern"
+msgid "Our Services"
+msgstr "提供サービス"
+
+#: patterns/cta-content-image-on-right.php:47
+msgctxt "Button text of this section"
+msgid "How it works"
+msgstr "仕組み"
+
+#: patterns/cta-content-image-on-right.php:41
+msgctxt "Button text of this section"
+msgid "Download app"
+msgstr "アプリダウンロード"
+
+#: functions.php:28
+msgid "Arrow icon"
+msgstr "矢印アイコン"
+
+#: functions.php:51
+msgid "Pill"
+msgstr "丸形"
+
+#: functions.php:74
+msgid "Checkmark"
+msgstr "チェック"
+
+#: functions.php:93
+msgid "With arrow"
+msgstr "矢印付き"
+
+#: functions.php:111
+msgid "With asterisk"
+msgstr "アスタリスク付き"
+
+#. Author of the theme
+#: style.css
+#, gp-priority: low
+msgid "the WordPress team"
+msgstr "WordPress チーム"
+
+#. Theme URI of the theme
+#: style.css
+#, gp-priority: low
+msgid "https://wordpress.org/themes/twentytwentyfour/"
+msgstr "https://wordpress.org/themes/twentytwentyfour/"

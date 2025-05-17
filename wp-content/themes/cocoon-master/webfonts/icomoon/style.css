@@ -1,0 +1,229 @@
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Enable Ligatures ================ */
+  letter-spacing: 0;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  font-feature-settings: "liga";
+  -webkit-font-variant-ligatures: discretionary-ligatures;
+  font-variant-ligatures: discretionary-ligatures;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-mastodon-logo:before {
+  content: "\e927";
+}
+.icon-mastodon:before {
+  content: "\e928";
+}
+.icon-bluesky-logo:before {
+  content: "\e925";
+}
+.icon-bluesky:before {
+  content: "\e923";
+}
+.icon-misskey-logo:before {
+  content: "\e926";
+}
+.icon-misskey:before {
+  content: "\e924";
+}
+.icon-paw:before {
+  content: "\e907";
+}
+.icon-check-box:before {
+  content: "\e908";
+}
+.icon-check-box-none:before {
+  content: "\e909";
+}
+.icon-check:before {
+  content: "\e90a";
+}
+.icon-circle:before {
+  content: "\e90b";
+}
+.icon-ban:before {
+  content: "\e90d";
+}
+.icon-question:before {
+  content: "\e90f";
+}
+.icon-info:before {
+  content: "\e910";
+}
+.icon-speech-balloon:before {
+  content: "\e911";
+}
+.icon-thumb-up:before {
+  content: "\e918";
+}
+.icon-thumb-down:before {
+  content: "\e91a";
+}
+.icon-triangle:before {
+  content: "\e91b";
+}
+.icon-user-man:before {
+  content: "\e91d";
+}
+.icon-user-women:before {
+  content: "\e91e";
+}
+.icon-warning:before {
+  content: "\e921";
+}
+.icon-cross:before {
+  content: "\e922";
+}
+.icon-tiktok-logo:before {
+  content: "\e906";
+}
+.icon-note-logo:before {
+  content: "\e905";
+}
+.icon-rakuten-logo:before {
+  content: "\e903";
+}
+.icon-rakuten-room-logo:before {
+  content: "\e904";
+}
+.icon-slack-logo:before {
+  content: "\e900";
+}
+.icon-amp-logo2:before {
+  content: "\e93c";
+}
+.icon-amp-logo:before {
+  content: "\e93b";
+}
+.icon-feedly-logo:before {
+  content: "\e92e";
+}
+.icon-flickr-logo:before {
+  content: "\e92f";
+}
+.icon-google-plus-logo:before {
+  content: "\e930";
+}
+.icon-hatebu-logo:before {
+  content: "\e931";
+}
+.icon-line-logo:before {
+  content: "\e935";
+}
+.icon-pinterest-logo:before {
+  content: "\e936";
+}
+.icon-push7-logo:before {
+  content: "\e937";
+}
+.icon-rss-logo:before {
+  content: "\e938";
+}
+.icon-twitter-logo:before {
+  content: "\e939";
+}
+.icon-youtube-logo:before {
+  content: "\e93a";
+}
+.icon-push7:before {
+  content: "\e90e";
+}
+.icon-evernote:before {
+  content: "\e912";
+}
+.icon-feedly:before {
+  content: "\e913";
+}
+.icon-pocket:before {
+  content: "\e914";
+}
+.icon-line:before {
+  content: "\e915";
+}
+.icon-hatena:before {
+  content: "\e916";
+}
+.icon-facebook-logo:before {
+  content: "\e92d";
+}
+.icon-facebook:before {
+  content: "\e919";
+}
+.icon-twitter:before {
+  content: "\e91c";
+}
+.icon-youtube:before {
+  content: "\e91f";
+}
+.icon-flickr2:before {
+  content: "\e920";
+}
+.icon-delicious:before {
+  content: "\e92b";
+}
+.icon-pinterest:before {
+  content: "\e92c";
+}
+.icon-googleplus:before {
+  content: "\ea8b";
+}
+.icon-instagram-logo:before {
+  content: "\ea92";
+}
+.icon-github-logo:before {
+  content: "\eab0";
+}
+.icon-home-logo:before {
+  content: "\e902";
+}
+.icon-amazon-logo:before {
+  content: "\ea87";
+}
+.icon-linkedin-logo:before {
+  content: "\eaca";
+}
+.icon-codepen-logo:before {
+  content: "\eae8";
+}
+.icon-comment:before {
+  content: "\e96b";
+}
+.icon-soundcloud-logo:before {
+  content: "\eac3";
+}
+.icon-linkedin:before {
+  content: "\eacb";
+}
+.icon-twitch-logo:before {
+  content: "\ea9f";
+}
+.icon-heart:before {
+  content: "\e9da";
+}
+.icon-heart-broken:before {
+  content: "\e9db";
+}
+.icon-x-corp-logo:before {
+  content: "\e90c";
+}
+.icon-x-corp:before {
+  content: "\e917";
+}
+.icon-copy:before {
+  content: "\e901";
+}

@@ -1,0 +1,50 @@
+.gsc-search-box{
+  table{
+    margin-bottom: 0;
+    th,
+    td{
+      border: 0;
+    }
+  }
+}
+
+//Googleカスタム文字色
+.gsc-input-box input.gsc-input{
+	color: var(--cocoon-black-color);
+}
+
+//Googleカスタム検索
+#cse-search-box input[name="q"] {
+  line-height: 34px;
+  width: calc(100% - 60px);
+  float: left;
+}
+
+#cse-search-box input[name="sa"] {
+  width: 60px;
+  padding: 0;
+  line-height: 34px;
+}
+
+//Twitterウィジェットはみ出し対策
+twitter-widget {
+  overflow: hidden;
+}
+
+//スクロールヒントが1列目に重なるのを防ぐ
+.scroll-hint-icon-wrap {
+  z-index: 3;
+}
+
+// ・Cocoon設定＞ヘッダー＞ヘッダー背景画像で、画像を設定している場合
+// ・Cocoon設定＞画像＞画像の拡大効果で、Spotlight選択時
+// 投稿や固定ページなどで画像にリンクの設定をし、画像を拡大させたときに
+// Spotlightのヘッダーメニューが背景画像と重なり見えづらくなる対策
+body:has(#spotlight.show) .header {
+  background-image: none;
+}
+
+// reCAPTCHAのバッジの位置調整
+.grecaptcha-badge {
+  bottom: 60px !important;
+}

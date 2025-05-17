@@ -1,0 +1,55 @@
+///////////////////////////////////////////
+// アイキャッチ
+///////////////////////////////////////////
+.eye-catch-wrap{
+  display: flex;
+}
+.eye-catch{
+  position: relative;
+  margin-bottom: .6em;
+  max-width: 100%;
+
+  .cat-label{
+    position: absolute;
+    right: auto;
+    top: 0.4em;
+    bottom: auto;
+    left: 0.4em;
+    font-size: 14px;
+    padding: 2px 8px;
+    opacity: 0.9;
+    border: 1px solid #eee;
+
+  }
+
+}
+
+.eye-catch-caption{
+  color: var(--cocoon-white-color);
+  position: absolute;
+  bottom: 0;
+  padding: 2em 0.6em 0.2em;
+  text-align: right;
+  width: 100%;
+  font-size: 0.9em;
+  background: linear-gradient(180deg, transparent, #555);
+  opacity: 0.9;
+}
+
+///////////////////////////////////////////
+// IE11対策
+///////////////////////////////////////////
+@media all and (-ms-high-contrast:none){
+  .eye-catch-wrap { display: block; } /* IE10～ */
+}
+
+///////////////////////////////////////////
+// Pinterest
+///////////////////////////////////////////
+.show-pinterest-button{
+  .eye-catch:hover{
+    .cat-label{
+      display: none;
+    }
+  }
+}

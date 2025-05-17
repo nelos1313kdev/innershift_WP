@@ -1,0 +1,97 @@
+/************************************
+** 印刷用スタイル
+************************************/
+#container{
+  .header-container,
+  .ad-area,
+  .pager-links,
+  .under-entry-content,
+  .breadcrumb-category,
+  .entry-footer,
+  .sidebar,
+  .footer,
+  #admin-panel,
+  #go-to-top,
+  .go-to-top-button,
+  #fb-root,
+  .mobile-menu-buttons,
+  .toc,
+  .sns-share,
+  .widget,
+  #notice-area-wrap,
+  #notice-area,
+  #appeal,
+  .recommended,
+  #carousel,
+  #go-to-top{
+    display: none !important;
+  }
+
+  .content-in{
+    display: block;
+  }
+
+  .main,
+  .content,
+  .wrap{
+    width: auto;
+    margin: 0;
+    float: none;
+    padding: 0;
+    border: none;
+    overflow-wrap: normal;
+  }
+  .main{
+    width: 100% !important;
+  }
+
+  // .entry-content,
+  // .entry-content *{
+  //   margin-top: 10pt;
+  //   margin-bottom: 10pt;
+  //   font-size: 14pt;
+  // }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6{
+    background-color: transparent;
+    border-width: 0;
+    padding: 0;
+    margin: 10px 0;
+    color: #333;
+  }
+
+  font-size: 11pt;
+
+  h1 {
+    font-size: 21.5pt;
+  }
+
+  h2 {
+    font-size: 18.5pt;
+  }
+
+  h3 {
+    font-size: 16pt;
+  }
+
+  h4,
+  h5,
+  .article h6 {
+    font-size: 14pt;
+  }
+}
+#wpadminbar,
+#go-to-top,
+#admin-panel{
+  display: none !important;
+}
+
+body{
+  background-image: none !important;
+  // background-break: transparent; //廃止
+}

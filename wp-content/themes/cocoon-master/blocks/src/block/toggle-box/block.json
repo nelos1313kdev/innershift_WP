@@ -1,0 +1,69 @@
+{
+  "apiVersion": 2,
+  "name": "cocoon-blocks/toggle-box-1",
+  "category": "cocoon-block",
+  "keywords": [ "toggle", "box" ],
+
+  "attributes": {
+    "content": {
+      "type": "string",
+      "selector": "div",
+      "default": "アコーディオン見出し"
+    },
+    "dateID": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundColor": {
+      "type": "string"
+    },
+    "textColor": {
+      "type": "string"
+    },
+    "borderColor": {
+      "type": "string"
+    },
+    "customBackgroundColor": {
+      "type": "string"
+    },
+    "customTextColor": {
+      "type": "string"
+    },
+    "customBorderColor": {
+      "type": "string"
+    },
+    "fontSize": {
+      "type": "string"
+    },
+    "notNestedStyle": {
+      "type": "boolean",
+      "default": true
+    },
+    "backgroundColorValue": {
+      "type": "string"
+    },
+    "textColorValue": {
+      "type": "string"
+    },
+    "borderColorValue": {
+      "type": "string"
+    }
+  },
+  "example": {
+    "attributes": {
+        "content": "Accordion heading"
+    },
+    "innerBlocks": [
+      {
+        "name": "core/paragraph",
+        "attributes": {
+          "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius facilis in molestiae quod! Aut doloribus est illum iure porro sunt. Eius illo iusto maxime nihil possimus quae tempora voluptas voluptates."
+        }
+      }
+    ]
+  },
+  "supports": {
+    "reusable": false,
+    "anchor": true
+  }
+}

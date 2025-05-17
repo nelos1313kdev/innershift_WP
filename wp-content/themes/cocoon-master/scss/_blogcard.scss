@@ -1,0 +1,109 @@
+//ブログカードスタイル
+
+.blogcard-wrap{
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  width: 90%;
+  background-color: var(--cocoon-white-color);
+}
+
+.blogcard{
+  @include card_padding;
+  border-radius: var(--cocoon-basic-border-radius);
+  line-height: 1.6;
+  position: relative;
+}
+
+.blogcard-thumbnail{
+  float: left;
+  margin-top: $emtry_card_thumb_margin_top;
+  width: 160px;
+  img{
+    width: 100%;
+  }
+}
+
+.blogcard-content{
+  margin-left: 170px;
+  max-height: 140px;
+  min-height: 100px;
+  overflow: hidden;
+}
+
+.blogcard-title{
+  font-weight: bold;
+  margin-bottom: 0.4em;
+}
+
+.blogcard-snippet{
+  font-size: 0.8em;
+}
+
+.blogcard-footer{
+  clear: both;
+  font-size: 16px;
+  padding-top: 0.6%;
+  // vertical-align: baseline;
+  // div{
+  //   display: inline;
+  // }
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
+}
+
+.blogcard-site{
+  float: left;
+  display: flex;
+  //align-items: center;
+  align-content: center;
+}
+
+.blogcard-date{
+  float: right;
+  display: flex;
+  //align-items: center;
+  align-content: center;
+
+  //margin-top: 3px;
+}
+
+.blogcard-favicon{
+  margin-right: 4px;
+  margin-top: 2px;
+}
+
+img.blogcard-favicon-image{
+  border: 0;
+  box-shadow: none;
+}
+
+/************************************
+** ブログカードのサムネイルスタイル
+************************************/
+.ib-right,
+.eb-right{
+
+  .blogcard-thumbnail{
+    float: right;
+    margin-left: $thumb_content_margin;
+    margin-right: 0;
+  }
+
+  .blogcard-content{
+    margin-left: 0;
+    margin-right: 170px;
+  }
+
+}
+
+.nwa{
+  @include blog_card_834;
+}
+
+.blogcard-type{
+  br{
+    display: none;
+  }
+}

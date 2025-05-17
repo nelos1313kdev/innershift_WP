@@ -1,0 +1,267 @@
+.mobile-menu-buttons {
+  color: var(--cocoon-black-color);
+  background: var(--cocoon-white-color);
+  box-shadow: 0 0 5px darkgrey;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  display: none;
+  align-items: center;
+
+  line-height: 1.4;
+  min-height: 50px;
+
+  transition: .3s;
+
+  .menu-icon {
+    text-align: center;
+    width: 100%;
+    display: block;
+    font-size: 19px;
+  }
+
+  .menu-caption {
+    font-size: 9px;
+    text-align: center;
+    opacity: 0.8;
+    display: block;
+  }
+
+  .menu-button {
+    position: relative;
+    width: 70px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    >a {
+      display: block;
+      @include link_cancel(var(--cocoon-black-color));
+    }
+
+    &:hover .menu-button-in {
+      opacity: 0.8;
+    }
+  }
+
+  //ドロワーメニューの広告は表示しない（アドセンスポリシー違反の可能性を排除）
+  .ad-area,
+  .widget:has(.ad-area) {
+    display: none;
+  }
+
+  .menu-content {
+    cursor: default;
+  }
+
+}
+
+.mobile-footer-menu-buttons {
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.logo-menu-button {
+  text-align: center;
+  font-weight: 900;
+  line-height: 50px;
+  // width: 100%;
+  overflow: hidden;
+
+  img {
+    max-height: 50px;
+    display: block;
+    margin: 0 auto;
+    width: auto;
+  }
+}
+
+.fa.menu-icon {
+  font: inherit;
+}
+
+
+/*閉じる用の薄黒カバー*/
+#navi-menu-close,
+#sidebar-menu-close,
+#search-menu-close,
+#share-menu-close,
+#follow-menu-close {
+  display: none;
+  /*はじめは隠しておく*/
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  /*全体に広がるように*/
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  transition: .3s ease-in-out;
+}
+
+/*中身*/
+.menu-content {
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+  /*最前面に*/
+  width: 100%;
+  /*右側に隙間を作る（閉じるカバーを表示）*/
+  max-width: 400px;
+  /*最大幅（調整してください）*/
+  height: 100%;
+  background: #fff;
+  /*背景色*/
+  transition: .3s ease-in-out;
+  /*滑らかに表示*/
+  opacity: 1;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+
+  .menu-drawer {
+    padding: 0 1em 30px;
+  }
+
+
+  .sidebar {
+    width: 100%;
+    display: block;
+    margin: 0;
+  }
+
+}
+
+.navi-menu-content {
+  left: 0;
+  -webkit-transform: translateX(-105%);
+  transform: translateX(-105%); //左に隠す
+}
+
+.sidebar-menu-content {
+  right: 0;
+  -webkit-transform: translateX(105%);
+  transform: translateX(105%); //右に隠す
+
+}
+
+#slide-in-sidebar {
+  display: block;
+  margin: 0;
+  padding-top: 0;
+}
+
+.search-menu-content,
+.share-menu-content,
+.follow-menu-content {
+  transition: .3s ease-in-out;
+  position: fixed;
+  top: 40%;
+  z-index: 99;
+  width: 90%;
+  left: 5%;
+  right: 5%;
+  -webkit-transform: translateY(1500%);
+  transform: translateY(1500%); //下に隠す
+  opacity: 0;
+
+  .search-edit {
+    width: 100%;
+  }
+}
+
+/*チェックが入ったらもろもろ表示*/
+#navi-menu-input:checked~#navi-menu-close,
+#sidebar-menu-input:checked~#sidebar-menu-close,
+#search-menu-input:checked~#search-menu-close,
+#share-menu-input:checked~#share-menu-close,
+#follow-menu-input:checked~#follow-menu-close {
+  display: block;
+  /*カバーを表示*/
+  opacity: .5;
+}
+
+#navi-menu-input:checked~#navi-menu-content,
+#sidebar-menu-input:checked~#sidebar-menu-content,
+#search-menu-input:checked~#search-menu-content,
+#share-menu-input:checked~#share-menu-content,
+#follow-menu-input:checked~#follow-menu-content {
+  transition: .3s ease-in-out;
+  -webkit-transform: translateX(0%);
+  transform: translateX(0%);
+  opacity: 1;
+  //box-shadow: 6px 0 25px rgba(0,0,0,.15);
+}
+
+//メニュースタイル
+.menu-drawer {
+  ul {
+    list-style: none;
+  }
+
+  li {
+    display: block;
+  }
+
+  a {
+    @include link_cancel;
+    padding: 6px;
+    display: block;
+
+    &:hover {
+      @include bgc_hover;
+    }
+  }
+
+  .sub-menu {
+    padding-left: 20px;
+  }
+}
+
+.menu-close-button {
+  display: block;
+  cursor: pointer;
+  text-align: center;
+  font-size: 2em;
+}
+
+.share-menu-content {
+  .sns-buttons {
+    // justify-content: space-around;
+
+    .share-count {
+      color: var(--cocoon-white-color);
+    }
+  }
+
+  .button-caption {
+    display: none;
+  }
+
+  //コメントボタンは非表示
+  .comment-button {
+    display:none ;
+  }
+}
+
+.follow-menu-content {
+  .sns-buttons {
+    // justify-content: space-around;
+
+    a {
+      width: 24%;
+    }
+  }
+
+  .sns-follow-message {
+    display: none;
+  }
+}

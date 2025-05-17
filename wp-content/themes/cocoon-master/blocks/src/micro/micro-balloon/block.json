@@ -1,0 +1,58 @@
+{
+  "apiVersion": 2,
+  "name": "cocoon-blocks/micro-balloon-2",
+  "category": "cocoon-micro",
+  "keywords": [ "micro", "copy", "balloon" ],
+
+  "attributes": {
+    "content": {
+      "type": "string",
+      "default": "マイクロコピーバルーン"
+    },
+    "type": {
+      "type": "string",
+      "default": "micro-top"
+    },
+    "isCircle": {
+      "type": "boolean",
+      "default": false
+    },
+    "icon": {
+      "type": "string"
+    },
+    "align": {
+      "type": "string"
+    },
+    "backgroundColor": {
+      "type": "string"
+    },
+    "textColor": {
+      "type": "string"
+    },
+    "borderColor": {
+      "type": "string"
+    },
+    "customBackgroundColor": {
+      "type": "string"
+    },
+    "customTextColor": {
+      "type": "string"
+    },
+    "customBorderColor": {
+      "type": "string"
+    },
+    "fontSize": {
+      "type": "string"
+    }
+  },
+  "example": {
+    "attributes": {
+      "content": "microcopy balloon"
+    }
+  },
+  "supports": {
+    "align": [ "left", "center", "right" ],
+    "customClassName": true,
+    "anchor": true
+  }
+}

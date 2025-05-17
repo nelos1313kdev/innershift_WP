@@ -1,0 +1,30 @@
+{
+  //"codic.case": "PascalCase",
+  "editor.formatOnSave": false,
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "extensions.ignoreRecommendations": false,
+  "terminal.integrated.profiles.osx": {
+    "zsh": {
+      "path": "/bin/zsh",
+      "args": ["-l", "-i"]
+    }
+  },
+  "terminal.integrated.profiles.linux": {
+    "bash": {
+      "path": "/bin/bash",
+      "args": ["-l", "-i"]
+    }
+  },
+  "prettier.configPath": ".prettierrc.js",
+  "prettier.ignorePath": ".prettierignore",
+  "prettier.prettierPath": "node_modules/prettier",
+  "editor.tabSize": 2,
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true,
+    "**/.hg/store/**": true
+  }
+}

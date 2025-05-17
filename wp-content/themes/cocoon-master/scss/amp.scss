@@ -1,0 +1,197 @@
+//固定値
+@import "defins";
+//importファイル
+@import "amp-imports";
+@import "pre";
+
+///////////////////////////////////////
+// メディアクエリ
+///////////////////////////////////////
+@import "breakpoints/breakpoints";
+
+img{
+  border-width:0px;
+}
+
+amp-img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.card-thumb amp-img {
+  min-width: 100%;
+}
+
+.fb-like-thumb amp-img{
+  height: 100%;
+  min-width: 100%;
+}
+
+.entry-content amp-img,
+amp-img[width|="0"],
+amp-img[height|="0"],
+amp-img[width|="1"],
+amp-img[height|="1"]{
+  display: inline-block;
+}
+
+amp-img{
+  &.aligncenter,
+  &.alignleft,
+  &.alignright {
+    display: block;
+  }
+}
+
+.amazon-item-box amp-img{
+  display: block;
+  margin: 0 auto;
+}
+
+.logo-image amp-img{
+  margin: auto;
+}
+
+.logo-footer amp-img{
+  max-width: 120px;
+}
+
+// amp-img[width|="0"],
+// amp-img[height|="0"],
+// amp-img[width|="1"],
+// amp-img[height|="1"] {
+//   display: inline-block;
+// }
+
+amp-img[src*="ad.jp.ap.valuecommerce.com"]{
+  display: none;
+}
+
+// %follow_amp_button{
+//   text-decoration: none;
+//   text-align: center;
+//   margin: 0 auto;
+//   padding: 3px 12px;
+//   top: 8px;
+//   font-size: 14px;
+//   font-weight: bold;
+//   color: var(--cocoon-white-color);
+//   position: relative;
+//   border-radius: var(--cocoon-basic-border-radius);
+
+//   &:hover{
+//     color: var(--cocoon-white-color);
+//     opacity: 0.7;
+//   }
+// }
+
+// @mixin follow_amp_button($unicode, $bc_color){
+//   background-color: $bc_color;
+//   &::before{
+//     // @include fontawesome($unicode);
+//     // font-family: FontAwesome;
+//     // margin: 0 3px;
+//     font-weight: normal;
+//   }
+// }
+
+// //Facebookボタン
+// .facebook-follow-button{
+//   @extend %follow_amp_button;
+
+//   @include follow_amp_button('\f087', var(--cocoon-facebook-color));
+// }
+
+//Twitterボタン
+.twitter-follow-button{
+  @extend %follow_amp_button;
+  font-weight: normal;
+
+  @include follow_amp_button('\f099', var(--cocoon-twitter-color));
+}
+
+//LINEボタン
+.line-follow-button{
+  @extend %follow_amp_button;
+  font-weight: normal;
+
+  @include follow_amp_button('\f075', var(--cocoon-line-color));
+}
+
+.comment-reply-link{
+  display: none;
+}
+
+
+.fb-like-buttons{
+  >div{
+    display: block;
+  }
+}
+
+.video-container .video {
+  padding-top: 0;
+}
+
+///////////////////////////////////////
+// AMP用TOPへ戻るボタン
+///////////////////////////////////////
+.go-to-top{
+  display: block;
+}
+
+a.top-menu-a{
+  display: block;
+  visibility: visible;
+}
+
+.go-to-top-trigger {
+  height: 0;
+  position: absolute;
+  top: 500px;
+  width: 0;
+}
+
+//AMP Lightbox用
+amp-img.amp-lightbox {
+  cursor: zoom-in;
+}
+amp-image-lightbox {
+  background: rgba(0, 0, 0, .8);
+}
+
+//WordPress 5.9 から body タグの中に svg タグができて余白ができてしまうのに対応
+.container {
+  > svg {
+    &[focusable="false"][role="none"] {
+      visibility: hidden;
+      position: absolute;
+      left: -9999px;
+      overflow: hidden;
+    }
+  }
+}
+
+//アコーディオンスタイル
+.is-style-accordion{
+  .faq-question{
+    cursor: default;
+
+    &::before{
+      content: "";
+    }
+  }
+}
+
+//Swiper
+.is-list-horizontal {
+  .swiper-wrapper{
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+  }
+
+  .swiper-button-next{
+    display: none !important;
+  }
+}

@@ -1,0 +1,69 @@
+
+.column-wrap{
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin: 0;
+  gap: 1%;
+
+  >div{
+    width: 49.5%;
+    //padding: 0 0.45em;
+    margin: 0;
+    >*:first-child{
+      margin-top: 0;
+    }
+  }
+  &.column-3{
+    >div{
+      width: 32.5%;
+    }
+  }
+}
+
+.column-2-3-1-2{
+  .column-left{
+    width: 34%;
+  }
+  .column-right{
+    width: 65%;
+  }
+}
+
+.column-2-3-2-1{
+  .column-left{
+    width: 65%;
+  }
+  .column-right{
+    width: 34%;
+  }
+}
+
+.column-2-4-1-3{
+  .column-left{
+    width: 25%;
+  }
+  .column-right{
+    width: 74%;
+  }
+}
+
+.column-2-4-3-1{
+  .column-left{
+    width: 74%;
+  }
+  .column-right{
+    width: 25%;
+  }
+}
+
+//ブロックエディターカラムの不具合修正
+@media (min-width: 600px) {
+  .wp-block-columns {
+   flex-wrap: nowrap;
+  }
+ }
+
+ .wp-block-media-text__content{
+   padding: 0 1em;
+ }

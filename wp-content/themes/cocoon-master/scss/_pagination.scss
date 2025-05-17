@@ -1,0 +1,85 @@
+//ページネーションやページャー用
+@mixin pagination_wrap {
+  margin: 24px 0;
+  clear: both;
+  text-align: center;
+}
+//ページネーションボタン
+$pagination_wh: 46px;
+@mixin pagination_button {
+  @include link_cancel;
+  display: inline-block;
+  height: $pagination_wh;
+  width: $pagination_wh;
+  border: 1px solid var(--cocoon-thin-color);
+  margin: 0 4px;
+  line-height: $pagination_wh - 2;
+  text-align: center;
+  border-radius: var(--cocoon-basic-border-radius);
+  font-size: 16px;
+}
+
+/************************************
+** ページネーション
+************************************/
+.pagination{
+  @include pagination_wrap;
+  display: inline-flex;
+  justify-content: center;
+  width: 100%;
+
+  .current{
+    background-color: var(--cocoon-current-background-color);
+  }
+
+  a{
+    &:hover {
+      @include bgc_hover;
+    }
+  }
+}
+
+.page-numbers{
+  @include pagination_button;
+  span{
+    line-height: inherit;
+  }
+}
+
+.page-numbers.dots {
+  opacity: 0.6;
+  background-color: var(--cocoon-xx-thin-color);
+}
+
+/************************************
+** 「次のページ」ページネーション
+************************************/
+.pagination-next{
+  margin-top: 24px;
+}
+.pagination-next-link {
+  background-color: #f9f9f9;
+  border: 1px solid var(--cocoon-thin-color);
+  color: var(--cocoon-text-color);
+  display: block;
+  font-size: 1.2em;
+  text-decoration: none;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  display: block;
+
+  &:hover {
+    @include bgc_hover;
+  }
+}
+
+//5桁以上の数字
+.five-digits-or-more{
+  font-size: 13px;
+}
+
+//6桁以上の数字
+.six-digits-or-more{
+  font-size: 11px;
+}

@@ -1,0 +1,33 @@
+
+
+/*検索フォーム*/
+.search-box{
+  margin: 1em 0 2em;
+  position: relative;
+}
+
+.search-edit{
+  font-family : inherit;
+  @extend %form_common;
+}
+
+//iPhoneのフォーカス対策
+#search-menu-content .search-edit {
+  font-size: 16px;
+}
+
+.search-submit{
+  position: absolute;
+  right: 3px;
+  top: calc(50% - 12px);
+  //top: 2px;
+  // top: 50%;
+  // margin-top: -0.65em;
+  font-size: 20px;
+  cursor: pointer;
+  //line-height: 51px;
+  border: none;
+  color: var(--cocoon-thin-color);
+  padding: 0 8px;
+  background-color: rgba(255, 255, 255, 0);
+}

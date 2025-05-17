@@ -1,0 +1,127 @@
+/************************************
+** Facebookページを「フォロー」するエリアのスタイル
+************************************/
+div.fb-like-mobile{
+  display: none;
+}
+.fb-like-balloon{
+  height: 100px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  clear: both;
+}
+.fb-like-balloon-thumb{
+  float: left;
+  width: 100px;
+}
+.fb-like-balloon-thumb img{
+  display: block;
+}
+.fb-like-balloon-body{
+  margin-right: 140px;
+  float: none;
+  padding: 10px;
+  font-size: 18px;
+  line-height: 1.3em;
+  height: 100px;
+  overflow: hidden;
+  color: #000;
+  box-sizing: border-box;
+}
+.fb-like-balloon-body::after{
+  content: '\f054';
+  position: absolute;
+  right: 110px;
+  top: 27px;
+  color: #ccc;
+  font-size: 50px;
+  font-family: FontAwesome;
+  line-height: 100%;
+}
+.font-awesome-5 .fb-like-balloon-body::after {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: bold;
+}
+.fb-like-balloon-button {
+  background-color: #f3f3f3;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  float: right;
+  padding-top: 31px;
+  box-sizing: border-box;
+  // display: flex;
+  // justify-content: center;
+}
+
+.fb-like-balloon-button iframe{
+  background-color: #fff;
+}
+
+.fb-like-balloon-arrow-box {
+  float: left;
+  position: relative;
+  border: 1px solid #bbb;
+  margin-left: 12px;
+  width: calc(100% - 114px);
+  border-radius: 5px;
+  background-color: var(--cocoon-white-color);
+}
+.fb-like-balloon-arrow-box-in{
+  border-radius: 5px;
+  overflow: hidden;
+}
+.fb-like-balloon-arrow-box:after, .fb-like-balloon-arrow-box:before {
+  right: 100%;
+  top: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+.fb-like-balloon-arrow-box:after {
+  border-color: rgba(255, 255, 255, 0);
+  border-right-color: #fff;
+  border-width: 10px;
+  margin-top: -10px;
+}
+.fb-like-balloon-arrow-box:before {
+  border-color: rgba(221, 221, 221, 0);
+  border-right-color: #bbb;
+  border-width: 11px;
+  margin-top: -11px;
+}
+
+
+/************************************
+** Facebookページを「フォロー」するエリアのスタイル（サイドバーの時）
+************************************/
+.sidebar .fb-like-balloon-body::after{
+  display: none;
+}
+.sidebar .fb-like-balloon-body{
+  font-size: 0.8em;
+  padding: 5px;
+  line-height: 1.1em;
+  margin-right: 0;
+  height: 70px;
+}
+// .sidebar .fb-like-balloon-arrow-box{
+//   height: 100px;
+// }
+.sidebar .fb-like-balloon-button{
+  float: none;
+  width: 100%;
+  height: 30px;
+  display: block;
+  line-height: 24px;
+  padding-top: 0;
+}
+.sidebar div.fb-like-mobile{
+  display: block;
+}
+.sidebar div.fb-like-pc{
+  display: none;
+}

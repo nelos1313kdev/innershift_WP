@@ -1,0 +1,1460 @@
+@charset "UTF-8";
+
+@import "common-editor";
+
+//theme.json
+@import "gutenberg-editor-after-theme-json";
+
+//見出しなど
+.article{
+  @import "article";
+}
+
+//Font Awesomeのアイコン
+@import "fontawesome-before";
+
+//フォントの設定
+@import "font";
+
+//エディタースタイル
+@import "extension";
+@import "extension-layout";
+@import "faq";
+@import "iconlist-box";
+@import "box-border";
+@import "box-style";
+
+.components-button.is-button{
+  padding: 0 4px;
+}
+
+.editor-post-title .editor-post-title__input{
+  font-size: 1.625rem;
+}
+
+//ブロックボックス内のインナーブロックのマージン変更
+.block-box{
+  .editor-block-list__layout .editor-block-list__block-edit{
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  div {
+    &.editor-block-list__block::before, &.editor-block-list__layout .editor-block-list__block .editor-block-list__block-edit::before {
+      left: 0;
+      right: 0;
+    }
+    &.freeform-toolbar {
+      margin: 0;
+    }
+  }
+}
+
+//ブロックエディタークラシックブロック本文の.mce-content-bodyをテーマデフォルトと同じにする
+div.mce-content-body {
+  line-height: 1.8;
+  padding-top: 1em;
+}
+
+.editor-block-list__layout .editor-block-list__block,//Wordpress 5.4未満
+.block-editor-block-list__layout .block-editor-block-list__block //WordPress 5.4以降
+ {
+  &[data-type^="cocoon-blocks/button"], &[data-type^="cocoon-blocks/button-wrap"] {
+    height: auto;
+    padding: 0 0 1px;
+  }
+  &[data-type^="cocoon-blocks/micro-text"]{
+    padding: 0.5em;
+    margin-top: 1.2em;//これがないと「＋」ボタンが表示されない
+    margin-bottom: 0.2em;//これがないと「＋」ボタンが表示されない
+  }
+  &[data-type^="cocoon-blocks/button"][data-align="left"],
+  &[data-type^="cocoon-blocks/button-wrap"][data-align="left"],
+  &[data-type^="cocoon-blocks/micro-text"][data-align="left"] {
+    text-align: left;
+  }
+  &[data-type^="cocoon-blocks/button"][data-align="right"],
+  &[data-type^="cocoon-blocks/button-wrap"][data-align="right"],
+  &[data-type^="cocoon-blocks/micro-text"][data-align="right"] {
+    text-align: right;
+  }
+  &[data-type^="cocoon-blocks/button"][data-align="center"],
+  &[data-type^="cocoon-blocks/button-wrap"][data-align="center"],
+  &[data-type^="cocoon-blocks/micro-text"][data-align="center"] {
+    text-align: center;
+  }
+  &[data-type^="cocoon-blocks/button"] .editor-block-list__block-edit,
+  &[data-type^="cocoon-blocks/button-wrap"] .editor-block-list__block-edit,
+  &[data-type^="cocoon-blocks/micro-text"] .editor-block-list__block-edit {
+    float: none;
+    margin: 0;
+  }
+  &[data-type^="cocoon-blocks/micro-text"],
+  &[data-type^="cocoon-blocks/micro-balloon"]{
+    height: auto !important;
+  }
+  &[data-type^="cocoon-blocks/micro-balloon"] .editor-block-list__block-edit {
+    float: none;
+  }
+  &[data-type^="cocoon-blocks/micro-balloon"][data-align="left"] .micro-copy {
+    margin-right: auto;
+  }
+  &[data-type^="cocoon-blocks/micro-balloon"][data-align="center"] .micro-copy {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  &[data-type^="cocoon-blocks/micro-balloon"][data-align="right"] .micro-copy {
+    margin-left: auto;
+  }
+  &[data-type="core/freeform"] {
+    clear: both;
+  }
+  &[data-type="core/image"][data-align="left"] .block-editor-block-list__block-edit {
+    float: left;
+    margin-right: 1em;
+  }
+  &[data-type="core/image"][data-align="right"] .block-editor-block-list__block-edit {
+    float: right;
+    margin-left: 1em;
+  }
+  // &[data-type="core/table"]{
+  //   &::before,
+  //   &::after{
+  //     display: none;
+  //   }
+  // }
+
+
+  .column-2,
+  .column-3{
+    margin: auto;
+    .editor-inner-blocks{
+      .column-left,
+      .column-center,
+      .column-right{
+        width: auto;
+      }
+    }
+  }
+
+  .column-wrap{
+    >.editor-inner-blocks ,//Wordpress 5.4未満
+    >.block-editor-inner-blocks //WordPress5.4以降
+    {
+      width: 100% !important;
+    }
+     > .editor-inner-blocks > .editor-block-list__layout,//Wordpress 5.4未満
+     > .block-editor-inner-blocks > .block-editor-block-list__layout //WordPress5.4以降
+     {
+      display: flex;
+      position: relative;
+      margin: 1em 0;
+
+
+      >div{
+        width: 100%;
+        //padding: 0 0.45em;
+        margin: 0;
+        p{
+          margin-top: 0;
+        }
+      }
+
+      [data-type^="cocoon-blocks/column-left"]{
+        background-color: #c7e1ef;
+      }
+      [data-type^="cocoon-blocks/column-center"]{
+        background-color: #c9e8d8;
+      }
+      [data-type^="cocoon-blocks/column-right"]{
+        background-color: #ffecd3;
+      }
+    }
+
+    //1:2
+    &.column-2-3-1-2{
+      > .editor-inner-blocks > .editor-block-list__layout{
+        [data-type^="cocoon-blocks/column-left"]{
+          width: 34%;
+        }
+        [data-type^="cocoon-blocks/column-right"]{
+          width: 66%;
+        }
+      }
+    }
+
+    //2:1
+    &.column-2-3-2-1{
+      > .editor-inner-blocks > .editor-block-list__layout{
+        [data-type^="cocoon-blocks/column-left"]{
+          width: 66%;
+        }
+        [data-type^="cocoon-blocks/column-right"]{
+          width: 34%;
+        }
+      }
+    }
+
+    //1:3
+    &.column-2-4-1-3{
+      > .editor-inner-blocks > .editor-block-list__layout{
+        [data-type^="cocoon-blocks/column-left"]{
+          width: 25%;
+        }
+        [data-type^="cocoon-blocks/column-right"]{
+          width: 75%;
+        }
+      }
+    }
+
+    //3:1
+    &.column-2-4-3-1{
+      > .editor-inner-blocks > .editor-block-list__layout{
+        [data-type^="cocoon-blocks/column-left"]{
+          width: 75%;
+        }
+        [data-type^="cocoon-blocks/column-right"]{
+          width: 25%;
+        }
+      }
+    }
+
+  }
+}
+
+//タイムライン
+.timeline-box{
+  overflow: auto;
+  .timeline,
+  .block-editor-inner-blocks{
+    overflow: auto;
+  }
+  .timeline .block-editor-inner-blocks .block-editor-block-list__layout li{
+    margin: 0;
+  }
+  .editor-block-list__layout .editor-block-list__block-edit{
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .editor-inner-blocks{
+    margin-top: 1em;
+  }
+
+  .editor-block-list__block-edit li.timeline-item{
+    margin: 0;
+  }
+}
+
+.has-point-color > .timeline > .block-editor-inner-blocks > .block-editor-block-list__layout > .timeline-item:before {
+  background: var(--cocoon-custom-point-color);
+}
+
+/* main */
+.wp-block.editor-block-list__block[data-align="left"],
+.wp-block.editor-block-list__block[data-align="right"] {
+  display: block;
+  > .block-editor-block-list__block-edit{
+    float: none;
+  }
+}
+.block-editor-block-list__block[data-type="core/table"][data-align="left"] table{
+  margin-left: 0;
+  margin-right: auto;
+}
+.block-editor-block-list__block[data-type="core/table"][data-align="right"] table{
+  margin-left: auto;
+  margin-right: 0;
+}
+.wp-block.editor-block-list__block[data-align="wide"],
+.wp-block.editor-block-list__block[data-align="full"]{
+  table{
+    width: 100%;
+  }
+}
+
+.editor-post-title, .editor-block-list__layout {
+  padding: 0;
+}
+
+/* full width */
+
+.editor-styles-wrapper {
+  .wp-block[data-align=full] {
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .block-editor-writing-flow textarea {
+    min-height: auto;
+  }
+}
+
+.wp-block {
+  ul ul {
+    list-style-type: circle;
+  }
+  ol {
+    ul {
+      list-style-type: circle;
+    }
+    ol ul, ul ul {
+      list-style-type: square;
+    }
+  }
+  ul {
+    ol ul, ul ul {
+      list-style-type: square;
+    }
+  }
+  .wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
+    max-width: none;
+  }
+  // .wp-block-table__cell-content {
+  //   padding: 0;
+  // }
+  .wp-block-quote .editor-rich-text__tinymce > p:first-child {
+    margin: 1em 0;
+  }
+}
+
+.wp-block .wp-block-table__cell-content{
+  min-width: 60px;
+  // padding: 8px;
+}
+
+.wp-block-quote__citation {
+  font-style: italic;
+}
+
+.wp-block {
+  &.editor-block-list__block[data-align=center] {
+    text-align: left;
+    display: block;
+    &[data-type="core/button"] {
+      text-align: center;
+    }
+  }
+  .wp-block-pullquote {
+    border-top: none;
+    border-bottom: none;
+  }
+}
+
+/* wp-includes/css/dist/block-library/style.css
+.wp-block-button.aligncenter {
+    text-align: center
+}
+ */
+
+/** wp-includes/css/dist/block-library/theme.css
+.wp-block-pullquote {
+    border-top: 4px solid #555d66;
+    border-bottom: 4px solid #555d66;
+    color: #40464d;
+}
+ */
+
+/** cocoon/style.css
+ol, ul {
+  margin: 1em 0;
+  padding-left: 40px;
+}
+ */
+
+.editor-styles-wrapper {
+  ol.wp-block-gallery, ul.wp-block-gallery {
+    padding: 0;
+  }
+  .article {
+    ul.wp-block-gallery li {
+      &.blocks-gallery-image, &.blocks-gallery-item {
+        margin: 0 16px 16px 0;
+      }
+    }
+    ol.wp-block-gallery li {
+      &.blocks-gallery-image, &.blocks-gallery-item {
+        margin: 0 16px 16px 0;
+      }
+    }
+    ul.wp-block-gallery li {
+      &.blocks-gallery-image figure, &.blocks-gallery-item figure {
+        margin: 0;
+      }
+    }
+    ol.wp-block-gallery li {
+      &.blocks-gallery-image figure, &.blocks-gallery-item figure {
+        margin: 0;
+      }
+    }
+    ul.wp-block-gallery li {
+      &.blocks-gallery-image:nth-of-type(even), &.blocks-gallery-item:nth-of-type(even) {
+        margin-right: 0;
+      }
+    }
+    ol.wp-block-gallery li {
+      &.blocks-gallery-image:nth-of-type(even), &.blocks-gallery-item:nth-of-type(even) {
+        margin-right: 0;
+      }
+    }
+    ul.wp-block-gallery.columns-1 li {
+      &.blocks-gallery-image, &.blocks-gallery-item {
+        margin-right: 0;
+      }
+    }
+    ol.wp-block-gallery.columns-1 li {
+      &.blocks-gallery-image, &.blocks-gallery-item {
+        margin-right: 0;
+      }
+    }
+    ul.wp-block-gallery li {
+      &.blocks-gallery-image:last-child, &.blocks-gallery-item:last-child {
+        margin-right: 0;
+      }
+    }
+    ol.wp-block-gallery li {
+      &.blocks-gallery-image:last-child, &.blocks-gallery-item:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+/** cocoon/style.css
+.article ul li,
+.article ol li {
+  margin: 0.2em;
+}
+ */
+ .editor-styles-wrapper .article .wp-block-gallery ul li{
+  margin-left: 0;
+}
+
+@media (min-width: 600px) {
+  .editor-styles-wrapper .article {
+    ul.wp-block-gallery.columns-3 li {
+      &.blocks-gallery-image, &.blocks-gallery-item {
+        margin-right: 16px;
+      }
+    }
+    ol.wp-block-gallery.columns-3 li {
+      &.blocks-gallery-image, &.blocks-gallery-item {
+        margin-right: 16px;
+      }
+    }
+    ul.wp-block-gallery.columns-4 li {
+      &.blocks-gallery-image, &.blocks-gallery-item {
+        margin-right: 16px;
+      }
+    }
+    ol.wp-block-gallery.columns-4 li {
+      &.blocks-gallery-image, &.blocks-gallery-item {
+        margin-right: 16px;
+      }
+    }
+    ul.wp-block-gallery.columns-5 li {
+      &.blocks-gallery-image, &.blocks-gallery-item {
+        margin-right: 16px;
+      }
+    }
+    ol.wp-block-gallery.columns-5 li {
+      &.blocks-gallery-image, &.blocks-gallery-item {
+        margin-right: 16px;
+      }
+    }
+    ul.wp-block-gallery.columns-6 li {
+      &.blocks-gallery-image, &.blocks-gallery-item {
+        margin-right: 16px;
+      }
+    }
+    ol.wp-block-gallery.columns-6 li {
+      &.blocks-gallery-image, &.blocks-gallery-item {
+        margin-right: 16px;
+      }
+    }
+    ul.wp-block-gallery.columns-7 li {
+      &.blocks-gallery-image, &.blocks-gallery-item {
+        margin-right: 16px;
+      }
+    }
+    ol.wp-block-gallery.columns-7 li {
+      &.blocks-gallery-image, &.blocks-gallery-item {
+        margin-right: 16px;
+      }
+    }
+    ul.wp-block-gallery.columns-8 li {
+      &.blocks-gallery-image, &.blocks-gallery-item {
+        margin-right: 16px;
+      }
+    }
+    ol.wp-block-gallery.columns-8 li {
+      &.blocks-gallery-image, &.blocks-gallery-item {
+        margin-right: 16px;
+      }
+    }
+    ul.wp-block-gallery.columns-1 li {
+      &.blocks-gallery-image:nth-of-type(1n), &.blocks-gallery-item:nth-of-type(1n) {
+        margin-right: 0;
+      }
+    }
+    ol.wp-block-gallery.columns-1 li {
+      &.blocks-gallery-image:nth-of-type(1n), &.blocks-gallery-item:nth-of-type(1n) {
+        margin-right: 0;
+      }
+    }
+    ul.wp-block-gallery.columns-2 li {
+      &.blocks-gallery-image:nth-of-type(2n), &.blocks-gallery-item:nth-of-type(2n) {
+        margin-right: 0;
+      }
+    }
+    ol.wp-block-gallery.columns-2 li {
+      &.blocks-gallery-image:nth-of-type(2n), &.blocks-gallery-item:nth-of-type(2n) {
+        margin-right: 0;
+      }
+    }
+    ul.wp-block-gallery.columns-3 li {
+      &.blocks-gallery-image:nth-of-type(3n), &.blocks-gallery-item:nth-of-type(3n) {
+        margin-right: 0;
+      }
+    }
+    ol.wp-block-gallery.columns-3 li {
+      &.blocks-gallery-image:nth-of-type(3n), &.blocks-gallery-item:nth-of-type(3n) {
+        margin-right: 0;
+      }
+    }
+    ul.wp-block-gallery.columns-4 li {
+      &.blocks-gallery-image:nth-of-type(4n), &.blocks-gallery-item:nth-of-type(4n) {
+        margin-right: 0;
+      }
+    }
+    ol.wp-block-gallery.columns-4 li {
+      &.blocks-gallery-image:nth-of-type(4n), &.blocks-gallery-item:nth-of-type(4n) {
+        margin-right: 0;
+      }
+    }
+    ul.wp-block-gallery.columns-5 li {
+      &.blocks-gallery-image:nth-of-type(5n), &.blocks-gallery-item:nth-of-type(5n) {
+        margin-right: 0;
+      }
+    }
+    ol.wp-block-gallery.columns-5 li {
+      &.blocks-gallery-image:nth-of-type(5n), &.blocks-gallery-item:nth-of-type(5n) {
+        margin-right: 0;
+      }
+    }
+    ul.wp-block-gallery.columns-6 li {
+      &.blocks-gallery-image:nth-of-type(6n), &.blocks-gallery-item:nth-of-type(6n) {
+        margin-right: 0;
+      }
+    }
+    ol.wp-block-gallery.columns-6 li {
+      &.blocks-gallery-image:nth-of-type(6n), &.blocks-gallery-item:nth-of-type(6n) {
+        margin-right: 0;
+      }
+    }
+    ul.wp-block-gallery.columns-7 li {
+      &.blocks-gallery-image:nth-of-type(7n), &.blocks-gallery-item:nth-of-type(7n) {
+        margin-right: 0;
+      }
+    }
+    ol.wp-block-gallery.columns-7 li {
+      &.blocks-gallery-image:nth-of-type(7n), &.blocks-gallery-item:nth-of-type(7n) {
+        margin-right: 0;
+      }
+    }
+    ul.wp-block-gallery.columns-8 li {
+      &.blocks-gallery-image:nth-of-type(8n), &.blocks-gallery-item:nth-of-type(8n) {
+        margin-right: 0;
+      }
+    }
+    ol.wp-block-gallery.columns-8 li {
+      &.blocks-gallery-image:nth-of-type(8n), &.blocks-gallery-item:nth-of-type(8n) {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 834px) {
+  .editor-styles-wrapper .editor-block-list__layout .editor-block-list__block .editor-block-drop-zone {
+    margin: 0;
+  }
+  .editor-block-list__layout .editor-block-list__block {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .editor-block-list__layout .editor-block-list__block {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/* for classic editor */
+
+.block-library-rich-text__tinymce {
+  padding: 10px;
+}
+
+/* for Firefox */
+
+.editor-rich-text__tinymce:after {
+  white-space: normal;
+}
+
+/* for IE11 */
+/* Unnecessary space below element which has large image with flex */
+/* This is Gutenberg's bug */
+/*
+- add [flex-shrink:0] explicitly
+- clear [flex-grow: 1] -> parent has [flex-direction: column;], so this style has no effect
+.edit-post-layout__content {
+    display: flex;
+    flex-direction: column;
+}
+- clear [height: 100%] of .block-editor-writing-flow
+*/
+
+.edit-post-layout__content .edit-post-visual-editor {
+  flex-shrink: 0;
+  flex-grow: 0;
+  padding: 0 10px;
+}
+
+.editor-styles-wrapper {
+  .block-editor-writing-flow {
+    height: auto;
+    flex-shrink: 0;
+    > div {
+      flex-shrink: 0;
+    }
+  }
+  .wp-block-image img {
+    flex-shrink: 0;
+  }
+}
+
+//見出しが二重になれ不具合修正
+.editor-styles-wrapper .article .editor-rich-text__tinymce{
+  margin: 0;
+}
+
+//インラインツールバー調整
+.editor-styles-wrapper .red{
+  margin-left: 0;
+}
+
+
+//アコーディオンボックス
+.toggle-wrap{
+  .toggle-button{
+    div{
+      display: inline;
+    }
+  }
+}
+
+//ブロック追加ボタン
+.editor-block-list__empty-block-inserter {
+  left: -16px;
+}
+
+.icon-setting-buttons{
+  .fab-none::before{
+    content: 'none';
+  }
+}
+
+.label-box-label,
+.tab-caption-box-label{
+  *{
+    display: inline;
+  }
+}
+
+//アイコンリスト内のCSS不具合修正
+.editor-styles-wrapper .article{
+  .iconlist-box{
+    ul, ol{
+      li{
+        margin: 0;
+      }
+    }
+  }
+}
+
+// .wp-block .widget.open{
+//   margin-left: 0;
+// }
+
+.micro-content{
+  display: inline-flex;
+}
+
+.btn-wrap{
+  background-color: #f8e58c !important;
+}
+
+.wp-block{
+  // &[data-align] > *{
+  //   // float: none;
+  //   margin: 0;
+  // }
+
+  &[data-align="center"]{
+    .btn-wrap,
+    .wp-block-cocoon-blocks-button-1{
+      text-align: center;
+    }
+  }
+
+  &[data-align="right"]{
+    .btn-wrap,
+    .wp-block-cocoon-blocks-button-1{
+      text-align: right;
+    }
+  }
+}
+
+.label-box-label.box-label {
+  margin-bottom: -3px;
+}
+
+.timeline-box [data-block]{
+  margin: 0;
+}
+
+.editor-styles-wrapper .components-select-control__input{
+  padding: 0 10px;
+}
+
+// .editor-post-title__block {
+//   padding-left: 58px;
+//   padding-right: 58px;
+// }
+
+//WordPress 5.4からの吹き出しの不具合対応
+.speech-wrap .components-button{
+  height: auto;
+}
+
+//ブロックエディタータイトル余白の修正
+.block-editor-editor-skeleton__body {
+  .editor-post-title{
+    margin: 0 6px;
+  }
+}
+//ブロックエディターパーマリンク余白の修正
+@media screen and (min-width: 600px){
+  .edit-post-visual-editor .editor-post-title__block .editor-post-permalink{
+    margin: 0 -18px;
+  }
+}
+
+//ブロックエディターの吹き出しスタイルの調整
+.speech-balloon{
+  min-width: 160px;
+}
+
+
+//マイクロソフトブラウザーでツールボタンの表示が崩れる不具合修正
+@mixin ms_block_fix{
+  .editor-block-toolbar.block-editor-block-toolbar{
+    position: relative;
+    .block-editor-block-toolbar__slot{
+      display: inline-flex;
+    }
+  }
+}
+//IEのみに適用されるブラウザハック
+@media all and (-ms-high-contrast: none){
+  @include ms_block_fix;
+}
+//Edgeのみに適用されるブラウザハック
+@supports (-ms-ime-align: auto) {
+  @include ms_block_fix;
+}
+
+//ブロックエディター入力カラムの下（SEO等の設定項目の上）にある余白を削除
+.block-editor-writing-flow__click-redirect{
+  display: none;
+}
+
+//ブロックエディターですおが隠れてしまう
+// .wp-block-table {
+// 	overflow: auto;
+// }
+
+//Gutenbergオプションのセレクトボックスの調整
+.meta-box-sortables select {
+  box-sizing: border-box;
+}
+
+// プレイビュースタイルの調整
+.has-drop-cap:not(:focus)::first-letter {
+  float: none;
+  font-size: 1em;
+}
+
+// プレイビュースタイルの背景色を白にする
+.wp-block-paragraph.has-drop-cap{
+  background-color: #fff;
+}
+
+// //Gutenbergエディター.block-editor-block-list__layoutの最後に
+// //.block-list-appenderが来るので:last-child余白調整が入らないのを修正
+// div{
+//   .block-editor-block-list__layout{
+//     :last-of-type{
+//       margin-bottom: 0;
+//     }
+//   }
+// }
+
+p {
+  margin-top: 0;
+}
+
+.page-type-wide{
+  max-width: 96% !important;
+}
+
+.page-type-full-wide{
+  max-width: 100% !important;
+}
+
+//ブロックエディターの背景画像問題の修正
+.block-editor-block-styles__item-preview .editor-styles-wrapper::before{
+  display: none;
+}
+
+body,
+body::before,
+.editor-styles-wrapper::before {
+  background-image: none !important;
+}
+
+
+.faq .faq-answer {
+  .wp-block,
+  textarea.block-editor-default-block-appender__content{
+    margin-top: 0;
+  }
+}
+
+[id*="block-cocoon-blocks/faq"]{
+  display: none !important;
+}
+
+.block-editor-writing-flow .block-editor-block-list__layout .column-wrap{
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  margin-bottom: 1em;
+
+  >.block-editor-inner-blocks{
+    width: 100%;
+    >.block-editor-block-list__layout{
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      >.wp-block{
+        width: 49.5%;
+        margin: 0;
+        >div{
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  &.column-2-3-1-2 .block-editor-inner-blocks .block-editor-block-list__layout{
+    [data-type="cocoon-blocks/column-left"]{
+      width: 34%;
+    }
+    [data-type="cocoon-blocks/column-right"]{
+      width: 65%;
+    }
+  }
+
+  &.column-2-3-2-1 .block-editor-inner-blocks .block-editor-block-list__layout{
+    [data-type="cocoon-blocks/column-left"]{
+      width: 65%;
+    }
+    [data-type="cocoon-blocks/column-right"]{
+      width: 34%;
+    }
+  }
+
+  &.column-2-4-1-3 .block-editor-inner-blocks .block-editor-block-list__layout{
+    [data-type="cocoon-blocks/column-left"]{
+      width: 25%;
+    }
+    [data-type="cocoon-blocks/column-right"]{
+      width: 74%;
+    }
+  }
+
+  &.column-2-4-3-1 .block-editor-inner-blocks .block-editor-block-list__layout{
+    [data-type="cocoon-blocks/column-left"]{
+      width: 74%;
+    }
+    [data-type="cocoon-blocks/column-right"]{
+      width: 25%;
+    }
+  }
+
+  &.column-3 .block-editor-inner-blocks .block-editor-block-list__layout{
+    [data-type="cocoon-blocks/column-left"]{
+      width: 32.5%;
+    }
+    [data-type="cocoon-blocks/column-center"]{
+      width: 32.5%;
+    }
+    [data-type="cocoon-blocks/column-right"]{
+      width: 32.5%;
+    }
+  }
+
+}
+
+.block-editor-block-types-list__item-icon{
+  .block-editor-block-icon{
+    svg{
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+// .wp-block[data-align=left],
+// .wp-block[data-align=right]{
+//   height: auto;
+// }
+
+.wp-block[data-align=left] > .micro-copy,
+.wp-block[data-align=right] > .micro-copy,
+.wp-block[data-align=left] > .admin-micro-balloon-wrap,
+.wp-block[data-align=right] > .admin-micro-balloon-wrap{
+  float: none;
+}
+
+.wp-block[data-align=left] > .micro-text{
+  text-align: left;
+}
+.wp-block[data-align=center] > .micro-text{
+  text-align: center;
+}
+.wp-block[data-align=right] > .micro-text{
+  text-align: right;
+}
+
+.wp-block[data-align=left] > .wp-block-cocoon-blocks-button-1{
+  float: none;
+}
+.wp-block[data-align=center] > .wp-block-cocoon-blocks-button-1{
+  float: none;
+}
+.wp-block[data-align=right] > .wp-block-cocoon-blocks-button-1{
+  float: none;
+}
+
+.micro-copy{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.micro-copy .micro-balloon{
+  margin-left: 0;
+}
+.wp-block[data-align=center] .micro-balloon{
+  margin-right: auto;
+  margin-left: auto;
+}
+.wp-block[data-align=right] .micro-balloon{
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.wp-block{
+  &[data-align="wide"],
+  &[data-align="full"]{
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 840px !important;
+    .wp-block-table table{
+      width: 100%;
+    }
+  }
+}
+
+.wp-block-table {
+  .has-fixed-layout{
+  width: 100% !important;
+  }
+  figcaption{
+    text-align: left;
+  }
+}
+
+.wp-block[data-align="center"]{
+  figcaption{
+    text-align: center;
+  }
+}
+
+
+//古いiOSでGutenbergのギャラリー表示を表示させると表示が崩れる不具合対応
+//https://wp-cocoon.com/community/bugs/%e3%82%bf%e3%83%96%e3%83%ac%e3%83%83%e3%83%88%e9%96%b2%e8%a6%a7%e6%99%82%e3%81%ab%e7%94%bb%e5%83%8f%e3%81%a8%e8%a8%98%e4%ba%8b%e3%81%ae%e6%96%87%e5%ad%97%e3%81%8c%e8%a2%ab%e3%81%a3%e3%81%a6%e3%81%97/
+.entry-content .wp-block-gallery .blocks-gallery-item {
+	display: list-item;
+}
+.block-editor-block-list__layout .column-wrap {
+  display: flex;
+	margin-bottom: 1em;
+}
+
+.is-root-container .wp-block{
+  height: auto;
+}
+
+.wp-block-list,
+.iconlist-box{
+	li{
+		margin: 0;
+	}
+}
+
+.btn-wrap-block {
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+.block-editor-block-list__layout .column-wrap {
+  display: flex;
+	margin-bottom: 1em;
+}
+
+//Cocoonブロックメッセージエリア
+div.cocoon-render-message{
+  padding: 20px;
+  border: solid aliceblue 2px;
+  margin-bottom: 1em;
+}
+div.editor-ad-message{
+  border: solid #ddd 1px;
+  text-align: center;
+  height: 280px;
+  line-height: 260px;
+  background-color: #fbfcfc;
+}
+
+//ランキングブロック
+div.cocoon-render-dropdown {
+  margin-bottom: 1em;
+  select option[disabled]{
+    display: none;
+  }
+}
+
+.has-vivid-cyan-blue-to-vivid-purple-gradient-background {
+  background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;
+}
+
+.has-light-green-cyan-to-vivid-green-cyan-gradient-background {
+  background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;
+}
+
+.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background {
+  background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;
+}
+
+.has-very-light-gray-to-cyan-bluish-gray-gradient-background {
+  background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;
+}
+
+.has-luminous-vivid-orange-to-vivid-red-gradient-background {
+  background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;
+}
+
+.has-cool-to-warm-spectrum-gradient-background {
+  background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;
+}
+
+.has-blush-bordeaux-gradient-background {
+  background: var(--wp--preset--gradient--blush-bordeaux) !important;
+}
+
+.has-blush-light-purple-gradient-background {
+  background: var(--wp--preset--gradient--blush-light-purple) !important;
+}
+
+.has-luminous-dusk-gradient-background {
+  background: var(--wp--preset--gradient--luminous-dusk) !important;
+}
+
+.has-pale-ocean-gradient-background {
+  background: var(--wp--preset--gradient--pale-ocean) !important;
+}
+
+.has-electric-grass-gradient-background {
+  background: var(--wp--preset--gradient--electric-grass) !important;
+}
+
+.has-midnight-gradient-background {
+  background: var(--wp--preset--gradient--midnight) !important;
+}
+
+//ファイルブロックのダウンロードボタン
+.wp-element-button, .wp-block-button__link {
+  background-color: #32373c;
+  border-width: 0;
+  color: #fff;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  padding: calc(.667em + 2px) calc(1.333em + 2px) !important;
+  text-decoration: none;
+}
+
+//画像ブロックの中央配置のキャプションの不具合修正
+.wp-block-image.aligncenter > figcaption{
+  display: block;
+  margin-top: -0.8em !important;
+}
+
+.wp-block-cocoon-blocks-button-1{
+  float: none !important;
+  max-width: 840px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  &.alignleft{
+    text-align: left;
+  }
+  &.aligncenter{
+    text-align: center;
+  }
+  &.alignright{
+    text-align: right;
+  }
+}
+
+//ブロックエディターのナンバーコントロールCSSの調整
+.em5sgkm6{
+  margin-bottom: 8px;
+}
+
+//操作できないGutenbergオプションは透過表示にする
+.block-editor-block-inspector .components-disabled {
+  opacity: 0.3;
+}
+
+//WordPressコアのボタンが常に中央揃えになる不具合修正
+.wp-block-button.wp-block{
+  margin: 0 !important;
+}
+
+//ツールバーのドロップダウンメニューが中央揃えになる不具合修正
+.components-dropdown-menu__menu{
+  .components-button.has-icon {
+    justify-content: flex-start;
+  }
+}
+
+//ブロックエディタータイトルのマージンボトム高さ調整
+.wp-block-post-title {
+  margin-bottom: 0.8em !important;
+}
+//ブロックエディタータイトルのマージントップ高さ調整
+div.editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
+  margin-top: 0 !important;
+}
+
+//新着・人気記事ブロックの矢印アイコンフォントの文字化け修正
+.editor-styles-wrapper.font-awesome-5 .card-arrow .a-wrap::after{
+  font-family: 'Font Awesome 5 Free';
+}
+
+//画像ブロック配置が中央揃えにならない不具合修正
+.editor-styles-wrapper [data-type="core/image"].aligncenter{
+  display: table;
+  figcaption{
+    margin-top: 0 !important;
+  }
+}
+
+.style-buttons{
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  column-gap: 0;
+
+  .display-none{
+    display: none !important;
+  }
+  .__btnBox{
+    width: 33%;
+    box-sizing: border-box;
+  }
+  .__labelBtn {
+    display: block;
+    padding: 4px;
+    border-radius: 2px;
+    &[data-selected=true]{
+      box-shadow: 0 0 0 1px #5e6670;
+    }
+  }
+  .__prevWrap {
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px #e5e8eb;
+    display: block;
+    padding: 4px;
+    &::after{
+      content: initial !important;
+      display: initial !important;
+      height: initial !important;
+    }
+  }
+  //プレビュー画面
+  .__prev {
+    height: 48px;
+    display: block;
+    padding: 10px !important;
+    width: 100%;
+
+    //リスト
+    &.wp-block-list{
+      padding: 0 10px !important;
+      margin-left: 1em;
+      font-size: 8px !important;
+      line-height: 1.6;
+    }
+
+    &.is-style-stapler-box::before,
+    &.is-style-stapler-box::after {
+      top: 5px;
+      width: 10px;
+      border-width: 1px;
+    }
+    &.is-style-stapler-top-left-box::before {
+      top: 3px;
+      left: 10px;
+      height: 15px;
+      border-width: 1px;
+    }
+    &.is-style-hole-punch-box::before,
+    &.is-style-hole-punch-box::after {
+      position: absolute;
+      content: '';
+      top: 6px;
+      width: 5px;
+      height : 5px;
+    }
+    &.is-style-hole-punch-box::before { left: 20%;}
+    &.is-style-hole-punch-box::after { right: 20%;}
+
+
+    //リスト
+    &.wp-block-list{
+      margin-top: 0.4em;
+    }
+    // &:is(.is-style-numeric-list-enclosed, .is-style-numeric-list-rank, .is-style-numeric-list-step)
+    &[class*="is-style-numeric-list-"]
+    {
+      li{
+        margin: 0;
+        &::before{
+          font-size: 6px;
+          line-height: 1;
+          width: 1.7em;
+          height: 1.7em;
+        }
+      }
+    }
+    &.is-style-numeric-list-step li::before{
+      border-width: 1px;
+    }
+    &.is-style-numeric-list-step li{
+      // margin: 0.4em 0;
+      &::after{
+        border-width: 1px;
+        left: 0.6em;
+      }
+    }
+
+  }
+  .__prevTitle {
+    display: block;
+    font-size: 10px;
+    line-height: 1;
+    margin-top: 8px;
+    text-align: center;
+  }
+}
+
+.__clearBtn{
+  padding: 6px;
+  text-align: center;
+  button{
+    border: 1px solid var(--cocoon-box-border-color);
+  }
+}
+
+.editor-post-title::after {
+  color: rgb(51, 51, 51);
+  content: "Count: " attr(data-title-count);
+  display: inline-block;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 2;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  background-color: #f7f7f7;
+  padding: 1px 8px;
+  border-radius: 5px;
+  border: 1px solid var(--cocoon-basic-border-color);
+}
+
+[lang="ja"] .editor-post-title::after {
+  content: "文字数: " attr(data-title-count);
+}
+
+.components-range-control .components-base-control__label{
+  margin: 0.2em 0 1em;
+}
+.block-editor-iframe__body .editor-post-title::after{
+  display: none;
+}
+
+.body .wp-block:not(.wp-block-group) li{
+  margin: 0.2em 0;
+}
+
+//pのブロンカードURL入力と、brのブログカードURL入力の表示を均一化
+.block-editor-block-list__block.blogcard-type{
+  p{
+    margin: 0;
+  }
+  br{
+    display: initial !important;
+  }
+  line-height: 3;
+}
+
+//WordPress 6.3の仕様変更対応
+.components-button.display-none{
+  display: none !important;
+}
+
+//ブログカードブロック内のpタグの余計な余白を削除
+.blogcard-type .rich-text{
+  white-space: initial !important;
+}
+
+//グループボックスの上下揃えのデフォルトを中央揃えに（エディター画面）
+.is-layout-flex{
+  align-items: center;
+}
+
+.wp-block-list{
+  .wp-block-list{
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+//エディターページではswiperが有効でないため自前で余白を入れる
+.is-list-horizontal .a-wrap {
+  margin-right: 4px;
+}
+
+//WordPress6.5からブロックエディターの背景が灰色になるのを白色に戻す
+.edit-post-visual-editor{
+  background-color: #fff;
+}
+
+//ツールボタンのインラインボタンドロップダウンの余白設定
+.components-button [class*="inline-button-"]{
+  padding: 4px 8px !important;
+}
+
+//WordPress6.5からブロックエディタータイトル上の余白が大きくなるのを修正
+.editor-editor-canvas__post-title-wrapper{
+  margin-top: 0 !important;
+}
+
+//ブロックエディターページでもタイムラインラベルを複数行表示にしない
+.timeline-item-label .rich-text{
+  overflow: auto;
+  white-space: nowrap !important;
+}
+
+//パターンエディターに余計なスクロールバーが出る不具合修正
+.article{
+  margin-bottom: 0 !important;
+}
+
+//CTAブロック
+// .cta-base-control{
+//   position: relative;
+// }
+.cta-btn-group{
+  display: flex;
+  gap: 6px;
+  // padding: 12px;
+  // position: absolute;
+  // width: 100%;
+  // bottom: 0;
+  .cta-btn{
+    width: 100%;
+    justify-content: center;
+    // background-color: #fff;
+    // opacity: 0.99;
+  }
+}
+
+//ブロックエディターの余白をクリックしても「+」ボタンが表示されない不具合修正
+// .editor-styles-wrapper{
+//   padding-bottom: 10vh;
+// }
+
+.radar-chart-block.is-selected {
+  border: 2px solid #007cba; /* 選択時の強調表示 */
+}
+
+// グループのグリッドレイアウト
+body .is-layout-grid {
+  display: grid;
+}
+
+.body .is-layout-grid > :is(*, div) {
+  margin: 0;
+}
+
+:root :where(.is-layout-grid) {
+  gap: 1.2rem;
+}
+
+.wp-block-pullquote{
+  font-size: 1.5em;
+}
+
+.components-base-control__label{
+  text-transform: initial !important;
+}
+
+.icon-setting-buttons .components-button[class*="fab"]{
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  display: inline-block;
+}

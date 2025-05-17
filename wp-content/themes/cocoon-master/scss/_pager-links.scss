@@ -1,0 +1,38 @@
+/************************************
+** マルチページのページャーリンク
+************************************/
+.pager-links{
+  @include pagination_wrap;
+
+  .post-page-numbers{
+    background-color: transparent;
+  }
+
+  span{
+    background-color: var(--cocoon-current-background-color);
+  }
+
+  a{
+    display: inline-block;
+
+    span{
+      background-color: var(--cocoon-white-color);
+    }
+
+    &:hover span {
+      @include bgc_hover;
+    }
+  }
+
+}
+
+.pager-prev-next{
+  a{
+    width: 30%;
+    margin: 0 4px;
+  }
+  span{
+    width: 100%;
+    margin: 0;
+  }
+}

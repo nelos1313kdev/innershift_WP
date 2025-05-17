@@ -1,0 +1,218 @@
+<?php /**
+ * Cocoon WordPress Theme
+ * @author: yhira
+ * @link: https://wp-cocoon.com/
+ * @license: http://www.gnu.org/licenses/gpl-2.0.html GPL v2 or later
+ */
+if ( !defined( 'ABSPATH' ) ) exit; ?>
+
+<div class="metabox-holder">
+
+<!-- ヘッダー設定 -->
+<div id="header" class="postbox">
+  <h2 class="hndle"><?php _e( 'ヘッダー設定', THEME_NAME ) ?></h2>
+  <div class="inside">
+
+    <p><?php _e( 'ヘッダーの表示設定を行います。', THEME_NAME ) ?></p>
+
+    <?php if (DEBUG_ADMIN_DEMO_ENABLE && apply_filters('cocoon_setting_preview_header', true)): ?>
+    <p class="preview-label"><?php _e( 'プレビュー', THEME_NAME ) ?></p>
+    <div class="demo header-demo">
+      <?php get_sanitize_preview_template_part('tmp/header-container'); ?>
+    </div>
+    <?php endif; ?>
+
+    <table class="form-table">
+      <tbody>
+
+        <!-- ヘッダーレイアウト -->
+        <tr>
+          <th scope="row">
+            <?php generate_label_tag(OP_HEADER_LAYOUT_TYPE, __( 'ヘッダーレイアウト', THEME_NAME ) ); ?>
+          </th>
+          <td>
+            <?php
+            $options = array(
+              'center_logo' => __( 'センターロゴ（デフォルト）', THEME_NAME ),
+              'center_logo_top_menu' => __( 'センターロゴ（トップメニュー）', THEME_NAME ),
+              'center_logo_slim' => __( 'センターロゴ（スリムメニュー）', THEME_NAME ),
+              'center_logo_slim_top_menu' => __( 'センターロゴ（スリムトップメニュー）', THEME_NAME ),
+              'top_menu' => __( 'トップメニュー', THEME_NAME ),
+              'top_menu_right' => __( 'トップメニュー（右寄せ）', THEME_NAME ),
+              'top_menu_small' => __( 'トップメニュー小', THEME_NAME ),
+              'top_menu_small_right' => __( 'トップメニュー小（右寄せ）', THEME_NAME ),
+            );
+            generate_selectbox_tag(OP_HEADER_LAYOUT_TYPE, $options, get_header_layout_type());
+            generate_tips_tag(__( 'ヘッダーの表示形式を選択します。', THEME_NAME ));
+            ?>
+          </td>
+        </tr>
+
+        <!-- ヘッダーの固定  -->
+        <tr>
+          <th scope="row">
+            <?php generate_label_tag('', __( 'ヘッダーの固定', THEME_NAME ) ); ?>
+          </th>
+          <td>
+            <?php
+            generate_checkbox_tag(OP_HEADER_FIXED, is_header_fixed(), __( 'ヘッダーを固定する', THEME_NAME ));
+            generate_tips_tag(__( 'ページをスクロールしても、ヘッダーが追従してきます。こちらはパソコン環境のみの動作になります。IEでは動作しません。', THEME_NAME ).get_help_page_tag('https://wp-cocoon.com/header-fixed/'));
+
+            ?>
+          </td>
+        </tr>
+        <!-- ヘッダーロゴ（ヘッダー固定時・モバイル） -->
+        <tr>
+          <th scope="row">
+            <?php generate_label_tag(OP_THE_FIXED_SITE_LOGO_URL, __( 'ヘッダー固定・モバイルロゴ', THEME_NAME ) ); ?>
+          </th>
+          <td>
+            <?php
+            generate_upload_image_tag(OP_THE_FIXED_SITE_LOGO_URL, get_the_fixed_site_logo_url());
+            generate_tips_tag(__( 'ヘッダー固定、モバイル時でのヘッダー部分に表示する画像を設定します。jpg、jpeg、png形式の画像推奨です。', THEME_NAME ));
+            ?>
+          </td>
+        </tr>
+
+
+        <!-- 高さ -->
+        <tr>
+          <th scope="row">
+            <?php generate_label_tag(OP_HEADER_AREA_HEIGHT, __('高さ', THEME_NAME) ); ?>
+          </th>
+          <td>
+            <?php
+            generate_number_tag(OP_HEADER_AREA_HEIGHT,  get_header_area_height(), '', 0, 800);
+            generate_tips_tag(__( 'ヘッダーの高さをpx数で指定します。モバイル環境ではモバイル用設定のものが利用されます。未入力でデフォルトになります。（最小：0px、最大：800px）', THEME_NAME ).'<br>'.__( '※「ヘッダーレイアウト」が「センターロゴ」の時のみに適用されます。', THEME_NAME ));
+            ?>
+          </td>
+        </tr>
+
+        <!-- 高さ（モバイル） -->
+        <tr>
+          <th scope="row">
+            <?php generate_label_tag(OP_MOBILE_HEADER_AREA_HEIGHT, __('高さ（モバイル）', THEME_NAME) ); ?>
+          </th>
+          <td>
+            <?php
+            generate_number_tag(OP_MOBILE_HEADER_AREA_HEIGHT,  get_mobile_header_area_height(), '', 0, 600);
+            generate_tips_tag(__( 'モバイルでのヘッダーの高さをpx数で指定します。834px以下のタブレット以下の幅の狭い端末用です。未入力でデフォルトになります。（最小：0px、最大：600px）', THEME_NAME ));
+            ?>
+          </td>
+        </tr>
+        <!-- ヘッダーロゴ -->
+        <tr>
+          <th scope="row">
+            <?php generate_label_tag(OP_THE_SITE_LOGO_URL, __( 'ヘッダーロゴ', THEME_NAME ) ); ?>
+          </th>
+          <td>
+            <?php
+            generate_upload_image_tag(OP_THE_SITE_LOGO_URL, get_the_site_logo_url());
+            generate_tips_tag(__( 'ヘッダー部分に表示する画像を設定します。jpg、jpeg、png形式の画像推奨です。', THEME_NAME ));
+            ?>
+          </td>
+        </tr>
+
+        <!-- ヘッダーロゴサイズ -->
+        <tr>
+          <th scope="row">
+            <?php generate_label_tag('', __( 'ヘッダーロゴサイズ', THEME_NAME ) ); ?>
+          </th>
+          <td>
+            <?php
+            _e( '幅：', THEME_NAME );
+            generate_number_tag(OP_THE_SITE_LOGO_WIDTH,  get_the_site_logo_width(), '', 0, 1600);
+            _e( ' × ', THEME_NAME );
+            _e( '高さ：', THEME_NAME );
+            generate_number_tag(OP_THE_SITE_LOGO_HEIGHT,  get_the_site_logo_height(), '', 0, 800);
+            generate_tips_tag(__( 'ロゴの縦横幅を指定します。ロゴのRetina対応などに。サイズ設定が不要の場合は空欄にしてください。「ヘッダーレイアウト」が「センターロゴ」でないと、ロゴサイズの変更までは行われません。', THEME_NAME ));
+            ?>
+          </td>
+        </tr>
+        <!-- キャッチフレーズの配置 -->
+        <tr>
+          <th scope="row">
+            <?php generate_label_tag(OP_TAGLINE_POSITION, __('キャッチフレーズの配置', THEME_NAME) ); ?>
+          </th>
+          <td>
+            <?php
+            $options = array(
+              'none' => __( '表示しない', THEME_NAME ),
+              'header_top' => __( 'ヘッダートップ（デフォルト）', THEME_NAME ),
+              'header_bottom' => __( 'ヘッダーボトム', THEME_NAME ),
+            );
+            generate_radiobox_tag(OP_TAGLINE_POSITION, $options, get_tagline_position());
+            generate_tips_tag(__( 'キャッチフレーズの表示位置を設定します。※「ヘッダーレイアウト」が「センターロゴ」の場合。', THEME_NAME ));
+            ?>
+          </td>
+        </tr>
+
+        <!-- ヘッダー背景画像 -->
+        <tr>
+          <th scope="row">
+            <?php generate_label_tag(OP_HEADER_BACKGROUND_IMAGE_URL, __( 'ヘッダー背景画像', THEME_NAME ) ); ?>
+          </th>
+          <td>
+            <?php
+            generate_upload_image_tag(OP_HEADER_BACKGROUND_IMAGE_URL, get_header_background_image_url());
+            generate_tips_tag(__( 'ヘッダー背景として表示する画像を設定します。', THEME_NAME ));
+
+            //ヘッダー背景画像を固定する
+            generate_checkbox_tag(OP_HEADER_BACKGROUND_ATTACHMENT_FIXED, is_header_background_attachment_fixed(), __( 'ヘッダー背景画像を固定する', THEME_NAME ));
+            generate_tips_tag(__( 'PC画面でヘッダー背景に設定した画像を固定します。上下にスクロールしたときに背景画像が移動しなくなります。', THEME_NAME ));
+
+            //ヘッダーのサイズを背景画像のアスペクト比率にするか
+            generate_checkbox_tag(OP_HEADER_SIZE_BACKGROUND_IMAGE_ASPECT_RATIO, is_header_size_background_image_aspect_ratio(), __( '背景画像を全て表示する', THEME_NAME ));
+            generate_tips_tag(__( 'ヘッダーのサイズを「ヘッダー背景画像」に設定した画像の縦横比サイズに合わせて表示させます。', THEME_NAME ).__( 'これにより背景画像が隠れることなく表示されます。', THEME_NAME ).__( '「ヘッダーレイアウト」設定が「センターロゴ」時のみ。', THEME_NAME ).__( 'ヘッダー設定にある「高さ」や「高さ（モバイル）」の値は無効になります。', THEME_NAME ).get_help_page_tag('https://wp-cocoon.com/header-size-background-image-aspect-ratio/'));
+            ?>
+          </td>
+        </tr>
+
+        <!-- ヘッダー全体色 -->
+        <tr>
+          <th scope="row">
+            <?php generate_label_tag(OP_HEADER_CONTAINER_BACKGROUND_COLOR, __( 'ヘッダー全体色', THEME_NAME ) ); ?>
+            <?php generate_select_color_tip_tag(); ?>
+          </th>
+          <td>
+
+            <?php
+
+            generate_color_picker_tag(OP_HEADER_CONTAINER_BACKGROUND_COLOR,  get_header_container_background_color(), __( 'ヘッダー全体背景色', THEME_NAME ));
+            generate_tips_tag(__( 'ロゴ部分やグローバルナビ全てを含めた背景色を選択します。', THEME_NAME ));
+
+            generate_color_picker_tag(OP_HEADER_CONTAINER_TEXT_COLOR,  get_header_container_text_color(), __( 'ヘッダー全体文字色', THEME_NAME ));
+            generate_tips_tag(__( 'ロゴ部分やグローバルナビ全てを含めたテキスト色を選択します。', THEME_NAME ));
+            ?>
+          </td>
+        </tr>
+
+        <!-- ヘッダー色 -->
+        <tr>
+          <th scope="row">
+            <?php generate_label_tag('', __( 'ヘッダー色（ロゴ部）', THEME_NAME ) ); ?>
+            <?php generate_select_color_tip_tag(); ?>
+          </th>
+          <td>
+            <?php
+
+            generate_color_picker_tag(OP_HEADER_BACKGROUND_COLOR,  get_header_background_color(), __( 'ロゴエリア背景色', THEME_NAME ));
+            generate_tips_tag(__( 'グローバルナビ上のヘッダー背景色を選択します。', THEME_NAME ));
+
+            generate_color_picker_tag(OP_HEADER_TEXT_COLOR,  get_header_text_color(), __( 'ロゴ文字色', THEME_NAME ));
+            generate_tips_tag(__( 'グローバルナビ上のヘッダーテキスト色を選択します。', THEME_NAME ));
+            ?>
+          </td>
+        </tr>
+
+        <?php
+        require_once abspath(__FILE__).'navi-forms.php'; ?>
+
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+
+</div><!-- /.metabox-holder -->

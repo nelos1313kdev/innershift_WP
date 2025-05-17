@@ -1,0 +1,1105 @@
+/************************************
+** WordPress管理画面用のCSS
+** ※管理画面にしか適用されません
+************************************/
+
+body.wp-admin{
+  color: #444;
+}
+
+//固定値
+@import "defins";
+@import "admin-snippets";
+.admin-settings .demo{
+  @import "amp-imports";
+  @import "imports";
+
+  @include base_font;
+
+  overflow: auto;
+  resize: both;
+
+  background-color: var(--cocoon-xxx-thin-color);
+
+  padding: 10px;
+
+  border: 2px solid #ddd;
+
+  pre{
+    padding: 10px;
+  }
+
+  .entry-content{
+    margin: 0;
+  }
+
+  .search-result{
+    padding: 10px;
+    font-size: 16px;
+    line-height: 1.4;
+    max-width: 600px;
+
+
+    .title{
+      color: #1a0dab;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .url{
+      color: #006621;
+      font-size: 14px;
+      max-width: 80%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .description{
+      font-size: 14px;
+    }
+  }
+
+  .wrap{
+    width: 100%;
+  }
+
+  .demo .navi-in > ul > .menu-item-has-children > a::after{
+    display: none;
+  }
+
+  .archive-title{
+    display: none;
+  }
+
+  .ad-area{
+    display: none;
+  }
+
+  &.toc{
+    .entry-header,
+    .entry-footer{
+      display: none;
+    }
+  }
+
+  &.header-demo{
+    overflow: visible;
+  }
+
+  .go-to-top{
+    position: relative;
+    display: inline-block;
+    bottom: auto;
+    right: auto;
+  }
+
+  .slick-slide{
+    display: block;
+  }
+
+  .widget{
+    display: none;
+  }
+
+
+  &.iframe-standard-demo{
+    height: 400px;
+  }
+
+  &.mobile-demo{
+    height: 640px;
+  }
+
+  .iframe-demo{
+    width: 100%;
+    height: 100%;
+  }
+
+  .recommended-in.wrap{
+    padding: 0 5%;
+  }
+}
+
+.demo #related-entries h2{
+  font-size: 1.3em;
+  margin: 1em 0;
+  font-weight: bold;
+  line-height: unset;
+  margin: unset;
+}
+
+.form-table td p{
+  font-size: unset;
+}
+
+//管理画面でプレビューできないので.demo内で読みみたくない
+@import "pre";
+
+/*記事一覧のサムネイル幅*/
+.column-thumbnail{
+  width: 80px;
+}
+/*記事一覧のPV幅*/
+.column-pv{
+  width: 70px;
+}
+/*記事一覧の投稿ID幅*/
+.column-post-id{
+  width: 56px;
+}
+/*記事一覧の文字数幅*/
+.column-word-count{
+  width: 76px;
+}
+/*パターン一覧のショートコード幅*/
+.column-shortcode{
+  width: 160px;
+}
+
+.admin-custum-label{
+  margin-left: -30px;
+  margin-top: 20px;
+  margin-bottom: -16px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.1em;
+  background-color: #ddd;
+  padding: 12px;
+}
+
+/************************************
+** テーマ設定画面
+************************************/
+
+.preview-label{
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.tips{
+  margin: 4px 0 12px !important;
+}
+
+form.admin-settings{
+  margin-top: 2em;
+  .button-primary{
+    margin: 1em 0;
+  }
+  .postbox{
+    padding: 1em;
+    margin: 1em 0;
+  }
+}
+
+#tabs > div{
+  display: none;
+}
+
+#tabs{
+  .tab-input{
+    display: none;
+  }
+
+  // .tabs-nav {
+  //   border-bottom: 1px solid #999;
+  //   list-style-type: none;
+  //   margin: 0;
+  //   padding: 0;
+  // }
+
+  .tab-label {
+    background-color: rgb(241, 241, 241);
+    cursor: pointer;
+    display: inline-block !important;
+    margin: 0 !important;
+    padding: 4px 9px 3px !important;
+    border-color: #999 #999 currentcolor;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 1px medium;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    &:hover{
+      background-color: #fff;
+    }
+
+    // &.selected{
+    //   background-color: #fff;
+    // }
+  }
+
+  #tab-skin-input:checked ~ #tab-skin-label,
+  #tab-all-input:checked ~ #tab-all-label,
+  #tab-theme-header-input:checked ~ #tab-theme-header-label,
+  #tab-ads-input:checked ~ #tab-ads-label,
+  #tab-title-input:checked ~ #tab-title-label,
+  #tab-seo-input:checked ~ #tab-seo-label,
+  #tab-ogp-input:checked ~ #tab-ogp-label,
+  #tab-analytics-input:checked ~ #tab-analytics-label,
+  #tab-column-input:checked ~ #tab-column-label,
+  #tab-index-page-input:checked ~ #tab-index-page-label,
+  #tab-single-page-input:checked ~ #tab-single-page-label,
+  #tab-page-page-input:checked ~ #tab-page-page-label,
+  #tab-content-page-input:checked ~ #tab-content-page-label,
+  #tab-toc-page-input:checked ~ #tab-toc-page-label,
+  #tab-sns-share-input:checked ~ #tab-sns-share-label,
+  #tab-sns-follow-input:checked ~ #tab-sns-follow-label,
+  #tab-image-input:checked ~ #tab-image-label,
+  #tab-blog-card-input:checked ~ #tab-blog-card-label,
+  #tab-code-highlight-input:checked ~ #tab-code-highlight-label,
+  #tab-comment-input:checked ~ #tab-comment-label,
+  #tab-notice-area-input:checked ~ #tab-notice-area-label,
+  #tab-appeal-area-input:checked ~ #tab-appeal-area-label,
+  #tab-recommended-input:checked ~ #tab-recommended-label,
+  #tab-carousel-input:checked ~ #tab-carousel-label,
+  #tab-footer-input:checked ~ #tab-footer-label,
+  #tab-buttons-input:checked ~ #tab-buttons-label,
+  #tab-mobile-buttons-input:checked ~ #tab-mobile-buttons-label,
+  #tab-page-404-input:checked ~ #tab-page-404-label,
+  #tab-amp-input:checked ~ #tab-amp-label,
+  #tab-pwa-input:checked ~ #tab-pwa-label,
+  #tab-admin-input:checked ~ #tab-admin-label,
+  #tab-widget-input:checked ~ #tab-widget-label,
+  #tab-widget-area-input:checked ~ #tab-widget-area-label,
+  #tab-editor-input:checked ~ #tab-editor-label,
+  #tab-apis-input:checked ~ #tab-apis-label,
+  #tab-others-input:checked ~ #tab-others-label,
+  #tab-reset-input:checked ~ #tab-reset-label,
+  #tab-about-input:checked ~ #tab-about-label {
+    background-color: #fff;
+  }
+
+  #tab-skin-input:checked ~ #tab-skin-content,
+  #tab-all-input:checked ~ #tab-all-content,
+  #tab-theme-header-input:checked ~ #tab-theme-header-content,
+  #tab-ads-input:checked ~ #tab-ads-content,
+  #tab-title-input:checked ~ #tab-title-content,
+  #tab-seo-input:checked ~ #tab-seo-content,
+  #tab-ogp-input:checked ~ #tab-ogp-content,
+  #tab-analytics-input:checked ~ #tab-analytics-content,
+  #tab-column-input:checked ~ #tab-column-content,
+  #tab-index-page-input:checked ~ #tab-index-page-content,
+  #tab-single-page-input:checked ~ #tab-single-page-content,
+  #tab-page-page-input:checked ~ #tab-page-page-content,
+  #tab-content-page-input:checked ~ #tab-content-page-content,
+  #tab-toc-page-input:checked ~ #tab-toc-page-content,
+  #tab-sns-share-input:checked ~ #tab-sns-share-content,
+  #tab-sns-follow-input:checked ~ #tab-sns-follow-content,
+  #tab-image-input:checked ~ #tab-image-content,
+  #tab-blog-card-input:checked ~ #tab-blog-card-content,
+  #tab-code-highlight-input:checked ~ #tab-code-highlight-content,
+  #tab-comment-input:checked ~ #tab-comment-content,
+  #tab-notice-area-input:checked ~ #tab-notice-area-content,
+  #tab-appeal-area-input:checked ~ #tab-appeal-area-content,
+  #tab-recommended-input:checked ~ #tab-recommended-content,
+  #tab-carousel-input:checked ~ #tab-carousel-content,
+  #tab-footer-input:checked ~ #tab-footer-content,
+  #tab-buttons-input:checked ~ #tab-buttons-content,
+  #tab-mobile-buttons-input:checked ~ #tab-mobile-buttons-content,
+  #tab-page-404-input:checked ~ #tab-page-404-content,
+  #tab-amp-input:checked ~ #tab-amp-content,
+  #tab-pwa-input:checked ~ #tab-pwa-content,
+  #tab-admin-input:checked ~ #tab-admin-content,
+  #tab-widget-input:checked ~ #tab-widget-content,
+  #tab-widget-area-input:checked ~ #tab-widget-area-content,
+  #tab-editor-input:checked ~ #tab-editor-content,
+  #tab-apis-input:checked ~ #tab-apis-content,
+  #tab-others-input:checked ~ #tab-others-content,
+  #tab-reset-input:checked ~ #tab-reset-content,
+  #tab-about-input:checked ~ #tab-about-content {
+    display: block;
+  }
+
+  input[type="text"], input[type="password"], input[type="search"], input[type="number"], textarea, select{
+    border-color: #ddd;
+  }
+
+  & input {
+    &:where(:not(:focus-visible)) {
+      &:invalid {
+        animation: shake-x 1s;
+        background-color: rgba(255, 0, 0, 0.2);
+        border-color: red;
+      }
+    }
+  }
+}
+
+@keyframes shake-x {
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    translate: -4px 0;
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    translate: 4px 0;
+  }
+}
+
+.col-2{
+  display: flex;
+
+  >div{
+    width: 50%;
+    padding: 10px;
+  }
+}
+
+.list-style-disc{
+  list-style-type: disc;
+  padding-left: 30px;
+}
+
+/////////////////////////////////////
+// トグル詳細設定
+/////////////////////////////////////
+@include toggle;
+
+/*文字数カウントエリア*/
+.str-count{
+  margin-left: 10px;
+  background-color: #f7f7f7;
+  padding: 1px 8px;
+  border-radius: 5px;
+  border: 1px solid var(--cocoon-basic-border-color);
+  font-weight: normal;
+}
+
+.seo-title-count,
+.meta-description-count,
+.wp-title-count{
+  margin-left: 5px
+}
+
+.str-wp-title-count{
+  position: absolute;
+  top: -23px;
+  right: 0;
+  color: #666;
+  background-color: #f7f7f7;
+  padding: 1px 2px;
+  border-radius: 5px;
+  border: 1px solid var(--cocoon-basic-border-color);
+}
+
+.uploded-thumbnail img{
+  max-width: 400px;
+  height: auto;
+  width: 100%;
+}
+
+.tooltip{
+  position: relative;
+  color: orange;
+  font-size: 0.9em !important;
+  //top: 3px;
+  //margin-left: 3px;
+
+  &:hover .tip-content{
+    display: block;
+  }
+
+
+
+  .tip-content {
+    background: #ffffeb;
+    border: 1px solid #878787;
+    color: #333;
+    display: none;
+    width: 680px;
+    padding: 8px;
+    position: absolute;
+    bottom: 1em;
+    left: -200px;
+    z-index: 9999;
+
+    img{
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .tip-content:after, .tip-content:before {
+    top: 100%;
+    left: 205px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .tip-content:after {
+    border-color: rgba(255, 255, 235, 0);
+    border-top-color: #ffffeb;
+    border-width: 5px;
+    margin-left: -5px;
+  }
+  .tip-content:before {
+    border-color: rgba(135, 135, 135, 0);
+    border-top-color: #878787;
+    border-width: 6px;
+    margin-left: -6px;
+  }
+}
+
+#tabs{
+  table th,
+  table tr:nth-of-type(2n+1){
+    background-color: unset;
+  }
+}
+
+p.submit{
+  margin: 2px 0;
+  padding: 3px 0;
+}
+
+#wpbody-content .metabox-holder{
+  padding: 0;
+}
+
+.detail-area{
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  background-color: #eee;
+  border: 1px solid var(--cocoon-basic-border-color);
+}
+
+select option.fa{
+  display: block;
+
+  &:before{
+    width: 18px;
+    display: inline-block;
+    text-align: center;
+    margin-right: 5px;
+  }
+}
+
+.category-check-list-root{
+  >li{
+    >ul{
+      padding-left: 0 !important;
+    }
+  }
+}
+
+.list-content,
+.tabs .tab-content,
+.tabs .tagcloud-list,
+.widget-content .tab-content{
+  height: 200px;
+  overflow: auto;
+  border: 1px solid var(--cocoon-basic-border-color);
+  padding: 5px;
+  margin: 0 0 5px;
+  background-color: #fff;
+
+  ul{
+    margin: 0;
+    padding-left: 20px;
+    li{
+      margin-bottom: 3px;
+    }
+  }
+  >ul{
+    padding-left: 0;
+  }
+}
+.widget-content .tab-content{
+  height: 120px;
+  margin-bottom: 1em;
+}
+.tabs .tagcloud-list{
+  height: auto;
+  max-height: 200px;
+}
+
+//カテゴリ編集ページの横幅
+#edittag{
+  max-width: 1200px;
+}
+
+.indent{
+  padding-left: 30px;
+}
+
+.red{
+  color: red;
+  margin-left: 1em;
+}
+
+.components-panel {
+  input[type="range"]{
+    width: calc(100% - 18px);
+  }
+  .range-wrap{
+    width: 100%;
+  }
+}
+
+.list-option{
+  width: 50px;
+  text-align: center;
+}
+
+//ランキング入力フォーム
+#ranking-items{
+  counter-reset: ranking-item-number;
+
+  .ranking-items .ranking-item{
+    &::before{
+      display: none;
+    }
+    &:last-of-type{
+      background-color: #fff;
+    }
+
+  }
+
+  .ranking-item-name-text .tips{
+    font-weight: normal;
+  }
+
+
+  .ranking-item{
+    margin-bottom: 1em;
+    position: relative;
+    overflow: visible;
+    background-color: #fafafa;
+
+    ul{
+      display: flex;
+      padding-left: 0;
+      li{
+        margin-right: 12px;
+        input{
+          margin-right: 2px;
+        }
+      }
+    }
+
+    &:last-of-type{
+      background-color: #eaf5fa;
+    }
+
+    &::before{
+      counter-increment: ranking-item-number;      /* ranking-item-number カウンタの増加数をセット */
+      content: counter(ranking-item-number);      /* 表示形式を指定 */
+      position: absolute;
+      font-size: 15px;
+      background-color: #777;
+      color: #fff;
+      padding: 6px;
+      top: -15px;
+      left: -15px;
+      display: block;
+      width: 16px;
+      height: 16px;
+      line-height: 16px;
+      text-align: center;
+      border-radius: 4px;
+    }
+
+    .toggle .toggle-link {
+      margin: 0;
+      font-size: 1em;
+      font-weight: bold;
+    }
+
+  }
+
+  .demo{
+    font-size: 14px;
+    padding: 12px 18px;
+  }
+
+  .ranking-title{
+    input[type=text]{
+      font-weight: bold;
+    }
+  }
+
+  .rating-star{
+    color: #333;
+    font-size: 1em;
+  }
+
+  input[type='text'],
+  textarea{
+    width: 100%;
+    font-size: 14px;
+  }
+
+  input[type='text']{
+    padding: 10px;
+    border-width: 2px;
+  }
+
+  // .ranking-item{
+  //   >div{
+  //     padding: 4px;
+  //   }
+  // }
+
+  .ranking-item-name{
+
+  }
+
+  // .tips{
+  //   margin: 0;
+  // }
+  .rating-star{
+    label{
+      float: left;
+    }
+    ul{
+      margin: 0;
+      display: flex;
+      li{
+        margin-right: 1em;
+      }
+    }
+  }
+
+  textarea{
+    resize: both;
+    min-height: 0px;
+    height: 120px;
+    max-height: 600px;
+  }
+
+  .ranking-item-link-tag textarea{
+    height: 80px;
+  }
+
+  .ranking-item-img-desc > div,
+  .ranking-item-link-buttons > div{
+    padding: 0 6px;
+  }
+
+  input[type="submit"]{
+    padding: 0 10px 1px;
+  }
+
+
+ .opration-area{
+  display: flex;
+  .opration-submit{
+    width: 120px;
+  }
+  .opration-menu-links{
+    width: 100%;
+    text-align: right;
+
+    a{
+      margin-left: 10px;
+    }
+  }
+ }
+}
+
+.ir-list-title{
+  font-size: 22px;
+  font-weight: bold;
+  padding: 1em 0 0.6em;
+}
+
+.speech-wrap div.speech-balloon p{
+  font-size: 16px;
+  margin: 0;
+}
+
+
+///////////////////////////////////////
+// 吹き出し管理画面
+///////////////////////////////////////
+.balloon-box{
+  margin: 10px 0;
+  padding: 12px;
+  border-top: 1px solid #ccc;
+  &:first-child{
+    border-top: 0px solid transparent;
+  }
+}
+.balloon-top{
+  display: flex;
+  justify-content: space-between;
+}
+
+.balloon-content{
+  display: flex;
+  >div{
+    width: 100%;
+  }
+  .balloon-option{
+    width: 80px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    align-items: center;
+    justify-content: center;
+    //height: 200px;
+    >div{
+      padding: 5px 0;
+    }
+  }
+
+  .demo{
+    background-color: #fff;
+    resize: none;
+    border-style: none;
+    padding-bottom: 0;
+  }
+
+  .demo .speech-wrap{
+    margin: 0;
+  }
+  // .htmlcode{
+  //   margin-bottom: 20px;
+  // }
+}
+
+.baloon-credit{
+  text-align: right;
+  padding: 3px;
+}
+
+.balloon-demo-credit{
+  margin: 6px;
+  padding: 10px;
+  background-color: #fff9d8;
+  line-height: 1.6;
+}
+
+.widget-content{
+  input[type=text]{
+    width: 100%;
+  }
+}
+
+///////////////////////////////////////
+// ウィジェット表示設定
+///////////////////////////////////////
+
+.toggle-wrap {
+  ///////////////////////////////////////
+  // 表示ボタン
+  ///////////////////////////////////////
+  .toggle-button{
+    display: block;
+    cursor: pointer;
+    padding: 3px 10px;
+    background: #1b95e0 -moz-linear-gradient(center top , #f9f9f9 5%, #e9e9e9 100%) repeat scroll 0 0;
+    border: 1px solid #bbb;
+    // border: 1px solid #bbb;
+    // background-color: #e7e7e7;
+    text-align: center;
+    margin-bottom: 1em;
+    border-radius: 3px;
+    &:hover{
+      border-color: #333;
+    }
+  }
+
+  .toggle-content {
+    // visibility: hidden;
+    // height: 0;
+    // overflow: hidden;
+    // transition: all .3s;
+    display: none;
+    select{
+      width: 100%;
+    }
+
+    input[type='text']{
+      width: 100%;
+    }
+  }
+
+  > input[type="checkbox"] {
+    display: none;
+  }
+  > input[type="checkbox"]:checked ~ .toggle-content {
+    display: block;
+    // visibility: visible;
+    // height: auto;
+  }
+
+  ///////////////////////////////////////
+  // タブ
+  ///////////////////////////////////////
+  .tabs{
+    margin-top: 12px;
+    .tab-item{
+      display: inline-block;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      border: 1px solid #000;
+      background-color: #f3f3f3;
+      margin-left: 1px;
+      margin-right: 1px;
+      padding: 3px 6px;
+      border-bottom: none;
+      font-size: 0.85em;
+      &:hover{
+        opacity: 0.7;
+      }
+    }
+
+    //ラジオボタンと内容を非表示
+    input[name="tab_item"],
+    .tab-content {
+      display: none;
+    }
+
+    //選択されているタブのスタイルを変える
+    input[name="tab_item"]:checked + .tab-item {
+      background-color: #fff;
+    }
+
+  }
+
+}
+.metaslider-ui .metaslider-slides-container .slide{
+  display: flex;
+}
+
+.metaslider-ui .col-2 > div {
+  width: 100%;
+}
+
+.not-allowed-form{
+  opacity: 0.5;
+}
+
+.toggle-entered {
+  font-size: 0.8em;
+}
+
+.range-wrap{
+  display: table;
+  output{
+    display: block;
+    text-align: center;
+  }
+}
+
+.tooltip .fa-image,
+.tooltip .fa-picture-o {
+  color: #285294;
+}
+
+.mce-text{
+  color: #333 !important;
+
+}
+.mce-menu-item{
+  background: #fff !important;
+  border: 0 !important;
+  span{
+    color: #333 !important;
+  }
+  &:hover{
+    background-color: #0073aa !important;
+    span{
+      color: #fff !important;
+    }
+  }
+}
+
+//装飾中のスタイルドロップダウンアイテムを選択中にする
+.mce-menu {
+  .mce-menu-item-preview.mce-active,
+  .mce-menu-item.mce-selected,
+  .mce-menu-item:focus,
+  .mce-menu-item:hover{
+    background: #0073aa !important;
+    color: #fff !important;
+    span{
+      color: #fff !important;
+    };
+  }
+
+  .mce-menu-item-preview.mce-active,
+  .mce-menu-item:focus,{
+    background: #e7609e !important;
+    border-left: 5px solid #60e5a7 !important;
+  }
+}
+
+.wp-button{
+  line-height: normal !important;
+  span{
+    width: 16px;
+    height: 16px;
+    vertical-align: text-top;
+    margin-right: 6px;
+    line-height: normal;
+  }
+}
+
+.necessity-input{
+  font-size: 14px;
+  color: red;
+}
+
+.api-badge{
+  color: #fff;
+  padding: 2px 5px;
+  border-radius: 2px;
+  font-size: 12px;
+  margin: 0 4px;
+}
+
+.amazon-badge{
+  background-color: #f79901;
+}
+
+.rakuten-badge{
+  background-color: var(--cocoon-rakuten-color);
+}
+
+.moshimo-badge{
+  background-color: #99c737;
+}
+
+#singular_sns_image_settings{
+  input[type=text]{
+    width: 100%;
+  }
+  #sns_image_url_thumbnail img{
+    width: 100%;
+  }
+}
+
+///////////////////////////////////////////
+// スキン制限
+///////////////////////////////////////////
+.skin-control{
+  opacity: 0.5;
+  padding: 1.4em 0.6em 0.6em;
+  position: relative;
+  display: table-cell;
+  background-color: var(--cocoon-xx-thin-color);
+  border: 1px solid #ba2636;
+  border-radius: 2px;
+  pointer-events: none;
+  cursor: not-allowed;
+  min-width: 60px;
+
+  &::before{
+    content: 'スキン制御';
+    font-size: 0.7em;
+    border-bottom-right-radius: 8px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ba2636;
+    color: var(--cocoon-white-color);
+    padding: 2px 10px 2px 6px;
+  }
+}
+
+.backwpup_page_backwpupeditjob #wpfooter{
+  display: none;
+}
+
+//ブロックエディターのインクリメントサーチボックス
+.editor-inserter__search {
+  max-width: 370px;
+}
+
+#carousel{
+  display: block;
+}
+
+.components-popover__content{
+  //拡張クラス
+  @import "extension";
+  .red{
+    margin: 0;
+  }
+  //フォント
+  @import "font";
+}
+
+.tagcloud {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  .admin-tag {
+    @include tagcloud_a;
+    flex: 0 1 auto;
+  }
+  input{
+    margin-right: 5px;
+  }
+}
+
+//管理画面のボタン色
+.wp-core-ui .button-primary {
+  background: #0071a1 !important;
+  border-color: #0071a1 !important;
+  color: #fff !important;
+  line-height: 2;
+}
+
+.demo .carousel{
+  opacity: 1 !important;
+}
+
+.ranking-item-rating ul{
+  list-style: none !important;
+}
+
+.demo .ranking-item{
+  margin-bottom: 1em;
+}
+
+//管理画面のカラーピッカーで色が選択されているかどうかを分かりやすく選択色を透明に変更
+.wp-picker-container .wp-color-result:not([style*="background-color"]) {
+  background-image: linear-gradient(45deg,#c3c4c7 25%,transparent 25%,transparent 75%,#c3c4c7 75%,#c3c4c7),linear-gradient(45deg,#c3c4c7 25%,transparent 25%,transparent 75%,#c3c4c7 75%,#c3c4c7);
+  background-position: 0 0,10px 10px;
+  background-size: 20px 20px;
+}
+
+@media screen and (max-width: 480px) {
+  div.widget {
+    margin: 0 !important;
+  }
+}
+
+//ClassicPressのレンジバーの対応
+.classicpress{
+  .admin-settings input[type="range"]:not(.iris-slider-offset){
+    position: relative;
+    display: inline-block;
+    margin: 0 8px;
+    width: 220px;
+  }
+
+  .range-wrap output {
+    margin-bottom: 12px;
+  }
+
+  .iris-picker .iris-slider-offset{
+    top: 6px;
+    bottom: 6px;
+  }
+}
+
+.copy-info {
+  @extend %copy_info;
+}

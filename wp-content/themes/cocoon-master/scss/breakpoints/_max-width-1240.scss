@@ -1,0 +1,36 @@
+/************************************
+** ファイルで直接読み込むのでSCSSではなくCSS形式で書く
+** ※SCSS的な表記厳禁！！
+** css-custom.phpで使用中
+************************************/
+
+.wrap{
+  width: auto;
+}
+
+.main,
+.sidebar,
+.sidebar-left .main,
+.sidebar-left .sidebar{
+  margin: 0 0.5%;
+}
+
+.main{
+  width: 67.4%;
+}
+
+
+.sidebar{
+  padding:1.5%;
+  width: 30%;
+}
+
+
+.entry-card-thumb{
+  width: 38%;
+}
+
+.entry-card-content{
+  margin-left: 40%;
+}
+

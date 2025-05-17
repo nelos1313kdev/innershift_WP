@@ -1,0 +1,201 @@
+/*
+  Skin Name: いつものローズ
+  Description: 毎日使っても飽きないデザインを目指しました。スキンカラーや背景画像を変えることでレイアウトは同じでも部屋のカーテンを変えるように雰囲気をチェンジできます。
+  背景画像ソースURL http://www.colourlovers.com/pattern/2866736/vintage_flowers
+  Skin URI: https://aruru.co.jp/cocoon03/
+  Author: がんちゃん
+  Author URI: https://ganchan.info/
+  Screenshot URI: https://im-cocoon.net/wp-content/uploads/skin-ganchan02.png
+  Version: 0.0.1
+  Priority: 9910002000
+*/
+/*以下にスタイルシートを記入してください*/
+
+.tagline {
+    border-top: solid 6px #F57388;
+    padding-top: 4px;
+}
+
+.navi,
+.navi-in > ul .sub-menu {
+    background-color: #F2E7C7;
+}
+
+.navi-in a {
+    color: #666;
+    font-weight: bold;
+}
+
+.content {
+    margin-top: 6px;
+    margin-bottom: 180px;
+}
+
+.eye-catch img {
+    margin: 0 auto;
+}
+
+main.main {
+    padding-left: 29px;
+    padding-right: 29px;
+}
+
+.article h1, .article h2, .article h3, .article h4, .article h5, .article h6 {
+    font-weight: 500;
+}
+
+.entry-title, #editor .entry-title, .archive-title {
+    padding: 20px;
+    margin-bottom: 38px;
+    background-color: #F57388;
+    color: #fff;
+    font-size: 24px;
+    border-left: solid 4px #BBDAD9;
+}
+
+
+@media screen and (max-width: 834px){
+
+main.main, div.sidebar {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.entry-title, .archive-title {
+    margin:0;
+    margin-bottom:4px;
+}
+
+}
+
+ .article h2 {
+    font-size: 22px;
+    text-align:center;
+    background-color: #FAF8EF;
+    padding: 20px 0px;
+    border-top: 2px solid #F57388;
+    border-bottom: 2px solid #F57388;
+}
+
+.article h3 {
+    font-size: 20px;
+    padding:  10px 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: solid 3px #BBDAD9;
+    background: #fffdf6;
+}
+
+.article h4 {
+    font-size: 18px;
+    color: #242735;
+    border:none;
+    border-left: 6px solid #F57388;
+}
+.article h5 {
+    font-size: 16px;
+    font-weight:bold;
+    border: none;
+    border-bottom: solid 2px #BBDAD9;
+}
+.article h6 {
+    font-size: 16px;
+    font-weight:bold;
+    border: none;
+    border-bottom: dotted 2px #BBDAD9;
+}
+
+
+
+@media screen and (max-width: 480px){
+    .archive-title,.entry-title {
+        font-size: 18px;
+    }
+
+    .article h2 {
+        padding: 14px 0px;
+        font-size: 16px;
+    }
+
+    .article h3, .article h4, .article h5, .article h6 {
+        font-size: 16px;
+    }
+
+}
+
+.comment-title {
+    font-size: 18px;
+    text-align: center;
+    background-color: #F57388;
+    color: #fff;
+    padding: 18px;
+}
+
+.sidebar h2,
+.sidebar h3 {
+    background-color: #F57388;
+    color: #fff;
+    padding: 14px 20px;
+    margin: 16px 0;
+    font-size: 16px;
+}
+
+.widget_item_ranking h3 {
+    margin: 16px 0;
+}
+
+.widget_recent_entries ul li a, .widget_categories ul li a, .widget_archive ul li a, .widget_pages ul li a, .widget_meta ul li a, .widget_rss ul li a, .widget_nav_menu ul li a {
+    padding-left: 20px;
+}
+
+.widget-entry-cards .a-wrap {
+    margin-bottom: 0px;
+}
+
+
+.footer {
+    background-color: #F2E7C7;
+    border-bottom: solid 6px #F57388;
+    color: #fff;
+}
+
+.footer.logo-text {
+    color:#666;
+}
+
+.footer-bottom-logo .site-name-text {
+    font-size: 18px;
+    color: #666;
+    padding-left: 18px;
+}
+
+.copyright {
+    margin-right: 18px;
+    color: #666;
+}
+
+.navi-footer-in a {
+    color: #666;
+}
+
+.footer-bottom-logo img {
+    margin-bottom: 20px;
+}
+
+.navi-menu-content.menu-content {
+    background-color:#F2E7C7;
+}
+
+.navi-menu-content.menu-content a {
+    color:#666;
+}
+.menu-close-button::before {
+    color: #666;
+}
+
+.widget_author_box.author-thumb img {
+    border-radius: 50px;
+}
+.author-display-name{
+    display:none;
+}

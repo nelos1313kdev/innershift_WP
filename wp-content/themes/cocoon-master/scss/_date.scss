@@ -1,0 +1,20 @@
+/************************************
+** 日付関係のスタイル
+************************************/
+.entry-date{
+  margin-left: 3px;
+}
+
+.date-tags{
+  line-height: 0.8;
+  text-align: right;
+  margin-bottom: 1em;
+}
+
+.post-date,
+.post-update,
+.post-author,
+.amp-back {
+  @extend %entry_category;
+  margin-right: 8px;
+}

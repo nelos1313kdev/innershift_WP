@@ -1,0 +1,5 @@
+/*アニメーションの@keyframes用のCSSコードを書く（ここに書くとAMP用で約500KBまで記入できます）*/
+@keyframes load {
+    from  {opacity: 0;}
+    100%  {opacity: 1;}
+}

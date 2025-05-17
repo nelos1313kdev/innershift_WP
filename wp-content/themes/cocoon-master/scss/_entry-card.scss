@@ -1,0 +1,255 @@
+/************************************
+** エントリーカードの設定
+************************************/
+.a-wrap{
+  text-decoration: none;
+  display: block;
+  color: var(--cocoon-text-color);
+  padding: 1.5%;
+  // margin-bottom: 3%;
+  transition: $bgc_hover_anime;
+
+  &:hover {
+    @include bgc_hover;
+  }
+}
+
+.entry-card{
+  @extend %card;
+}
+
+.entry-card-thumb{
+  @extend %card_thumb;
+}
+
+.card-thumb img{
+  width: 100%;
+}
+
+.entry-card-thumb{
+  width: 320px;
+}
+
+.related-entry-card-thumb{
+  width: 160px;
+}
+
+.cat-label{
+  position: absolute;
+  top: 0.24em;
+  left: 0.24em;
+  border: 1px solid #eee;
+  font-size: 10px;
+  color: var(--cocoon-white-color);
+  background-color: $transpalent_black_bgc;
+  padding: 1px 5px;
+  max-width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pr-label-s{
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  border: 1px solid $transpalent_black_bgc;
+  font-size: 12px;
+  color: var(--cocoon-text-color);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2px 12px;
+  border-radius: var(--cocoon-badge-border-radius);
+}
+
+.pr-label-l{
+  border: 1px solid $transpalent_black_bgc;
+  font-size: .8em;
+  color: var(--cocoon-text-color);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1em;
+  text-align: center;
+  border-radius: var(--cocoon-badge-border-radius);
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.entry-card-content{
+  @extend %card_content;
+  margin-left: 330px;
+}
+
+.entry-card-title{
+  @extend %card_title;
+}
+
+.entry-card-snippet{
+  @extend %card_snippet;
+}
+
+.entry-card-info > *{
+  font-size: 0.7em;
+  padding: 2px;
+}
+
+.entry-card-meta{
+  @extend %card_meta;
+}
+
+.entry-category{
+  @extend %entry_category;
+}
+
+.e-card-meta .e-card-categorys{
+  display: none;
+}
+
+.e-card-info .post-author{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.post-author-image{
+  margin-right: 3px;
+  img{
+    border-radius: 50%;
+  }
+}
+
+.e-card-info{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  >span {
+    margin-right: 4px;
+    //display: block;
+  }
+}
+.fpt-columns{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  column-gap: calc(1%/2);
+}
+
+.post-comment-count .comment-icon{
+  margin-right: 3px;
+}
+
+/************************************
+** エントリーカードタイプ
+************************************/
+//基本形
+.list{
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
+}
+//フロントページカラム下の調整
+#list,
+.list-wrap{
+  margin-bottom: 3em;
+}
+//縦型
+.ect-vertical-card{
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  column-gap: 1%;
+
+
+  .entry-card-wrap{
+    width: 49.5%;
+    display: inline-block;
+    // margin-bottom: 12px;
+
+    .entry-card{
+      display: flex;
+      flex-direction: column;
+    }
+
+    .entry-card-thumb{
+      width: 100%;
+      float: none;
+    }
+
+    .entry-card-content{
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding-bottom: 0;
+    }
+
+    .entry-card-meta {
+      margin-top: auto;
+      padding-top: 5px;
+      position: unset;
+    }
+
+    .post-date, .post-update{
+      margin-right: 0;
+    }
+  }
+
+  &.ect-tile-card{
+    .entry-card-content{
+      padding: 0;
+    }
+    .card-snippet{
+      padding: 0;
+      margin: 0;
+    }
+    .card-meta{
+      position: static;
+    }
+  }
+  &.ect-tile-card{
+    .a-wrap{
+      margin: 0 0.16666% 0;
+    }
+  }
+}
+.ect-2-columns > *,
+.fpt-2-columns > *{
+  width: 49.5%;
+  display: inline-block;
+}
+
+.ect-3-columns{
+  // justify-content: space-around;
+  column-gap: calc(1% / 2);
+  .entry-card-wrap{
+    width: 33%;
+    padding: 7px;
+  }
+  .entry-card-snippet{
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+}
+.ect-3-columns > *,
+.fpt-3-columns > *{
+  width: 33%;
+  display: inline-block;
+}
+
+.front-top-page .ect-big-card-first .a-wrap:first-of-type,
+.ect-big-card{
+  .card-thumb{
+    float: none;
+    width: 100%;
+  }
+  .card-content{
+    margin:0
+  }
+
+}
+
+.body .list .widget-entry-cards{
+  margin-bottom: 0;
+}

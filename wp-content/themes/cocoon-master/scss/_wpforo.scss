@@ -1,0 +1,145 @@
+div#wpforo-wrap{
+  padding: 10px;
+
+  .wpfl-1 .wpforo-forum-description,
+  .wpfl-1 .wpforo-last-post-title,
+  .wpforo-post-head{
+    font-size: 16px;
+  }
+
+  .wpfl-1 .head-title,
+  .wpforo-topic-title a{
+    font-size: 20px;
+  }
+
+  .wpforo-post .wpf-right .wpforo-post-content,
+  .wpforo-recent-wrap .wpforo-recent-content td.wpf-spost-title .wpf-spost-title-link,
+  .wpf-htr td{
+    font-size: 18px;
+  }
+
+  .wpfl-1 .wpforo-post,
+  #wpforo-stat-body{
+    background-color: transparent;
+  }
+
+  //ソースコード
+  pre,
+  .wpforo-post .wpf-right code {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: medium none;
+    font-size: 17px;
+  }
+
+  //リストの余白調整
+  .wpforo-post .wpf-right ol,
+  .wpforo-post .wpf-right ul{
+    margin: 2em 1em;
+  }
+}
+
+.wpforo-list-item p {
+  margin: 0;
+}
+
+div#wpforo-wrap .wpforo-post .wpf-right .wpforo-post-content p{
+  line-height: 1.8;
+}
+
+.bleft {
+  font-weight: bold;
+}
+
+#wpf-form-wrapper .mce-edit-area iframe{
+  min-height: 400px;
+}
+
+.mce-wpf-emoji-extra-wrap{
+  min-width: 300px !important;
+  min-height: 300px !important;
+}
+.wpf-emoji-wrap .wpf-emoji{
+  font-size: 24px;
+}
+
+.wpforo-attached-file{
+  word-break: break-all;
+}
+
+#wpforo-wrap h3{
+  background-color: transparent;
+  &::after{
+    display: none;
+  }
+}
+
+#wpforo-wrap h3.wpforo-forum-title{
+  &::before,
+  &::after{
+    display: none;
+  }
+}
+
+div#wpforo-wrap .wpforo-post .wpforo-attached-file {
+  display: block;
+}
+
+div#wpforo-wrap .widget-title,
+div.wpforo-widget-wrap .widget-title{
+  padding: 12px;
+  border-bottom: none;
+}
+
+// #tinymce.main.article{
+//   width: 100%;
+// }
+
+// body[class*="wpf-reply-create"],
+// body[class*="wpf-topic-create"]{
+//   width: auto;
+//   border: none;
+// }
+
+// [class^="wpf-reply-create"]#tinymce.main.article{
+//   width: 100%;
+// }
+
+//Recent Postsのテーブルセル内を強制改行
+.wpforo-recent-content.wpfr-posts{
+  table{
+    width: 100%;
+    table-layout: fixed;
+    word-break: break-word;
+    word-wrap: break-word;
+    td{
+      // word-wrap: anywhere;
+      // overflow-wrap: anywhere;
+      word-break: break-word !important;
+    }
+  }
+}
+
+//bbPressスタイル
+div#bbpress-forums fieldset.bbp-form input[type="text"],
+div#bbpress-forums fieldset.bbp-form select {
+  height: 46px;
+  line-height: 46px;
+}
+
+.body #wpforo #wpforo-wrap .wpforo-post .wpforo-post-content p {
+  line-height: 1.4;
+}
+
+#wpforo #wpforo-wrap .wpforo-post .wpforo-post-content hr {
+  margin-bottom:1em;
+}
+
+div#wpforo #wpforo-wrap{
+  padding: 10px 0;
+}
+
+
+.body div#wpforo #wpforo-wrap .wpforo-post .wpforo-post-content p{
+  line-height: 1.6;
+  margin-bottom: 1em;
+}

@@ -1,0 +1,94 @@
+{
+  "apiVersion": 2,
+  "name": "cocoon-blocks/new-list",
+  "category": "cocoon-block",
+  "keywords": ["new", "list"],
+
+  "attributes": {
+    "classNames": {
+      "type": "string",
+      "default": ""
+    },
+    "count": {
+      "type": "number",
+      "default": 5
+    },
+    "type": {
+      "type": "string",
+      "default": "default"
+    },
+    "bold": {
+      "type": "boolean",
+      "default": false
+    },
+    "arrow": {
+      "type": "boolean",
+      "default": false
+    },
+    "showAllCats": {
+      "type": "boolean",
+      "default": true
+    },
+    "cats": {
+      "type": "string",
+      "default": ""
+    },
+    "children": {
+      "type": "boolean",
+      "default": false
+    },
+    "horizontal": {
+      "type": "boolean",
+      "default": false
+    },
+    "showAllTags": {
+      "type": "boolean",
+      "default": true
+    },
+    "tags": {
+      "type": "string",
+      "default": ""
+    },
+    "modified": {
+      "type": "boolean",
+      "default": false
+    },
+    "order": {
+      "type": "string",
+      "default": "desc"
+    },
+    "offset": {
+      "type": "number",
+      "default": 0
+    },
+    "sticky": {
+      "type": "boolean",
+      "default": true
+    },
+    "snippet": {
+      "type": "boolean",
+      "default": false
+    },
+    "date": {
+      "type": "boolean",
+      "default": false
+    },
+    "post_type": {
+      "type": "string",
+      "default": "post"
+    },
+    "taxonomy": {
+      "type": "string",
+      "default": "category"
+    },
+    "author": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "example": {},
+  "supports": {
+    "customClassName": true,
+    "anchor": true
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "apiVersion": 2,
+  "name": "cocoon-blocks/balloon-ex-box-1",
+  "category": "cocoon-block",
+  "keywords": [ "balloon", "box" ],
+
+  "attributes": {
+    "name": {
+      "type": "string",
+      "default": ""
+    },
+    "index": {
+      "type": "string",
+      "default": "0"
+    },
+    "id": {
+      "type": "string",
+      "default": ""
+    },
+    "icon": {
+      "type": "string",
+      "default": ""
+    },
+    "style": {
+      "type": "string",
+      "default": "stn"
+    },
+    "position": {
+      "type": "string",
+      "default": "l"
+    },
+    "iconstyle": {
+      "type": "string",
+      "default": "cb"
+    },
+    "iconid": {
+      "type": "number",
+      "default": 0
+    },
+    "backgroundColor": {
+      "type": "string"
+    },
+    "textColor": {
+      "type": "string"
+    },
+    "borderColor": {
+      "type": "string"
+    },
+    "customBackgroundColor": {
+      "type": "string"
+    },
+    "customTextColor": {
+      "type": "string"
+    },
+    "customBorderColor": {
+      "type": "string"
+    },
+    "fontSize": {
+      "type": "string"
+    },
+    "notNestedStyle": {
+      "type": "boolean",
+      "default": true
+    },
+    "backgroundColorValue": {
+      "type": "string"
+    },
+    "textColorValue": {
+      "type": "string"
+    },
+    "borderColorValue": {
+      "type": "string"
+    }
+  },
+  "example": {
+    "innerBlocks": [
+      {
+        "name": "core/paragraph",
+        "attributes": {
+          "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius facilis in molestiae quod!"
+        }
+      }
+    ]
+  },
+  "supports": {
+    "anchor": true
+  }
+}

@@ -1,0 +1,399 @@
+@charset "UTF-8";
+
+@import "common-editor";
+
+// :root{
+//   --cocoon-bct-none: '\f0c8';
+//   --cocoon-bct-none-text: 'ラベルなし';
+//   --cocoon-bct-related: '\f15c';
+//   --cocoon-bct-related-text: '関連記事';
+//   --cocoon-bct-reference: '\f19d';
+//   --cocoon-bct-reference-text: '参考記事';
+//   --cocoon-bct-reference-link: '\f19d';
+//   --cocoon-bct-reference-link-text: '参考リンク';
+//   --cocoon-bct-popular: '\f005';
+//   --cocoon-bct-popular-text: '人気記事';
+//   --cocoon-bct-pickup: '\f005';
+//   --cocoon-bct-pickup-text: 'ピックアップ';
+//   --cocoon-bct-check: '\f00c';
+//   --cocoon-bct-check-text: 'チェック';
+//   --cocoon-bct-together: '\f02d';
+//   --cocoon-bct-together-text: 'あわせて読みたい';
+//   --cocoon-bct-detail: '\f15c';
+//   --cocoon-bct-detail-text: '詳細はこちら';
+//   --cocoon-bct-official: '\f024';
+//   --cocoon-bct-official-text: '公式サイト';
+//   --cocoon-bct-dl: '\f019';
+//   --cocoon-bct-dl-text: 'ダウンロード';
+//   --cocoon-bct-prev: '\f137';
+//   --cocoon-bct-prev-text: '前回の記事';
+//   --cocoon-bct-next: '\f138';
+//   --cocoon-bct-next-text: '続きの記事';
+// }
+
+
+/*ビジュアルエディターのスタイルを書く*/
+body#tinymce {
+  padding: 1em 20px !important;
+  margin-top: 0 !important;
+  background-image: none;
+  background-color: #fff;
+}
+
+//背景を適用しない
+body#tinymce.wp-editor::before {
+  background: none;
+}
+
+.column-2,
+.column-3 {
+  margin: 16px 0;
+}
+
+/* .column-2::before,
+.column-3::before{
+  content: "※カラムへの着色はエディタのみ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1em;
+  width: 31%;
+  font-size: 0.8em;
+  padding: 4px 8px;
+  background-color: #f7dde4;
+  text-align: center;
+}
+
+html[lang="en"] .column-2::before,
+html[lang="en"] .column-3::before{
+  content: "* Coloring is Editor Only.";
+} */
+.column-wrap {
+  .block-editor-block-list__layout {
+    min-height: 2em;
+  }
+}
+
+.column-left,
+.column-center,
+.column-right {
+  padding: 0.4em;
+}
+
+.column-left {
+  background-color: #c7e1ef;
+}
+
+.column-center {
+  background-color: #c9e8d8;
+}
+
+.column-right {
+  background-color: #ffecd3;
+}
+
+.btn-wrap,
+.blogcard-type {
+  padding: 6px;
+  position: relative;
+}
+
+.btn-wrap {
+  padding: 10px !important;
+}
+
+span.btn-wrap {
+  padding: 6px 18px 6px;
+  display: inline-block;
+  font-size: 0.8em;
+}
+
+.btn-wrap::before {
+  position: absolute;
+  top: -2px;
+  right: 4px;
+}
+
+.btn-wrap::before {
+  font-family: FontAwesome;
+  color: #DBB004;
+  content: '\f146';
+}
+
+.blogcard-type::before {
+  font-family: FontAwesome;
+  font-size: 0.6em;
+  padding: 0 4px;
+  background-color: #587b93;
+  color: #fff;
+  top: 0;
+  right: 0;
+  position: absolute;
+  white-space: pre;
+}
+
+.btn-wrap {
+  background-color: #f8e58c;
+}
+
+.blogcard-type {
+  padding-top: 1em;
+  background-color: #e6ecf0;
+}
+
+.blogcard-type.bct-none::before {
+  content: $bct-none + '  ' + $bct-none-text;
+}
+
+.blogcard-type.bct-related::before {
+  content: $bct-related + '  ' + $bct-related-text;
+}
+
+.blogcard-type.bct-reference::before {
+  content: $bct-reference + '  ' + $bct-reference-text;
+}
+
+.blogcard-type.bct-reference-link::before {
+  content: $bct-reference-link + '  ' + $bct-reference-link-text;
+}
+
+.blogcard-type.bct-popular::before {
+  content: $bct-popular + '  ' + $bct-popular-text;
+}
+
+.blogcard-type.bct-pickup::before {
+  content: $bct-pickup + '  ' + $bct-pickup-text;
+}
+
+.blogcard-type.bct-check::before {
+  content: $bct-check + '  ' + $bct-check-text;
+}
+
+.blogcard-type.bct-together::before {
+  content: $bct-together + '  ' + $bct-together-text;
+}
+
+.blogcard-type.bct-detail::before {
+  content: $bct-detail + '  ' + $bct-detail-text;
+}
+
+.blogcard-type.bct-official::before {
+  content: $bct-official + '  ' + $bct-official-text;
+}
+
+.blogcard-type.bct-dl::before {
+  content: $bct-dl + '  ' + $bct-dl-text;
+}
+
+.blogcard-type.bct-prev::before {
+  content: $bct-prev + '  ' + $bct-prev-text;
+}
+
+.blogcard-type.bct-next::before {
+  content: $bct-next + '  ' + $bct-next-text;
+}
+
+/*ビジュアルエディターにinstagramの引用符が表示される対応*/
+.instagram-media {
+  position: relative !important;
+}
+
+//wpForoの入力フォームをiPhoneでみた場合横揺れする場合の対処
+.postbody.main {
+  width: auto;
+}
+
+.button-wrap-msg,
+.box-block-msg {
+  font-size: 10px;
+  text-align: center;
+}
+
+.blank-box {
+  &.bb-tab::before {
+    @include tabbox_label;
+    font-family: FontAwesome, Aharoni, "Arial Black", Impact, Arial, sans-serif;
+  }
+
+  &.bb-red::before {
+    background-color: var(--cocoon-red-color);
+  }
+
+  &.bb-pink::before {
+    background-color: var(--cocoon-pink-color);
+  }
+
+  &.bb-purple::before {
+    background-color: var(--cocoon-purple-color);
+  }
+
+  &.bb-blue::before {
+    background-color: var(--cocoon-blue-color);
+  }
+
+  &.bb-green::before {
+    background-color: var(--cocoon-green-color);
+  }
+
+  &.bb-orange::before {
+    background-color: var(--cocoon-orange-color);
+  }
+
+  &.bb-yellow::before {
+    background-color: var(--cocoon-yellow-color);
+  }
+
+  &.bb-brown::before {
+    background-color: var(--cocoon-brown-color);
+  }
+
+  &.bb-grey::before {
+    background-color: var(--cocoon-grey-color);
+  }
+
+  &.bb-black::before {
+    background-color: var(--cocoon-black-color);
+  }
+
+  &.bb-deep::before {
+    background-color: var(--cocoon-deep-color);
+  }
+
+  &.bb-indigo::before {
+    background-color: var(--cocoon-indigo-color);
+  }
+
+  &.bb-light-blue::before {
+    background-color: var(--cocoon-light-blue-color);
+  }
+
+  &.bb-cyan::before {
+    background-color: var(--cocoon-cyan-color);
+  }
+
+  &.bb-teal::before {
+    background-color: var(--cocoon-teal-color);
+  }
+
+  &.bb-light-green::before {
+    background-color: var(--cocoon-light-green-color);
+  }
+
+  &.bb-lime::before {
+    background-color: var(--cocoon-lime-color);
+  }
+
+  &.bb-amber::before {
+    background-color: var(--cocoon-amber-color);
+  }
+
+  &.bb-deep-orange::before {
+    background-color: var(--cocoon-deep-orange-color);
+  }
+
+  &.bb-white::before {
+    background-color: var(--cocoon-white-color);
+  }
+}
+
+.bb-check::before {
+  content: $bb-check + '  ' + $bb-check-text;
+}
+
+.bb-comment::before {
+  content: $bb-comment + '  ' + $bb-comment-text;
+}
+
+.bb-point::before {
+  content: $bb-point + '  ' + $bb-point-text;
+}
+
+.bb-tips::before {
+  content: $bb-tips + '  ' + $bb-tips-text;
+}
+
+.bb-hint::before {
+  content: $bb-hint + '  ' + $bb-hint-text;
+}
+
+.bb-pickup::before {
+  content: $bb-pickup + '  ' + $bb-pickup-text;
+}
+
+.bb-bookmark::before {
+  content: $bb-bookmark + '  ' + $bb-bookmark-text;
+}
+
+.bb-memo::before {
+  content: $bb-memo + '  ' + $bb-memo-text;
+}
+
+.bb-download::before {
+  content: $bb-download + '  ' + $bb-download-text;
+}
+
+.bb-break::before {
+  content: $bb-break + '  ' + $bb-break-text;
+}
+
+.bb-amazon::before {
+  content: $bb-amazon + '  ' + $bb-amazon-text;
+}
+
+.bb-ok::before {
+  content: $bb-ok + '  ' + $bb-ok-text;
+}
+
+.bb-ng::before {
+  content: $bb-ng + '  ' + $bb-ng-text;
+}
+
+.bb-good::before {
+  content: $bb-good + '  ' + $bb-good-text;
+}
+
+.bb-bad::before {
+  content: $bb-bad + '  ' + $bb-bad-text;
+}
+
+.bb-profile::before {
+  content: $bb-profile + '  ' + $bb-profile-text;
+}
+
+///////////////////////////////////////////
+// フォントサイズ
+///////////////////////////////////////////
+.has-small-font-size {
+  font-size: 13px;
+}
+
+.has-medium-font-size {
+  font-size: 20px;
+}
+
+.has-large-font-size {
+  font-size: 36px;
+}
+
+.has-huge-font-size,
+.has-larger-font-size {
+  font-size: 42px;
+}
+
+
+//クラシックエディターで選択した時にパディングが縮む不安修正
+.mce-content-body .btn-wrap a[data-mce-selected]{
+  padding: 7px 13px;
+}
+
+//クラシックエディターで入力したボタンHTMLがブロックエディターで出力される時
+.wp-block-freeform.block-library-rich-text__tinymce .btn[class*="btn-"]{
+  color: var(--cocoon-white-color);
+}
+
+//クラシックエディターはブログカード内のbr表示
+.mce-content-body{
+  .blogcard-type br {
+    display: initial;
+  }
+}

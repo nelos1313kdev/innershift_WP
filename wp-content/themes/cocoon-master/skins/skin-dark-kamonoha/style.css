@@ -1,0 +1,1369 @@
+@charset "UTF-8";
+/*
+  Skin Name: ダークカモノハ
+  Description: 鴨の羽色（かものはいろ）のダークスキン。真鴨 の頭の羽色に由来する少し暗い青緑色をキーカラーにした暗色のスキン。
+  Skin URI: https://zvalinf.info/skin-check/archives/197?theme-switch=skin-dark-enji
+  Author: y.hiroaki
+  Author URI: https://zvalinf.info
+  Screenshot URI: https://im-cocoon.net/wp-content/uploads/skin-dark-kamonoha.png
+  Version: 0.0.1
+  Priority: 9830001000
+*/
+/* -------------------------------------------
+/ 『全体の文字色／背景色』
+------------------------------------------- */
+.site-name-text-link {
+  color: #d3d3d3;
+}
+
+body {
+  background-color: #191919;
+  color: #d3d3d3;
+}
+
+.no-scrollable-sidebar .sidebar {
+  height: 100%;
+}
+
+.no-scrollable-main .main {
+  height: 100%;
+  color: #d3d3d3;
+}
+
+.header-container,
+.main,
+.sidebar,
+.footer {
+  background-color: #191919;
+}
+
+/* -------------------------------------------
+/ 『文字色』
+------------------------------------------- */
+.tagline,
+.rating-number {
+  color: #d3d3d3;
+}
+
+/* -------------------------------------------
+/ 『グローバルメニュー』
+------------------------------------------- */
+#navi .navi-in > .menu-header .sub-menu {
+  background-color: #075f66;
+}
+
+.header-container {
+  box-shadow: 0 6px 5px -3px rgba(0, 0, 0, 0.24), 0 6px 10px -3px rgba(0, 0, 0, 0.18);
+}
+
+.header-container .navi {
+  background-color: #075f66;
+}
+
+.header-container.fixed-header {
+  background-color: #075f66;
+}
+
+#navi .navi-in a {
+  color: #f6f6f6;
+  transition: 0.3s;
+}
+
+#navi .navi-in a:hover {
+  background-color: rgba(231, 30, 15, 0.8);
+}
+
+/* -------------------------------------------
+/ 通知
+------------------------------------------- */
+.nt-notice {
+  background-color: #007b43;
+}
+
+.nt-warning {
+  background-color: #c89932;
+}
+
+.nt-danger {
+  background-color: #a22041;
+}
+
+/* -------------------------------------------
+/ 『エントリーカード』
+------------------------------------------- */
+.a-wrap {
+  background-color: #191919;
+  color: #d3d3d3;
+}
+
+/* 奇数番目のカード */
+.entry-card-wrap.a-wrap:nth-child(odd) {
+  position: relative;
+  z-index: 0;
+}
+
+.entry-card-wrap.a-wrap:nth-child(odd):before {
+  content: "";
+  color: #d3d3d3;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  transition: 0.4s;
+  background-image: linear-gradient(135deg, #1d1b1b, #1d1b1b 70%, #032c2f 70%, #032c2f 100%, transparent 0);
+  border: 2px outset #332f2f;
+}
+
+.entry-card-wrap.a-wrap:nth-child(odd):after {
+  content: "";
+  color: #d3d3d3;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -2;
+  top: 0;
+  left: 0;
+  background-color: rgba(231, 30, 15, 0.08);
+  border: 2px outset #aaaaaa;
+}
+
+/* 偶数番目のカード */
+.entry-card-wrap.a-wrap:nth-child(even) {
+  position: relative;
+  z-index: 0;
+}
+
+.entry-card-wrap.a-wrap:nth-child(even):before {
+  content: "";
+  color: #d3d3d3;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  transition: 0.4s;
+  background-image: linear-gradient(45deg, #032c2f, #032c2f 50%, #1d1b1b 50%, #1d1b1b 100%, transparent 0);
+  border: 2px outset #332f2f;
+}
+
+.entry-card-wrap.a-wrap:nth-child(even):after {
+  content: "";
+  color: #d3d3d3;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -2;
+  top: 0;
+  left: 0;
+  background-color: rgba(231, 30, 15, 0.08);
+  border: 2px outset #aaaaaa;
+}
+
+.entry-card-wrap.a-wrap:hover:before {
+  opacity: 0;
+}
+
+.a-wrap:hover {
+  background: none;
+  color: #d3d3d3;
+}
+
+/* -------------------------------------------
+/ 『ブログカード』
+------------------------------------------- */
+.blogcard-label {
+  background-color: #f0291a;
+  color: #fff;
+}
+
+.entry-card-snippet,
+.related-entry-card-snippet,
+.blogcard-snippet {
+  border-top: 1px solid rgba(147, 147, 147, 0.4);
+  padding-top: 5px;
+}
+
+.a-wrap .blogcard,
+.related-entry-card-wrap,
+.pager-post-navi a.prev-post,
+.pager-post-navi a.next-post,
+.pager-post-navi.post-navi-square a {
+  background-color: rgba(231, 30, 15, 0.05);
+  border: 2px outset #444;
+  color: #d3d3d3;
+  transition: all 0.4s;
+}
+
+.a-wrap .blogcard:hover,
+.related-entry-card-wrap:hover,
+.pager-post-navi a.prev-post:hover,
+.pager-post-navi a.next-post:hover,
+.pager-post-navi.post-navi-square a:hover {
+  background-color: rgba(231, 30, 15, 0.2);
+  border: 2px outset #aaaaaa;
+}
+
+/* -------------------------------------------
+/ 『目次』
+------------------------------------------- */
+.toc-title {
+  color: #d3d3d3;
+  font-size: 120%;
+  background-image: linear-gradient(135deg, rgba(7, 95, 102, 0.8), rgba(7, 95, 102, 0.8) 50%, rgba(231, 30, 15, 0.8) 50%, rgba(231, 30, 15, 0.8) 100%, transparent 0);
+  border-radius: 2px;
+}
+
+.toc a {
+  color: #ccc;
+}
+
+.toc-content ul li a:hover,
+.toc-content ol li a:hover {
+  background-color: rgba(231, 30, 15, 0.3);
+}
+
+.toc a:hover {
+  text-decoration: none;
+}
+
+.article .toc {
+  margin: 15px auto;
+  min-width: 60%;
+  position: relative;
+  border: none;
+}
+
+.article .toc .toc-content {
+  margin: 3px 0px;
+  padding: 0.2em 1.4em 1.4em;
+  border-radius: 4px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right, rgba(7, 95, 102, 0.6) 0%, rgba(231, 30, 15, 0.6) 100%);
+  border-image-slice: 1;
+}
+
+/* -------------------------------------------
+/ 『見出し（h2）』
+------------------------------------------- */
+.article h2 {
+  padding: 12px;
+  color: #d2d2d2;
+  border-radius: 4px;
+  border: 2px solid #0c0b0b;
+  background-image: linear-gradient(135deg, #075f66, #075f66 30%, #0a818b 30%, #075f66 70%, #075f66 100%, transparent 0);
+  box-shadow: 0px 0px 0 2px #2c2b2b;
+  font-size: 24px;
+  text-shadow: -1px -1px #353434;
+}
+
+/* -------------------------------------------
+/ 『見出し（h3）』
+------------------------------------------- */
+.article h3 {
+  position: relative;
+  padding-left: 24px;
+  background-color: #191919;
+  color: #d3d3d3;
+  border-radius: 4px;
+  border: 2px solid #0c0b0b;
+  box-shadow: 0 2px 0 #333;
+}
+
+.article h3::after {
+  position: absolute;
+  top: 0.5em;
+  left: 0.3em;
+  content: "";
+  width: 6px;
+  height: -webkit-calc(100% - 1em);
+  height: calc(100% - 1.1em);
+  background-color: #075f66;
+  border-radius: 2px;
+  box-shadow: 2px 2px 0 #c31a0d;
+}
+
+/* -------------------------------------------
+/ 『見出し（h4）』
+------------------------------------------- */
+.article h4 {
+  border: 0;
+  position: relative;
+  padding: 9px 10px 9px 40px;
+  border-bottom: 1px solid #050505;
+  box-shadow: 0 2px 0 #333;
+}
+
+.article h4::before,
+.article h4::after {
+  position: absolute;
+  content: "";
+}
+
+.article h4::before {
+  top: 5px;
+  left: 5px;
+  z-index: 2;
+  width: 14px;
+  height: 14px;
+  background: #075f66;
+  border: 1px outset #817b7b;
+}
+
+.article h4::after {
+  top: 17px;
+  left: 17px;
+  width: 8px;
+  height: 8px;
+  background: #c31a0d;
+  border: 1px outset #817b7b;
+}
+
+/* -------------------------------------------
+/ 『見出し（h5）』
+------------------------------------------- */
+.article h5 {
+  position: relative;
+  padding: 9px 10px 9px 32px;
+  border-bottom: 1px solid #050505;
+  box-shadow: 0 2px 0 #333;
+}
+
+.article h5:after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: 6px;
+  content: "";
+  width: 9px;
+  height: 9px;
+  background-color: #075f66;
+  border: 1px outset #c31a0d;
+  transform: rotate(45deg);
+}
+
+/* -------------------------------------------
+/ 『見出し（h6）』
+------------------------------------------- */
+.article h6 {
+  border: 0;
+  border-bottom: 1px solid #050505;
+  box-shadow: 0 2px 0 #333;
+}
+
+/* -------------------------------------------
+/ 『サイドバーの見出し（h3）』
+------------------------------------------- */
+.sidebar h2,
+.sidebar h3 {
+  margin-top: 26px;
+  background: none;
+  position: relative;
+  padding: 11px 0 2px 38px;
+}
+
+.sidebar h2::before,
+.sidebar h3::before {
+  position: absolute;
+  top: 0.3em;
+  left: 0.7em;
+  content: "";
+  width: 12px;
+  height: 22px;
+  background-color: #075f66;
+  transform: skew(-15deg);
+  -o-transform: skew(-15deg);
+  -moz-transform: skew(-15deg);
+  -webkit-transform: skew(-15deg);
+  border: 1px outset #817b7b;
+}
+
+.sidebar h2::after,
+.sidebar h3::after {
+  position: absolute;
+  top: 1.2em;
+  left: 0.3em;
+  content: "";
+  width: 12px;
+  height: 22px;
+  background-color: #c31a0d;
+  transform: skew(-15deg);
+  -o-transform: skew(-15deg);
+  -moz-transform: skew(-15deg);
+  -webkit-transform: skew(-15deg);
+  border: 1px outset #817b7b;
+}
+
+/* -------------------------------------------
+/ 『ページネーション』
+------------------------------------------- */
+/*  『次のページ』ボタンは隠す */
+.pagination-next-link,
+.pager-prev-next a {
+  display: none;
+}
+
+.page-numbers {
+  position: relative;
+  text-decoration: none;
+  outline: none;
+  color: #ccc;
+  transition: all 0.3s;
+  box-sizing: border-box;
+  background-image: linear-gradient(135deg, #3d3939, #0c0c0c 100%, transparent 0);
+  border: 1px outset #403d3d;
+  border-radius: 99px;
+}
+
+.page-numbers::before,
+.page-numbers::after {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  bottom: -1px;
+  left: -1px;
+  z-index: 2;
+  content: "";
+  transition: all 0.3s;
+}
+
+.page-numbers::before {
+  border-top: 1px solid #c31a0d;
+  border-bottom: 1px solid #c31a0d;
+  transform: scale(0, 1);
+}
+
+.page-numbers::after {
+  border-right: 1px solid #c31a0d;
+  border-left: 1px solid #c31a0d;
+  transform: scale(1, 0);
+}
+
+.pagination a:hover,
+.comment-page-link a:hover {
+  border-radius: 99px;
+  color: #c31a0d;
+}
+
+.pagination a:hover::after,
+.pagination a:hover::before,
+.comment-page-link a:hover::after,
+.comment-page-link a:hover::before {
+  border-radius: 99px;
+  color: #c31a0d;
+  transform: scale(1);
+}
+
+.pagination .current,
+.comment-page-link .current {
+  color: #c31a0d;
+  background: none;
+  border: 1px outset #403d3d;
+  background-image: linear-gradient(135deg, #3d3939, #0c0c0c 100%, transparent 0);
+  border-radius: 99px;
+}
+
+.prev.page-numbers {
+  border-radius: 99px;
+}
+
+.comment-page-link :is(.prev, .next) {
+  display: none;
+}
+
+.comment-page-link .page-numbers {
+  height: 46px;
+  line-height: 46px;
+  padding: unset;
+  width: 46px;
+}
+
+.comment-page-link {
+  display: inline-flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+/* -------------------------------------------
+/ 『マルチページ』
+------------------------------------------- */
+.pager-numbers .current {
+  color: #c31a0d;
+}
+
+.pager-links a:hover span {
+  color: #fff;
+}
+
+/* -------------------------------------------
+/ 『送信系ボタン』
+------------------------------------------- */
+.comment-btn,
+.container input[type=submit] {
+  display: block;
+  width: 60%;
+  border: 1px outset #332f2f;
+  border-radius: 6px;
+  transition: 0.4s;
+  margin: auto;
+  color: #ccc;
+  box-shadow: 0 2px 4px rgba(82, 76, 76, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  background-color: #075f66;
+}
+
+.comment-btn:hover,
+.container input[type=submit]:hover {
+  color: #ccc;
+  background-color: #075f66;
+  border: 1px outset #aaaaaa;
+}
+
+input[type=submit] {
+  font-size: 22px;
+}
+
+/* -------------------------------------------
+/ 『テーブル』
+------------------------------------------- */
+table th, table td,
+.scrollable-table th,
+.scrollable-table td {
+  border: solid 1px #5c5b5b;
+}
+
+table th, .scrollable-table th {
+  background-color: rgba(7, 95, 102, 0.4);
+  color: #d3d3d3;
+}
+
+table tr:nth-of-type(2n+1) {
+  background-color: #191919;
+}
+
+table tr:nth-of-type(2n) {
+  background-color: #191e1c;
+}
+
+.wp-calendar-table th,
+.wp-calendar-table td {
+  border: solid 1px #5c5b5b;
+}
+
+@media screen and (max-width: 834px) {
+  table th, table td {
+    border: solid 1px #5c5b5b;
+    padding: 0px;
+    text-align: center;
+    line-height: 1.8;
+  }
+}
+/* -------------------------------------------
+/ 『投稿ナビ』
+------------------------------------------- */
+.pager-post-navi a.prev-post {
+  margin-bottom: 2px;
+}
+
+/* -------------------------------------------
+/ 『ウィジェット：エントリカード／コメント』
+------------------------------------------- */
+.widget-entry-cards figure,
+.carousel-entry-card figure {
+  overflow: hidden;
+}
+
+.carousel-in {
+  background-color: #191919;
+}
+
+.widget-entry-card .card-thumb img,
+.carousel-entry-card .card-thumb img {
+  transform: none;
+  transition: 0.3s ease-in-out;
+}
+
+.widget-entry-cards .a-wrap:hover .widget-entry-card .card-thumb img,
+.carousel .a-wrap:hover .card-thumb img {
+  transform: scale(1.3);
+}
+
+.recent-comments .a-wrap {
+  box-shadow: 0px 2px 0px #fbfafa;
+  border: 2px solid #191919;
+  box-shadow: 0px 2px 0px #191919;
+  color: #ccc;
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+.recent-comments .a-wrap:hover {
+  color: #ccc;
+  border: 2px outset #aaaaaa;
+}
+
+.recent-comment-content {
+  background: #191919;
+  border: 1px solid #ccc;
+  color: #d3d3d3;
+}
+
+.recent-comment-content::after {
+  border-bottom-color: #191919;
+}
+
+.widget_recent_entries ul li a,
+.widget_categories ul li a,
+.widget_archive ul li a,
+.widget_pages ul li a,
+.widget_meta ul li a,
+.widget_rss ul li a,
+.widget_nav_menu ul li a,
+.widget_block .wp-block-archives li a,
+.widget_block .wp-block-categories li a,
+.widget_block .wp-block-latest-posts li a {
+  color: #d3d3d3;
+  border-bottom: 1px solid #050505;
+  transition-duration: 0.2s;
+  box-shadow: 0 2px 0 #282727;
+}
+
+.widget_recent_entries ul li a:hover,
+.widget_categories ul li a:hover,
+.widget_archive ul li a:hover,
+.widget_pages ul li a:hover,
+.widget_meta ul li a:hover,
+.widget_rss ul li a:hover,
+.widget_nav_menu ul li a:hover,
+.widget_block .wp-block-archives li a:hover,
+.widget_block .wp-block-categories li a:hover,
+.widget_block .wp-block-latest-posts li a:hover {
+  background-color: #f9f1f3;
+}
+
+.widget_recent_entries ul li a:hover,
+.widget_archive ul li a:hover,
+.widget_meta ul li a:hover,
+.widget_rss ul li a:hover,
+.widget_categories ul li a:hover,
+.widget_block .wp-block-archives li a:hover,
+.widget_block .wp-block-categories li a:hover,
+.widget_block .wp-block-latest-posts li a:hover {
+  background-color: rgba(231, 30, 15, 0.3);
+  color: #d3d3d3;
+}
+
+.widget_recent_entries ul li a,
+.widget_block .wp-block-latest-posts li a {
+  padding: 5px 2px 5px 0px;
+}
+
+/* -------------------------------------------
+/ 『ウィジェット：アーカイブ／カテゴリー』
+------------------------------------------- */
+.widget_archive ul li a {
+  padding: 5px 4px 5px 0px;
+}
+
+.widget_categories ul li a,
+.widget_block .wp-block-categories li a {
+  padding: 5px 4px 5px 22px;
+  position: relative;
+}
+
+.cat-item .cf::after {
+  content: "";
+  position: absolute;
+  top: 40%;
+  left: 4px;
+  content: "";
+  width: 4px;
+  height: 4px;
+  background-color: rgba(231, 30, 15, 0.6);
+  border: 1px outset #8a7c7c;
+  transform: rotate(45deg);
+}
+
+.children .cat-item .cf::after {
+  background: none;
+}
+
+/* -------------------------------------------
+/ 『カテゴリーなどの数』
+------------------------------------------- */
+.widget_recent_entries ul li a .post-count,
+.widget_categories ul li a .post-count,
+.widget_archive ul li a .post-count,
+.widget_pages ul li a .post-count,
+.widget_meta ul li a .post-count,
+.widget_rss ul li a .post-count,
+.widget_nav_menu ul li a .post-count {
+  font-style: italic;
+  font-size: 90%;
+  color: #d3d3d3;
+}
+
+/* -------------------------------------------
+/ 『Topへ戻るボタン』
+------------------------------------------- */
+.go-to-top-button {
+  border: 2px outset #c31a0d;
+  color: #c31a0d;
+  background: none;
+  border-radius: 50%;
+}
+
+.go-to-top-button:hover {
+  color: #c31a0d;
+}
+
+/* -------------------------------------------
+/ 『引用』
+------------------------------------------- */
+blockquote {
+  padding: 10px 10px 10px 46px;
+  box-sizing: border-box;
+  font-style: italic;
+  background: #e0e0e0;
+  border-radius: 4px;
+  background-color: #bbbbbb;
+  border: 0;
+  box-shadow: 0px 0px 0 2px #333;
+  border: 2px solid #202020;
+}
+
+blockquote:before {
+  display: inline-block;
+  top: 5px;
+  left: 4px;
+  content: "\f10d";
+  font-family: FontAwesome;
+  color: #e0e0e0;
+  font-size: 24px;
+  line-height: 1;
+  z-index: 2;
+  font-weight: 400;
+  color: rgba(231, 30, 15, 0.7);
+}
+
+blockquote:after {
+  content: "";
+  left: 0;
+  top: 0;
+  border-width: 0 0 60px 60px;
+  border-style: solid;
+  border-color: transparent #191919;
+  bottom: auto;
+}
+
+blockquote p {
+  margin: 14px 0;
+  z-index: 3;
+  color: #540b05;
+}
+
+/* -------------------------------------------
+/ 『人気記事ランキング』
+------------------------------------------- */
+/* ----- 標準のランキングを隠す ----- */
+.widget-entry-cards.ranking-visible [class*=no-] .card-thumb::before {
+  background: none;
+}
+
+/* ----- デフォルト ----- */
+.widget-entry-cards.ranking-visible .card-thumb::before {
+  content: counter(p-rank);
+  position: absolute;
+  top: -5px;
+  left: -8px;
+  line-height: 30px;
+  opacity: 0.9;
+  text-align: center;
+  font-size: 18px;
+  width: 32px;
+  z-index: 1;
+  font-weight: bold;
+  font-style: italic;
+  text-shadow: -1px -1px 0 #fff, 2px 1px 0 rgba(51, 51, 51, 0);
+  color: #075f66;
+  text-align: center;
+}
+
+/* ----- 大きなサムネイル、タイトルを重ねた大きなサムネイル ----- */
+.large-thumb.widget-entry-cards.ranking-visible .card-thumb::before,
+.large-thumb-on.widget-entry-cards.ranking-visible .card-thumb::before {
+  top: -8px;
+  left: -1px;
+  line-height: 50px;
+  font-size: 25px;
+}
+
+/* ----- 小さいサムネイルのランキングの背景（左上の三角形） ----- */
+.widget-entry-cards.ranking-visible .widget-entry-card-thumb::after {
+  content: "";
+  border-top: 22px solid #ccc;
+  border-right: 22px solid transparent;
+  border-bottom: 22px solid transparent;
+  border-left: 22px solid #ccc;
+  opacity: 0.6;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
+/* ----- 大きなサムネイルのランキングの背景（左上の三角形） ----- */
+.large-thumb.widget-entry-cards.ranking-visible .widget-entry-card-thumb::after,
+.large-thumb-on.widget-entry-cards.ranking-visible .widget-entry-card-thumb::after {
+  content: "";
+  border-top: 32px solid #ccc;
+  border-right: 32px solid transparent;
+  border-bottom: 32px solid transparent;
+  border-left: 32px solid #ccc;
+  opacity: 0.6;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
+/* -------------------------------------------
+/ 『プロフィール』
+------------------------------------------- */
+.author-box {
+  border: 2px ridge #828282;
+}
+
+.author-thumb img {
+  border: 3px outset #ccc;
+}
+
+/* -------------------------------------------
+/ 『フッターメニュー、背景』
+------------------------------------------- */
+.navi-footer-in a {
+  color: #d3d3d3;
+}
+
+.footer-bottom.fnm-text-width .menu-footer li a:hover {
+  background: none;
+  color: #c31a0d;
+}
+
+.footer {
+  background-image: repeating-linear-gradient(135deg, rgba(231, 30, 15, 0.2), rgba(231, 30, 15, 0.2) 20%, rgba(7, 95, 102, 0.2) 20%, rgba(7, 95, 102, 0.2) 80%, rgba(231, 30, 15, 0.2) 80%, rgba(231, 30, 15, 0.2));
+}
+
+/* -------------------------------------------
+/ 『リンク、タグ、SNSボタン』
+------------------------------------------- */
+a {
+  color: #508ad7;
+}
+
+.tag-link, .comment-reply-link {
+  color: #ccc;
+}
+
+.sns-buttons {
+  opacity: 0.8;
+}
+
+/* -------------------------------------------
+/
+------------------------------------------- */
+#sidebar-menu-input:checked ~ #sidebar-menu-content,
+#search-menu-input:checked ~ #search-menu-content,
+#share-menu-input:checked ~ #share-menu-content,
+#follow-menu-input:checked ~ #follow-menu-content {
+  background-color: #191919;
+}
+
+.mobile-menu-buttons .menu-button > a {
+  color: #d3d3d3;
+}
+
+.mobile-menu-buttons .menu-button:hover {
+  background-color: #191919;
+  color: #d3d3d3;
+}
+
+.mobile-menu-buttons {
+  background-color: #191919;
+}
+
+#navi-menu-input:checked ~ #navi-menu-content {
+  background-color: #191919;
+}
+
+.menu-drawer a {
+  color: #d3d3d3;
+  border-bottom: 1px solid #050505;
+  box-shadow: 0 2px 0 #333;
+}
+
+.menu-drawer a:hover {
+  color: #d3d3d3;
+  background-color: rgba(231, 30, 15, 0.6);
+}
+
+.mobile-menu-buttons .menu-icon {
+  color: #d3d3d3;
+}
+
+/* -------------------------------------------
+/ 『カレンダー』
+------------------------------------------- */
+.wp-calendar-table [id$=today],
+#slide-in-wp-calendar #slide-in-today {
+  background-color: #a4701a;
+}
+
+.wp-calendar-table [id$=today] a,
+#slide-in-wp-calendar #slide-in-today a {
+  background-color: #cba350;
+  color: black;
+}
+
+.wp-calendar-table td a,
+#slide-in-wp-calendar td a {
+  display: block;
+  background-color: rgba(231, 30, 15, 0.4);
+  color: #ccc;
+}
+
+.wp-calendar-table td a:hover,
+#slide-in-wp-calendar td a:hover {
+  background-color: rgba(231, 30, 15, 0.6);
+}
+
+/* -------------------------------------------
+/ 『クラウドタグ／パンくずリスト』
+------------------------------------------- */
+.tagcloud a {
+  border: 1px solid #aaaaaa;
+  color: #ccc;
+}
+
+.tagcloud a:hover {
+  color: #333;
+}
+
+.tagcloud a .tag-caption:hover {
+  color: #333;
+}
+
+.breadcrumb a {
+  color: #d3d3d3;
+}
+
+/* -------------------------------------------
+/ 『入力ボックス』
+------------------------------------------- */
+.search-edit,
+input[type=text],
+input[type=password],
+input[type=date],
+input[type=datetime],
+input[type=email],
+input[type=number],
+input[type=search],
+input[type=tel],
+input[type=time],
+input[type=url],
+textarea,
+select {
+  background-color: #ccc;
+}
+
+/* -------------------------------------------
+/ 『インデックスカードタイプ』
+------------------------------------------- */
+.ect-vertical-card.ect-tile-card .a-wrap {
+  margin: 0 0.55% 12px;
+}
+
+.ect-vertical-card.ect-tile-card .card-snippet {
+  margin: 0;
+}
+
+.ect-vertical-card.ect-tile-card.ect-2-columns .entry-card-wrap {
+  width: 48.5%;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.ect-3-columns .entry-card-wrap {
+  width: 32%;
+}
+
+.ect-vertical-card-3 .entry-card-wrap {
+  width: 32%;
+}
+
+/* -------------------------------------------
+/ 『文字の色』
+------------------------------------------- */
+.keyboard-key {
+  background-color: #191919;
+  box-shadow: 1px 2px 2px #3c3b3b;
+}
+
+.red {
+  color: rgba(230, 0, 51, 0.8);
+}
+
+.red-under {
+  border-bottom: 2px solid rgba(255, 0, 0, 0.8);
+}
+
+/* -------------------------------------------
+/ 『ボックス』
+------------------------------------------- */
+.is-style-information-box,
+.is-style-question-box,
+.is-style-alert-box,
+.is-style-memo-box,
+.is-style-comment-box,
+.is-style-ok-box,
+.is-style-ng-box,
+.is-style-good-box,
+.is-style-bad-box,
+.is-style-profile-box,
+.information-box,
+.question-box,
+.alert-box,
+.information,
+.question,
+.alert,
+.memo-box,
+.comment-box,
+.common-icon-box {
+  background-color: transparent;
+  border-width: 2px;
+}
+
+.primary-box,
+.sp-primary,
+.primary,
+.success-box,
+.sp-success,
+.success,
+.info-box,
+.sp-info,
+.info,
+.warning-box,
+.sp-warning,
+.warning,
+.danger-box,
+.sp-danger,
+.danger,
+.secondary-box,
+.light-box,
+.dark-box,
+.blank-box.sticky {
+  opacity: 0.85;
+}
+
+span[class^=marker] {
+  color: #595858;
+}
+
+span[class^=marker-under] {
+  color: #d3d3d3;
+}
+
+.marker-under {
+  background: linear-gradient(transparent 60%, #939310 60%);
+}
+
+.marker-under {
+  background: linear-gradient(transparent 60%, rgba(255, 255, 102, 0.6) 60%);
+}
+
+.marker-under-red {
+  background: linear-gradient(transparent 60%, rgba(255, 182, 185, 0.6) 60%);
+}
+
+.marker-under-blue {
+  background: linear-gradient(transparent 60%, rgba(168, 218, 251, 0.6) 60%);
+}
+
+.blank-box.bb-yellow {
+  border-color: #ccb723;
+}
+
+.blank-box.bb-tab.bb-yellow .bb-label {
+  background-color: #ccb723;
+}
+
+.blank-box.bb-red {
+  border-color: #b91e30;
+}
+
+.blank-box.bb-tab.bb-red .bb-label {
+  background-color: #b91e30;
+}
+
+.blank-box.bb-blue {
+  border-color: #3278b1;
+}
+
+.blank-box.bb-tab.bb-blue .bb-label {
+  background-color: #3278b1;
+}
+
+.blank-box.bb-green {
+  border-color: #389560;
+}
+
+.blank-box.bb-tab.bb-green .bb-label {
+  border-color: #389560;
+}
+
+.blank-box.sticky {
+  color: #595858;
+}
+
+/* -------------------------------------------
+/ 『マイクロコピー』
+------------------------------------------- */
+.micro-balloon {
+  background-color: #191919;
+}
+
+.micro-bottom.micro-balloon:before {
+  border-bottom-color: #999;
+}
+
+.micro-bottom.micro-balloon:after {
+  border-bottom-color: #191919;
+}
+
+.micro-balloon:before {
+  border-top-color: #999;
+}
+
+.micro-balloon:after {
+  border-top-color: #191919;
+}
+
+/* -------------------------------------------
+/ 『コード』
+------------------------------------------- */
+pre {
+  border: 1px inset #555;
+  background-color: #191919;
+}
+
+/* -------------------------------------------
+/ 『吹き出し』
+------------------------------------------- */
+.speech-icon img, .speech-icon amp-img {
+  border: 2px solid var(--cocoon-custom-border-color);
+  background-color: #b6b6b6;
+}
+
+div.speech-balloon {
+  background-color: var(--cocoon-custom-background-color);
+  border-color: var(--cocoon-custom-border-color);
+}
+
+.sbs-flat .speech-balloon,
+.sbs-line.sbp-r .speech-balloon {
+  background-color: var(--cocoon-custom-background-color);
+}
+
+.speech-balloon::before {
+  border-right-color: var(--cocoon-custom-border-color);
+}
+
+.speech-balloon::after,
+.sbs-flat .speech-balloon::after {
+  border-right-color: var(--cocoon-custom-background-color);
+}
+
+.sbp-r .speech-balloon::before {
+  border-left-color: var(--cocoon-custom-border-color);
+}
+
+.sbp-r .speech-balloon::after,
+.sbs-line.sbp-r .speech-balloon::after {
+  border-left: 12px solid var(--cocoon-custom-background-color);
+}
+
+/* -------------------------------------------
+/ 『画像（薄い影）』
+------------------------------------------- */
+.iwe-shadow img, .iwe-shadow amp-img {
+  box-shadow: 5px 5px 15px #a3a0a0;
+}
+
+/* -------------------------------------------
+/ Font Awesome5対応
+------------------------------------------- */
+.font-awesome-5 .cat-item a::before,
+.font-awesome-5 blockquote::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+
+/* -------------------------------------------
+/ カルーセル・パンくずリスト背景対応
+------------------------------------------- */
+.carousel-in,
+.breadcrumb.sbp-main-before,
+.breadcrumb.sbp-footer-before,
+.breadcrumb.pbp-main-before,
+.breadcrumb.pbp-footer-before {
+  background-color: transparent;
+}
+
+/* -------------------------------------------
+/ 『検索ボックスの虫眼鏡』
+------------------------------------------- */
+.search-submit {
+  color: #333;
+}
+
+/* -------------------------------------------
+/ ボックスメニュー対応
+------------------------------------------- */
+.box-menu {
+  background-color: transparent;
+  color: #d3d3d3;
+}
+
+.appeal-content,
+.block-box-label,
+.toggle-button {
+  color: #333;
+}
+
+.appeal-button {
+  background-color: #c31a0d;
+}
+
+.label-box-label {
+  color: #fff;
+  text-shadow: #191919 3px 0 0, #191919 2px 1px 0, #191919 2px 2px 0, #191919 2px 3px 0, #191919 1px 3px 0, #191919 0 3px 0, #191919 -1px 3px 0, #191919 -2px 2px 0, #191919 -3px 1px 0, #191919 -3px 0 0, #191919 -3px -1px 0, #191919 -3px -2px 0, #191919 -2px -2px 0, #191919 -1px -3px 0, #191919 0 -3px 0, #191919 1px -3px 0, #191919 2px -2px 0, #191919 2px -2px 0, #191919 3px -1px 0;
+}
+
+.search-edit, input[type=text], input[type=password], input[type=date], input[type=datetime], input[type=email], input[type=number], input[type=search], input[type=tel], input[type=time], input[type=url], textarea, select {
+  color: #333 !important;
+}
+
+/* -------------------------------------------
+/ 『カルーセル』
+------------------------------------------- */
+.slick-dots li.slick-active button:before {
+  color: #0a818b;
+}
+
+.slick-dots li button:before {
+  color: #666;
+  opacity: 1;
+}
+
+/* -------------------------------------------
+/ 『固定ヘッダー』
+------------------------------------------- */
+.fixed-header .header {
+  background-color: #075f66;
+}
+
+/* -------------------------------------------
+/ 『追加修正』
+------------------------------------------- */
+#index-tab-1:checked ~ .index-tab-buttons .index-tab-button[for=index-tab-1], #index-tab-2:checked ~ .index-tab-buttons .index-tab-button[for=index-tab-2], #index-tab-3:checked ~ .index-tab-buttons .index-tab-button[for=index-tab-3], #index-tab-4:checked ~ .index-tab-buttons .index-tab-button[for=index-tab-4] {
+  background: none #e5e4e6;
+  border: 1px solid #e5e4e6;
+  color: #404453;
+}
+
+.index-tab-buttons .index-tab-button {
+  background-color: #191919;
+}
+
+.list-more-button {
+  color: #d3d3d3;
+}
+
+.list-title-in::before,
+.list-title-in::after {
+  background-color: #d3d3d3;
+}
+
+/* カスタム色対応 */
+.speech-wrap,
+.toggle-box,
+.timeline-box,
+.iconlist-box,
+.faq-wrap,
+.caption-box,
+.tab-caption-box,
+.label-box,
+.micro-balloon,
+.micro-text {
+  --cocoon-custom-text-color: #d3d3d3;
+}
+
+.speech-wrap {
+  --cocoon-custom-background-color: #191919;
+  --cocoon-custom-text-color: #d3d3d3;
+  --cocoon-custom-border-color: var(--cocoon-basic-border-color);
+}
+
+.sbs-line.sbp-r .speech-balloon:not(.has-background) {
+  background-color: var(--cocoon-custom-background-color);
+}
+
+.sbs-line.sbp-r .speech-balloon:not(.has-background):not(.has-border-color) {
+  --cocoon-custom-background-color: #191919;
+  --cocoon-custom-border-color: #85e249;
+}
+
+.toggle-box {
+  --cocoon-custom-background-color: transparent;
+}
+
+.has-box-style,
+.has-border {
+  --cocoon-box-border-color: #ccc;
+}
+
+.is-style-border-thin-and-thick,
+.is-style-border-radius-s-thin-and-thick,
+.is-style-border-radius-l-thin-and-thick {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.is-style-stripe-box {
+  background-image: repeating-linear-gradient(-45deg, #333 0, #333 3px, transparent 3px, transparent 6px);
+}
+
+.is-style-checkered-box {
+  background-image: linear-gradient(90deg, rgba(232, 238, 236, 0.1) 50%, transparent 50%), linear-gradient(rgba(234, 236, 238, 0.1) 50%, transparent 50%);
+}
+
+.is-style-stitch-box {
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 0px 0px 10px rgba(255, 255, 255, 0.2);
+}
+
+.is-style-border-top-box {
+  box-shadow: 0 3px 5px rgba(255, 255, 255, 0.22);
+}
+
+.is-style-border-left-box {
+  box-shadow: 0px 2px 3px rgba(255, 255, 255, 0.33);
+}
+
+[class^=is-style-balloon-], [class*=" is-style-balloon-"] {
+  --cocoon-white-color: #191919;
+  background: var(--cocoon-white-color);
+  border: 1px solid var(--cocoon-box-border-color);
+}

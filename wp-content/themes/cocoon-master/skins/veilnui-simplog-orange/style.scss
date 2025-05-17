@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+/*!
+  Skin Name: Veilnui Simplog (orange)
+  Description: シンプルなブログスキン（オレンジ色）
+  Skin URI: https://wp-cocoon.com/veilnui-simplog
+  Author: veilnui
+  Priority: 9840001000
+  Screenshot URI: https://wp-cocoon.com/wp-content/themes/cocoon-master/skins/veilnui-simplog-orange/images/image.png
+  Version: 1.1.7
+  License: http://www.gnu.org/licenses/gpl-2.0.html/ GPL v2 or later
+*/
+
+//-------
+// Fields
+//-------
+// Font color
+$font-color: #333333;
+// Background color
+$white-color: white;
+// Hover color
+$hover-color: #FFF3E0;
+// Base color (60%)
+$base-color: #FFF3E0;
+// Key color（10%）
+$key-color: #EF6C00;
+// Main color（30%）
+$main-color-light: #FFCC80;
+$main-color-midium: #FFA726;
+$main-color-dark: #FB8C00;
+
+// Base file import
+@import "..\\_scss\\_veilnui_simplog_base.scss";

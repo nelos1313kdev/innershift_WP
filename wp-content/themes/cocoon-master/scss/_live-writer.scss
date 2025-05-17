@@ -1,0 +1,25 @@
+.live-writer{
+  .main{
+    max-width: 860px;
+    width: 860px;
+    min-width: 860px;
+    //border: 1px solid var(--cocoon-basic-border-color);
+  }
+
+  .article{
+    width: 800px;
+  }
+
+
+  blockquote,
+  .information-box,
+  .question-box,
+  .alert-box{
+    padding: 10px;
+
+    &::before,
+    &::after{
+      display: none;
+    }
+  }
+}

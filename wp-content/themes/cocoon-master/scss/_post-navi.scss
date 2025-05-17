@@ -1,0 +1,100 @@
+@use "sass:math";
+/************************************
+** 投稿ナビ
+************************************/
+$pn_margin_width: 10px;
+.pager-post-navi{
+  margin: 38px 0;
+  display: flex;
+  flex-direction: column;
+
+  a{
+    padding: $pn_margin_width;
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1.2;
+    font-size: 0.8em;
+
+    .iconfont{
+      font-size: 1.8em;
+      color: var(--cocoon-thin-color);
+      padding: 8px;
+    }
+
+    figure{
+      min-width: 120px;
+      max-width: 120px;
+    }
+
+    &.prev-post{
+      flex-direction: row;
+      padding-left: math.div($pn_margin_width, 2);
+
+
+     .prev-post-title{
+        margin-left: $pn_margin_width;
+      }
+    }
+
+    &.next-post{
+      flex-direction: row-reverse;
+      padding-right: math.div($pn_margin_width, 2);
+
+      .next-post-title{
+        margin-right: $pn_margin_width;
+      }
+    }
+
+    &.prev-next-home{
+      justify-content: center;
+
+      font-size: 50px;
+      text-align: center;
+      color: var(--cocoon-middle-thickness-color);
+    }
+  }
+}
+
+.prev-post-title,
+.next-post-title{
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.post-navi-square a{
+  height: auto;
+}
+
+// .post-navi-default > a{height: 100%;}
+
+.post-navi-default.post-navi-border{
+  a{
+    border-top: 1px solid var(--cocoon-basic-border-color);
+    border-bottom: 1px solid var(--cocoon-basic-border-color);
+  }
+  .next-post{
+    border-top-width: 0px;
+  }
+  .next-post:first-child{
+    border-top-width: 1px;
+  }
+}
+
+.pager-post-navi.post-navi-square{
+  flex-direction: row;
+  a{
+    width: 50%;
+  }
+}
+
+.post-navi-square.post-navi-border{
+  a{
+    border: 1px solid var(--cocoon-basic-border-color);
+  }
+  a:last-child{
+    border-left-width: 0px;
+  }
+}

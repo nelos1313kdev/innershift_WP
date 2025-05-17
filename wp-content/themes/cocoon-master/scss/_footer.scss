@@ -1,0 +1,132 @@
+/************************************
+** フッター
+************************************/
+
+.footer{
+  margin-top: 20px;
+  padding: 8px;
+}
+
+.copyright{
+  margin-top: 8px;
+}
+
+.footer-widgets,
+.footer-widgets-mobile {
+  margin: 10px auto;
+  display: flex;
+}
+
+%footer_widget{
+  padding: 10px 16px;
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+  @extend %footer_widget;
+  width: 33.33%;
+}
+
+.footer-widgets-mobile{
+  display: none;
+}
+
+.footer-mobile {
+  @extend %footer_widget;
+}
+/************************************
+** フッターボトム
+************************************/
+.footer-bottom{
+  margin-top: 24px;
+  padding: 8px;
+  //vertical-align: bottom;
+  position: relative;
+  font-size: 14px;
+  //display: flex;
+  //align-items: baseline;
+  // padding-bottom: 8px;
+  // display: flex;
+  // justify-content: space-between;
+  &.fdt-left-and-right{
+    .footer-bottom-logo{
+      display: none;
+    }
+
+    .footer-bottom-content{
+      float: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+  }
+
+  &.fdt-up-and-down{
+    .footer-bottom-logo{
+      display: none;
+    }
+
+    .footer-bottom-content{
+      float: none;
+      display: block;
+      // display: flex;
+      // flex-direction: column;
+      text-align: center;
+
+      .navi-footer-in > ul{
+        justify-content: center;
+      }
+    }
+  }
+
+  &.fnm-text-width .menu-footer li{
+    width: auto;
+
+    a{
+      padding: 0 10px;
+    }
+  }
+}
+
+.footer-bottom-logo{
+  float: left;
+  bottom: 0;
+  position: absolute;
+  .logo-text{
+    padding: 0;
+    ;
+  }
+  // .site-name-text-link,
+  // .site-name-text,
+  // img {
+  //   display: block;
+  // }
+  .site-name-text{
+    font-size: 18px;
+  }
+
+  .logo-image{
+    padding: 0;
+  }
+  img{
+    height: 50px;
+    width: auto;
+  }
+
+}
+
+.footer-bottom-content{
+  float: right;
+  text-align: right;
+}
+
+
+// .navi-footer{
+//   float: left;
+// }
+
+// .copyright{
+//   float: right;
+//   margin-right: 10px;
+// }

@@ -1,0 +1,84 @@
+///////////////////////////////////////
+// とりあえず何でもレスポンシブ化するスタイル
+///////////////////////////////////////
+canvas,iframe,video,
+// //pixiv
+// .pixiv-embed iframe,
+// //Googleマップ対応
+// iframe[src*="https://www.google.com/maps/embed"],
+.fb_iframe_widget,
+.fb_iframe_widget span
+{max-width:100%}
+
+.overflow-container{overflow-y:scroll}.aspect-ratio{height:0;padding-top:56.25%;position:relative}.aspect-ratio--object{bottom:0;height:100%;left:0;position:absolute;right:0;top:0;width:100%;z-index:100}
+
+///////////////////////////////////////
+// YouTubeビデオなどのiframeをレスポンシブにするスタイル
+///////////////////////////////////////
+/*!動画の最大幅を指定する*/
+.video-container,
+.instagram-container,
+.facebook-container{
+  max-width:640px;
+  margin: 30px 0;
+}
+
+/*!動画の大きさを調整*/
+.video-container .video {
+  position: relative;
+  padding-bottom: 56.25%;
+  //padding-top: 30px;
+  margin-top: 30px;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+/*!Instagramの大きさを調整*/
+.instagram-container .instagram,
+/*!Facebookの大きさを調整*/
+.facebook-container .facebook {
+  position: relative;
+  padding-bottom: 120%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+}
+
+/*!動画を囲んでいるdiv目一杯に広げる*/
+.video iframe,
+.video object,
+.video embed,
+.instagram iframe,
+.instagram object,
+.instagram embed,
+.facebook iframe,
+.facebook object,
+.facebook embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/*!Twitterビデオの最小幅を上書き変更*/
+.twitter-video {
+  min-width: 200px !important;
+}
+
+//instagram埋め込みスタイルの不具合修正
+.instagram-media {
+  position: static !important;
+  min-width: 280px !important;
+}
+
+// //pixiv
+// .pixiv-embed iframe,
+// //Googleマップ対応
+// iframe[src*="https://www.google.com/maps/embed"],
+//Facebook埋め込み
+// .fb_iframe_widget,
+// .fb_iframe_widget span{
+//   max-width: 100%;
+// }

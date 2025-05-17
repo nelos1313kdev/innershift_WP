@@ -1,0 +1,207 @@
+.navi-footer {
+  float: none;
+  margin: 0;
+  width: 100%;
+}
+
+.copyright {
+  width: 100%;
+}
+
+.navi-footer-in>ul {
+  justify-content: center;
+  padding: 1em;
+}
+
+.footer-widgets {
+  display: block;
+
+  // flex-direction: column;
+  >div {
+    width: 100%;
+  }
+}
+
+.content-in {
+  display: block;
+  //flex-direction: column;
+}
+
+main.main,
+div.sidebar {
+  display: block;
+  margin: 10px;
+  width: auto;
+}
+
+.footer-bottom-logo,
+.footer-bottom-content {
+  float: none;
+}
+
+.footer-bottom-logo {
+  line-height: 1;
+  // .logo-image{
+  //   // .site-name{
+  //   //   font-size: 1em;
+  //   // }
+  // }
+}
+
+.footer-bottom-content {
+  text-align: center;
+}
+
+.fb-like-message {
+  font-size: 0.8em;
+  line-height: 1.4;
+}
+
+.sidebar-scroll {
+  position: static;
+}
+
+
+//ヘッダーなどの背景画像
+.ba-fixed.header{
+  background-position: top center;
+}
+.ba-fixed.header,
+.ba-fixed.appeal {
+  background-attachment: scroll;
+}
+
+.header,
+.appeal {
+  background-size: cover;
+}
+
+.footer-bottom-logo {
+  position: relative;
+  bottom: auto;
+}
+
+.logo-footer {
+  margin: 8px auto;
+}
+
+
+.mobile-menu-buttons {
+  display: flex;
+  align-items: stretch;
+}
+
+.mobile-header-menu-buttons {
+  top: 0;
+  bottom: auto;
+  justify-content: space-between;
+  min-width: 46px;
+  // z-index: 3;
+  box-shadow: 0 0 5px darkgrey;
+}
+
+.logo-menu-button{
+  // flex: 1;
+  flex-grow: 1;
+}
+// .has-logo-button {
+//   .menu-button {
+//     width: 70px;
+//   }
+
+//   .logo-menu-button {
+//     flex-grow: 99;
+//     // flex-shrink: 0;
+//   }
+// }
+
+.mobile-footer-menu-buttons{
+  justify-content: space-around;
+
+  .menu-button{
+    width: 100%;
+  }
+}
+
+.no-mobile-sidebar .sidebar,
+.mobile-button-fmb .go-to-top-button,
+.no-mobile-header-logo #header .logo-header {
+  display: none;
+}
+
+
+.mblt-footer-mobile-buttons,
+.mblt-header-and-footer-mobile-buttons {
+  margin-bottom: 50px;
+}
+
+.scrollable-mobile-buttons {
+  margin-bottom: 0;
+}
+
+.navi-footer-in>.menu-footer {
+  justify-content: center;
+}
+
+.footer-bottom.fdt-left-and-right .footer-bottom-content {
+  flex-direction: column;
+}
+
+.header-container-in.hlt-top-menu {
+  flex-direction: column;
+}
+
+.mblt-footer-mobile-buttons .go-to-top-button,
+.mblt-header-and-footer-mobile-buttons .go-to-top-button {
+  display: none;
+}
+
+.navi-in .menu-pc {
+  display: none;
+}
+
+.no-mobile-header-logo .header .header-in {
+  min-height: auto;
+}
+
+//モバイルグローバルメニュー
+#navi .navi-in>.menu-mobile {
+  display: flex;
+
+  >.menu-item-has-description>a>.caption-wrap {
+    height: 40px;
+    line-height: 16px;
+  }
+
+  li {
+    width: 50%;
+    height: 40px;
+    line-height: 40px;
+
+    a {
+      font-size: 14px;
+
+      &:after {
+        display: none;
+      }
+    }
+  }
+}
+
+///////////////////////////////////////
+// SlickNavの表示
+///////////////////////////////////////
+.slicknav_menu {
+  display: block;
+}
+
+/* モバイルヘッダー高さ分、余白を設ける */
+body:where(.mblt-header-mobile-buttons, .mblt-header-and-footer-mobile-buttons) {
+  margin-top: 50px;
+}
+
+/* adminバーがある場合、その余白分を除いた余白とする */
+.admin-bar:where(.mblt-header-mobile-buttons, .mblt-header-and-footer-mobile-buttons) {
+  margin-top: calc(50px - var(--wp-admin--admin-bar--height));
+}
+

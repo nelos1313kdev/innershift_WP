@@ -1,0 +1,16 @@
+# Apache 2.4+
+<IfModule authz_core_module>
+    Require all denied
+    <FilesMatch "^\w+\.(jpe?g|gif|png)$">
+        Require all granted
+    </FilesMatch>
+</IfModule>
+
+# Apache 2.2
+<IfModule !authz_core_module>
+    Order deny,allow
+    Deny from all
+    <FilesMatch "^\w+\.(jpe?g|gif|png)$">
+        Allow from all
+    </FilesMatch>
+</IfModule>

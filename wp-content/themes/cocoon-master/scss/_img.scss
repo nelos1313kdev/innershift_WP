@@ -1,0 +1,165 @@
+/************************************
+** 画像関係のスタイル
+************************************/
+figure{
+  margin: 0;
+}
+
+img{
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.circle-image img{
+  border-radius: 50%;
+}
+
+/************************************
+** 画像の囲み効果
+************************************/
+/*ボーダー*/
+.iwe-border img:not(.cta-image),
+.iwe-border amp-img:not(.cta-image){
+  border: 1px solid var(--cocoon-basic-border-color);
+  //box-shadow: 0 0 1px rgba(0,0,0,.6);
+}
+
+/*ボーダー（太線）*/
+.iwe-border-bold img,
+.iwe-border-bold amp-img{
+  border: 4px solid var(--cocoon-current-background-color);
+}
+/*シャドー*/
+.iwe-shadow img,
+.iwe-shadow amp-img{
+  box-shadow: 5px 5px 15px var(--cocoon-x-thin-color);
+}
+/*シャドーペーパー*/
+.iwe-shadow-paper img,
+.iwe-shadow-paper amp-img{
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.16),0 0 0 1px rgba(0,0,0,.08);
+}
+
+///////////////////////////////////////
+// iOS対応
+///////////////////////////////////////
+.entry-card-thumb,
+.author-thumb,
+.blogcard-thumbnail,
+.related-entry-card-thumb,
+.popular-entry-card-thumb,
+.new-entry-card-thumb{
+  margin-right: $thumb_content_margin;
+}
+
+.ect-vertical-card .entry-card-thumb,
+.rect-vertical-card .related-entry-card-thumb{
+  flex-shrink: 0;
+}
+
+///////////////////////////////////////
+// サムネイル非表示
+///////////////////////////////////////
+.no-thumbnail{
+  .card-thumb,
+  .widget-entry-card-pv{
+    display: none;
+  }
+
+  .card-content,
+  .widget-entry-cards .widget-entry-card-content,
+  .rect-mini-card .related-entry-card-content{
+    margin: 0;
+  }
+
+  .widget-entry-cards div.widget-entry-card-content{
+    font-size: 18px;
+    margin-bottom: 0.6em;
+  }
+
+  .widget-entry-cards.large-thumb-on .card-title{
+    max-height: none;
+    position: static;
+  }
+
+  .entry-card-meta{
+    position: static;
+    background-color: transparent;
+    margin-top: 0.4em;
+  }
+
+  .entry-card-snippet,
+  .related-entry-card-snippet{
+    max-height: #{8 * 1.3}em;
+  }
+
+  .e-card-meta .e-card-categorys{
+    display: inline;
+    >span{
+      margin-left: 0.6em;
+    }
+  }
+}
+
+img.emoji {
+	display: inline;
+	width: 1em;
+	height: auto;
+	vertical-align: text-bottom;
+	margin-right: 0.1em;
+}
+
+///////////////////////////////////////
+// ブロック
+///////////////////////////////////////
+.wp-block-image{
+  .aligncenter{
+    text-align: center;
+  }
+  img{
+    display: block;
+  }
+  figcaption{
+    margin: 0;
+    word-break: break-all;
+  }
+}
+
+/* サムネイルアスペクト比 */
+.thumb-wide {
+  --card-ratio: 16 / 9;
+}
+
+.thumb-golden-ratio {
+  --card-ratio: 8 / 5;
+}
+
+.thumb-postcard {
+  --card-ratio: 3 / 2;
+}
+
+.thumb-silver-ratio {
+  --card-ratio: 7 / 5;
+}
+
+.thumb-standard {
+  --card-ratio: 4 / 3;
+}
+
+.thumb-square,
+.post-navi-square {
+  --card-ratio: 1 / 1;
+}
+
+.ect-tile-card,
+.ect-big-card,
+.ec-big-card-first{
+  --card-ratio: auto;
+}
+
+.blogcard-thumbnail img,
+.card-thumb img {
+  aspect-ratio: var(--card-ratio);
+  object-fit: cover;
+}

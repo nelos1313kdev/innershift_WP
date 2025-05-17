@@ -1,0 +1,52 @@
+//読み込みSCSSファイルまとめ
+
+///////////////////////////////////////
+// 通常ページ・AMPページ共通
+///////////////////////////////////////
+@import "amp-imports";
+
+///////////////////////////////////////
+// AMPページでは使用しないもの
+///////////////////////////////////////
+//通知
+@import "notice";
+//アピールエリア
+@import "appeal";
+//入力フォーム
+@import "forms";
+//カルーセル
+@import "carousel";
+//インデックス
+@import "index";
+//管理パネル
+@import "admin-panel";
+//Slick
+@import "slick";
+//SlickNav
+@import "slicknav";
+//bbPress
+@import "bbpress";
+//BuddyPress
+@import "buddypress";
+//wpForo
+@import "wpforo";
+//Windows Live Writer・Open Live Writer
+@import "live-writer";
+//外部ツール
+@import "tools";
+//YouTube
+@import "youtube";
+//Gutenberg
+@import "gutenberg";
+//AMP除外
+@import "amp-exclusions";
+
+///////////////////////////////////////
+// メディアクエリ
+///////////////////////////////////////
+@import "breakpoints/breakpoints";
+
+//印刷用
+@media print{
+  @import "print";
+}

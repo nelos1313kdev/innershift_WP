@@ -1,0 +1,240 @@
+@charset "UTF-8";
+
+/*******************************************************************************
+**
+**  ダッシュボード
+**
+*******************************************************************************/
+
+
+/* Cocoonアイコン */
+
+.menu-top.toplevel_page_theme-settings .wp-menu-image img {
+  display: none;
+}
+
+.menu-top.toplevel_page_theme-settings .wp-menu-image:before {
+  color: #e589a2!important;
+  content: '\f487';
+}
+
+
+/* 投稿、固定ページ一覧ステータス */
+
+.wp-admin.post-type-post .status-sticky {
+  background-color: #f1f8e9;
+}
+
+.wp-admin.post-type-post .status-future,
+.wp-admin.post-type-page .status-future {
+  background-color: #e0f7fa;
+}
+
+.wp-admin.post-type-post .status-draft,
+.wp-admin.post-type-page .status-draft {
+  background-color: #ffebee;
+}
+
+/* カラム調整 */
+.fixed th {
+  width: 100%!important;
+}
+
+
+/*******************************************************************************
+**
+**  Cocoon設定
+**
+*******************************************************************************/
+
+#tabs #tab-all-label,
+#tabs #tab-theme-header-label,
+#tabs #tab-column-label,
+#tabs #tab-page-page-label,
+#tabs #tab-blog-card-label,
+#tabs #tab-code-highlight-label,
+#tabs #tab-carousel-label,
+#tabs #tab-footer-label,
+#tabs #tab-buttons-label,
+#tabs #tab-mobile-buttons-label,
+#tabs #tab-page-404-label,
+#tabs #tab-widget-label,
+#tabs #tab-widget-area-label,
+#tabs #tab-reset-label {
+  display: none!important;
+}
+
+
+/* 広告 */
+
+#tab-ads-content tr:nth-of-type(3) td label[for=pr_label_small_caption],
+#tab-ads-content tr:nth-of-type(3) td label[for=pr_label_small_caption] + br,
+#exclude-pr-label tr:nth-child(2),
+#exclude-pr-label .skin-control,
+#exclude-pr-label .skin-control + .tips {
+  display: none;
+}
+
+
+/* インデックス */
+
+#tab-index-page-content tr:nth-child(1) td label[for="front_page_type"],
+#tab-index-page-content tr:nth-child(1) td label[for="front_page_type"] + ul,
+#tab-index-page-content tr:nth-child(1) td .tips:first-of-type,
+#tab-index-page-content tr:nth-child(1) td .toggle:last-of-type {
+  display: none;
+}
+
+#tab-index-page-content tr:nth-child(2),
+#tab-index-page-content tr:nth-child(3),
+#tab-index-page-content tr:nth-child(4),
+#tab-index-page-content tr:nth-child(5),
+#tab-index-page-content tr:nth-child(6) {
+  display: none;
+}
+
+#tab-index-page-content .skin-control,
+#tab-index-page-content .skin-control + br {
+  display: none;
+}
+
+
+/* 投稿 */
+
+#cat-tag-page,
+#single-relation,
+#single-bread {
+  display: none;
+}
+
+#single-nav tr:nth-child(1),
+#single-nav tr:nth-child(2),
+#single-nav tr:nth-child(3),
+#single-nav tr:nth-child(4),
+#single-nav tr:nth-child(6) {
+  display: none;
+}
+
+
+/* 本文 */
+
+#entry-content-page {
+  display: none;
+}
+
+#external-link tr:nth-child(1),
+#internal-link tr:nth-child(1),
+#internal-link tr:nth-child(4),
+#internal-link tr:nth-child(5) {
+  display: none;
+}
+
+#post-info tr:nth-child(1) {
+  display: none;
+}
+
+
+/* 目次 */
+
+#tab-toc-page-content .skin-control,
+#tab-toc-page-content .skin-control + br {
+  display: none;
+}
+
+#tab-toc-page-content tr:nth-child(1),
+#tab-toc-page-content tr:nth-child(5),
+#tab-toc-page-content tr:nth-child(6),
+#tab-toc-page-content tr:nth-child(7),
+#tab-toc-page-content tr:nth-child(8),
+#tab-toc-page-content tr:nth-child(9),
+#tab-toc-page-content tr:nth-child(11) {
+  display: none;
+}
+
+
+/* SNSシェア */
+
+#sns-share-top {
+  display: none;
+}
+
+#sns-share-bottom tr:nth-child(1),
+#sns-share-bottom tr:nth-child(2),
+#sns-share-bottom tr:nth-child(5),
+#sns-share-bottom tr:nth-child(6),
+#sns-share-bottom tr:nth-child(7),
+#sns-share-bottom tr:nth-child(8),
+#sns-share-bottom tr:nth-child(9) {
+  display: none;
+}
+
+
+/* SNSフォロー */
+
+#tab-sns-follow-content tr:nth-child(1),
+#tab-sns-follow-content tr:nth-child(5),
+#tab-sns-follow-content tr:nth-child(8),
+#tab-sns-follow-content tr:nth-child(10) {
+  display: none;
+}
+
+
+/* 画像 */
+
+#content-image tr:nth-child(1),
+#content-image tr:nth-child(4) {
+  display: none;
+}
+
+#content-image tr:nth-child(2) .indent {
+  display: none;
+}
+
+
+/* コメント */
+
+#tab-comment-content .skin-control,
+#tab-comment-content .skin-control + .tips {
+  display: none;
+}
+
+#tab-comment-content tr:nth-child(1),
+#tab-comment-content tr:nth-child(3),
+#tab-comment-content tr:nth-child(5) {
+  display: none;
+}
+
+
+/* アピールエリア */
+
+#tab-appeal-area-content tr:nth-child(11) {
+  display: none;
+}
+
+
+/* おすすめカード */
+
+#tab-recommended-content tr:nth-child(4),
+#tab-recommended-content tr:nth-child(5) {
+  display: none;
+}
+
+#tab-recommended-content tr:nth-child(3) li:nth-child(n+3) {
+  display: none;
+}
+
+
+/* 管理画面 */
+
+.skin-control:has(#admin_list_memo_visible_1) {
+  display: none;
+}
+
+
+/* エディター */
+
+#tab-editor-content tr:nth-child(2),
+#tab-editor-content tr:nth-child(3),
+#tab-editor-content tr:nth-child(4) {
+  display: none;
+}

@@ -1,0 +1,241 @@
+/************************************
+** 基本表示
+************************************/
+/*初期化*/
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.container{
+  padding-right:  constant(safe-area-inset-right);
+  padding-left:  constant(safe-area-inset-left);
+  padding-right:  env(safe-area-inset-right);
+  padding-left:  env(safe-area-inset-left);
+}
+
+body {
+  @include base_font;
+  @extend %background_image;
+  background-color: #f4f5f7;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;// Safari & Chrome for iOS
+  -moz-text-size-adjust:100%;// Firefox for Android
+  // -ms-text-size-adjust: 100%;//EgdeMobile
+
+  /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
+  background-attachment: fixed;
+}
+
+/*デフォルトリンク*/
+a{
+  color: #1967d2;
+
+  &:hover{
+    color: #e53900;
+  }
+
+  .has-text-color & {
+    color: inherit;
+  }
+}
+
+a:not([href]){
+  .anchor-icon{
+    display: none;
+  }
+}
+
+ol, ul{
+  padding-left: 40px;
+}
+
+ul{
+  list-style-type: disc;
+}
+
+hr{
+  color: var(--cocoon-current-background-color);
+}
+
+/* クリアフィックス */
+.cf::after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+.header-container,
+.main,
+.sidebar,
+.footer{
+  background-color: var(--cocoon-white-color);
+}
+
+/* インナーを囲む */
+.wrap{
+  width: $site_width;
+  margin: 0 auto;
+}
+
+/************************************
+** 本文部分
+************************************/
+.content-in{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap : wrap;
+}
+
+.main{
+  width: $main_outer_width;
+  padding: 36px $main_padding_width;
+  border: $main_border_width $main_border_style $transparent_border_color;
+  border-radius: var(--cocoon-basic-border-radius);
+  position: relative;
+  //MacでChromeの際何度かページ遷移するとページャーがクリックできなくなる対応
+  //https://is.gd/pl1Rvs
+  z-index: 0;
+}
+
+.no-sidebar .content .main{
+  margin: 0;
+  width: 100%;
+}
+
+.no-scrollable-main .main{
+  height: 100%;
+}
+
+.main-scroll{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin-top: 2em;
+}
+
+//IE10以降のプラウザハック
+@media all and (-ms-high-contrast:none){
+  .main-scroll{
+    position: static;
+    top: auto;
+  }
+  .logo{
+    height: 100%;
+  }
+}
+
+//構造化マークアップ用
+.publisher {
+  display:none;
+}
+
+#wpadminbar{
+  font-size: 13px;
+}
+
+///////////////////////////////////////
+// キャプション表示
+///////////////////////////////////////
+.wp-caption{
+  margin: 1em 0;
+}
+
+/************************************
+** WordPress Misc
+************************************/
+.aligncenter {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.alignleft {
+  float: left;
+  margin-right: 25px;
+}
+.alignright {
+  float: right;
+  margin-left: 25px;
+}
+
+.wp-caption {
+  padding-top: 4px;
+  border: 1px solid var(--cocoon-x-thin-color);
+  border-radius: 3px;
+  background-color: var(--cocoon-xx-thin-color);
+  text-align: center;
+  max-width: 100%;
+}
+
+.wp-caption .wp-caption-text,
+.gallery .gallery-caption{
+  font-size: 0.8em;
+  margin: 2px;
+}
+
+.wp-caption img {
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+}
+
+.wp-caption-dd {
+  margin: 0;
+  padding: 0 4px 5px;
+  font-size: 11px;
+  line-height: 17px;
+}
+
+img.alignright {
+  display: inline-block;
+  margin: 0 0 1em 1.5em;
+}
+
+img.alignleft {
+  display: inline-block;
+  margin: 0 1.5em 1em 0;
+}
+
+
+.comment-btn{
+  @extend .pagination-next-link;
+  margin: 24px 0;
+  cursor: pointer;
+}
+
+label {
+  cursor:pointer;
+}
+
+.sitemap li a::before{
+  display: none;
+}
+
+.content-top,
+.content-bottom{
+  margin: 1em 0;
+}
+
+p.has-background{
+	padding: 12px;
+}
+
+:where(.wp-block-columns.is-layout-flex) {
+	gap: 1em;
+}
+
+//WordPress6.6でカラム・グループ内要素の上部に余白がついてしまうのを余白なしに変更
+:is(.is-layout-flow, .is-layout-constrained) > *{
+  margin-block-start: 0;
+}
+
+//段落のドロップキャップ大きすぎ問題修正
+.has-drop-cap:not(:focus)::first-letter{
+  font-size: 3em;
+  font-weight: normal;
+  float: none;
+}

@@ -1,0 +1,104 @@
+/************************************
+** サイドバーのスタイル
+************************************/
+.sidebar{
+  //float: right;
+  width: $sidebar_outer_width;
+  border: $sidebar_border_width $sidebar_border_style $transparent_border_color;
+  padding: $sidebar_padding_width;
+  border-radius: var(--cocoon-basic-border-radius);
+  background-color: var(--cocoon-white-color);
+  //height: 5000px;
+
+  h2,
+  h3{
+    background-color: var(--cocoon-xx-thin-color);
+    padding: 12px;
+    margin: 16px 0;
+    border-radius: var(--cocoon-badge-border-radius);
+  }
+}
+
+.no-scrollable-sidebar .sidebar{
+  height: 100%;
+}
+
+.sidebar-scroll{
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+
+.sidebar-menu-content .sidebar{
+  height: auto;
+}
+
+/************************************
+** サイドバーの非表示
+************************************/
+.no-sidebar .sidebar{
+  display: none;
+}
+
+
+/************************************
+** サイドバーの位置
+************************************/
+.sidebar-left{
+  .content-in{
+    flex-direction: row-reverse;
+
+  }
+
+  // .main{
+  //   margin-right: 0;
+  //   margin-left: $between_main_and_sidebar;
+  // }
+}
+
+
+.nwa .ranking-item-img-desc,
+.nwa .ranking-item-link-buttons{
+  display: block;
+  a{
+    padding: 6px 0;
+  }
+}
+
+.nwa .ranking-item-image-tag{
+  max-width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.nwa .ranking-item-name-text{
+  font-size: 20px;
+}
+
+.nwa .ranking-item-description{
+  margin-top: 1em;
+  font-size: 0.8em;
+}
+
+///////////////////////////////////////
+// ブログカード
+///////////////////////////////////////
+.nwa{
+  .blogcard-wrap{
+    width: auto;
+  }
+}
+
+
+.no-sidebar .content-in{
+  display: block;
+}
+
+///////////////////////////////////////
+// モバイルのサイドバーを下までスクロールすると動かなくなる問題対応
+// https://wp-cocoon.com/community/postid/76508/
+///////////////////////////////////////
+.body:has(#navi-menu-input:checked, #sidebar-menu-input:checked) {
+  overflow:hidden;
+}

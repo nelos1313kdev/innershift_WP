@@ -1,0 +1,390 @@
+.navi-in>.menu-header {
+  display: none;
+}
+
+
+main.main,
+div.sidebar {
+  padding: 32px 16px;
+  margin: 12px 0;
+  border-width: 0;
+}
+
+.pr-label-s{
+  left: 6px;
+  padding: 1px 8px;
+}
+
+.article ul,
+.article ol {
+  padding-left: 26px;
+}
+
+.entry-card-title,
+.related-entry-card-title {
+  font-size: 17px;
+}
+
+.entry-card-snippet,
+.related-entry-card-snippet {
+  font-size: 14px;
+}
+
+table {
+
+  th,
+  td {
+    padding: 3px;
+    font-size: var(--cocoon-text-size-s);
+  }
+}
+
+@include blog_card_834;
+
+///////////////////////////////////////
+// シェアボタン・フォローボタン
+///////////////////////////////////////
+.ss-top .sns-share-buttons,
+.ss-bottom .sns-share-buttons {
+  a {
+    font-size: 14px;
+
+    .button-caption {
+      font-size: 14px;
+      margin-left: 4px;
+    }
+  }
+}
+
+.sns-share.ss-top.ss-col-6,
+.sns-share.ss-bottom.ss-col-6,
+.sns-share.ss-top.ss-col-5,
+.sns-share.ss-bottom.ss-col-5 {
+  .sns-buttons{
+    column-gap: calc(1.5%/2);
+  }
+  a {
+    width: 32.5%;
+  }
+
+}
+
+//フォローボタン
+.sns-follow-buttons {
+  // flex-wrap: wrap;
+  // justify-content: space-around;
+  column-gap: 1%;
+
+  a {
+    margin-right: 0;
+    width: 49.5%;
+  }
+}
+
+/************************************
+** 関連記事
+************************************/
+.rect-vertical-card {
+  .related-list{
+    column-gap: 1%;
+  }
+  .related-entry-card-wrap {
+    width: 49.5%;
+  }
+}
+
+.rect-mini-card {
+
+  .cat-label {
+    font-size: 8px;
+  }
+
+  .related-entry-card-thumb {
+    width: 30%;
+  }
+
+  .related-entry-card-content {
+    margin-left: 32%;
+  }
+}
+
+// .header-container-in.hlt-top-menu {
+//   flex-direction: column;
+// }
+
+// .mblt-header-and-footer-mobile-buttons.is-header-fixed{
+//   // .js-clingify-placeholder{
+//   //   display: none;
+//   // }
+//   .js-clingify-locked{
+//     .header-container-in{
+//       height: 0;
+//     }
+//   }
+// }
+
+// .date-tags{
+//   margin: 0;
+//   line-height: 1;
+// }
+
+.ect-vertical-card .entry-card-wrap {
+  width: 49%;
+}
+
+
+.header div.header-in {
+  min-height: auto;
+}
+
+
+.footer-widgets {
+  display: none;
+}
+
+.footer-widgets-mobile {
+  display: block;
+}
+
+///////////////////////////////////////
+// テーマ独自ウィジェット
+///////////////////////////////////////
+.widget_pc_text,
+.widget_pc_ad,
+.widget_pc_double_ads {
+  display: none;
+}
+
+
+.widget_mobile_text,
+.widget_mobile_ad {
+  display: block;
+}
+
+///////////////////////////////////////
+// Facebookボックス
+///////////////////////////////////////
+@include fb_like_box(none);
+
+///////////////////////////////////////
+// 吹き出し
+///////////////////////////////////////
+.sbp-l {
+  margin-right: auto;
+}
+
+.sbp-r {
+  margin-left: auto;
+}
+
+.speech-wrap.sbs-think.sbp-l {
+  margin-right: 0;
+}
+
+.speech-wrap.sbs-think.sbp-r {
+  margin-left: 0;
+}
+
+//モバイル用管理パネル
+.admin-panel {
+  padding: 5px;
+  font-size: 14px;
+  line-height: 1.4;
+
+  >div {
+    margin: 3px;
+  }
+}
+
+.apdt-pc-only {
+  display: none;
+}
+
+.apdt-mobile-only {
+  display: flex;
+}
+
+.ranking-item-image-tag {
+  max-width: 30%;
+}
+
+#header .site-name-text {
+  font-size: 22px;
+}
+
+.header-container-in.hlt-top-menu {
+
+  // .header {
+
+  //   .header-in,
+  //   .logo-text {
+  //     display: block;
+  //     height: 100%;
+  //   }
+  // }
+
+  .site-name-text {
+    white-space: normal;
+  }
+}
+
+
+.header-container-in.hlt-top-menu .logo-header {
+  max-height: none;
+}
+
+.eye-catch .cat-label {
+  font-size: 10px;
+  padding: 2px 4px;
+}
+
+textarea {
+  min-height: 160px;
+}
+
+.navi-footer-in>.menu-footer li.menu-item {
+  width: 32%;
+  border: 0;
+  margin: 2px;
+  display: flex;
+  flex: 1 1 auto;
+  text-align: center;
+
+  a {
+    padding: 0;
+    width: 100%;
+  }
+}
+
+.footer-bottom.fdt-left-and-right .footer-bottom-content {
+  flex-direction: column;
+}
+
+#wpf-form-wrapper .mce-edit-area iframe {
+  min-height: 200px;
+}
+
+.content {
+  margin-top: 10px;
+}
+
+.product-item-thumb-l,
+.swatchimages {
+  display: none;
+}
+
+.image-content amp-img {
+  min-width: 360px;
+  max-width: 360px;
+}
+
+.btn-l,
+.btn-wrap.btn-wrap-l>a {
+  //padding: 14px 18px;
+  font-size: 14px;
+  // &::after{
+  //   //font-size: 18px;
+  //   //right: -4px;
+  //   margin-top: 0;
+  // }
+}
+
+
+.slick-dots {
+  display: none !important;
+}
+
+.carousel-entry-card-title {
+  font-size: 0.7em;
+}
+
+.header-container-in.hlt-top-menu.hlt-tm-small {
+  .logo-header {
+    height: auto;
+  }
+}
+
+@include recommended_nallow;
+
+///////////////////////////////////////
+// カラム
+///////////////////////////////////////
+.container .column-wrap {
+  flex-direction: column;
+
+  >div {
+    width: 100%;
+    //padding: 1em 0;
+  }
+}
+
+///////////////////////////////////////
+// ボックスメニュー
+///////////////////////////////////////
+.box-menus {
+  .box-menu {
+    width: calc(100%/2);
+  }
+}
+
+.wwa {
+  .box-menus {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+// .article .wp-block-columns :nth-child(odd):nth-last-child(2) {
+//   margin-bottom: 0;
+// }
+
+/************************************
+** Facebookページを「フォロー」するエリアのスタイル
+************************************/
+.fb-like-balloon-body {
+  margin-right: 100px;
+  font-size: 1em;
+  line-height: 1.2em;
+}
+
+.fb-like-balloon-body::after {
+  display: none;
+}
+
+
+//タブインデックス
+.index-tab-buttons {
+  flex-wrap: wrap;
+
+  .index-tab-button {
+    width: calc(98% / 2);
+    margin: .5%;
+  }
+
+
+}
+
+//カラムインデックス
+.list-columns {
+  flex-direction: column;
+
+  .list-column {
+    width: 100%;
+  }
+}
+
+//サイドバーのスカイスクレイパー広告
+.sidebar {
+  .ad-vertical {
+    .ad-usual {
+      display: none;
+    }
+
+    .ad-additional-vertical {
+      display: block;
+    }
+  }
+}
+
+//商品ボックス
+@include product_item_box_834;

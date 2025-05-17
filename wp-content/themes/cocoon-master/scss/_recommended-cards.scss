@@ -1,0 +1,106 @@
+/************************************
+** おすすめカード
+************************************/
+.recommended{
+  margin: 1em 0;
+  .navi-entry-cards{
+    display: flex;
+    justify-content: center;
+    a{
+      padding: 0;
+      margin: 0;
+      //width: 100%;
+      border-radius: 0;
+    }
+  }
+
+  figure{
+    margin: 0;
+  }
+
+  img{
+    vertical-align: bottom;
+  }
+
+  .card-content{
+    font-size: 0.8em;
+    text-align: center;
+  }
+  .card-snippet {
+    display: none;
+  }
+  &.rcs-image-only{
+    .card-content{
+      display: none;
+    }
+  }
+  &.rcs-center-title{
+    .card-content{
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      text-align: center;
+      opacity: 1;
+      font-size: 1em;
+      max-height: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+  }
+  &.rcs-center-white-title{
+    .card-content{
+      background: none;
+      background-color: rgba(51, 51, 51, 0.3);
+      transition: all .7s;
+    }
+
+    .a-wrap:hover{
+      .card-content{
+        opacity: 0;
+      }
+    }
+  }
+  &.rcs-center-label-title{
+    .card-content{
+      padding: 0;
+      background: transparent;
+
+      .card-title{
+        color: var(--cocoon-text-color);
+        padding: 6px 1.2em;
+        background-color: rgba(255, 255, 255, 0.8);
+        transition: all .5s;
+        border-radius: 99px;
+        font-size: 0.9em;
+      }
+      &:hover{
+        .card-title{
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  &.rcs-card-margin{
+    a{
+      margin: 1% 0.5%;
+      &:first-child{
+        margin-left: 1%;
+      }
+      &:last-child{
+        margin-right: 1%;
+      }
+    }
+  }
+
+  .ribbon{
+    display: none;
+  }
+}
+
+.nwa{
+  @include recommended_nallow;
+}

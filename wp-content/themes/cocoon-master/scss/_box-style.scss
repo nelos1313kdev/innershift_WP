@@ -1,0 +1,567 @@
+///////////////////////////////////////////
+// 段落ブロックスタイル
+///////////////////////////////////////////
+
+// 薄背景
+.is-style-light-background-box {
+  background-color: #f8f9f8;
+}
+
+// ストライプ
+.is-style-stripe-box {
+  background-image: repeating-linear-gradient(-45deg,#f2f3f7 0, #f2f3f7 3px,transparent 3px,transparent 6px);
+}
+
+// 方眼
+.is-style-section-paper-box {
+  background-image: linear-gradient(0deg, transparent 19px, #eae5e3 20px),linear-gradient(90deg,  transparent 19px, #eae5e3 20px);
+  background-size: 20px 20px;
+}
+
+// チェック
+.is-style-checkered-box {
+  background-image: linear-gradient(90deg, rgba(232, 238, 236, 0.5) 50%, transparent 50%), linear-gradient(rgba(234, 236, 238, 0.5) 50%, transparent 50%);
+  background-size: 15px 15px;
+}
+
+// ステッチ
+.is-style-stitch-box {
+  background: #fbfaf5;
+  box-shadow: 0px 0px 0px 10px #fbfaf5;
+  border: dashed 2px var(--cocoon-box-border-color);
+}
+
+// カギ括弧
+.is-style-square-brackets-box {
+  position: relative;
+}
+.is-style-square-brackets-box::before,
+.is-style-square-brackets-box::after{
+  content:'';
+  width: 20px;
+  height: 30px;
+  position: absolute;
+  display: inline-block;
+}
+.is-style-square-brackets-box::before{
+  border-left: solid 1px var(--cocoon-box-border-color);
+  border-top: solid 1px var(--cocoon-box-border-color);
+  top:0;
+  left: 0;
+}
+.is-style-square-brackets-box::after{
+  border-right: solid 1px var(--cocoon-box-border-color);
+  border-bottom: solid 1px var(--cocoon-box-border-color);
+  bottom:0;
+  right: 0;
+}
+
+// 角括弧
+.is-style-parenthetic-box{
+  position: relative;
+}
+.is-style-parenthetic-box::after,
+.is-style-parenthetic-box::before {
+  // border-color: var(--cocoon-box-border-color);
+  border: 1px solid var(--cocoon-box-border-color);
+  content: "";
+  height: 100%;
+  position: absolute;
+  width: 0.7em;
+}
+.is-style-parenthetic-box::before {
+  border-right-width: 0;
+  // border-bottom: 1px solid var(--cocoon-box-border-color);
+  // border-left: 1px solid var(--cocoon-box-border-color);
+  // border-top: 1px solid var(--cocoon-box-border-color);
+  bottom: 0;
+  left: 0;
+}
+.is-style-parenthetic-box::after {
+  border-left-width: 0;
+  // border-bottom: 1px solid var(--cocoon-box-border-color);
+  // border-right: 1px solid var(--cocoon-box-border-color);
+  // border-top: 1px solid var(--cocoon-box-border-color);
+  bottom: 0;
+  right: 0;
+}
+
+// 交差線
+.is-style-cross-line{
+  position: relative;
+  border-top: solid 2px var(--cocoon-box-border-color);
+  border-bottom: solid 2px var(--cocoon-box-border-color);
+}
+.is-style-cross-line::before, .is-style-cross-line::after{
+  content: '';
+  position: absolute;
+  top: -10px;
+  width: 2px;
+  height: -webkit-calc(100% + 20px);
+  height: calc(100% + 20px);
+  background-color: var(--cocoon-box-border-color);
+}
+.is-style-cross-line::before {left: 10px;}
+.is-style-cross-line::after {right: 10px;}
+
+// ずれた二重線
+.is-style-p-style-08{
+	border: 1px solid var(--cocoon-box-border-color);
+	position: relative;
+}
+.is-style-p-style-08::after{
+	border: 1px solid var(--cocoon-box-border-color);
+	content: '';
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	width: 100%;
+	height: 100%;
+}
+
+// 角三角
+.is-style-triangle-box{
+  position: relative;
+  border:1px solid var(--cocoon-box-border-color);
+}
+.is-style-triangle-box::before{
+  border-bottom:30px solid transparent;
+  border-left:30px solid var(--cocoon-box-border-color);
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.is-style-triangle-box::after{
+  border-left:30px solid transparent;
+  border-bottom:30px solid var(--cocoon-box-border-color);
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  }
+
+// クリップ
+.is-style-clip-box {
+  background-color: var(--cocoon-white-color);
+  position: relative;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 2px #ccc;
+ }
+ .is-style-clip-box::before {
+  position: absolute;
+  content: '';
+  top: -15px;
+  right: 10px;
+  height: 55px;
+  width: 15px;
+  border: 3px solid var(--cocoon-box-border-color);
+  background: none;
+  border-radius: 12px;
+  box-shadow: 1px 1px 2px #999;
+  transform: rotate(10deg);
+  z-index: 1;
+ }
+ .is-style-clip-box::after {
+  position: absolute;
+  content: '';
+  top: 0px;
+  width: 10px;
+  right: 20px;
+  border: 5px solid transparent;
+  background: inherit;
+  z-index: 2;
+ }
+
+ // ホチキス
+.is-style-stapler-box {
+  position: relative;
+  padding: 35px 20px 15px;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 2px #ccc;
+}
+.is-style-stapler-box::before,
+.is-style-stapler-box::after {
+  position: absolute;
+  content: '';
+  top: 15px;
+  width: 30px;
+  border: 1.5px solid #C0C0C0;
+  border-radius: 20px;
+  box-shadow: 0 -1px 2px #555;
+}
+.is-style-stapler-box::before { left: 20%;}
+.is-style-stapler-box::after { right: 20%;}
+
+// ホチキス左上
+.is-style-stapler-top-left-box {
+  position: relative;
+  padding: 20px 20px 20px 35px;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 2px #ccc;
+}
+.is-style-stapler-top-left-box::before {
+  position: absolute;
+  content: '';
+  top: 5px;
+  left: 20px;
+  height: 25px;
+  border: 1.5px solid #ccc;
+  border-radius: 12px;
+  box-shadow: 1px 1px 1px #333;
+  transform: rotate(45deg);
+}
+
+// 穴あけパンチ
+.is-style-hole-punch-box {
+  position: relative;
+  padding: 40px 20px 15px;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 2px #ccc;
+}
+.is-style-hole-punch-box::before,
+.is-style-hole-punch-box::after {
+  position: absolute;
+  content: '';
+  top: 10px;
+  width: 18px;
+  height : 18px;
+  box-shadow: -1px -1px 8px #ccc inset;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+}
+.is-style-hole-punch-box::before { left: 30%;}
+.is-style-hole-punch-box::after { right: 30%;}
+
+ // 手書き風
+.is-style-handwritten-box {
+  border-radius: 30px 60px/60px 30px;
+  border: solid 8px #c0c6c9;
+}
+
+// 上線
+.is-style-border-top-box {
+  border-top: solid 3px var(--cocoon-box-border-color);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+
+// 付箋
+.is-style-border-left-box {
+  border-left: solid 3px var(--cocoon-box-border-color);
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.33);
+}
+
+// 左吹き出し
+[class^="is-style-balloon-"], [class*=" is-style-balloon-"] {
+	position: relative;
+	background: var(--cocoon-white-color);
+	border: 1px solid var(--cocoon-box-border-color);
+  border-radius: 4px;
+  &::before,
+  &::after{
+    border: solid transparent;
+    content: "";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+}
+
+.is-style-balloon-left-box::after,
+.is-style-balloon-left-box::before {
+	right: 100%;
+	top: 50%;
+}
+
+.is-style-balloon-left-box::after {
+	border-right-color: var(--cocoon-white-color);
+	border-width: 9px;
+	margin-top: -9px;
+	// margin-top: -9px;
+  // width: 14px;
+  // height: 14px;
+  // background: inherit;
+  // transform: rotate(45deg);
+  // left: -5px;
+}
+.is-style-balloon-left-box::before {
+	border-right-color: inherit;
+	border-width: 10px;
+	margin-top: -10px;
+}
+
+// 右吹き出し
+.is-style-balloon-right-box::after,
+.is-style-balloon-right-box::before {
+	left: 100%;
+	top: 50%;
+}
+
+.is-style-balloon-right-box::after {
+	border-left-color: var(--cocoon-white-color);
+	border-width: 9px;
+	margin-top: -9px;
+  // margin-top: -9px;
+  // width: 14px;
+  // height: 14px;
+  // background: inherit;
+  // transform: rotate(45deg);
+  // left: calc(100% - 12px);
+}
+.is-style-balloon-right-box::before {
+	border-left-color: inherit;
+	border-width: 10px;
+	margin-top: -10px;
+}
+
+// 上吹き出し
+.is-style-balloon-top-box::after,
+.is-style-balloon-top-box::before {
+	bottom: 100%;
+	left: 50%;
+}
+
+.is-style-balloon-top-box::after {
+	border-bottom-color: var(--cocoon-white-color);
+	border-width: 9px;
+	margin-left: -9px;
+  // width: 14px;
+  // height: 14px;
+  // background: inherit;
+  // transform: rotate(45deg);
+  // top: -5px;
+  // left: calc(50% - 9px);
+}
+.is-style-balloon-top-box::before {
+	border-bottom-color: inherit;
+	border-width: 10px;
+	margin-left: -10px;
+}
+
+// 下吹き出し
+.is-style-balloon-bottom-box::after,
+.is-style-balloon-bottom-box::before {
+	top: 100%;
+	left: 50%;
+}
+
+.is-style-balloon-bottom-box::after {
+	border-top-color: var(--cocoon-white-color);
+	border-width: 9px;
+	margin-left: -9px;
+  // width: 14px;
+  // height: 14px;
+  // background: inherit;
+  // transform: rotate(45deg);
+  // top: calc(100% - 12px);
+  // left: calc(50% - 9px);
+}
+.is-style-balloon-bottom-box::before {
+	border-top-color: inherit;
+	border-width: 10px;
+	margin-left: -10px;
+}
+
+///////////////////////////////////////////
+// リストブロックスタイル
+///////////////////////////////////////////
+// :is(.is-style-numeric-list-enclosed, .is-style-numeric-list-rank, .is-style-numeric-list-step)
+[class*="is-style-numeric-list-"]{
+  counter-reset: list;
+  list-style-type: none !important;
+  // margin-left: 20px;
+  >li{
+    position:relative;
+    margin: 0.4em 0;
+    line-height: 1.6;
+    padding-left: 1.8em;
+    &::before{
+      counter-increment: list;
+      content: counter(list);
+      font-size: 14px;
+      font-family: 'arial narrow', sans-serif !important;
+      font-weight: normal !important;
+      width: 1.6em;
+      height: 1.6em;
+      left: 0;
+      position: absolute;
+      top: 0;
+      text-align: center;
+      line-height: 1.6;
+      border-radius: 50%;
+    }
+  }
+}
+//アイコンリストブロック内のリストブロックアイテムスタイルの調整
+.iconlist-box {
+  [class*="is-style-numeric-list-"],
+  [class*="is-style-icon-list-"]{
+    >li{
+      &::before{
+        margin-left: 0;
+      }
+    }
+
+  }
+}
+.is-style-numeric-list-enclosed > li:before{
+  color: var(--cocoon-white-color) !important;
+  background-color: var(--cocoon-box-border-color);
+}
+
+//順位
+.is-style-numeric-list-rank > li:before{
+  background-color: var(--cocoon-white-color);
+  border: 1px solid var(--cocoon-box-border-color);
+  border-radius: 50%;
+}
+.is-style-numeric-list-rank > li:nth-of-type(1):before{
+  background-color: #ffd700;
+  border-color: #daa520;
+  color: #8b4513 !important;
+}
+.is-style-numeric-list-rank > li:nth-of-type(2):before{
+  background-color: #dcdcdc;
+  border-color: #696969;
+  color: #444 !important;
+}
+.is-style-numeric-list-rank > li:nth-of-type(3):before{
+  background-color: #eb9b6f;
+  border-color: #ad3528;
+  color: #583822 !important;
+}
+
+//ステップ
+.is-style-numeric-list-step > li{
+  margin: 1em 0;
+}
+.is-style-numeric-list-step > li:before{
+  background-color: var(--cocoon-white-color);
+  border: 2px solid var(--cocoon-box-border-color);
+  z-index: 100;
+}
+.is-style-numeric-list-step > li::after {
+  position: absolute;
+  top: 0;
+  bottom: -1em;
+  z-index: 90;
+  left: 0.7em;
+  border-left: 2px solid var(--cocoon-box-border-color);
+  content: "";
+}
+.is-style-numeric-list-step > li:last-of-type::after{
+  display: none;
+}
+
+//アイコンリスト
+[class*="is-style-icon-list-"]{
+  list-style: none !important;
+
+  >li{
+    padding-left: 1.6em;
+    position: relative;
+
+  }
+  >li::before{
+    color: var(--cocoon-box-border-color);
+    display: block;
+    font-family: icomoon !important;
+    font-weight: normal !important;
+    height: auto;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1em;
+  }
+}
+
+//チェック
+.is-style-icon-list-check > li::before{
+  content: "\e90a" !important;
+}
+//チェック有効
+.is-style-icon-list-check-valid > li::before{
+  content: "\e908" !important;
+}
+//チェック無効
+.is-style-icon-list-check-disabled > li::before{
+  content: "\e909" !important;
+}
+//丸
+.is-style-icon-list-circle > li::before{
+  content: "\e90b" !important;
+  color: #9ccc65 !important;
+}
+//三角
+.is-style-icon-list-triangle > li::before{
+  content: "\e91b" !important;
+  color: #ffca28 !important;
+}
+//バツ
+.is-style-icon-list-cross > li::before{
+  content: "\e922" !important;
+  color: #ff7043 !important;
+}
+//情報
+.is-style-icon-list-info > li::before{
+  content: "\e910" !important;
+  color: #4fc3f7 !important;
+}
+//疑問
+.is-style-icon-list-question > li::before{
+  content: "\e90f" !important;
+  color: #ffca28 !important;
+}
+//警告
+.is-style-icon-list-warning > li::before{
+  content: "\e921" !important;
+  color: #ff7043 !important;
+}
+//肉球
+.is-style-icon-list-paw > li::before{
+  content: "\e907" !important;
+  color: #946243 !important;
+}
+//サムアップ
+.is-style-icon-list-thumb-up > li::before{
+  content: "\e918" !important;
+  color: #4db6ac !important;
+}
+//サムダウン
+.is-style-icon-list-thumb-down > li::before{
+  content: "\e91a" !important;
+  color: #ee6e73 !important;
+}
+//禁止
+.is-style-icon-list-ban > li::before{
+  content: "\e90d" !important;
+  color: #ff7043 !important;
+}
+//男性
+.is-style-icon-list-user-man > li::before{
+  content: "\e91d" !important;
+  color: #7986cb !important;
+}
+//女性
+.is-style-icon-list-user-woman > li::before{
+  content: "\e91e" !important;
+  color: #ee6e73 !important;
+}
+//コメント
+.is-style-icon-list-comment > li::before{
+  content: "\e911" !important;
+}
+//ハート
+.is-style-icon-list-heart > li::before{
+  content: "\e9da" !important;
+  color: #ef5350 !important;
+}
+//ハートブレイク
+.is-style-icon-list-heart-broken > li::before{
+  content: "\e9db" !important;
+  color: #ef5350 !important;
+}
+

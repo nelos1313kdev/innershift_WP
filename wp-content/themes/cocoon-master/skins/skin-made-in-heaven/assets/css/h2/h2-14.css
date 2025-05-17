@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+/* 塗りつぶし(アクセント) */
+
+.article h2,
+.main .article .widget-title,
+.main .under-entry-content h2 {
+  background-color: var(--hover-color);
+  color: #333;
+  padding: 18px 23px;
+  position: relative;
+  z-index: auto;
+}
+
+.article h2:before,
+.main .article .widget-title:before,
+.main .under-entry-content h2:before {
+  background: linear-gradient(135deg, transparent 25%, var(--main-color) 26%, var(--main-color) 50%, transparent 51%, transparent 75%, var(--main-color) 76%, var(--main-color));
+  background-size: 4px 4px;
+  content: '';
+  height: 100%;
+  left: 5px;
+  position: absolute;
+  top: 5px;
+  width: 100%;
+  z-index: -1;
+}

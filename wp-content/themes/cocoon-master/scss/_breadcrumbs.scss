@@ -1,0 +1,39 @@
+/************************************
+** パンくずリスト
+************************************/
+.breadcrumb{
+  margin: 1em .4em;
+  color: var(--cocoon-x-pallid-text-color);
+  font-size: 13px;
+}
+
+.breadcrumb div {
+  display: inline;
+}
+
+.breadcrumb .sp{
+  margin: 0 10px;
+}
+
+.breadcrumb a{
+  text-decoration:none;
+  color: var(--cocoon-x-pallid-text-color);
+}
+
+.breadcrumb.sbp-main-before,
+.breadcrumb.sbp-footer-before,
+.breadcrumb.pbp-main-before,
+.breadcrumb.pbp-footer-before{
+  background-color: var(--cocoon-white-color);
+  margin: 12px auto 0;
+  padding: .6em 1em;
+}
+
+.breadcrumb.sbp-main-before + .content,
+.breadcrumb.pbp-main-before + .content{
+  margin-top: 12px;
+}
+
+.breadcrumb-caption{
+  margin: 0 3px;
+}

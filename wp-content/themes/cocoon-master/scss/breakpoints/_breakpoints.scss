@@ -1,0 +1,24 @@
+// //1240px以下
+// @media screen and (max-width: 1240px){
+//   @import "max-width-1240";
+// }
+
+//1023px以下
+@media screen and (max-width: 1023px){
+  @import "max-width-1023";
+}
+
+//834px以下
+@media screen and (max-width: 834px){
+  @import "max-width-834";
+}
+
+//480px以下
+@media screen and (max-width: 480px){
+  @import "max-width-480";
+}
+
+//356px以下
+@media screen and (max-width: 356px){
+  @import "max-width-356";
+}

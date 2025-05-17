@@ -1,0 +1,96 @@
+/************************************
+** カルーセル
+************************************/
+.carousel{
+  margin-top: 10px;
+  line-height: 1.1;
+  opacity: 0;
+  transition: all 1s ease-out;
+
+  .slick-arrow:before{
+    color: var(--cocoon-thin-color);
+  }
+
+  .a-wrap{
+    padding: 0.2em 0.3em;
+  }
+}
+
+.carousel-in{
+  background-color: var(--cocoon-white-color);
+  padding: 2px 0;
+}
+
+.carousel-content{
+  margin: 0 30px;
+  padding-bottom: 4px;
+  a{
+    float: left;
+    width: 10%;
+  }
+
+  .slick-track{
+    display: flex;
+    padding: 10px 0;
+  }
+  .slick-slide {
+    height: auto;
+    //display: block;
+  }
+  .a-wrap{
+    margin: 0 6px 3px;
+    &:first-child{
+      margin-left: 4px;
+    }
+  }
+}
+
+
+
+// .slick-initialized .slick-slide{
+//   display: block !important;
+// }
+
+
+
+.carousel-entry-card-thumb{
+  @extend %card_thumb;
+  float: none;
+  display: inline-block;
+}
+
+.carousel-entry-card-title{
+  margin-bottom: 0.6em;
+  font-size: 16px;
+  margin-top: 4px;
+  height: 3.2em;
+  overflow: hidden;
+}
+
+/************************************
+** カルーセルの非表示設定
+************************************/
+.no-carousel{
+  .carousel{
+    display: none;
+  }
+}
+
+.carousel.loaded {
+  opacity: 1;
+}
+
+//カルーセルの枠線
+.ccb-carousel-border{
+  .a-wrap{
+    border: 1px solid var(--cocoon-basic-border-color);
+  }
+}
+
+.carousel-entry-card-title,
+.blogcard-snippet{
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}

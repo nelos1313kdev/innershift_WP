@@ -1,0 +1,69 @@
+//インフォリストのCSS
+.info-list{
+  padding: 20px;
+
+  &.is-style-frame-border{
+    border: 1px solid;
+    border-color: var(--cocoon-three-d-border-colors);
+    border-radius: var(--cocoon-basic-border-radius);
+  }
+  .info-list-item-categorys{
+    .cat-label{
+      border: 0;
+      position: relative;
+    }
+  }
+}
+
+.info-list-caption{
+  text-align: center;
+}
+
+.info-list-item{
+  padding: 14px 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.info-list-item-content{
+  margin-bottom: 8px;
+}
+
+.is-style-divider-line{
+  .info-list-item{
+    border-bottom: 1px dashed var(--cocoon-basic-border-color);
+    &:last-child{
+      border-bottom-style: none;
+    }
+  }
+}
+
+.info-list-item-meta{
+  font-size: 12px;
+  opacity: 0.6;
+  line-height: 20px;
+}
+
+.info-list-item-date{
+  margin-right: 18px;
+}
+
+.info-list-item-categorys{
+  .entry-category{
+    padding: 1px 18px;
+    margin-right: 8px;
+    border: 1px solid #999;
+    height: 20px;
+    line-height: 17px;
+    display: inline-block;
+    border-radius: 2px;
+  }
+}
+
+.info-list-item-content-link{
+  color: var(--cocoon-text-color);
+  text-decoration: none;
+  &:hover{
+    text-decoration: underline;
+  }
+}

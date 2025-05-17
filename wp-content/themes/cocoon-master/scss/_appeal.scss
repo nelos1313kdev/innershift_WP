@@ -1,0 +1,65 @@
+/************************************
+** アピールエリア
+************************************/
+.appeal{
+  @extend %background_image;
+}
+
+.no-appeal-area .appeal{
+  display: none;
+}
+
+.appeal-in{
+  display: flex;
+  min-height: 300px;
+  padding: 3% 5%;
+}
+
+.appeal-content{
+  // width: 50%;
+  // height: 60%;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // bottom: 0;
+  max-width: 740px;
+  background-color: rgba(255, 255, 255, 0.85);
+  margin: auto;
+  padding: 2em;
+  text-align: center;
+  border-radius: var(--cocoon-basic-border-radius);
+
+  display: block;
+  // display: flex;
+  // flex-direction: column;
+  // align-content: space-between;
+  //color: #fff;
+}
+
+.appeal-title{
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.appeal-message{
+  margin-bottom: 1em;
+}
+
+.appeal-button{
+  @include link_cancel(var(--cocoon-white-color));
+
+  background-color: #c9171e;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  //max-width: 80%;
+  //margin: auto;
+  padding: 9px 42px;
+  margin: 0 8px;
+  border-radius: var(--cocoon-basic-border-radius);
+  &:hover{
+    color: var(--cocoon-white-color);
+    opacity: 0.7;
+  }
+}

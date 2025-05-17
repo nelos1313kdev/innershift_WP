@@ -1,0 +1,887 @@
+.ts-table-row {
+  display: table;
+}
+
+.ts-table-row>div {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.ts-table-auth {
+  width: 70%;
+  border-right: 10px solid transparent;
+}
+
+.ts-table-ad {
+  width: 30%;
+  border-left: 10px solid transparent;
+}
+
+.ts-ad-area {
+  margin-top: .5em;
+  border-left: 3px solid #0073aa;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, .04);
+  background: #fff;
+  padding: 5px 10px 5px 10px;
+}
+
+.toggleText {
+  color: #0095ff!important;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.toggleText:active {
+  opacity: .7;
+}
+
+.button-hero:hover {
+opacity: 0.9;
+}
+
+#choiceTheme {
+padding-bottom: 8px;
+display: none;
+}
+
+#choiceTheme select {
+margin: 4px 0;
+width: 100%;
+}
+
+#choiceTheme p {
+display: inline-block;
+margin: 4px 0;
+}
+
+#choiceTheme h3 {
+margin: 8px 0;
+font-size: 16px;
+}
+
+#choiceThemeNew p {
+display: inline-block;
+margin: 4px 0;
+font-size: 15px;
+}
+
+#choiceThemeNew p.title {
+  font-size: 13px;
+}
+
+#choiceThemeNew h3 {
+margin: 8px 0;
+font-size: 16px;
+}
+
+.ts-ad-area a.button {
+  background-color: #0095ff!important;
+  border-color: #0095ff!important;
+  box-shadow: 0 1px 0 #0095ff!important;
+  color: #fff!important;
+}
+
+#ts-ad-area-messages {
+  height: 160px;
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+}
+
+.ts-custome_form {
+  padding: 0;
+}
+
+.ts-custome_form .form-table th {
+width: 220px;
+padding: 16px 10px 16px 0;
+}
+
+.ts-custome_form .form-table td {
+width: 80%;
+padding: 12px 10px 12px 0;
+}
+
+.ts-custome_form table {
+background-color: transparent;
+border: none;
+box-shadow: none;
+}
+
+.ts-custome_form .fontlist_update {
+padding: 0 10px 12px 0 !important;
+}
+
+.update_msg {
+padding: 0 10px 12px 0 !important;
+}
+
+.ts-custome_form .fontlist_update p {
+padding: 0;
+margin-top: 0;
+}
+
+.ts-custome_form .fontlist_update p input {
+color: #555;
+  border-color: #ccc;
+  background: #f7f7f7;
+box-shadow: 0 1px 0 #ccc;
+text-shadow: none;
+}
+
+.ts-custome_form .fontlist_update p input:hover {
+background: #fafafa;
+border-color: #999;
+color: #23282d;
+}
+
+.ts-custome_form .fontlist_update p input:active {
+background: #eee;
+  border-color: #999;
+  box-shadow: inset 0 2px 5px -3px rgba(0,0,0,.5);
+  -webkit-transform: translateY(1px);
+  transform: translateY(1px);
+}
+
+.ts-custome_form .fontlist_update p input:focus {
+background: #fafafa;
+border-color: #999;
+color: #23282d;
+}
+
+
+.ts-custome_form .block_title {
+width: 220px;
+}
+
+.label_wrapper {
+width: 80%;
+}
+
+.ts-custome_form_site table {
+background-color: transparent;
+border: none;
+box-shadow: none;
+}
+
+.ts-custome_form_site .form-table th {
+width: 240px;
+padding: 8px 10px 8px 0;
+}
+
+.ts-custome_form_site .font_table_td {
+padding: 8px 10px;
+}
+
+.ts-custome_form_site .cls_delete_btn {
+bottom: -0.5px;
+}
+
+#customeFontThemeForm table {
+box-shadow: none;
+background-color: transparent;
+}
+
+#customeFontThemeForm table th {
+font-weight: 600;
+color: #23282d;
+}
+
+#customeFontThemeForm .cls_delete_btn {
+bottom: 0;
+}
+
+.tableBorder {
+  border-top: 1px solid #ddd!important;
+  border-bottom: 1px solid #ddd!important;
+}
+
+.wrap .block_wrap {
+display: flex;
+}
+
+.block_title {
+font-size: 14px;
+font-weight: 600;
+width: 254px;
+  padding-right: 10px;
+display: inline-block;
+}
+
+.wrap .block_wrap form {
+display: inline-block;
+width: 76%;
+margin: 1em 0;
+}
+
+.textMute {
+  color: #9A9899;
+}
+
+.dangerText {
+  color: #DC3737;
+}
+
+.secondTable {
+  border-top: none;
+  position: relative;
+  bottom: 8px;
+}
+
+#fontThemeUpdateButton {
+font-weight: normal;
+}
+
+.limitTriangle {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 10px;
+  padding: 0 5px;
+  position: relative;
+  bottom: 2px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.limitTriangle.open {
+  transform: rotate(-180deg);
+  transition: all 0.3s;
+}
+
+.authTriangle {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 10px;
+  padding: 0 5px;
+  position: relative;
+  bottom: 2px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.authTriangle.open {
+  transform: rotate(-180deg);
+  transition: all 0.3s;
+}
+
+.advancedTriangle {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 10px;
+  padding: 0 5px;
+  position: relative;
+  bottom: 2px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.advancedTriangle.open {
+  transform: rotate(-180deg);
+  transition: all 0.3s;
+}
+
+.custum_form_ladio {
+  display: block;
+  padding: 14px 0 2px;
+  font-weight: bold;
+}
+
+.custum_form_ladio input {
+  margin-right: 8px;
+}
+
+p.setting_read {
+  margin: 0;
+  padding: 4px 0 0 24px;
+  font-weight: normal;
+}
+
+.font_custum_select {
+padding: 0 0 8px;
+}
+
+.font_custum_select span {
+  width: 184px;
+  line-height: 30px;
+}
+
+.font_custum_select p {
+  font-size: 15px;
+}
+
+.font_custum_select p.title {
+  font-size: 13px;
+}
+
+.labelItems {
+  display: none;
+}
+
+.post_font_label {
+display: block;
+}
+
+#fontThemeSelect {
+  width: 70%;
+  display: inline-block;
+}
+
+
+.post_font_check {
+  border-radius: 2px;
+}
+
+
+.button.delete {
+  background: #e14d43;
+  border-color: #d02c21 #ba281e #ba281e;
+  color: #fff;
+  -webkit-box-shadow: 0 1px 0 #ba281e;
+  box-shadow: 0 1px 0 #ba281e;
+  text-shadow: 0 -1px 1px #ba281e, 1px 0 1px #ba281e, 0 1px 1px #ba281e, -1px 0 1px #ba281e;
+}
+
+.button.delete:hover,
+.button.delete:focus {
+  color: #fff;
+  border-color: #e14d43;
+  background: #e14d43;
+}
+
+.button.delete:focus {
+    color: #fff;
+    border-color: #e14d43;
+    background: #e14d43;
+}
+
+.button.delete[disabled],
+.button.delete:disabled {
+  color: #f4cdcd;
+  border-color: #e9eff3;
+}
+
+.parsley-errors-list li.parsley-required {
+  color: #DC3737;
+}
+
+.parsley-errors-list li.parsley-type {
+  color: #DC3737;
+}
+
+.parsley-errors-list li.parsley-length {
+  color: #DC3737;
+}
+
+.parsley-errors-list li.parsley-checkPassword {
+  color: #DC3737;
+}
+
+td.add_class_td button#add_box {
+  background: #0085ba;
+  box-shadow: 0 1px 0 #006799;
+  color: #fff;
+  line-height: 22px;
+  height: 24px;
+  font-size: 12px;
+  border-radius: 0 2px 2px 0;
+  border-color: #0073aa #006799 #006799;
+  cursor: pointer;
+  margin-right: 6px;
+  text-decoration: none;
+  text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799;
+  position: relative;
+  top: -1px;
+}
+
+td.add_class_td button#add_box:hover {
+opacity: 0.9;
+}
+
+button#input_add_btn {
+  background: #0085ba;
+  box-shadow: 0 1px 0 #006799;
+  border-color: #0073aa #006799 #006799;
+  color: #fff;
+  padding: 0px 6px 3px;
+  line-height: 19px;
+  height: 24px;
+  font-size: 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799;
+}
+
+button#input_add_btn:hover {
+  opacity: 0.9;
+}
+
+button#input_add_btn:focus {
+  outline: 0;
+}
+
+.b__font_target_form {
+width: 98.5%;
+display: none;
+}
+
+.b__font_target_form .font_select_menu {
+left: 24px;
+}
+
+.font_select_menu {
+  display: none;
+  margin: 0px;
+  max-height: 100px;
+  overflow: auto;
+  position: relative;
+  z-index: 2;
+left: 0px;
+  padding-bottom: 200px;
+}
+
+.font_select_menu::-webkit-scrollbar {
+    display: none;
+}
+
+.font_select_menu li {
+    border-top: 1px solid #111;
+    position: relative;
+    float: left;
+    width: 210px;
+    height: 32px;
+    background-color: #313131;
+    margin-bottom: 0;
+    cursor: pointer;
+    display: block;
+    left: 2px;
+}
+
+.font_select_menu li.font-name {
+  width: 240px;
+}
+
+.font_select_menu li.no-match {
+  display: none;
+}
+
+.font_select_menu li:hover {
+  background-color: #2a1f1f;
+}
+
+.font_select_menu li .subclass li:hover {
+  background-color: #2a1f1f;
+}
+
+.font_select_menu li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 32px;
+  text-indent: 16px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+.font_select_menu li.font-name a {
+  text-indent: 8px;
+}
+
+.font_select_menu_2 {
+  display: none;
+  margin: 0px;
+  max-height: 250px;
+  overflow: auto;
+}
+
+.cls_tb #font_select_menu_2 {
+  left: 24px;
+}
+
+.font_select_menu_2::-webkit-scrollbar {
+  display: none;
+}
+
+.font_select_menu_2 li {
+  border-top: 1px solid #111;
+  position: relative;
+  float: left;
+  width: 208px;
+  height: 32px;
+  background-color: #313131;
+  margin-bottom: 0;
+  cursor: pointer;
+  display: block !important;
+}
+
+.font_select_menu_2 li.no-match {
+  display: none;
+}
+
+.font_select_menu_2 li:hover {
+  background-color: #2a1f1f;
+}
+
+.font_select_menu_2 li .subclass li:hover {
+  background-color: #2a1f1f;
+}
+
+.font_select_menu_2 li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 32px;
+  text-indent: 16px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+.subclass {
+  display: none;
+  top: -1px;
+  left: 208px;
+  position: absolute;
+  width: 100%;
+  color: #fff !important;
+}
+
+
+.subclass li {
+  border-top: 1px solid #111;
+  margin-bottom: 0;
+}
+
+.cls_delete_btn {
+  padding-left: 6px;
+  width: 18px;
+  height: 22px;
+  border-radius: 2px;
+  display: inline-block;
+  bottom: -1px;
+  position: relative;
+  z-index: 1;
+  font-size: 20px;
+  line-height: 19px;
+  vertical-align: top;
+  cursor: auto;
+  border: 1px solid #ccc;
+  color: #ccc;
+  font-weight: 300;
+}
+
+.cls_delete_btn_selected {
+  background: #e14d43;
+  border-color: #d02c21 #ba281e #ba281e;
+  border-width: 1px;
+  border-style: solid;
+  box-shadow: 0 1px 0 #ba281e;
+  text-shadow: 0 -1px 1px #ba281e, 1px 0 1px #ba281e, 0 1px 1px #ba281e, -1px 0 1px #ba281e;
+  color: #fff;
+}
+
+.cls_delete_btn_selected:hover {
+  border-color: #e14d43;
+  background: #e14d43;
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+#fontThemeDeleteButton {
+margin-top: 6px !important;
+font-weight: normal;
+}
+
+.b_def_fontlist {
+order: 2;
+}
+
+.add_class_label {
+  display: inline-block;
+  margin-left: 4px !important;
+  border: solid 1px #32373c !important;
+  font-size: 12px !important;
+  padding: 0px 4px;
+  border-radius: 3px;
+  color: #32373c !important;
+  cursor: pointer;
+  position: relative;
+  bottom: 2px;
+  height: 23px;
+  line-height: 21px !important;
+}
+
+.add_class_label:hover {
+background-color: #ddd;
+}
+
+.class_input {
+  margin-right: 0;
+}
+
+#custome_font_name {
+width: 26.85em !important;
+}
+
+.is-hide {
+    display: none !important;
+}
+
+li.no-match .is-active {
+  display: block !important;
+}
+.font_select_menu .is-active {
+  display: block !important;
+}
+
+.w_fontlist {
+  width: 419px;
+  flex-wrap: wrap;
+  height: 0;
+}
+
+.w_fontlist2 {
+  width: 415px;
+  flex-wrap: wrap;
+  height: 0;
+}
+
+.font_table_td {
+height: 29px;
+}
+
+.w_font_select {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.w_font_select .font_delete_btn {
+  order: 3;
+  top: 0;
+  left: -412px;
+}
+
+.w_font_select .fontlist_input {
+  order: -1;
+}
+
+.w_font_select .w_fontlist {
+  order: 2;
+}
+
+.fontlist_input {
+  border: 1px solid #ddd;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .07);
+  background-color: #fff !important;
+  color: #32373c;
+  outline: 0;
+  transition: 50ms border-color ease-in-out;
+  width: 25em;
+  height: 25px;
+}
+
+.fontlist_input::placeholder {
+  color: #72777C;
+}
+
+.fontlist_input:-ms-input-placeholder {
+  color: #72777C;
+}
+
+i.mce-i-fontfamily_button {
+  width: 0 !important;
+}
+
+#dashboard-widgets #slug .inside {
+  padding: 0;
+}
+
+#dashboard-widgets #slug .inside ul {
+  margin-bottom: 0;
+}
+
+#dashboard-widgets #slug .inside ul li {
+  margin: 8px 12px;
+}
+
+#dashboard-widgets #slug .inside ul hr {
+  margin: 0;
+  border: 0;
+  border-top: 1px solid #ddd;
+  border-bottom: none;
+}
+
+
+/*** on/offボタン ***/
+
+.switch__label {
+  width: 50px;
+  position: relative;
+  display: inline-block;
+  top: -4px;
+  margin-right: 10px;
+}
+
+.switch__content {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  border-radius: 30px;
+  height: 31px;
+  overflow: hidden;
+}
+
+.switch__content:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: calc(100% - 3px);
+  height: calc(100% - 3px);
+  top: 0;
+  left: 0;
+  border: 1.5px solid #E5E5EA;
+  border-radius: 30px;
+  background-color: #fff;
+}
+
+.switch__content:after {
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: transparent;
+  width: 0;
+  height: 0;
+  top: 50%;
+  left: 50%;
+  border-radius: 30px;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  -ms-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
+}
+
+input[type=checkbox].switch__input {
+  display: none;
+}
+
+.switch__circle {
+  display: block;
+  top: 2px;
+  left: 2px;
+  position: absolute;
+  -webkit-box-shadow: 0 2px 6px #999;
+  box-shadow: 0 2px 6px #999;
+  width: 27px;
+  height: 27px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  background-color: #fff;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  -ms-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
+}
+
+.switch__input:checked~.switch__circle {
+  left: 21px;
+}
+
+.switch__input:checked~.switch__content:after {
+  background-color: #4BD964;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* p.submit {
+  margin-left: 14px;
+} */
+
+/* p.submit {
+    margin-left: 14px;
+} */
+
+@media screen and (max-width: 1264px) {
+  .w_font_select .font_delete_btn {
+    top: -26px;
+    left: -60px;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  #ts-ad-area-messages {
+      height: auto;
+  }
+}
+
+@media screen and (max-width: 782px) {
+  #font_setting td {
+      width: 50% !important;
+      display: inline-block !important;
+  }
+  #font_setting td.add_class_td {
+      width: 44% !important;
+  }
+  .class_input {
+      height: 26px;
+      padding: 4px 10px 10px;
+  }
+  .font_theme_submit_btn {
+      left: 0 !important;
+}
+.block_wrap {
+  display: block !important;
+}
+#customeFontThemeForm table, #customeFontThemeForm tbody, #customeFontThemeForm tr, #customeFontThemeForm th, #customeFontThemeForm td {
+  display: block;
+  width: 100%;
+}
+
+.b__font_target_form{
+  width: 100%;
+}
+.b__font_target_form table, .b__font_target_form tbody, .b__font_target_form tr, .b__font_target_form th, .b__font_target_form td {
+  display: table-row;
+}
+.b__font_target_form thead tr {
+  display: flex !important;
+}
+.b__font_target_form thead tr th {
+  width: 35% !important;
+}
+#custome_font_name {
+  width: 173% !important;
+}
+.label_wrapper {
+  width: 100% !important;
+}
+
+.w_font_select .fontlist_input {
+  width: 400px;
+}
+
+.w_font_select .font_delete_btn {
+  top: -26px;
+  left: -10px;
+}
+}
+
+@media screen and (max-width: 483px) {
+.w_font_select .fontlist_input {
+  width: 73%;
+}
+
+#siteFontForm .font_table_td {
+  height: 40px;
+}
+
+.w_font_select .font_delete_btn {
+  top: -2px;
+  left: -1px;
+}
+}

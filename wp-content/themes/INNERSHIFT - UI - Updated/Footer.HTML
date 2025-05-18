@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Footer Example</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #929292;
+      color: #fff;
+    }
+
+    footer {
+      background-color: black;
+      color: #fff;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+      margin-top: 12rem;
+      opacity: 0.7;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-column h4 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-column li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-column a {
+      color: #9ca3af; /* gray-400 */
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-column a:hover {
+      color: #ffffff;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 3rem auto 0;
+      padding-top: 2rem;
+      border-top: 1px solid #1f2937; /* gray-800 */
+      text-align: center;
+      font-size: 1.5rem;
+      color: #9ca3af; /* gray-400 */
+    }
+  </style>
+</head>
+<body>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h4>INNERSHIFT</h4>
+          <ul>
+            <li><a href="/about">私たちについて</a></li>
+            <li><a href="/philosophy">哲学</a></li>
+            <li><a href="/contact">お問い合わせ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>プログラム</h4>
+          <ul>
+            <li><a href="/is360">IS360</a></li>
+            <li><a href="/gateway">Gateway</a></li>
+            <li><a href="/journal">JOURNAL</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>リソース</h4>
+          <ul>
+            <li><a href="/articles">記事</a></li>
+            <li><a href="/case-studies">事例</a></li>
+            <li><a href="/faq">よくある質問</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>その他</h4>
+          <ul>
+            <li><a href="/privacy">プライバシーポリシー</a></li>
+            <li><a href="/terms">利用規約</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; 2025 INNERSHIFT. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

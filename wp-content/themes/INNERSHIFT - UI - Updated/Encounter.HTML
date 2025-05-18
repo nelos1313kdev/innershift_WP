@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INNERSHIFT - Encounter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bud: '#a3e635',      // 芽
+                        wind: '#38bdf8',     // 風
+                        trunk: '#f59e0b',    // 幹
+                        root: '#92400e',     // 根
+                        flower: '#ec4899'    // 花
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans JP', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .viewpoint-btn {
+            transition: all 0.3s ease;
+        }
+        .viewpoint-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .viewpoint-btn.active {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        textarea {
+            min-height: 150px;
+        }
+        @media (min-width: 768px) {
+            textarea {
+                min-height: 200px;
+            }
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: rgb(255, 254, 242);
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow-x: hidden; 
+        }
+        .menu {
+            border-bottom: 1px solid rgb(177, 177, 177);
+            background-color: rgb(255, 254, 242);
+        }
+        @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        }
+
+        .mobile-menu-enter {
+        animation: slideDown 0.3s ease-out forwards;
+        }
+
+        /* Language toggle button */
+        #langToggle {
+        transition: all 0.3s ease;
+        }
+        #langToggle:hover {
+        transform: translateY(-1px);
+        }
+
+        /* Animation classes */
+        .fade-in-section {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-section.visible {
+        opacity: 1;
+        transform: none;
+        }
+
+        /* Mobile menu animation */
+        @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        }
+
+        .mobile-menu-enter {
+        animation: slideDown 0.3s ease-out forwards;
+        }
+
+        /* Language toggle button */
+        #langToggle {
+        transition: all 0.3s ease;
+        }
+        #langToggle:hover {
+        transform: translateY(-1px);
+        }
+
+        /* Responsive text sizes */
+        .responsive-text {
+        font-size: 1rem;
+        }
+        @media (max-width: 640px) {
+        .responsive-text {
+            font-size: 0.9rem;
+        }
+        }
+        @media (min-width: 1024px) {
+        .responsive-text {
+            font-size: 1.1rem;
+        }
+        }
+    </style>
+</head>
+<body class="text-gray-800 min-h-screen pt-32" style="font-family: sans-serif">
+<!-- Header -->
+    <header class="fixed menu top-0 left-0 right-0 z-50 backdrop-blur-sm shadow-sm">
+        <div class="w-full mx-auto flex items-center justify-between px-4 py-3 md:py-4 lg:px-8">
+        <!-- Logo -->
+        <a href="/" class="text-lg font-bold tracking-widest text-gray-900 ml-5 sm:ml-0">
+            <img src="./assets/images/INNERSHIFT_logotype-1.gif" alt="INNERSHIFT Logo" 
+                class="w-[100px] h-[60px] sm:w-[110px] sm:h-[65px] md:w-[120px] md:h-[70px] lg:w-[130px] lg:h-[75px] xl:w-[140px] xl:h-[80px] 2xl:w-[150px] 2xl:h-[85px] 
+                        transition-transform duration-300 hover:scale-105" />
+        </a>
+    
+        <!-- Mobile Menu Toggle -->
+        <button id="menuToggle" class="md:hidden text-gray-700 focus:outline-none hover:bg-gray-100 rounded-lg p-2 transition-colors duration-200" 
+                aria-label="メニューを開く">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex space-x-3 lg:space-x-8 text-sm md:text-base font-medium text-black tracking-wide relative">
+            <a href="/" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">INNERSHIFT</a>
+            <a href="/is360" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">IS360</a>
+            <a href="/gateway" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600 pl-4">Gateway</a>
+            <a href="/journal" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">JOURNAL</a>
+            <a href="/contact" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">お問い合わせ</a>
+            <a href="/about" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">About</a>
+        </nav>
+    
+        <!-- Language Toggle Button -->
+        <button id="langToggle" class="ml-4 flex items-center space-x-1 text-gray-700 focus:outline-none bg-gray-100 hover:bg-gray-200 rounded-md px-3 py-2" aria-label="Toggle Language">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3C7.029 3 3 7.029 3 12s4.029 9 9 9 9-4.029 9-9-4.029-9-9-9zm0 0c2.761 0 5 4.029 5 9s-2.239 9-5 9-5-4.029-5-9 2.239-9 5-9zM3.6 9h16.8M3.6 15h16.8" />
+            </svg>
+            <span id="langLabel" class="text-sm font-medium ml-1">JP</span>
+        </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white fixed font-medium top-16 left-0 right-0 z-50 shadow-md transition-all duration-300 overflow-y-auto max-h-screen">
+        <nav class="flex flex-col items-center py-4 space-y-2 responsive-text text-black font-medium">
+            <a href="/" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">INNERSHIFT</a>
+            <a href="/is360" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">IS360</a>
+            <a href="/gateway" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">Gateway</a>
+            <a href="/journal" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">JOURNAL</a>
+            <a href="/contact" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">お問い合わせ</a>
+            <a href="/about" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">About</a>
+        </nav>
+        </div>
+    </header>
+    <div class="container mx-auto px-4 py-8 max-w-3xl">
+        <!-- Header -->
+        <header class="mb-8 text-center">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Encounter</h1>
+            <p class="text-gray-600" style="font-family: sans-serif">ふと出会ったものを、記録してみましょう</p>
+        </header>
+
+        <!-- Viewpoint Selection -->
+        <div id="viewpointSelection" class="mb-8 fade-in">
+            <h2 class="text-lg font-medium text-gray-700 mb-4">視点を選んでください</h2>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+                <button data-viewpoint="bud" class="viewpoint-btn bg-bud text-white py-3 px-4 rounded-lg flex flex-col items-center">
+                    <span class="text-lg">芽</span>
+                    <span class="text-xs mt-1">始まり</span>
+                </button>
+                <button data-viewpoint="wind" class="viewpoint-btn bg-wind text-white py-3 px-4 rounded-lg flex flex-col items-center">
+                    <span class="text-lg">風</span>
+                    <span class="text-xs mt-1">気配</span>
+                </button>
+                <button data-viewpoint="trunk" class="viewpoint-btn bg-trunk text-white py-3 px-4 rounded-lg flex flex-col items-center">
+                    <span class="text-lg">幹</span>
+                    <span class="text-xs mt-1">支え</span>
+                </button>
+                <button data-viewpoint="root" class="viewpoint-btn bg-root text-white py-3 px-4 rounded-lg flex flex-col items-center">
+                    <span class="text-lg">根</span>
+                    <span class="text-xs mt-1">深層</span>
+                </button>
+                <button data-viewpoint="flower" class="viewpoint-btn bg-flower text-white py-3 px-4 rounded-lg flex flex-col items-center">
+                    <span class="text-lg">花</span>
+                    <span class="text-xs mt-1">共有</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Question Display -->
+        <div id="questionDisplay" class="hidden mb-8 bg-white p-6 rounded-lg shadow fade-in">
+            <div class="mb-6">
+                <div class="flex justify-between items-center mb-2">
+                    <span id="selectedViewpoint" class="px-3 py-1 rounded-full text-white text-sm"></span>
+                    <button id="changeViewpoint" class="text-xs text-gray-500 hover:text-gray-700">視点を選び直す</button>
+                </div>
+                <div id="encounterQuestion" class="text-lg md:text-xl font-medium text-gray-800"></div>
+            </div>
+            
+            <div class="mb-4">
+                <textarea id="encounterText" class="w-full border border-gray-300 rounded-lg p-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="ここに自由に記述してください..."></textarea>
+            </div>
+            
+            <div class="flex justify-between items-center">
+                <div id="saveStatus" class="text-sm text-gray-500">未保存</div>
+                <div class="space-x-3">
+                    <button id="skipButton" class="px-4 py-2 text-gray-600 hover:text-gray-800">記録せずに終了</button>
+                    <button id="saveButton" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50" disabled>保存する</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Saved Indicator -->
+        <div id="savedIndicator" class="hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg fade-in">
+            記録が保存されました
+        </div>
+    </div>
+      <!-- Footer -->
+  <footer class="bg-black opacity-80 text-white py-12 mt-48">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold mb-4">INNERSHIFT</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="/about" class="hover:text-white transition">私たちについて</a></li>
+            <li><a href="/philosophy" class="hover:text-white transition">哲学</a></li>
+            <li><a href="/contact" class="hover:text-white transition">お問い合わせ</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-sm font-semibold mb-4">プログラム</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="/is360" class="hover:text-white transition">IS360</a></li>
+            <li><a href="/gateway" class="hover:text-white transition">Gateway</a></li>
+            <li><a href="/journal" class="hover:text-white transition">Journal</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-sm font-semibold mb-4">リソース</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="/articles" class="hover:text-white transition">記事</a></li>
+            <li><a href="/case-studies" class="hover:text-white transition">事例</a></li>
+            <li><a href="/faq" class="hover:text-white transition">よくある質問</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-sm font-semibold mb-4">その他</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="/privacy" class="hover:text-white transition">プライバシーポリシー</a></li>
+            <li><a href="/terms" class="hover:text-white transition">利用規約</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="mt-12 pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
+        &copy; 2025 INNERSHIFT. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+    <script>
+// Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (!mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('mobile-menu-enter');
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+            mobileMenu.classList.add('hidden');
+            }
+        });
+        // Language toggle functionality
+        const langToggle = document.getElementById('langToggle');
+        const langLabel = document.getElementById('langLabel');
+        
+        if (langToggle && langLabel) {
+            langToggle.addEventListener('click', () => {
+            const currentLang = langLabel.textContent;
+            langLabel.textContent = currentLang === 'JP' ? 'EN' : 'JP';
+            });
+        }
+
+        // Database setup
+        const DB_NAME = "INNERSHIFT_ENCOUNTER";
+        const DB_VERSION = 1;
+        const STORE_NAME = "encounters";
+        let db;
+        
+        // Viewpoint questions
+        const VIEWPOINT_QUESTIONS = {
+            bud: [
+                "いま、何かが始まりそうですか？",
+                "新しい芽生えを感じる瞬間は？",
+                "これから始めたいことは何ですか？"
+            ],
+            wind: [
+                "ふと感じたことはありますか？",
+                "どこからともなく吹いてきた気配は？",
+                "最近、心に浮かんでは消えたものは？"
+            ],
+            trunk: [
+                "いま、大切にしていることは何ですか？",
+                "あなたを支えているものは？",
+                "揺るがないと感じるものはありますか？"
+            ],
+            root: [
+                "あなたの中に、何が残っていますか？",
+                "深いところにある想いとは？",
+                "普段は意識しないけれど大切なものは？"
+            ],
+            flower: [
+                "この気づきを、誰かと共有したいと感じたことはありますか？",
+                "誰かに贈りたいと思ったことは？",
+                "共に咲かせたいと思うものはありますか？"
+            ]
+        };
+        
+        // Current state
+        let currentViewpoint = null;
+        let currentQuestion = "";
+        let isSaved = false;
+        
+        // DOM elements
+        const viewpointSelection = document.getElementById("viewpointSelection");
+        const questionDisplay = document.getElementById("questionDisplay");
+        const selectedViewpoint = document.getElementById("selectedViewpoint");
+        const encounterQuestion = document.getElementById("encounterQuestion");
+        const encounterText = document.getElementById("encounterText");
+        const changeViewpoint = document.getElementById("changeViewpoint");
+        const saveButton = document.getElementById("saveButton");
+        const skipButton = document.getElementById("skipButton");
+        const saveStatus = document.getElementById("saveStatus");
+        const savedIndicator = document.getElementById("savedIndicator");
+        const viewpointButtons = document.querySelectorAll("[data-viewpoint]");
+        
+        // Initialize the application
+        document.addEventListener("DOMContentLoaded", function() {
+            initDB();
+            setupEventListeners();
+        });
+        
+        // Initialize IndexedDB
+        function initDB() {
+            const request = indexedDB.open(DB_NAME, DB_VERSION);
+            
+            request.onerror = function(event) {
+                console.error("Database error:", event.target.error);
+            };
+            
+            request.onsuccess = function(event) {
+                db = event.target.result;
+                console.log("Database initialized");
+            };
+            
+            request.onupgradeneeded = function(event) {
+                const db = event.target.result;
+                
+                // Create object store for encounters
+                const store = db.createObjectStore(STORE_NAME, { keyPath: "id" });
+                
+                // Create indexes
+                store.createIndex("viewpoint", "viewpoint", { unique: false });
+                store.createIndex("created_at", "created_at", { unique: false });
+                
+                console.log("Database structure created");
+            };
+        }
+        
+        // Set up event listeners
+        function setupEventListeners() {
+            // Viewpoint selection
+            viewpointButtons.forEach(button => {
+                button.addEventListener("click", function() {
+                    selectViewpoint(this.dataset.viewpoint);
+                });
+            });
+            
+            // Change viewpoint
+            changeViewpoint.addEventListener("click", function() {
+                questionDisplay.classList.add("hidden");
+                viewpointSelection.classList.remove("hidden");
+                resetEncounter();
+            });
+            
+            // Text input
+            encounterText.addEventListener("input", function() {
+                saveButton.disabled = this.value.trim().length === 0;
+                if (this.value.trim().length > 0) {
+                    saveStatus.textContent = "下書き中";
+                    saveStatus.className = "text-sm text-gray-500";
+                } else {
+                    saveStatus.textContent = "未保存";
+                    saveStatus.className = "text-sm text-gray-500";
+                }
+            });
+            
+            // Save button
+            saveButton.addEventListener("click", saveEncounter);
+            
+            // Skip button
+            skipButton.addEventListener("click", function() {
+                // In a real app, this would navigate away or close the module
+                alert("Encounterを終了します。記録は保存されません。");
+                resetEncounter();
+            });
+        }
+        
+        // Select a viewpoint
+        function selectViewpoint(viewpoint) {
+            currentViewpoint = viewpoint;
+            
+            // Get a random question for the selected viewpoint
+            const questions = VIEWPOINT_QUESTIONS[viewpoint];
+            currentQuestion = questions[Math.floor(Math.random() * questions.length)];
+            
+            // Update UI
+            viewpointButtons.forEach(btn => {
+                btn.classList.remove("active");
+                if (btn.dataset.viewpoint === viewpoint) {
+                    btn.classList.add("active");
+                }
+            });
+            
+            selectedViewpoint.textContent = getViewpointName(viewpoint);
+            selectedViewpoint.className = `px-3 py-1 rounded-full text-white text-sm bg-${viewpoint}`;
+            encounterQuestion.textContent = currentQuestion;
+            
+            // Set placeholder based on viewpoint
+            encounterText.placeholder = getPlaceholderText(viewpoint);
+            
+            // Hide selection and show question
+            viewpointSelection.classList.add("hidden");
+            questionDisplay.classList.remove("hidden");
+            
+            // Reset text and save state
+            encounterText.value = "";
+            saveButton.disabled = true;
+            saveStatus.textContent = "未保存";
+            isSaved = false;
+        }
+        
+        // Get viewpoint display name
+        function getViewpointName(viewpoint) {
+            const names = {
+                bud: "芽",
+                wind: "風",
+                trunk: "幹",
+                root: "根",
+                flower: "花"
+            };
+            return names[viewpoint] || viewpoint;
+        }
+        
+        // Get placeholder text for viewpoint
+        function getPlaceholderText(viewpoint) {
+            const placeholders = {
+                bud: "いま、何かが始まりそうですか？",
+                wind: "ふと感じたことはありますか？",
+                trunk: "いま、大切にしていることは何ですか？",
+                root: "あなたの中に、何が残っていますか？",
+                flower: "この気づきを、誰かと共有したいと感じたことはありますか？"
+            };
+            return placeholders[viewpoint] || "ここに自由に記述してください...";
+        }
+        
+        // Save encounter to IndexedDB
+        function saveEncounter() {
+            const text = encounterText.value.trim();
+            if (text.length === 0) {
+                alert("記録内容がありません");
+                return;
+            }
+            
+            const transaction = db.transaction([STORE_NAME], "readwrite");
+            const store = transaction.objectStore(STORE_NAME);
+            
+            const encounter = {
+                id: generateUUID(),
+                text: text,
+                viewpoint: currentViewpoint,
+                question: currentQuestion,
+                emotion_label: "感情未分類",
+                tags: [],
+                branch_from: null,
+                created_at: new Date().toISOString(),
+                updated_at: new Date().toISOString(),
+                format_version: "1.3"
+            };
+            
+            const request = store.add(encounter);
+            
+            request.onsuccess = function() {
+                isSaved = true;
+                saveStatus.textContent = `保存済 ${new Date().toLocaleTimeString()}`;
+                saveStatus.className = "text-sm text-gray-500";
+                
+                // Show saved indicator
+                savedIndicator.classList.remove("hidden");
+                setTimeout(() => {
+                    savedIndicator.classList.add("hidden");
+                }, 2000);
+                
+                // In a real app, this would navigate to Sketchbook or next step
+                console.log("Encounter saved:", encounter);
+            };
+            
+            request.onerror = function(event) {
+                console.error("Error saving encounter:", event.target.error);
+                alert("記録の保存に失敗しました");
+            };
+        }
+        
+        // Reset encounter state
+        function resetEncounter() {
+            currentViewpoint = null;
+            currentQuestion = "";
+            encounterText.value = "";
+            isSaved = false;
+            saveButton.disabled = true;
+            saveStatus.textContent = "未保存";
+        }
+        
+        // Generate UUID
+        function generateUUID() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+        
+    </script>
+</body>
+</html>

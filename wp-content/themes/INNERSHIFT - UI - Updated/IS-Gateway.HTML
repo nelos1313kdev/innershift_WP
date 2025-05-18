@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IS-Gateway | INNERSHIFT</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background-color: rgb(255, 254, 242); 
+      color: #2a2a2a;
+      overflow-x: hidden;
+    }
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-in-section.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .gate-door {
+      transition: all 0.4s ease;
+    }
+    .gate-door:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+    }
+    .wordsline {
+      position: relative;
+      width: 100%;
+    }
+    .wordsline::before {
+      content: '';
+      position: absolute;
+      top: 120%;
+      left: 0;
+      height: 2px;
+      background-color: rgb(205, 198, 198);
+      width: 100%;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .card {
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+    }
+    .scroll-hint {
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+      40% {transform: translateY(-10px);}
+      60% {transform: translateY(-5px);}
+    }
+    .door-animation {
+      transition: all 0.5s ease;
+    }
+    .door-animation:hover {
+      transform: scale(1.05);
+    }
+    /* Fade-in animation */
+    .fade-in-section {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    
+    .fade-in-section.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* Card hover effect */
+    .card {
+        transition: all 0.3s ease;
+        border-left: 4px solid transparent;
+    }
+    
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Specific border colors for each card type */
+    .card-encounter:hover {
+        border-left-color: #059669; /* Encounter green */
+    }
+    
+    .card-isq:hover {
+        border-left-color: #2563eb; /* ISQ blue */
+    }
+    
+    .card-emotional:hover {
+        border-left-color: #d97706; /* Compass orange */
+    }
+    
+    .card-reflected:hover {
+        border-left-color: #7c3aed; /* Reflected purple */
+    }
+    
+    .card-gift:hover {
+        border-left-color: #dc2626; /* Gift red */
+    }
+    .menu {
+      border-bottom: 1px solid rgb(177, 177, 177);
+      background-color: rgb(255, 254, 242);
+    }
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .mobile-menu-enter {
+      animation: slideDown 0.3s ease-out forwards;
+    }
+
+    /* Language toggle button */
+    #langToggle {
+      transition: all 0.3s ease;
+    }
+    #langToggle:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Animation classes */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-in-section.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Mobile menu animation */
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .mobile-menu-enter {
+      animation: slideDown 0.3s ease-out forwards;
+    }
+
+    /* Language toggle button */
+    #langToggle {
+      transition: all 0.3s ease;
+    }
+    #langToggle:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Responsive text sizes */
+    .responsive-text {
+      font-size: 1rem;
+    }
+    @media (max-width: 640px) {
+      .responsive-text {
+        font-size: 0.9rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .responsive-text {
+        font-size: 1.1rem;
+      }
+    }
+    
+    /* Book-related styles */
+    .book-excerpt {
+      background-color: #f8f8f8;
+      border-left: 4px solid #d1d5db;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      font-style: italic;
+    }
+    
+    .intro-question {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #3b82f6;
+      margin: 1.5rem 0;
+    }
+    
+    .static-link {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background-color: #f3f4f6;
+      border-radius: 0.375rem;
+      margin: 0.5rem;
+      transition: all 0.2s;
+    }
+    
+    .static-link:hover {
+      background-color: #e5e7eb;
+    }
+  /* Book Connection Section */
+    .book-connection {
+      background-color: rgba(147, 147, 147, 0.3);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      padding: 2rem;
+      max-width: 70%;
+      margin: 12rem auto;
+    }
+    
+    .book-excerpt {
+      background-color: #f8f8f8;
+      border-left: 4px solid #d1d5db;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      position: relative;
+    }
+    
+    .book-excerpt::before {
+      content: "“";
+      font-size: 4rem;
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      color: rgba(0, 0, 0, 0.05);
+    }
+    
+    .intro-question {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #ffffff;
+      margin: 1.5rem 0;
+      padding-left: 1rem;
+      border-left: 3px solid #fcffcd;
+    }
+    .book-topics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+     .topic-card {
+      background: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+      border: 1px solid #e5e7eb;
+    }
+    
+    .topic-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      border-color: #fffef3;
+      background-color: rgb(169, 170, 169);
+      color: rgb(255, 255, 255);
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden w-full mx-auto">
+    <!-- Header -->
+  <header class="fixed menu top-0 left-0 right-0 z-50 backdrop-blur-sm shadow-sm">
+    <div class="w-full mx-auto flex items-center justify-between px-4 py-3 md:py-4 lg:px-8">
+      <!-- Logo -->
+      <a href="/" class="text-lg font-bold tracking-widest text-gray-900 ml-5 sm:ml-0">
+        <img src="./assets/images/INNERSHIFT_logotype-1.gif" alt="INNERSHIFT Logo" 
+             class="w-[100px] h-[60px] sm:w-[110px] sm:h-[65px] md:w-[120px] md:h-[70px] lg:w-[130px] lg:h-[75px] xl:w-[140px] xl:h-[80px] 2xl:w-[150px] 2xl:h-[85px] 
+                    transition-transform duration-300 hover:scale-105" />
+      </a>
+  
+      <!-- Mobile Menu Toggle -->
+      <button id="menuToggle" class="md:hidden text-gray-700 focus:outline-none hover:bg-gray-100 rounded-lg p-2 transition-colors duration-200" 
+              aria-label="メニューを開く">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+  
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex space-x-3 lg:space-x-8 text-sm md:text-base font-medium text-black tracking-wide relative">
+        <a href="/" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">INNERSHIFT</a>
+        <a href="/is360" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">IS360</a>
+        <a href="/gateway" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600 pl-4">Gateway</a>
+        <a href="/journal" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">JOURNAL</a>
+        <a href="/contact" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">お問い合わせ</a>
+        <a href="/about" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">About</a>
+      </nav>
+  
+      <!-- Language Toggle Button -->
+      <button id="langToggle" class="ml-4 flex items-center space-x-1 text-gray-700 focus:outline-none bg-gray-100 hover:bg-gray-200 rounded-md px-3 py-2" aria-label="Toggle Language">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3C7.029 3 3 7.029 3 12s4.029 9 9 9 9-4.029 9-9-4.029-9-9-9zm0 0c2.761 0 5 4.029 5 9s-2.239 9-5 9-5-4.029-5-9 2.239-9 5-9zM3.6 9h16.8M3.6 15h16.8" />
+        </svg>
+        <span id="langLabel" class="text-sm font-medium ml-1">JP</span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden bg-white fixed font-medium top-16 left-0 right-0 z-50 shadow-md transition-all duration-300 overflow-y-auto max-h-screen">
+      <nav class="flex flex-col items-center py-4 space-y-2 responsive-text text-black font-medium">
+        <a href="/" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">INNERSHIFT</a>
+        <a href="/is360" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">IS360</a>
+        <a href="/gateway" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">Gateway</a>
+        <a href="/journal" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">JOURNAL</a>
+        <a href="/contact" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">お問い合わせ</a>
+        <a href="/about" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">About</a>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Gateway Section -->
+  <section class="fade-in-section pt-52 text-center">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-[600] mb-4 md:mb-6 italic">IS-Gateway</h2>
+      <p class="mb-8 md:mb-16 flex items-center justify-center pt-8 md:pt-12 font-semibold text-base sm:text-xl md:text-2xl text-black mx-auto max-w-4xl gap-4 sm:gap-6 md:gap-8">
+        <img src="./assets/images/RightArrow.png" alt="Arrow" class="w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11 animate-pulse">
+        <span id="animated-text" class="text-xl sm:text-2xl md:text-3xl"></span>
+      </p>
+    </div>
+
+<!-- Book Connection Section -->
+    <section class="book-connection fade-in fade-in-section">
+      <div class="gateway-container fade-in-section">
+        <h2 class="text-2xl font-semibold mb-4" style="transition-delay: 1s;">書籍『人を幸せにする経営』の読者の方へ</h2>
+        
+        <div class="book-excerpt fade-in-section" style="transition-delay: 1.3s;">
+          <p class="relative z-10">「リーダーシップの本質は、自分自身との誠実な対話から始まります。日々の忙しさに追われる中で、私たちはこの最も重要な対話を忘れがちです。静かな問いを持ち、それと共に歩むことで、本当の変化が生まれます。」</p>
+          <p class="text-sm text-gray-600 mt-2">- 『人を幸せにする経営』第3章「内側からのリーダーシップ」より</p>
+        </div>
+        
+        <p class="intro-question fade-in-section" style="transition-delay: 1.5s;">この本を読んで、あなたの中に浮かんだ問いは何ですか？</p>
+        
+        <div class="book-topics fade-in-section" style="transition-delay: 1.8s;">
+          <a href="/gateway/safety" class="topic-card fade-in-section">
+            <h3 class="font-medium mb-2">心理的安全性</h3>
+            <p class="text-sm text-gray-600">安心して語れる空間のあり方とリーダーシップ</p>
+          </a>
+          
+          <a href="/gateway/charisma-dark" class="topic-card fade-in-section">
+            <h3 class="font-medium mb-2">カリスマの影</h3>
+            <p class="text-sm text-gray-600">魅力が支配に変わるリスクと問い直し</p>
+          </a>
+          
+          <a href="/gateway/shared-leadership" class="topic-card fade-in-section">
+            <h3 class="font-medium mb-2">シェアド・リーダーシップ</h3>
+            <p class="text-sm text-gray-600">役割の共有と関係性の再設計</p>
+          </a>
+          
+          <a href="/gateway/charisma-practice" class="topic-card fade-in-section">
+            <h3 class="font-medium mb-2">カリスマ実践ヒント</h3>
+            <p class="text-sm text-gray-600">日常的な"非カリスマ"行動のヒント</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Three Gates Section -->
+    <section class="mt-20 md:mt-32">
+      <div class="w-full h-[120px] md:h-[185px] bg-gradient-to-b from-[#F8F7F1] to-[#686765] relative">
+        <div class="absolute bottom-4 right-4 md:right-8 flex items-center text-white text-sm md:text-base scroll-hint">
+          <span class="mr-2">Scroll</span>
+          <img src="./assets/images/arrow.png" alt="Scroll down" class="w-4 h-4 md:w-5 md:h-5" />
+        </div>
+      </div>
+      
+      <div class="bg-[#686765] pt-8 md:pt-12 pb-16 md:pb-24">
+        <!-- Gate 1 -->
+        <div class="flex flex-col md:flex-row items-center max-w-7xl mx-auto px-4 md:px-8 mb-20 md:mb-32">
+          <img src="./assets/images/door1.png" alt="読んで深める" class="door-animation w-3/4 md:w-1/3 max-w-xs mb-8 md:mb-0 md:mr-12">
+          <div class="text-left text-white">
+            <h3 class="text-2xl md:text-3xl font-medium wordsline">1. 読んで深める</h3>
+            <p class="fade-in text-xl md:text-2xl mt-6 md:mt-9 font-normal">哲学や考え方を、読みながら静かに味わいたい方へ</p>
+          </div>
+        </div>
+        
+        <!-- Gate 2 -->
+        <div class="flex flex-col md:flex-row items-center max-w-7xl mx-auto px-4 md:px-8 mb-20 md:mb-32">
+          <img src="./assets/images/door2.png" alt="問いと向き合う" class="door-animation w-3/4 md:w-1/3 max-w-xs mb-8 md:mb-0 md:mr-12">
+          <div class="text-left text-white">
+            <h3 class="text-2xl md:text-3xl font-medium wordsline">2. 問いと向き合う</h3>
+            <p class="fade-in text-xl md:text-2xl mt-6 md:mt-9 font-normal">今の自分に響く "静かな問い" と、ゆっくり対話したい方へ</p>
+          </div>
+        </div>
+        
+        <!-- Gate 3 -->
+        <div class="flex flex-col md:flex-row items-center max-w-7xl mx-auto px-4 md:px-8">
+          <img src="./assets/images/door3.png" alt="内側に気づく" class="door-animation w-3/4 md:w-1/3 max-w-xs mb-8 md:mb-0 md:mr-12">
+          <div class="text-left text-white">
+            <h3 class="text-2xl md:text-3xl font-medium wordsline">3. 内側に気づく</h3>
+            <p class="fade-in text-xl md:text-2xl mt-6 md:mt-9 font-normal">まだ言葉にならない出会いや感覚に、そっと気づいてみたい方へ</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="w-full h-[120px] md:h-[185px] bg-gradient-to-b from-[#686765] to-[#F8F7F1]"></div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="w-full mx-auto">
+      <div class="text-center text-lg md:text-xl mb-8 md:mb-12 mt-32">
+        あなたに合った入り口から、静かに問いを書き始められます。
+      </div>
+
+      <div class="text-center font-bold text-gray-600 mb-8 md:mb-12">
+        今のあなたに合った入り口を、下から選んでください。
+      </div>
+
+      <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8 md:py-12">
+        <!-- Cards Section -->
+        <div class="space-y-24 md:space-y-32 text-left">
+            <!-- Encounter Card -->
+            <div class="card card-encounter rounded-lg shadow-md p-6 fade-in-section" style="transition-delay: 0.3s ">
+                <div class="text-sm text-gray-500 mb-2">わくわく</div>
+                <h3 class="text-xl font-semibold mb-3">Encounter（出会いの視点）</h3>
+                <p class="text-gray-600 mb-4">言葉にできない感覚から、書き始めたいときに。</p>
+                <button onclick="goTo('encounter')" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-800 hover:text-white transition">
+                    この視点で始める
+                </button>
+            </div>
+
+            <!-- ISQ Card -->
+            <div class="text-right card card-isq rounded-lg shadow-md p-6 fade-in-section" style="transition-delay: 0.6s ">
+                <div class="text-sm text-gray-500 mb-2">問い</div>
+                <h3 class="text-xl font-semibold mb-3">ISQ（内側に向き合う視点）</h3>
+                <p class="text-gray-600 mb-4">ふと浮かんだ問いに、静かに向き合いたいときに。</p>
+                <button onclick="goTo('isq')" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-800 hover:text-white transition">
+                    この視点で始める
+                </button>
+            </div>
+
+            <!-- Emotional Compass Card -->
+            <div class="card card-emotional rounded-lg shadow-md p-6 fade-in-section" style="transition-delay: 0.9s ">
+                <div class="text-sm text-gray-500 mb-2">モヤモヤ</div>
+                <h3 class="text-xl font-semibold mb-3">Emotional Compass（感情の視点）</h3>
+                <p class="text-gray-600 mb-4">モヤモヤや違和感を、整理したいときに。</p>
+                <button onclick="goTo('emotional')" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-800 hover:text-white transition">
+                    この視点で始める
+                </button>
+            </div>
+
+            <!-- Reflected Self Card -->
+            <div class="text-right card card-reflected rounded-lg shadow-md p-6 fade-in-section" style="transition-delay: 0.9s ">
+                <div class="text-sm text-gray-500 mb-2">誰か</div>
+                <h3 class="text-xl font-semibold mb-3">Reflected Self（他者の視点）</h3>
+                <p class="text-gray-600 mb-4">誰かの言葉が心に残っているときに。</p>
+                <button onclick="goTo('reflected')" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-800 hover:text-white transition">
+                    この視点で始める
+                </button>
+            </div>
+
+            <!-- Gift Design Card -->
+            <div class="card card-gift rounded-lg shadow-md p-6 fade-in-section" style="transition-delay: 0.9s">
+                <div class="text-sm text-gray-500 mb-2">わかちあい</div>
+                <h3 class="text-xl font-semibold mb-3">Gift Design（意味の視点）</h3>
+                <p class="text-gray-600 mb-4">誰かと気づきを共有したくなったときに。</p>
+                <button onclick="goTo('gift')" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-800 hover:text-white transition">
+                    この視点で始める
+                </button>
+            </div>
+        </div>
+    </main>
+
+        <!-- My Sketchbook Info -->
+               <!-- Start Now Section -->
+        <div class="text-center my-8 md:my-12">
+          <p class="mb-4 md:mb-6">どれを選べばいいか迷っていたら、いまここから書き始めることもできます。</p>
+          <a href="encounter" class="inline-block bg-white text-gray-800 px-8 py-3 rounded-lg shadow-md hover:bg-gray-500 hover:text-white transition transform hover:scale-105">
+          今すぐ書き始める
+        </a>
+        </div>
+        <section class="mx-auto max-w-7xl rounded-lg shadow-md p-6 mb-12 animate-fade-in">
+            <h2 class="text-xl font-medium text-gray-800 mb-4">My Sketchbookについて</h2>
+            <ul class="space-y-3 text-gray-600">
+                <li class="flex items-start">
+                    <svg class="h-5 w-5 text-primary mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>書いた内容は自動でMy Sketchbookに保存されます</span>
+                </li>
+                <li class="flex items-start">
+                    <svg class="h-5 w-5 text-primary mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>メールアドレスの登録やログインは必要ありません</span>
+                </li>
+                <li class="flex items-start">
+                    <svg class="h-5 w-5 text-primary mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>後からニックネームを設定して記録を整理できます（任意）</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Contextual Messages -->
+        <section class="mx-auto space-y-6 max-w-7xl animate-fade-in">
+            <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+                <div class="flex">
+                    <div class="flex-shrink-0 text-blue-400 mr-3">📖</div>
+                    <div>
+                        <p class="text-sm text-gray-700">書籍を読んでくださった方へ：このページは、問いと出会い、気になる言葉から静かに書き始めるための入り口です。（書籍のQRコードからタグページへご案内しています）</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-purple-50 border-l-4 border-purple-400 p-4">
+                <div class="flex">
+                    <div class="flex-shrink-0 text-purple-400 mr-3">📝</div>
+                    <div>
+                        <p class="text-sm text-gray-700">JOURNALを読んでくださった方へ：記事を読んで残った問いや浮かんだ感情を、記録として残せます。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-red-50 border-l-4 border-red-400 p-4">
+                <div class="flex">
+                    <div class="flex-shrink-0 text-red-400 mr-3">▶️</div>
+                    <div>
+                        <p class="text-sm text-gray-700">動画をご覧くださった方へ：観たあとに残る問いや余韻を、少しだけ言葉にしてみませんか？</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-green-50 border-l-4 border-green-400 p-4">
+                <div class="flex">
+                    <div class="flex-shrink-0 text-green-400 mr-3">🌿</div>
+                    <div>
+                        <p class="text-sm text-gray-700">ご紹介リンクから来てくださった方へ：このページでは、自分の問いに向き合う体験を始められます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Sketchbook Section -->
+    <section class="fade-in-section py-12 md:py-16 text-center">
+      <div class="max-w-2xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 italic">My Sketchbook</h2>
+        <p class="text-base md:text-lg text-gray-600 mb-8">
+          <span class="font-semibold block mb-2">記録は、いつでも確認できます。</span>
+          あなたが残した問いや記録は、あとで My Sketchbook で読み返すことができます。
+        </p>
+        <a href="#" class="inline-block bg-white text-gray-800 px-8 py-3 rounded-lg shadow-md hover:bg-gray-500 hover:text-white transition transform hover:scale-105">
+          記録を見る
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+  <footer class="bg-black opacity-80 text-white py-12 mt-48">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold mb-4">INNERSHIFT</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="/about" class="hover:text-white transition">私たちについて</a></li>
+            <li><a href="/philosophy" class="hover:text-white transition">哲学</a></li>
+            <li><a href="/contact" class="hover:text-white transition">お問い合わせ</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-sm font-semibold mb-4">プログラム</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="/is360" class="hover:text-white transition">IS360</a></li>
+            <li><a href="/gateway" class="hover:text-white transition">Gateway</a></li>
+            <li><a href="/journal" class="hover:text-white transition">Journal</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-sm font-semibold mb-4">リソース</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="/articles" class="hover:text-white transition">記事</a></li>
+            <li><a href="/case-studies" class="hover:text-white transition">事例</a></li>
+            <li><a href="/faq" class="hover:text-white transition">よくある質問</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-sm font-semibold mb-4">その他</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="/privacy" class="hover:text-white transition">プライバシーポリシー</a></li>
+            <li><a href="/terms" class="hover:text-white transition">利用規約</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="mt-12 pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
+        &copy; 2025 INNERSHIFT. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+    <script>
+      // Mobile Menu Toggle
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        if (!mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('mobile-menu-enter');
+        }
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+          mobileMenu.classList.add('hidden');
+        }
+      });
+      
+      // Language toggle functionality
+      const langToggle = document.getElementById('langToggle');
+      const langLabel = document.getElementById('langLabel');
+      
+      if (langToggle && langLabel) {
+        langToggle.addEventListener('click', () => {
+          const currentLang = langLabel.textContent;
+          langLabel.textContent = currentLang === 'JP' ? 'EN' : 'JP';
+        });
+      }
+
+      // Animated text typing
+      document.addEventListener('DOMContentLoaded', function() {
+        const textElement = document.getElementById('animated-text');
+        const normalText1 = "ここは、リーダーとしての";
+        const highlightText = " \"自分の足元\" ";
+        const normalText2 = "をみつめる入口です";
+        const fullText = normalText1 + highlightText + normalText2;
+        let currentIndex = 0;
+
+        function typeNextCharacter() {
+          if (currentIndex < fullText.length) {
+            let currentContent = '';
+            
+            if (currentIndex < normalText1.length) {
+              currentContent = fullText.substring(0, currentIndex + 1);
+            } else if (currentIndex < normalText1.length + highlightText.length) {
+              currentContent = normalText1 +
+                `<span class="text-2xl md:text-3xl font-semibold">${fullText.substring(normalText1.length, currentIndex + 1)}</span>`;
+            } else {
+              currentContent = normalText1 +
+                `<span class="text-2xl md:text-3xl font-semibold">${highlightText}</span>` +
+                fullText.substring(normalText1.length + highlightText.length, currentIndex + 1);
+            }
+            
+            textElement.innerHTML = currentContent;
+            currentIndex++;
+            setTimeout(typeNextCharacter, 100);
+          }
+        }
+
+        typeNextCharacter();
+      });
+
+      // Intersection Observer for animations
+      const fadeInSections = document.querySelectorAll('.fade-in-section, .fade-in');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { 
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      });
+
+      fadeInSections.forEach(section => observer.observe(section));
+
+      // Navigation function
+      function goTo(page) {
+        // Implementation would link to actual pages
+        console.log(`Navigating to ${page}`);
+        // Example: window.location.href = `/${page}.html`;
+      }
+      
+      // Simple navigation function (replace with your actual routing)
+      function goTo(viewpoint) {
+          console.log(`Navigating to ${viewpoint} viewpoint`);
+          // window.location.href = `/sketchbook?viewpoint=${viewpoint}`;
+      }
+      
+      // Intersection Observer for fade-in effect
+      const fadeInElements = document.querySelectorAll('.fade-in-section');
+      
+      fadeInElements.forEach(element => {
+          observer.observe(element);
+      });
+    </script>
+</body>
+</html>

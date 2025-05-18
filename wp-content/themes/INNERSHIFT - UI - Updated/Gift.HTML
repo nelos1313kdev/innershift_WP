@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>書籍『人を幸せにする経営』を贈る | INNERSHIFT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#333333',
+                        'primary-light': 'rgb(255, 254, 242)',
+                        secondary: '#e2e8f0',
+                        accent: '#4299e1',
+                        light: 'rgb(255, 254, 242)',
+                        dark: '#2d3748',
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans JP', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .gift-card {
+                @apply border-2 border-primary rounded-lg p-6 bg-white shadow-sm;
+            }
+            .option-card {
+                @apply p-4 border border-gray-200 rounded-lg hover:border-primary transition cursor-pointer;
+            }
+            .video-container {
+                @apply relative pb-[56.25%] h-0 overflow-hidden rounded-lg bg-gray-100;
+            }
+            .video-container iframe {
+                @apply absolute top-0 left-0 w-full h-full;
+            }
+            .menu {
+                @apply border-b border-gray-200 bg-light;
+            }
+            .video-overlay {
+                @apply absolute inset-0 flex items-center justify-center bg-black bg-opacity-50;
+            }
+            }
+            .fade-in-section {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 1s ease-out 0.5s, transform 1s ease-out 0.5s;
+            }
+            .fade-in-section.visible {
+                opacity: 1;
+                transform: none;
+            }
+            .responsive-text {
+                font-size: 1.5rem;
+            }
+            @media (max-width: 768px) {
+                .responsive-text {
+                    font-size: 1.25rem;
+                }
+            }
+            .menu {
+                border-bottom: 1px solid rgb(177, 177, 177);
+                background-color: rgb(255, 254, 242);
+            }
+            @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            }
+
+            .mobile-menu-enter {
+            animation: slideDown 0.3s ease-out forwards;
+            }
+
+            /* Language toggle button */
+            #langToggle {
+            transition: all 0.3s ease;
+            }
+            #langToggle:hover {
+            transform: translateY(-1px);
+            }
+
+            /* Animation classes */
+            .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            }
+            .fade-in-section.visible {
+            opacity: 1;
+            transform: none;
+            }
+
+            /* Mobile menu animation */
+            @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            }
+
+            .mobile-menu-enter {
+            animation: slideDown 0.3s ease-out forwards;
+            }
+
+            /* Language toggle button */
+            #langToggle {
+            transition: all 0.3s ease;
+            }
+            #langToggle:hover {
+            transform: translateY(-1px);
+            }
+
+            /* Responsive text sizes */
+            .responsive-text {
+            font-size: 1rem;
+            }
+            @media (max-width: 640px) {
+            .responsive-text {
+                font-size: 0.9rem;
+            }
+            }
+            @media (min-width: 1024px) {
+                .responsive-text {
+                    font-size: 1.1rem;
+            }
+            }
+    </style>
+</head>
+<body class="bg-light font-medium font-sans text-gray-800 antialiased" style="background-color: rgb(255, 254, 242);">
+    <!-- Header -->
+    <header class="fixed menu top-0 left-0 right-0 z-50 backdrop-blur-sm shadow-sm">
+        <div class="w-full mx-auto flex items-center justify-between px-4 py-3 md:py-4 lg:px-8">
+            <!-- Logo -->
+            <a href="/" class="text-lg font-bold tracking-widest text-gray-900 ml-5 sm:ml-0">
+                <img src="./assets/images/INNERSHIFT_logotype-1.gif" alt="INNERSHIFT Logo" 
+                    class="w-[100px] h-[60px] sm:w-[110px] sm:h-[65px] md:w-[120px] md:h-[70px] lg:w-[130px] lg:h-[75px] xl:w-[140px] xl:h-[80px] 2xl:w-[150px] 2xl:h-[85px] 
+                            transition-transform duration-300 hover:scale-105" />
+            </a>
+        
+            <!-- Mobile Menu Toggle -->
+            <button id="menuToggle" class="md:hidden text-gray-700 focus:outline-none hover:bg-gray-100 rounded-lg p-2 transition-colors duration-200" 
+                    aria-label="メニューを開く">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-3 lg:space-x-8 text-sm md:text-base font-medium text-black tracking-wide relative">
+                <a href="/" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">INNERSHIFT</a>
+                <a href="/is360" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">IS360</a>
+                <a href="/gateway" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600 pl-4">Gateway</a>
+                <a href="/journal" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">JOURNAL</a>
+                <a href="/contact" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">お問い合わせ</a>
+                <a href="/about" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">About</a>
+            </nav>
+        
+            <!-- Language Toggle Button -->
+            <button id="langToggle" class="ml-4 flex items-center space-x-1 text-gray-700 focus:outline-none" aria-label="Toggle Language">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3C7.029 3 3 7.029 3 12s4.029 9 9 9 9-4.029 9-9-4.029-9-9-9zm0 0c2.761 0 5 4.029 5 9s-2.239 9-5 9-5-4.029-5-9 2.239-9 5-9zM3.6 9h16.8M3.6 15h16.8" />
+                </svg>
+                <span id="langLabel" class="text-sm font-medium">JP</span>
+            </button>
+        </div>
+    
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white fixed font-medium top-16 left-0 right-0 z-50 shadow-md transition-all duration-300 overflow-y-auto max-h-screen">
+            <nav class="flex flex-col items-center py-4 space-y-2 responsive-text text-black font-medium">
+                <a href="/" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">INNERSHIFT</a>
+                <a href="/is360" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">IS360</a>
+                <a href="/gateway" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">Gateway</a>
+                <a href="/journal" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">JOURNAL</a>
+                <a href="/contact" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">お問い合わせ</a>
+                <a href="/about" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="mt-32">
+        <!-- Section A: Hero -->
+        <section class="py-12 md:py-16 fade-in-section">
+            <div class="max-w-3xl mx-auto px-4">
+                <div class="text-left pt-16">
+                    <h1 class="text-3xl md:text-4xl font-medium text-primary mb-6 fade-in-section" style="transition-delay: 1s;">書籍『人を幸せにする経営』を贈る</h1>
+                    <p class="text-lg md:text-xl pt-8 font-light fade-in-section" style="transition-delay: 2s;">書籍『人を幸せにする経営』を、<br>あなた自身、または誰かに届けることができます。<br>「贈る」という行為から、変化は始まります。</p>
+                    <p class="text-gray-500 pt-5 text-[12px] fade-in-section" style="transition-delay: 3s; text-align: center;">このプロセスを通過された方には、特別価格のクーポン（¥1,000／送料込）をご案内いたします。<br>（通常定価 ¥3,000の特装版書籍）</p>
+                    
+                    <!-- Book Mockup Placeholder -->
+                    <div class="max-w-5xl mx-auto h-48 fade-in-section flex items-center justify-center rounded-lg mt-52 hover:scale:105" style="transition-delay: 1.5s;">
+                        <img src="./assets/images/Screenshot_39.jpg" alt="人を幸せにする経営 書籍カバー" class="fade-in-section hover:scale-105 rounded-lg shadow-lg">
+                    </div>
+                    
+                    <div class="max-w-2xl mx-auto mt-44 fade-in-section">
+                        <p class="text-gray-700 mb-4 space-x-6">なぜ、この本を「贈る」という形で届けるのか。<br>経営情報学博士 <b class="text-black">最上雄太</b>が、設計の背景と意図を動画でご紹介します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section B: Video -->
+        <section class="py-12 fade-in-section" id="video-section">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="text-2xl font-medium text-primary mb-8 text-center">「贈るリーダーシップ」について</h2>
+                
+                <div class="video-container mb-8 relative">
+                    <!-- HTML5 Video Player -->
+                    <video id="video-player" class="hidden w-full h-full" controls>
+                        <source src="./videos/gift-video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    
+                    <!-- Video Placeholder with Play Button -->
+                    <div id="video-placeholder" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                        <div class="text-center cursor-pointer" id="play-button">
+                            <svg class="w-16 h-16 mx-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <p class="mt-2 text-white">動画を再生する</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="text-center text-gray-600 mb-8">動画をご視聴いただくと次のステップに進めます</p>
+                
+                <div class="text-center">
+                    <button id="next-btn"  class="bg-white text-gray-700 font-medium py-3 px-8 rounded-md cursor-not-allowed hover:bg-gray-500 hover:text-white">
+                        動画を視聴してください
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section C: Self Check -->
+        <section class="py-12 bg-white hidden" id="self-check-section">
+            <div class="max-w-2xl mx-auto px-4">
+                <h2 class="text-2xl font-medium text-primary mb-8 text-center">3つの簡単なセルフチェック</h2>
+                <p class="text-center text-gray-600 mb-8">所要時間は1分です</p>
+                
+                <form id="gift-form">
+                    <!-- Q1 -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-medium mb-4">この本を自分もしくは誰かに贈りたいと思っていますか？</h3>
+                        <div class="space-y-3">
+                            <label class="flex items-center">
+                                <input type="radio" name="want-to-gift" value="yes" class="mr-2" required>
+                                <span>はい（次へ進む）</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="want-to-gift" value="no" class="mr-2">
+                                <span>いいえ</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Q2 (initially hidden) -->
+                    <div class="mb-8 hidden" id="q2-section">
+                        <h3 class="text-lg font-medium mb-4">なぜ、贈りたいと思うのですか？（複数選択可）</h3>
+                        <div class="space-y-3">
+                            <label class="flex items-center">
+                                <input type="checkbox" name="reason" value="want-to-read" class="mr-2">
+                                <span>シンプルに、読んでみたいから（自分への贈り物として）</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="reason" value="useful" class="mr-2">
+                                <span>読めば、役に立ちそうだから（自分や相手のために）</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="reason" value="support" class="mr-2">
+                                <span>応援したい・励ましたいから（誰かを思って）</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="reason" value="dialogue" class="mr-2">
+                                <span>一緒に考えたいテーマがあるから（対話のきっかけとして）</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="reason" value="other" class="mr-2" id="other-checkbox">
+                                <span>その他</span>
+                            </label>
+                            <div class="mt-2 hidden" id="other-text-container">
+                                <textarea name="other-reason" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="具体的にお書きください"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="bg-primary hover:bg-primary-light text-white font-medium py-3 px-8 rounded-md">
+                            回答を確認する
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Section D: Result (Condition Met) -->
+        <section class="py-12 bg-gray-50 hidden" id="success-section">
+            <div class="max-w-2xl mx-auto px-4">
+                <div class="gift-card text-center mb-8">
+                    <h2 class="text-2xl font-medium text-primary mb-4">クーポンコード</h2>
+                    <div class="text-3xl font-bold mb-4 tracking-wider" id="coupon-code">GIFT-XXXX-XXXX</div>
+                    <p class="text-sm text-gray-500 mb-4">※このコードはリロードすると無効になります</p>
+                    <p class="text-gray-700">書籍注文ページで上記クーポンコードをご入力ください</p>
+                </div>
+                
+                <div class="text-center">
+                    <a href="https://example.com/order" target="_blank" class="inline-block bg-primary hover:bg-primary-light text-white font-medium py-3 px-8 rounded-md mb-8">
+                        書籍注文ページへ進む
+                    </a>
+                    <p class="text-sm text-gray-500">外部サイトに移動します</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section D: Result (Condition Not Met) -->
+        <section class="py-12 bg-white hidden" id="not-qualified-section">
+            <div class="max-w-2xl mx-auto px-4 text-center">
+                <h2 class="text-2xl font-medium text-primary mb-6">今回は、贈りたいという気持ちがまだ定まっていないようです。</h2>
+                <p class="text-gray-700 mb-8">それでも、また気が向いたときに、ぜひもう一度お立ち寄りください。</p>
+                
+                <div class="space-y-4">
+                    <button id="retry-btn" class="block w-full md:w-auto md:inline-block bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-3 px-8 rounded-md">
+                        もう一度セルフチェックをしてみる
+                    </button>
+                    <a href="/journal/gift-leadership" class="block w-full md:w-auto md:inline-block bg-secondary hover:bg-gray-300 text-gray-800 font-medium py-3 px-8 rounded-md">
+                        INNERSHIFT JOURNAL を読む
+                    </a>
+                    <a href="/gateway/encounter" class="block w-full md:w-auto md:inline-block bg-secondary hover:bg-gray-300 text-gray-800 font-medium py-3 px-8 rounded-md">
+                        Encounter で哲学に触れる
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 opacity-80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">INNERSHIFT</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="/about" class="hover:text-white transition">私たちについて</a></li>
+                        <li><a href="/philosophy" class="hover:text-white transition">哲学</a></li>
+                        <li><a href="/contact" class="hover:text-white transition">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm font-semibold mb-4">プログラム</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="/is360" class="hover:text-white transition">IS360</a></li>
+                        <li><a href="/gateway" class="hover:text-white transition">Gateway</a></li>
+                        <li><a href="/journal" class="hover:text-white transition">Journal</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm font-semibold mb-4">リソース</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="/articles" class="hover:text-white transition">記事</a></li>
+                        <li><a href="/case-studies" class="hover:text-white transition">事例</a></li>
+                        <li><a href="/faq" class="hover:text-white transition">よくある質問</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm font-semibold mb-4">その他</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="/privacy" class="hover:text-white transition">プライバシーポリシー</a></li>
+                        <li><a href="/terms" class="hover:text-white transition">利用規約</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
+                &copy; 2025 INNERSHIFT. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+// Mobile Menu Toggle
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        if (!mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('mobile-menu-enter');
+        }
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+          mobileMenu.classList.add('hidden');
+        }
+      });
+      // Language toggle functionality
+      const langToggle = document.getElementById('langToggle');
+      const langLabel = document.getElementById('langLabel');
+      
+      if (langToggle && langLabel) {
+        langToggle.addEventListener('click', () => {
+          const currentLang = langLabel.textContent;
+          langLabel.textContent = currentLang === 'JP' ? 'EN' : 'JP';
+        });
+      }
+
+            // Video Player Implementation
+            const videoPlaceholder = document.getElementById('video-placeholder');
+            const playButton = document.getElementById('play-button');
+            const videoPlayer = document.getElementById('video-player');
+            const nextButton = document.getElementById('next-btn');
+            let videoCompleted = false;
+
+            // Play button click handler
+            playButton.addEventListener('click', function() {
+                videoPlaceholder.classList.add('hidden');
+                videoPlayer.classList.remove('hidden');
+                videoPlayer.controls = true;
+                videoPlayer.play();
+            });
+
+            // Video ended event handler
+            videoPlayer.addEventListener('ended', function() {
+                videoCompleted = true;
+                enableNextButton();
+            });
+
+            // Enable the next button when video is completed
+            function enableNextButton() {
+                nextButton.disabled = false;
+                nextButton.classList.remove('bg-gray-300', 'cursor-not-allowed');
+                nextButton.classList.add('bg-primary', 'hover:bg-primary-light', 'cursor-pointer');
+                nextButton.textContent = '次へ進む';
+            }
+
+            // Next button click handler
+            nextButton.addEventListener('click', function() {
+                if (videoCompleted) {
+                    document.getElementById('video-section').classList.add('hidden');
+                    document.getElementById('self-check-section').classList.remove('hidden');
+                }
+            });
+
+            // Form handling
+            document.querySelectorAll('input[name="want-to-gift"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.value === 'yes') {
+                        document.getElementById('q2-section').classList.remove('hidden');
+                    } else {
+                        document.getElementById('q2-section').classList.add('hidden');
+                    }
+                });
+            });
+
+            document.getElementById('other-checkbox').addEventListener('change', function() {
+                document.getElementById('other-text-container').classList.toggle('hidden', !this.checked);
+            });
+
+            document.getElementById('gift-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const wantToGift = document.querySelector('input[name="want-to-gift"]:checked').value;
+                
+                if (wantToGift === 'yes') {
+                    const coupon = 'GIFT-' + Math.random().toString(36).substring(2, 6).toUpperCase() + 
+                                   '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
+                    document.getElementById('coupon-code').textContent = coupon;
+                    
+                    document.getElementById('self-check-section').classList.add('hidden');
+                    document.getElementById('success-section').classList.remove('hidden');
+                } else {
+                    document.getElementById('self-check-section').classList.add('hidden');
+                    document.getElementById('not-qualified-section').classList.remove('hidden');
+                }
+            });
+
+            document.getElementById('retry-btn').addEventListener('click', function() {
+                document.getElementById('not-qualified-section').classList.add('hidden');
+                document.getElementById('self-check-section').classList.remove('hidden');
+                document.getElementById('gift-form').reset();
+                document.getElementById('q2-section').classList.add('hidden');
+                document.getElementById('other-text-container').classList.add('hidden');
+            });
+
+            // Intersection Observer for fade-in sections
+            const fadeInSections = document.querySelectorAll('.fade-in-section');
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            fadeInSections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

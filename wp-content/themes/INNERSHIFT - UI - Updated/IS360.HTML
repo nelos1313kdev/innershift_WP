@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IS360 | 360度リーダーシップ分析 | INNERSHIFT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#333333',
+                        'primary-light': '#2c5282',
+                        secondary: '#f5f5f5',
+                        accent: '#7a7a7a',
+                        light: 'rgb(255, 254, 242)',
+                        dark: '#2d3748',
+                        white: 'rgb(255, 254, 242)',
+                        'brand-gray': '#f9f9f9',
+                        'text-dark': '#3a3a38',
+                        'text-light': '#787878',
+                        'subtle-gray': '#f5f5f5'
+                    },
+                    fontFamily: {
+                        sans: ['Helvetica Neue', 'Arial', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', 'sans-serif'],
+                        mincho: ['"Yu Mincho"', '"Hiragino Mincho ProN"', '"Noto Serif JP"', 'serif']
+                    },
+                    transitionDuration: {
+                        'slow': '1000ms'
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .section-padding {
+                @apply py-16 md:py-24 lg:py-32;
+            }
+            .link-card {
+                @apply p-8 border border-gray-100 rounded-lg hover:border-gray-300 transition-colors duration-500;
+            }
+            .fade-in-section {
+                @apply opacity-0 translate-y-5 transition-all duration-700 ease-out;
+            }
+            .fade-in-section.visible {
+                @apply opacity-100 translate-y-0;
+            }
+            .text-balance {
+                text-wrap: balance;
+            }
+            .hover-underline {
+                @apply relative;
+            }
+            .hover-underline::after {
+                @apply content-[''] absolute bottom-[-2px] left-0 w-0 h-px bg-current transition-all duration-300;
+            }
+            .hover-underline:hover::after {
+                @apply w-full;
+            }
+            /* Image treatment styles */
+            .image-matte {
+                @apply border-[12px] border-white shadow-lg;
+            }
+            .image-polaroid {
+                @apply bg-white p-4 shadow-md;
+            }
+            .image-soft-focus {
+                filter: blur(0.5px) brightness(1.05);
+            }
+            .image-vignette::after {
+                @apply content-[''] absolute inset-0 shadow-[inset_0_0_40px_10px_rgba(0,0,0,0.1)];
+            }
+            .image-duotone {
+                filter: grayscale(100%) contrast(1.2) sepia(30%) hue-rotate(5deg);
+            }
+            .image-bleed {
+                @apply w-[calc(100%+3rem)] -mx-6 md:-mx-12;
+            }
+        }
+        body {
+            line-height: 1.7;
+            letter-spacing: 0.01em;
+        }
+        .menu {
+            border-bottom: 1px solid rgb(220, 220, 220);
+            background-color: rgba(255, 254, 242, 0.98);
+            backdrop-filter: blur(4px);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .mobile-menu-enter {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        .designer-portrait {
+            filter: grayscale(20%);
+            opacity: 0.9;
+            transition: filter 1s ease, opacity 1s ease;
+        }
+        .designer-portrait:hover {
+            filter: grayscale(5%);
+            opacity: 1;
+        }
+        footer {
+            background-color: rgba(15, 15, 15, 0.98);
+            backdrop-filter: blur(2px);
+        }
+    </style>
+</head>
+<body class="bg-light font-sans text-text-dark antialiased font-normal text-base">
+    <!-- Header -->
+    <header class="fixed menu top-0 left-0 right-0 z-50 shadow-sm">
+        <div class="w-full mx-auto flex items-center justify-between px-4 py-3 md:py-4 lg:px-8">
+            <!-- Logo -->
+            <a href="/" class="text-lg font-medium tracking-widest text-gray-900 ml-5 sm:ml-0">
+                <img src="./assets/images/INNERSHIFT_logotype-1.gif" alt="INNERSHIFT Logo" 
+                    class="w-[100px] h-[60px] sm:w-[110px] sm:h-[65px] md:w-[120px] md:h-[70px] lg:w-[130px] lg:h-[75px] xl:w-[140px] xl:h-[80px] 2xl:w-[150px] 2xl:h-[85px] 
+                            transition-transform duration-500 hover:scale-[1.02]" />
+            </a>
+    
+            <!-- Mobile Menu Toggle -->
+            <button id="menuToggle" class="md:hidden text-gray-500 focus:outline-none hover:bg-gray-100 rounded-lg p-2 transition-colors duration-500" 
+                    aria-label="メニューを開く">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+    
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-3 lg:space-x-6 text-sm md:text-base font-normal text-black tracking-wide relative">
+                <a href="/" class="hover-underline transition-all duration-300 hover:text-gray-600">INNERSHIFT</a>
+                <a href="/is360" class="hover-underline transition-all duration-300 hover:text-gray-600">IS360</a>
+                <a href="/gateway" class="hover-underline transition-all duration-300 hover:text-gray-600 pl-4">Gateway</a>
+                <a href="/journal" class="hover-underline transition-all duration-300 hover:text-gray-600">JOURNAL</a>
+                <a href="/contact" class="hover-underline transition-all duration-300 hover:text-gray-600">お問い合わせ</a>
+                <a href="/about" class="hover-underline transition-all duration-300 hover:text-gray-600">About</a>
+            </nav>
+    
+            <!-- Language Toggle Button -->
+            <button id="langToggle" class="ml-4 flex items-center space-x-1 text-gray-500 focus:outline-none bg-gray-100 hover:bg-gray-200 rounded-md px-3 py-1.5 transition-colors duration-500" aria-label="Toggle Language">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.3" stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3C7.029 3 3 7.029 3 12s4.029 9 9 9 9-4.029 9-9-4.029-9-9-9zm0 0c2.761 0 5 4.029 5 9s-2.239 9-5 9-5-4.029-5-9 2.239-9 5-9zM3.6 9h16.8M3.6 15h16.8" />
+                </svg>
+                <span id="langLabel" class="text-xs font-normal ml-1">JP</span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white fixed font-normal top-16 left-0 right-0 z-50 shadow-md transition-all duration-500 overflow-y-auto max-h-screen">
+            <nav class="flex flex-col items-center py-4 space-y-1 text-black font-normal">
+                <a href="/" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-500">INNERSHIFT</a>
+                <a href="/is360" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-500">IS360</a>
+                <a href="/gateway" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-500">Gateway</a>
+                <a href="/journal" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-500">JOURNAL</a>
+                <a href="/contact" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-500">お問い合わせ</a>
+                <a href="/about" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-500">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="font-sans text-text-dark antialiased font-normal text-base">
+        <!-- Hero Section with full-bleed image -->
+        <section id="is360-intro" class="relative mt-32 fade-in-section">
+            <div class="image-bleed h-[60vh] min-h-[400px] overflow-hidden relative hover:scale-105 duration-1000">
+                <img src="./assets/images/image.jpg" alt="リーダーシップについて語り合うチーム" 
+                     class="w-full h-full object-cover object-center image-duotone transition-transform duration-1000 hover:scale-105 hover:image-duotone-0">
+                <div class="absolute inset-0 bg-black/10"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto px-4 text-center relative z-10 -mt-24 bg-white p-8 shadow-lg image-matte">
+                <p class="text-2xl md:text-2xl font-normal mb-8 fade-in-section mincho">リーダーシップの本質を、<br class="md:hidden">語りから立ち上げる。</p>
+                <p class="text-base text-black opacity-90  mincho leading-relaxed">IS360は、あなたとまわりの語りをもとに、<br>リーダーシップを言葉にし、行動へとつなげるプログラムです。<br>三つの視点——感性・理論・実践に基づき、<br class="md:hidden">言葉が輪郭を与えます。</p>
+            </div>
+        </section>
+
+        <!-- Section A: What is IS360 - with polaroid style images -->
+        <section id="is360-what" class="section-padding fade-in-section bg-brand-gray">
+            <div class="max-w-6xl mx-auto px-4">
+                <h2 class="text-2xl font-normal text-primary mb-8 fade-in-section mincho" style="transition-delay: 0.5s;">IS360について考える</h2>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8 text-black opacity-90  fade-in-section mincho" style="transition-delay: 1s;">
+                        <p class="fade-in-section leading-relaxed" style="transition-delay: 1.5s;">自分をいちばん知っているはずなのに、<br>ふと、何を拠りどころにすればいいのかがわからなくなる。<br>まわりの言葉に揺さぶられて、自信を失う瞬間もあるかもしれません。</p>
+                        
+                        <p class="fade-in-section leading-relaxed" style="transition-delay: 2s;">IS360は、自分とまわりの語りをもとに、<br>あなたのリーダーシップを言葉にし、行動へとつなげるプログラムです。</p>
+                        
+                        <div class="my-8 pl-6 border-l border-primary fade-in-section mincho italic">
+                            <p class="leading-relaxed">「あなたは、どんな言葉で自分自身を語りますか」</p>
+                            <p class="leading-relaxed mt-4">「他者は、どんな言葉で、リーダーであるあなたを語るでしょうか」</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4 fade-in-section" style="transition-delay: 0.5s;">
+                        <div class="image-polaroid transform rotate-2 hover:scale-105 duration-1000">
+                            <img src="./assets/images/image.jpg" alt="自己を見つめる女性" 
+                                 class="w-full h-64 object-cover">
+                            <p class="text-xs text-center mt-2 text-gray-500">内省の時間</p>
+                        </div>
+                        <div class="image-polaroid transform -rotate-1 mt-8 hover:scale-105 duration-1000">
+                            <img src="./assets/images/image.jpg" alt="チームで話し合う人々" 
+                                 class="w-full h-64 object-cover">
+                            <p class="text-xs text-center mt-2 text-gray-500">対話の風景</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-black opacity-90  fade-in-section mincho leading-relaxed" style="transition-delay: 1s;">
+                    <p class="fade-in-section leading-relaxed" style="transition-delay: 2.5s;">一時的な評価ではありません。<br>あなたとまわりの言葉をもとに、リーダーシップを360度の視点から描き出します。<br>そこから変化がはじまります。</p>
+                    <p class="fade-in-section leading-relaxed mt-8" style="transition-delay: 1s;">IS360は、その間にある揺らぎを言語化し、<br>構造として見えるかたちに変えていきます。<br>問いが生まれ、行動が変わります。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section B: Designer - with portrait and soft focus -->
+        <section id="is360-designer" class="section-padding bg-white fade-in-section">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="relative fade-in-section hover:scale-105 duration-1000" style="transition-delay: 0.3s;">
+                        <img src="./assets/images/image.jpg" alt="設計プロセスのワークショップ風景" 
+                             class="w-full h-auto image-soft-focus">
+                        <div class="absolute -inset-8 border border-gray-200 pointer-events-none"></div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="text-2xl font-normal text-primary mb-8 fade-in-section mincho">「語り」の専門家が設計</h2>
+                        <div class="space-y-8 text-black opacity-90  fade-in-section mincho leading-relaxed" style="transition-delay: 1s;">
+                            <p>IS360の中核にあるのは、「ありのままの現実を記述する」という視点です。</p>
+                            <p>設計者は、語りの専門家<b class="text-black">&nbsp;最上雄太。</b> <br>経営学博士としての理論研究、PMPとしての実務経験、<br>そしてエスノグラフィーによる語りの分析と構造化。<br>この専門性の掛け合わせによって、<br class="md:hidden">他にはないリーダー育成サービスが生まれました。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Designer Portrait Block with vignette effect -->
+                <div class="mt-16 mb-8 p-8 rounded-xl max-w-3xl mx-auto fade-in-section hover:shadow-lg transition-shadow duration-1000">
+                    <div class="md:flex items-start gap-8">
+                          <img src="./assets/images/portrait-mogami-casual.jpg" 
+                                alt="IS360設計者 最上雄太 博士の肖像" 
+                                class="w-40 h-40 rounded-full object-cover designer-portrait border-4 border-white shadow-lg">
+                        
+                        <div class="font-mincho text-text-dark flex-1">
+                            <blockquote class="space-y-6">
+                                <p class="leading-relaxed text-balance text-lg md:text-xl">
+                                    “語り”は、ただの言葉ではなく、<br class="hidden md:block">
+                                    誰かとの関係の中で、変化のきっかけになる。
+                                </p>
+                                <p class="leading-relaxed text-balance text-lg md:text-xl">
+                                    語られたことを、構造化し、言葉にし、文書にする。<br class="hidden md:block">
+                                    それがIS360の役割です。
+                                </p>
+                                <p class="text-black opacity-90  text-sm md:text-base font-sans font-light not-italic">
+                                    ― 最上雄太（経営情報学博士／INNERSHIFT設計者）
+                                </p>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section C: Design - with document samples grid -->
+        <section id="is360-design" class="section-padding fade-in-section bg-brand-gray">
+            <div class="max-w-6xl mx-auto px-4">
+                <h2 class="text-2xl font-normal text-primary mb-8 fade-in-section mincho">「語り」のデザイン</h2>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8 text-black opacity-90  fade-in-section mincho leading-relaxed" style="transition-delay: 1s;">
+                        <p>IS360が届けるのは、一つの文書です。<br>あなたと他者の語りをもとに、リーダーシップを立体的に描き出します。</p>
+                        <p>形式は、用途にあわせて柔軟にカスタマイズ可能。<br>簡易レポート形式、360度分析報告書形式、<br class="md:hidden">書籍形式（例：「人を幸せにする経営」）にも対応します。</p>
+                        <p>この文書は、決められた使い方を持ちません。<br>問い直し、対話、承継、意思決定——<br>多様な場面で、変化のきっかけとして活用できます。</p>
+                        <p>IS360は、目に見えるかたちで、行動を後押しします。<br>あなた自身の言葉で考え、選び直す時間を支えます。</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4 fade-in-section" style="transition-delay: 0.5s;">
+                        <div class="hover:scale-105 duration-1000">
+                            <img src="./assets/images/image.jpg" alt="簡易レポートサンプル" 
+                                 class="w-full h-64 object-cover shadow-md">
+                            <p class="text-xs mt-2 text-gray-500 text-center">簡易レポート</p>
+                        </div>
+                        <div class="mt-8 hover:scale-105 duration-1000">
+                            <img src="./assets/images/image.jpg" alt="360度分析報告書サンプル" 
+                                 class="w-full h-64 object-cover shadow-md">
+                            <p class="text-xs mt-2 text-gray-500 text-center">分析報告書</p>
+                        </div>
+                        <div class="col-span-2 mt-4 hover:scale-105 duration-1000">
+                            <img src="./assets/images/image.jpg" alt="書籍形式サンプル" 
+                                 class="w-full h-48 object-cover shadow-md">
+                            <p class="text-xs mt-2 text-gray-500 text-center">書籍形式</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section D: Links - with testimonial image -->
+        <section id="is360-links" class="section-padding bg-white fade-in-section">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="mb-12 fade-in-section hover:scale-105 duration-1000" style="transition-delay: 0.3s;">
+                    <img src="./assets/images/image.jpg" alt="IS360参加者の声" 
+                         class="w-full h-64 md:h-96 object-cover object-center rounded-lg shadow-sm">
+                </div>
+                
+                <h2 class="text-2xl font-normal text-primary mb-12 text-center fade-in-section mincho">IS360を知る、感じる、始める</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Card 1 with subtle hover effect -->
+                    <a href="/gateway/encounter" class="link-card group fade-in-section" style="transition-delay: 1s;">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-16 h-16 overflow-hidden rounded-full hover:scale-105 duration-1000">
+                                <img src="./assets/images/image.jpg" alt="Gateway体験" 
+                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-normal text-primary mb-2 group-hover:underline">自分の中にある「言葉」に触れてみたい方へ</h3>
+                                <p class="text-black opacity-90  text-sm mincho leading-relaxed">まだ形にならない感覚やまなざしを、そっと見つめる時間から始めませんか。</p>
+                            </div>
+                        </div>
+                        <p class="text-black opacity-90  text-xs mt-4 inline-flex items-center">
+                            <span class="border-b border-transparent group-hover:border-black transition-all duration-500">
+                                体験へ
+                            </span>
+                            <span class="ml-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500">→</span>
+                        </p>
+                    </a>
+                    
+                    <!-- Card 2 -->
+                    <a href="/journal/is360-feature" class="link-card group fade-in-section" style="transition-delay: 1.2s;">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-16 h-16 overflow-hidden rounded-full hover:scale-105 duration-1000">
+                                <img src="./assets/images/image.jpg" alt="IS360特集" 
+                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-normal text-primary mb-2 group-hover:underline">IS360をもっと知りたい方へ</h3>
+                                <p class="text-black opacity-90  text-sm mincho leading-relaxed">設計思想、導入事例、プロセスなどをまとめています。</p>
+                            </div>
+                        </div>
+                        <p class="text-black opacity-90  text-xs mt-4 inline-flex items-center">
+                            <span class="border-b border-transparent group-hover:border-black transition-all duration-500">
+                                IS360特集へ
+                            </span>
+                            <span class="ml-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500">→</span>
+                        </p>
+                    </a>
+                    
+                    <!-- Card 3 -->
+                    <a href="/journal/yuta-mogami" class="link-card group fade-in-section" style="transition-delay: 1.4s;">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-16 h-16 overflow-hidden rounded-full hover:scale-105 duration-1000">
+                                <img src="./assets/images/image.jpg" alt="設計者プロフィール" 
+                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-normal text-primary mb-2 group-hover:underline">設計者の背景を知りたい方へ</h3>
+                                <p class="text-black opacity-90  text-sm mincho leading-relaxed">設計者・<b> 最上雄太</b>の研究と実践の軌跡をご紹介します。</p>
+                            </div>
+                        </div>
+                        <p class="text-black opacity-90  text-xs mt-4 inline-flex items-center">
+                            <span class="border-b border-transparent group-hover:border-black transition-all duration-500">
+                                プロフィール記事へ
+                            </span>
+                            <span class="ml-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500">→</span>
+                        </p>
+                    </a>
+                    
+                    <!-- Card 4 -->
+                    <a href="/contact" class="link-card group fade-in-section" style="transition-delay: 1.6s;">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-16 h-16 overflow-hidden rounded-full hover:scale-105 duration-1000">
+                                <img src="./assets/images/image.jpg" alt="お問い合わせ" 
+                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-normal text-primary mb-2 group-hover:underline">相談・導入を検討中の方へ</h3>
+                                <p class="text-black opacity-90  text-sm mincho leading-relaxed">ご相談や導入に関するお問い合わせはこちらから。</p>
+                            </div>
+                        </div>
+                        <p class="text-black opacity-90  text-xs mt-4 inline-flex items-center">
+                            <span class="border-b border-transparent group-hover:border-black transition-all duration-500">
+                                お問い合わせフォームへ
+                            </span>
+                            <span class="ml-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500">→</span>
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-sm font-normal mb-4 text-gray-300">INNERSHIFT</h4>
+                    <ul class="space-y-3 text-xs text-gray-400 mincho">
+                        <li><a href="/about" class="hover-underline hover:text-white transition-colors duration-500">私たちについて</a></li>
+                        <li><a href="/philosophy" class="hover-underline hover:text-white transition-colors duration-500">哲学</a></li>
+                        <li><a href="/contact" class="hover-underline hover:text-white transition-colors duration-500">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xs font-normal mb-4 text-gray-300">プログラム</h4>
+                    <ul class="space-y-3 text-xs text-gray-400 mincho">
+                        <li><a href="/is360" class="hover-underline hover:text-white transition-colors duration-500">IS360</a></li>
+                        <li><a href="/gateway" class="hover-underline hover:text-white transition-colors duration-500">Gateway</a></li>
+                        <li><a href="/journal" class="hover-underline hover:text-white transition-colors duration-500">Journal</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xs font-normal mb-4 text-gray-300">リソース</h4>
+                    <ul class="space-y-3 text-xs text-gray-400 mincho">
+                        <li><a href="/articles" class="hover-underline hover:text-white transition-colors duration-500">記事</a></li>
+                        <li><a href="/case-studies" class="hover-underline hover:text-white transition-colors duration-500">事例</a></li>
+                        <li><a href="/faq" class="hover-underline hover:text-white transition-colors duration-500">よくある質問</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xs font-normal mb-4 text-gray-300">その他</h4>
+                    <ul class="space-y-3 text-xs text-gray-400 mincho">
+                        <li><a href="/privacy" class="hover-underline hover:text-white transition-colors duration-500">プライバシーポリシー</a></li>
+                        <li><a href="/terms" class="hover-underline hover:text-white transition-colors duration-500">利用規約</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="max-w-6xl mx-auto mt-16 pt-8 border-t border-gray-800 text-center text-xs text-gray-500 mincho">
+                &copy; 2025 INNERSHIFT. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('mobile-menu-enter');
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+        
+        // Language toggle functionality
+        const langToggle = document.getElementById('langToggle');
+        const langLabel = document.getElementById('langLabel');
+        
+        if (langToggle && langLabel) {
+            langToggle.addEventListener('click', () => {
+                const currentLang = langLabel.textContent;
+                langLabel.textContent = currentLang === 'JP' ? 'EN' : 'JP';
+            });
+        }
+
+        // Intersection Observer for fade-in animations
+        const fadeInSections = document.querySelectorAll('.fade-in-section');
+        const observerOptions = {
+            threshold: 0.05,
+            rootMargin: '0px 0px -150px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        fadeInSections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

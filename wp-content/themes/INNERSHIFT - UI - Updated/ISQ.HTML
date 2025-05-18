@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INNERSHIFT | ISQ Module</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Updated Color Palette */
+            --primary-color: #686765;
+            --primary-light: #8e8d8a;
+            --primary-dark: #4a4947;
+            --background-color: #f8f7f1;
+            --surface-color: #ffffff;
+            --text-color: #222220;
+            --text-light: #5a5a58;
+            --text-lighter: #8e8d8a;
+            --border-color: #d8d7d2;
+            --border-light: #e8e7e2;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.4s ease;
+            --transition-slow: 0.8s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding: 0;
+            margin: 0;
+        }
+
+        .serif-text {
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        .isq-container {
+            max-width: 800px;
+            margin: 120px auto 60px;
+            padding: 0 24px;
+            min-height: calc(100vh - 180px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
+        .isq-header {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .viewpoint-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 24px;
+        }
+
+        .viewpoint-tab {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            position: relative;
+        }
+
+        .viewpoint-tab.active {
+            color: var(--text-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .viewpoint-tab:not(.active):hover {
+            color: var(--text-color);
+        }
+
+        .theme-indicator {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        #current-theme {
+            display: inline-block;
+            padding: 4px 12px;
+            background-color: var(--surface-color);
+            color: var(--text-light);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        #current-theme:hover {
+            border-color: var(--primary-light);
+        }
+
+        /* Question Input Section */
+        .question-input-section {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .placeholder {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            color: var(--text-lighter);
+            pointer-events: none;
+            transition: all var(--transition-fast);
+            font-size: 1rem;
+        }
+
+        #question-input:focus + .placeholder,
+        #question-input:not(:placeholder-shown) + .placeholder {
+            top: -22px;
+            left: 0;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+        }
+
+        #question-input {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: 'Noto Serif JP', serif;
+            font-size: 1.1rem;
+            resize: none;
+            min-height: 140px;
+            background-color: var(--surface-color);
+            transition: all var(--transition-normal);
+            line-height: 1.8;
+        }
+
+        #question-input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .input-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+        }
+
+        .tag-input-container {
+            position: relative;
+            flex-grow: 1;
+        }
+
+        #tag-input {
+            width: 100%;
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            background-color: var(--surface-color);
+            transition: all var(--transition-fast);
+        }
+
+        #tag-input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+        }
+
+        .tag-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: var(--surface-color);
+            border-radius: 4px;
+            box-shadow: var(--shadow-md);
+            z-index: 10;
+            display: none;
+            padding: 8px;
+            margin-top: 4px;
+            border: 1px solid var(--border-light);
+        }
+
+        .character-count {
+            font-size: 0.8rem;
+            color: var(--text-lighter);
+            margin-left: 12px;
+            white-space: nowrap;
+        }
+
+        /* Emotion Selection */
+        .emotion-selection {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 16px;
+            letter-spacing: 0.05em;
+        }
+
+        .emotion-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .emotion-option {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 16px;
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .emotion-option:hover {
+            border-color: var(--primary-light);
+        }
+
+        .emotion-option.selected {
+            background-color: var(--primary-light);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: auto;
+            padding-bottom: 40px;
+        }
+
+        .primary-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 24px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            flex: 1;
+        }
+
+        .primary-btn:disabled {
+            background-color: var(--border-color);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .primary-btn:not(:disabled):hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .primary-btn:not(:disabled):active {
+            transform: translateY(0);
+        }
+
+        .secondary-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 24px;
+            background-color: var(--surface-color);
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            flex: 1;
+        }
+
+        .secondary-btn:hover {
+            border-color: var(--primary-light);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(2px);
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--surface-color);
+            border-radius: 4px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            animation: modalFadeIn var(--transition-normal);
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            font-weight: 400;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: all var(--transition-fast);
+        }
+
+        .close-modal:hover {
+            color: var(--text-color);
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        #theme-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+            margin-bottom: 16px;
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        #theme-input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+        }
+
+        .theme-suggestions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .suggestion-item {
+            padding: 12px;
+            background-color: var(--background-color);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            text-align: center;
+        }
+
+        .suggestion-item:hover {
+            background-color: var(--primary-light);
+            color: white;
+        }
+
+        .modal-footer {
+            padding: 16px 20px;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-dark);
+            color: white;
+            border-radius: 4px;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+            z-index: 1000;
+            max-width: 90%;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+
+        .toast-content {
+            padding: 16px 24px;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        /* Header */
+        .menu {
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--background-color);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mobile-menu-enter {
+            animation: slideDown 0.3s ease-out forwards;
+        }
+
+        /* Responsive text sizes */
+        .responsive-text {
+            font-size: 1rem;
+        }
+
+        /* Mobile specific styles */
+        @media (max-width: 640px) {
+            .isq-container {
+                margin: 100px auto 40px;
+                padding: 0 20px;
+            }
+            
+            .viewpoint-tab {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .primary-btn, .secondary-btn {
+                width: 100%;
+            }
+            
+            .emotion-options {
+                justify-content: center;
+            }
+            
+            .theme-suggestions {
+                grid-template-columns: 1fr;
+            }
+            
+            .responsive-text {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="fixed menu top-0 left-0 right-0 z-50 shadow-sm">
+        <div class="w-full mx-auto flex items-center justify-between px-4 py-3 md:py-4 lg:px-8">
+            <!-- Logo -->
+            <a href="/" class="text-lg font-bold tracking-widest text-gray-900 ml-5 sm:ml-0">
+                <img src="./assets/images/INNERSHIFT_logotype-1.gif" alt="INNERSHIFT" 
+                     class="w-[100px] h-[60px] sm:w-[110px] sm:h-[65px] md:w-[120px] md:h-[70px] lg:w-[130px] lg:h-[75px] xl:w-[140px] xl:h-[80px] 2xl:w-[150px] 2xl:h-[85px] 
+                            transition-transform duration-300 hover:scale-105" />
+            </a>
+        
+            <!-- Mobile Menu Toggle -->
+            <button id="menuToggle" class="md:hidden text-gray-700 focus:outline-none hover:bg-gray-100 rounded-lg p-2 transition-colors duration-200" 
+                    aria-label="メニューを開く">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-3 lg:space-x-8 text-sm md:text-base font-medium text-black tracking-wide relative">
+                <a href="/" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">INNERSHIFT</a>
+                <a href="/is360" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">IS360</a>
+                <a href="/gateway" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600 pl-4">Gateway</a>
+                <a href="/journal" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">JOURNAL</a>
+                <a href="/contact" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">お問い合わせ</a>
+                <a href="/about" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">About</a>
+            </nav>
+        
+            <!-- Language Toggle Button -->
+            <button id="langToggle" class="ml-4 flex items-center space-x-1 text-gray-700 focus:outline-none bg-gray-100 hover:bg-gray-200 rounded-md px-3 py-2" aria-label="Toggle Language">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3C7.029 3 3 7.029 3 12s4.029 9 9 9 9-4.029 9-9-4.029-9-9-9zm0 0c2.761 0 5 4.029 5 9s-2.239 9-5 9-5-4.029-5-9 2.239-9 5-9zM3.6 9h16.8M3.6 15h16.8" />
+                </svg>
+                <span id="langLabel" class="text-sm font-medium ml-1">JP</span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white fixed font-medium top-16 left-0 right-0 z-50 shadow-md transition-all duration-300 overflow-y-auto max-h-screen">
+            <nav class="flex flex-col items-center py-4 space-y-2 responsive-text text-black font-medium">
+                <a href="/" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">INNERSHIFT</a>
+                <a href="/is360" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">IS360</a>
+                <a href="/gateway" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">Gateway</a>
+                <a href="/journal" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">JOURNAL</a>
+                <a href="/contact" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">お問い合わせ</a>
+                <a href="/about" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="isq-container">
+        <!-- Header with viewpoint tabs -->
+        <header class="isq-header">
+            <div class="viewpoint-tabs">
+                <button class="viewpoint-tab active" data-viewpoint="isq">ISQ</button>
+                <button class="viewpoint-tab" data-viewpoint="compass">Compass</button>
+                <button class="viewpoint-tab" data-viewpoint="reflected">Reflected</button>
+                <button class="viewpoint-tab" data-viewpoint="gift">Gift</button>
+            </div>
+            <div class="theme-indicator">
+                <span id="current-theme">未設定</span>
+            </div>
+        </header>
+
+        <main class="isq-main">
+            <!-- Question Input Section -->
+            <div class="question-input-section">
+                <div class="placeholder" id="question-placeholder">
+                    最近、繰り返し浮かぶ問いはありますか？
+                </div>
+                <textarea id="question-input" rows="3" placeholder=" "></textarea>
+                <div class="input-footer">
+                    <div class="tag-input-container">
+                        <input type="text" id="tag-input" placeholder="タグを追加">
+                        <div class="tag-suggestions" id="tag-suggestions"></div>
+                    </div>
+                    <div class="character-count">
+                        <span id="char-count">0</span>/200
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emotion Selection -->
+            <div class="emotion-selection">
+                <p class="section-title">この問いに触れたとき、どんな感情が近いですか？</p>
+                <div class="emotion-options">
+                    <button class="emotion-option" data-emotion="excited">
+                        <span class="emotion-label">わくわく</span>
+                    </button>
+                    <button class="emotion-option" data-emotion="uneasy">
+                        <span class="emotion-label">モヤモヤ</span>
+                    </button>
+                    <button class="emotion-option" data-emotion="regret">
+                        <span class="emotion-label">悔しさ</span>
+                    </button>
+                    <button class="emotion-option" data-emotion="peace">
+                        <span class="emotion-label">安心</span>
+                    </button>
+                    <button class="emotion-option" data-emotion="anxiety">
+                        <span class="emotion-label">不安</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button id="save-btn" class="primary-btn" disabled>
+                    <span class="btn-text">この問いを記録する</span>
+                </button>
+                <button id="theme-btn" class="secondary-btn">
+                    <span class="btn-text">テーマについて</span>
+                </button>
+            </div>
+
+            <!-- Theme Modal -->
+            <div id="theme-modal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>この問いのテーマ</h3>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" id="theme-input" placeholder="例: 再定義の瞬間">
+                        <div class="theme-suggestions" id="theme-suggestions">
+                            <div class="suggestion-item">未完了の問い</div>
+                            <div class="suggestion-item">成長のヒント</div>
+                            <div class="suggestion-item">迷いの種</div>
+                            <div class="suggestion-item">霧</div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="confirm-theme" class="primary-btn">適用</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast">
+            <div class="toast-content"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const questionInput = document.getElementById('question-input');
+            const questionPlaceholder = document.getElementById('question-placeholder');
+            const tagInput = document.getElementById('tag-input');
+            const tagSuggestions = document.getElementById('tag-suggestions');
+            const charCount = document.getElementById('char-count');
+            const emotionOptions = document.querySelectorAll('.emotion-option');
+            const saveBtn = document.getElementById('save-btn');
+            const themeBtn = document.getElementById('theme-btn');
+            const currentTheme = document.getElementById('current-theme');
+            const themeModal = document.getElementById('theme-modal');
+            const themeInput = document.getElementById('theme-input');
+            const themeSuggestions = document.getElementById('theme-suggestions');
+            const confirmThemeBtn = document.getElementById('confirm-theme');
+            const closeModalBtn = document.querySelector('.close-modal');
+            const toast = document.getElementById('toast');
+            const toastContent = document.querySelector('.toast-content');
+            const viewpointTabs = document.querySelectorAll('.viewpoint-tab');
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const langToggle = document.getElementById('langToggle');
+            const langLabel = document.getElementById('langLabel');
+
+            // State Management
+            let currentState = {
+                questionText: '',
+                tags: [],
+                emotionLabel: null,
+                theme: '未設定',
+                viewpoint: 'isq',
+                editMode: 'first',
+                branchFrom: null,
+                editHistory: []
+            };
+
+            // Available tags for suggestions
+            const availableTags = [
+                '目的', '自分軸', '迷い', '変容', '成長',
+                '関係性', '価値観', '選択', '変化', '気づき'
+            ];
+
+            // Initialize the app
+            function init() {
+                setupEventListeners();
+                updateSaveButtonState();
+            }
+
+            // Set up event listeners
+            function setupEventListeners() {
+                // Question input
+                questionInput.addEventListener('input', handleQuestionInput);
+                questionInput.addEventListener('focus', handleQuestionFocus);
+                questionInput.addEventListener('blur', handleQuestionBlur);
+                
+                // Tag input
+                tagInput.addEventListener('input', handleTagInput);
+                tagInput.addEventListener('focus', showTagSuggestions);
+                tagInput.addEventListener('blur', () => {
+                    setTimeout(hideTagSuggestions, 200);
+                });
+                
+                // Emotion selection
+                emotionOptions.forEach(option => {
+                    option.addEventListener('click', handleEmotionSelection);
+                });
+                
+                // Save button
+                saveBtn.addEventListener('click', saveQuestion);
+                
+                // Theme management
+                themeBtn.addEventListener('click', showThemeModal);
+                currentTheme.addEventListener('click', showThemeModal);
+                closeModalBtn.addEventListener('click', hideThemeModal);
+                confirmThemeBtn.addEventListener('click', confirmTheme);
+                
+                // Theme suggestions
+                themeSuggestions.querySelectorAll('.suggestion-item').forEach(item => {
+                    item.addEventListener('click', function() {
+                        themeInput.value = this.textContent;
+                    });
+                });
+                
+                // Viewpoint tabs
+                viewpointTabs.forEach(tab => {
+                    tab.addEventListener('click', function() {
+                        setViewpoint(this.dataset.viewpoint);
+                    });
+                });
+
+                // Mobile menu toggle
+                menuToggle.addEventListener('click', toggleMobileMenu);
+
+                // Language toggle
+                langToggle.addEventListener('click', toggleLanguage);
+            }
+
+            // Mobile menu functionality
+            function toggleMobileMenu() {
+                mobileMenu.classList.toggle('hidden');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('mobile-menu-enter');
+                }
+            }
+
+            // Language toggle functionality
+            function toggleLanguage() {
+                const currentLang = langLabel.textContent;
+                const newLang = currentLang === 'JP' ? 'EN' : 'JP';
+                langLabel.textContent = newLang;
+                langToggle.setAttribute('aria-pressed', newLang === 'EN');
+                // Here you would typically add language switching logic
+            }
+
+            // Handle question input changes
+            function handleQuestionInput(e) {
+                currentState.questionText = e.target.value;
+                charCount.textContent = e.target.value.length;
+                updateSaveButtonState();
+                
+                // Auto-save draft every 30 seconds
+                clearTimeout(window.autoSaveTimer);
+                window.autoSaveTimer = setTimeout(saveDraft, 30000);
+            }
+
+            function handleQuestionFocus() {
+                questionPlaceholder.style.top = '-22px';
+                questionPlaceholder.style.left = '0';
+                questionPlaceholder.style.fontSize = '0.85rem';
+                questionPlaceholder.style.color = 'var(--primary-color)';
+            }
+
+            function handleQuestionBlur() {
+                if (questionInput.value === '') {
+                    questionPlaceholder.style.top = '18px';
+                    questionPlaceholder.style.left = '18px';
+                    questionPlaceholder.style.fontSize = '1rem';
+                    questionPlaceholder.style.color = 'var(--text-lighter)';
+                }
+            }
+
+            // Handle tag input and suggestions
+            function handleTagInput(e) {
+                const value = e.target.value.toLowerCase();
+                if (value === '') {
+                    hideTagSuggestions();
+                    return;
+                }
+                
+                const filteredTags = availableTags.filter(tag => 
+                    tag.toLowerCase().includes(value) && 
+                    !currentState.tags.includes(tag)
+                );
+                
+                showTagSuggestions(filteredTags);
+            }
+
+            function showTagSuggestions(tags = availableTags) {
+                tagSuggestions.innerHTML = '';
+                
+                tags.forEach(tag => {
+                    if (!currentState.tags.includes(tag)) {
+                        const div = document.createElement('div');
+                        div.className = 'suggestion-item';
+                        div.textContent = tag;
+                        div.addEventListener('click', () => {
+                            addTag(tag);
+                            tagInput.value = '';
+                            hideTagSuggestions();
+                        });
+                        tagSuggestions.appendChild(div);
+                    }
+                });
+                
+                if (tagSuggestions.children.length > 0) {
+                    tagSuggestions.style.display = 'block';
+                } else {
+                    tagSuggestions.style.display = 'none';
+                }
+            }
+
+            function hideTagSuggestions() {
+                tagSuggestions.style.display = 'none';
+            }
+
+            function addTag(tag) {
+                if (!currentState.tags.includes(tag) && currentState.tags.length < 5) {
+                    currentState.tags.push(tag);
+                    renderTags();
+                    updateSaveButtonState();
+                }
+            }
+
+            function removeTag(tag) {
+                currentState.tags = currentState.tags.filter(t => t !== tag);
+                renderTags();
+                updateSaveButtonState();
+            }
+
+            function renderTags() {
+                // In a complete implementation, this would render the tags visually
+                console.log('Current tags:', currentState.tags);
+            }
+
+            // Handle emotion selection
+            function handleEmotionSelection(e) {
+                const emotion = e.currentTarget.dataset.emotion;
+                
+                emotionOptions.forEach(option => {
+                    option.classList.remove('selected');
+                });
+                
+                e.currentTarget.classList.add('selected');
+                currentState.emotionLabel = e.currentTarget.querySelector('.emotion-label').textContent;
+                updateSaveButtonState();
+            }
+            
+            // Theme management
+            function showThemeModal() {
+                themeModal.classList.add('show');
+                themeInput.value = currentState.theme === '未設定' ? '' : currentState.theme;
+                themeInput.focus();
+            }
+
+            function hideThemeModal() {
+                themeModal.classList.remove('show');
+            }
+
+            function confirmTheme() {
+                const theme = themeInput.value.trim();
+                if (theme) {
+                    currentState.theme = theme;
+                    currentTheme.textContent = currentState.theme;
+                    hideThemeModal();
+                }
+            }
+
+            // Viewpoint selection
+            function setViewpoint(viewpoint) {
+                currentState.viewpoint = viewpoint;
+                
+                viewpointTabs.forEach(tab => {
+                    tab.classList.remove('active');
+                    if (tab.dataset.viewpoint === viewpoint) {
+                        tab.classList.add('active');
+                    }
+                });
+                
+                // Update placeholder based on viewpoint
+                updatePlaceholder();
+            }
+
+            function updatePlaceholder() {
+                const placeholders = {
+                    isq: '最近、繰り返し浮かぶ問いはありますか？',
+                    compass: 'どんな出来事があなたの感情を動かしましたか？',
+                    reflected: '誰かの声や表情から浮かんだ問いは？',
+                    gift: '受け取った贈り物や気づきについて考えてみましょう'
+                };
+                
+                questionPlaceholder.textContent = placeholders[currentState.viewpoint] || placeholders.isq;
+            }
+
+            // Save functionality
+            function updateSaveButtonState() {
+                saveBtn.disabled = currentState.questionText.trim().length === 0;
+            }
+
+            function saveDraft() {
+                // In a real implementation, this would save to local storage
+                console.log('Auto-saving draft:', currentState);
+            }
+
+            function saveQuestion() {
+                if (currentState.questionText.trim().length === 0) {
+                    showToast('問いを入力してください', 'error');
+                    return;
+                }
+                
+                // Create the question block
+                const questionBlock = {
+                    question_id: generateQuestionId(),
+                    question_text: currentState.questionText.trim(),
+                    viewpoint: currentState.viewpoint.toUpperCase(),
+                    origin: 'UserInput',
+                    theme_link: currentState.theme,
+                    tag_labels: [...currentState.tags],
+                    emotion_label: currentState.emotionLabel || null,
+                    edit_mode: currentState.editMode,
+                    edit_history: [...currentState.editHistory],
+                    created_at: new Date().toISOString(),
+                    updated_at: new Date().toISOString(),
+                    branch_from: currentState.branchFrom,
+                    format_version: '1.3'
+                };
+                
+                // Simulate saving to backend
+                simulateSaveToBackend(questionBlock);
+                
+                // Show feedback
+                showToast('問いが記録されました', 'success');
+                
+                // Reset form (keeping theme and viewpoint)
+                resetForm();
+            }
+
+            function resetForm() {
+                currentState.questionText = '';
+                currentState.tags = [];
+                currentState.emotionLabel = null;
+                currentState.editMode = 'first';
+                currentState.branchFrom = null;
+                
+                questionInput.value = '';
+                charCount.textContent = '0';
+                tagInput.value = '';
+                
+                emotionOptions.forEach(option => {
+                    option.classList.remove('selected');
+                });
+                
+                updateSaveButtonState();
+            }
+
+            function simulateSaveToBackend(questionBlock) {
+                console.group('ISQ Question Block Saved');
+                console.log('Question Data:', questionBlock);
+                console.log('Save Time:', new Date().toLocaleString());
+                console.groupEnd();
+            }
+
+            // Helper functions
+            function generateQuestionId() {
+                return `q_${Math.floor(Math.random() * 100000)}`;
+            }
+            
+            function showToast(message, type = 'default') {
+                toastContent.textContent = message;
+                
+                // Set type-based styles
+                switch(type) {
+                    case 'success':
+                        toast.style.backgroundColor = '#4a8c72';
+                        break;
+                    case 'error':
+                        toast.style.backgroundColor = '#c45c5c';
+                        break;
+                    default:
+                        toast.style.backgroundColor = 'var(--primary-dark)';
+                }
+                
+                toast.classList.add('show');
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+
+            // Initialize the app
+            init();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ | INNERSHIFT</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#333333',
+            secondary: '#f5f5f5',
+            light: 'rgb(255, 254, 242)',
+            'brand-gray': '#f9f9f9',
+            'text-dark': '#3a3a38',
+            'text-light': '#787878'
+          },
+          fontFamily: {
+            sans: ['Helvetica Neue', 'Arial', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', 'sans-serif'],
+            mincho: ['"Yu Mincho"', '"Hiragino Mincho ProN"', '"Noto Serif JP"', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: rgb(255, 254, 242);
+      color: #3a3a38;
+    }
+    .contact-section {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .form-input {
+      background-color: transparent;
+      border-bottom: 1px solid #d1d1d1;
+      padding: 12px 0;
+      transition: border-color 0.3s ease;
+    }
+    .form-input:focus {
+      border-color: #3a3a38;
+      outline: none;
+    }
+    .form-label {
+      transition: transform 0.3s ease, font-size 0.3s ease;
+    }
+    .form-input:focus + .form-label,
+    .form-input:not(:placeholder-shown) + .form-label {
+      transform: translateY(-20px);
+      font-size: 0.875rem;
+    }
+    .submit-btn {
+      border: 1px solid #3a3a38;
+      transition: all 0.3s ease;
+    }
+    .submit-btn:hover {
+      background-color: #3a3a38;
+      color: rgb(255, 254, 242);
+    }
+    .contact-image {
+      height: 400px;
+      object-fit: cover;
+      object-position: center;
+    }
+    @media (max-width: 768px) {
+      .contact-image {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body class="font-sans">
+
+  <!-- Header -->
+  <header class="border-b border-gray-200 bg-white fixed top-0 left-0 right-0 z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="/" class="text-lg font-bold">
+        <img src="./assets/images/INNERSHIFT_logotype-1.gif" alt="INNERSHIFT" class="h-12">
+      </a>
+      <nav class="hidden md:flex space-x-8">
+        <a href="/is360" class="hover:underline">IS360</a>
+        <a href="/gateway" class="hover:underline">Gateway</a>
+        <a href="/journal" class="hover:underline">Journal</a>
+        <a href="/contact" class="hover:underline font-medium">お問い合わせ</a>
+      </nav>
+      <button class="md:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="pt-20">
+    <!-- Hero Image -->
+    <div class="w-full">
+      <img src="./assets/images/contact-hero.jpeg" alt="お問い合わせ" class="w-full h-auto contact-image">
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact-section px-4 py-16 md:py-24">
+      <div class="grid md:grid-cols-2 gap-16">
+        <!-- Contact Form -->
+        <div class="md:pr-8">
+          <h1 class="text-3xl md:text-4xl font-normal mb-8 mincho">お問い合わせ</h1>
+          
+          <form class="space-y-8">
+            <div class="relative">
+              <input type="text" id="name" class="form-input w-full" placeholder=" ">
+              <label for="name" class="form-label absolute left-0 top-3 pointer-events-none">お名前</label>
+            </div>
+            
+            <div class="relative">
+              <input type="email" id="email" class="form-input w-full" placeholder=" ">
+              <label for="email" class="form-label absolute left-0 top-3 pointer-events-none">メールアドレス</label>
+            </div>
+            
+            <div class="relative">
+              <input type="tel" id="phone" class="form-input w-full" placeholder=" ">
+              <label for="phone" class="form-label absolute left-0 top-3 pointer-events-none">電話番号</label>
+            </div>
+            
+            <div class="relative">
+              <select id="inquiry" class="form-input w-full appearance-none">
+                <option value="" disabled selected></option>
+                <option value="is360">IS360について</option>
+                <option value="gateway">Gatewayについて</option>
+                <option value="other">その他のお問い合わせ</option>
+              </select>
+              <label for="inquiry" class="form-label absolute left-0 top-3 pointer-events-none">お問い合わせ内容</label>
+              <div class="absolute right-0 top-3 pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </div>
+            </div>
+            
+            <div class="relative">
+              <textarea id="message" rows="5" class="form-input w-full" placeholder=" "></textarea>
+              <label for="message" class="form-label absolute left-0 top-3 pointer-events-none">メッセージ</label>
+            </div>
+            
+            <button type="submit" class="submit-btn px-8 py-3 text-lg mincho">送信する</button>
+          </form>
+        </div>
+        
+        <!-- Contact Info -->
+        <div class="md:pl-8">
+          <h2 class="text-2xl md:text-3xl font-normal mb-8 mincho">コンタクト情報</h2>
+          
+          <div class="space-y-8">
+            <div>
+              <h3 class="text-lg font-medium mb-2">メール</h3>
+              <p>contact@innershift.jp</p>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-medium mb-2">電話</h3>
+              <p>03-1234-5678</p>
+              <p class="text-sm text-gray-500 mt-1">受付時間: 平日 10:00-18:00</p>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-medium mb-2">所在地</h3>
+              <p>〒100-0005</p>
+              <p>東京都千代田区丸の内1-1-1</p>
+              <p>丸の内ビルディング 10F</p>
+            </div>
+            
+            <div class="pt-8">
+              <h3 class="text-lg font-medium mb-4">よくある質問</h3>
+              <ul class="space-y-4">
+                <li>
+                  <a href="/faq#is360" class="flex items-center hover:underline">
+                    <span>IS360プログラムについて</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="/faq#gateway" class="flex items-center hover:underline">
+                    <span>Gatewayプログラムについて</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="/faq#journal" class="flex items-center hover:underline">
+                    <span>journalプログラムについて</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="/faq#privacy" class="flex items-center hover:underline">
+                    <span>プライバシーポリシー</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-lg font-medium mb-4">INNERSHIFT</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/about" class="hover:underline">私たちについて</a></li>
+            <li><a href="/philosophy" class="hover:underline">哲学</a></li>
+            <li><a href="/contact" class="hover:underline">お問い合わせ</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-sm font-medium mb-4">プログラム</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/is360" class="hover:underline">IS360</a></li>
+            <li><a href="/gateway" class="hover:underline">Gateway</a></li>
+            <li><a href="/journal" class="hover:underline">Journal</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-sm font-medium mb-4">リソース</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/articles" class="hover:underline">記事</a></li>
+            <li><a href="/case-studies" class="hover:underline">事例</a></li>
+            <li><a href="/faq" class="hover:underline">よくある質問</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-sm font-medium mb-4">その他</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/privacy" class="hover:underline">プライバシーポリシー</a></li>
+            <li><a href="/terms" class="hover:underline">利用規約</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="mt-12 pt-8 border-t border-gray-800 text-center text-sm">
+        &copy; 2025 INNERSHIFT. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Form label animation
+    document.querySelectorAll('.form-input').forEach(input => {
+      input.addEventListener('focus', function() {
+        const label = this.nextElementSibling;
+        label.classList.add('focused');
+      });
+      
+      input.addEventListener('blur', function() {
+        if (!this.value) {
+          const label = this.nextElementSibling;
+          label.classList.remove('focused');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

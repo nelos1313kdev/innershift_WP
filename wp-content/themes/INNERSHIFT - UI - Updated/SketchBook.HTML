@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Sketchbook | INNERSHIFT</title>
+    <style>
+        /* ===== BASE STYLES ===== */
+        :root {
+            --color-bg: #F8F7F1;
+            --color-text: #222220;
+            --color-accent: #755E5E;
+            --color-card: rgba(255, 255, 255, 0.92);
+            --transition-base: 0.3s ease-out;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        @font-face {
+            font-family: 'Noto Sans JP';
+            src: url('/fonts/NotoSansJP-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ===== LAYOUT ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            background-color: var(--color-bg);
+            z-index: 100;
+            backdrop-filter: blur(8px);
+        }
+
+        /* ===== NAVIGATION ===== */
+        .view-switcher {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .view-btn {
+            background: none;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .view-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 1rem;
+            right: 1rem;
+            height: 2px;
+            background-color: var(--color-accent);
+        }
+
+        /* ===== ENTRY CARDS ===== */
+        .entries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem 0;
+        }
+
+        .entry-card {
+            background: var(--color-card);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition-base);
+            border: 1px solid rgba(117, 94, 94, 0.1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .entry-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .entry-perspective {
+            font-size: 0.8rem;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .entry-content {
+            font-size: 1rem;
+            margin: 1rem 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .entry-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .entry-theme {
+            background-color: rgba(117, 94, 94, 0.08);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        /* ===== EMOTION CLOUD VIEW ===== */
+        .emotion-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem;
+            min-height: 300px;
+            align-items: center;
+        }
+
+        .emotion-tag {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            position: relative;
+        }
+
+        .emotion-tag:hover {
+            transform: scale(1.1);
+        }
+
+        /* ===== TIME AXIS VIEW ===== */
+        .timeline-container {
+            position: relative;
+            padding: 2rem 0;
+            margin-left: 100px;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: rgba(117, 94, 94, 0.2);
+        }
+
+        .timeline-entry {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 4rem;
+        }
+
+        .timeline-date {
+            position: absolute;
+            left: 0;
+            width: 80px;
+            text-align: right;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* ===== RESPONSIVE ADJUSTMENTS ===== */
+        @media (max-width: 768px) {
+            .entries-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-container {
+                margin-left: 60px;
+            }
+            
+            .timeline-line {
+                left: 30px;
+            }
+            
+            .timeline-entry {
+                padding-left: 2rem;
+            }
+        }
+
+        /* ===== EMPTY STATE ===== */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 0;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>My Sketchbook</h1>
+            <div class="view-switcher">
+                <button class="view-btn active" data-view="entries">Entries</button>
+                <button class="view-btn" data-view="cloud">Emotion Cloud</button>
+                <button class="view-btn" data-view="timeline">Time Axis</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Entries Grid View -->
+            <div id="entries-view" class="view-section">
+                <div class="entries-grid" id="entries-container">
+                    <!-- Entries will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <!-- Emotion Cloud View -->
+            <div id="cloud-view" class="view-section" style="display: none;">
+                <div class="emotion-cloud" id="emotion-cloud-container">
+                    <!-- Emotion tags will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <!-- Time Axis View -->
+            <div id="timeline-view" class="view-section" style="display: none;">
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+                    <div id="timeline-entries">
+                        <!-- Timeline entries will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="empty-state" style="display: none;">
+                <p>Your sketchbook is empty</p>
+                <p>Begin by adding your first entry</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // ===== DATA MANAGEMENT =====
+        let entries = [];
+        
+        // Sample data structure
+        const sampleEntries = [
+            {
+                id: 'entry-1',
+                text: 'なぜこの問いが繰り返し浮かぶのだろう？自分にとって本当に重要なことなのか？',
+                viewpoint: 'ISQ',
+                emotion_label: 'contemplation',
+                theme: '#自己理解',
+                created_at: '2025-05-10T14:30:00',
+                branch_from: null
+            },
+            {
+                id: 'entry-2',
+                text: 'あの人の言葉がずっと心に引っかかっている。何か大切なことを伝えようとしていたのか？',
+                viewpoint: 'Reflected',
+                emotion_label: 'curiosity',
+                theme: '#他者理解',
+                created_at: '2025-05-12T09:15:00',
+                branch_from: null
+            },
+            {
+                id: 'entry-3',
+                text: '朝の散歩中に感じた、自然との一体感。この感覚をどう言葉にすれば伝えられるだろう？',
+                viewpoint: 'Encounter',
+                emotion_label: 'connection',
+                theme: '#自然',
+                created_at: '2025-05-15T07:45:00',
+                branch_from: null
+            }
+        ];
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Load entries from IndexedDB (simulated here)
+            entries = await loadEntries();
+            
+            if (entries.length === 0) {
+                document.getElementById('empty-state').style.display = 'block';
+            } else {
+                renderEntriesView();
+            }
+            
+            setupEventListeners();
+        });
+
+        async function loadEntries() {
+            // In a real app, this would load from IndexedDB
+            return sampleEntries;
+        }
+
+        // ===== VIEW RENDERERS =====
+        function renderEntriesView() {
+            const container = document.getElementById('entries-container');
+            container.innerHTML = '';
+            
+            entries.forEach(entry => {
+                const card = document.createElement('div');
+                card.className = 'entry-card';
+                card.innerHTML = `
+                    <div class="entry-perspective">
+                        <span class="emoji">${getViewpointEmoji(entry.viewpoint)}</span>
+                        ${entry.viewpoint}
+                    </div>
+                    <div class="entry-content">${entry.text}</div>
+                    <div class="entry-footer">
+                        <span class="entry-theme">${entry.theme}</span>
+                        <span class="entry-date">${formatDate(entry.created_at)}</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function renderEmotionCloud() {
+            const container = document.getElementById('emotion-cloud-container');
+            container.innerHTML = '';
+            
+            // Calculate emotion frequencies
+            const emotionCounts = {};
+            entries.forEach(entry => {
+                if (entry.emotion_label) {
+                    emotionCounts[entry.emotion_label] = (emotionCounts[entry.emotion_label] || 0) + 1;
+                }
+            });
+            
+            // Create tags
+            Object.entries(emotionCounts).forEach(([emotion, count]) => {
+                const tag = document.createElement('div');
+                tag.className = 'emotion-tag';
+                tag.textContent = emotion;
+                tag.style.fontSize = `${12 + count * 2}px`;
+                tag.style.backgroundColor = getEmotionColor(emotion);
+                container.appendChild(tag);
+            });
+        }
+
+        function renderTimelineView() {
+            const container = document.getElementById('timeline-entries');
+            container.innerHTML = '';
+            
+            // Sort entries by date
+            const sortedEntries = [...entries].sort((a, b) => 
+                new Date(a.created_at) - new Date(b.created_at));
+            
+            // Group by day
+            const entriesByDate = {};
+            sortedEntries.forEach(entry => {
+                const dateStr = entry.created_at.split('T')[0];
+                if (!entriesByDate[dateStr]) {
+                    entriesByDate[dateStr] = [];
+                }
+                entriesByDate[dateStr].push(entry);
+            });
+            
+            // Render timeline
+            Object.entries(entriesByDate).forEach(([date, dateEntries]) => {
+                const dateElement = document.createElement('div');
+                dateElement.className = 'timeline-date';
+                dateElement.textContent = formatDate(date);
+                
+                const entriesElement = document.createElement('div');
+                dateEntries.forEach(entry => {
+                    const entryElement = document.createElement('div');
+                    entryElement.className = 'timeline-entry';
+                    entryElement.innerHTML = `
+                        <div class="entry-card">
+                            <div class="entry-perspective">
+                                ${entry.viewpoint}
+                            </div>
+                            <div class="entry-content">${entry.text}</div>
+                        </div>
+                    `;
+                    entriesElement.appendChild(entryElement);
+                });
+                
+                container.appendChild(dateElement);
+                container.appendChild(entriesElement);
+            });
+        }
+
+        // ===== HELPER FUNCTIONS =====
+        function getViewpointEmoji(viewpoint) {
+            const emojiMap = {
+                'ISQ': '💭',
+                'Encounter': '🌱',
+                'Reflected': '👤',
+                'Compass': '🧭',
+                'Gift': '🎁'
+            };
+            return emojiMap[viewpoint] || '📝';
+        }
+
+        function getEmotionColor(emotion) {
+            // Simple hash-based color assignment
+            const hash = [...emotion].reduce((acc, char) => 
+                char.charCodeAt(0) + ((acc << 5) - acc), 0);
+            return `hsl(${Math.abs(hash % 360)}, 60%, 85%)`;
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ja-JP', {
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        // ===== EVENT HANDLERS =====
+        function setupEventListeners() {
+            // View switcher
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.view-btn').forEach(b => 
+                        b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    document.querySelectorAll('.view-section').forEach(section => 
+                        section.style.display = 'none');
+                    
+                    switch(this.dataset.view) {
+                        case 'entries':
+                            document.getElementById('entries-view').style.display = 'block';
+                            renderEntriesView();
+                            break;
+                        case 'cloud':
+                            document.getElementById('cloud-view').style.display = 'block';
+                            renderEmotionCloud();
+                            break;
+                        case 'timeline':
+                            document.getElementById('timeline-view').style.display = 'block';
+                            renderTimelineView();
+                            break;
+                    }
+                });
+            });
+            
+            // Entry card click
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.entry-card')) {
+                    // In a real app, this would open the entry detail view
+                    console.log('Entry clicked');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

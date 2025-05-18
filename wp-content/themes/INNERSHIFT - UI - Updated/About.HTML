@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INNERSHIFTとは | 内省から始まるリーダー変容</title>
+    <meta name="description" content="内側の変化が外の現実を動かす。INNERSHIFTはリーダーの気づきが行動として根づくプロセスを支援します">
+    <meta name="theme-color" content="#F8F7F1">
+    
+    <!-- Preload resources -->
+    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" as="style">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap&subset=japanese" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3a3a38',
+                        secondary: '#e8e8e6',
+                        light: '#F8F7F1',
+                        dark: '#2d3748',
+                        'brand-gray': '#f5f5f0',
+                        'text-dark': '#3a3a38',
+                        'text-light': '#787878'
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans JP', 'sans-serif'],
+                        serif: ['Noto Serif JP', 'serif'],
+                    },
+                    animation: {
+                        'fadeIn': 'fadeIn 2.5s ease-out forwards',
+                        'fadeInUp': 'fadeInUp 2.5s ease-out forwards',
+                        'pulseSlow': 'pulseSlow 5s infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        pulseSlow: {
+                            '0%, 100%': { opacity: '0.6' },
+                            '50%': { opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: rgb(255, 254, 242);
+            color: #000000;
+            line-height: 1.8;
+            letter-spacing: 0.02em;
+        }
+        
+        .menu {
+            border-bottom: 1px solid rgba(177, 177, 177, 0.3);
+            background-color: rgb(255, 254, 242);
+            backdrop-filter: blur(8px);
+        }
+        
+        .section-padding {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .section-padding {
+                padding-top: 6rem;
+                padding-bottom: 6rem;
+            }
+        }
+        
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        }
+        
+        .fade-in-section.visible {
+            opacity: 1;
+            transform: none;
+        }
+        
+        .text-balance {
+            text-wrap: balance;
+        }
+        
+        .quote-mark {
+            font-family: 'Noto Serif JP', serif;
+            opacity: 0.15;
+            font-size: 5rem;
+            line-height: 0;
+            position: absolute;
+        }
+        
+        .link-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(177, 177, 177, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.7);
+        }
+        
+        .link-card:hover {
+            border-color: rgba(60, 60, 60, 0.6);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-10px);
+        }
+        
+        .image-frame {
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .image-frame:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
+        
+        .words-underline {
+            position: relative;
+        }
+        
+        .words-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: currentColor;
+            opacity: 0.3;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <!-- Header -->
+    <header class="fixed menu top-0 left-0 right-0 z-50">
+        <div class="w-full mx-auto flex items-center justify-between px-4 py-3 md:py-4 lg:px-8">
+            <!-- Logo -->
+            <a href="/" class="text-lg font-bold tracking-widest" aria-label="INNERSHIFTホームへ">
+                <img src="./assets/images/INNERSHIFT_logotype-1.gif" alt="INNERSHIFTロゴ" 
+                    class="w-[100px] h-[60px] sm:w-[110px] sm:h-[65px] md:w-[120px] md:h-[70px] transition-opacity duration-300 hover:opacity-80" />
+            </a>
+    
+            <!-- Mobile Menu Toggle -->
+            <button id="menuToggle" class="md:hidden text-gray-700 focus:outline-none p-2" 
+                    aria-label="メニューを開く" aria-expanded="false">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+    
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-3 lg:space-x-6 text-sm md:text-base font-medium tracking-wide" aria-label="メインメニュー">
+                <a href="/" class="hover:underline hover:underline-offset-4 transition-all duration-300">INNERSHIFT</a>
+                <a href="/is360" class="hover:underline hover:underline-offset-4 transition-all duration-300">IS360</a>
+                <a href="/gateway" class="hover:underline hover:underline-offset-4 transition-all duration-300">Gateway</a>
+                <a href="/journal" class="hover:underline hover:underline-offset-4 transition-all duration-300">JOURNAL</a>
+                <a href="/contact" class="hover:underline hover:underline-offset-4 transition-all duration-300">お問い合わせ</a>
+            </nav>
+    
+            <!-- Language Toggle Button -->
+            <button id="langToggle" class="ml-4 flex items-center space-x-1 text-gray-700 focus:outline-none rounded-md px-3 py-1.5 transition-all" aria-label="言語を切り替え">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3C7.029 3 3 7.029 3 12s4.029 9 9 9 9-4.029 9-9-4.029-9-9-9zm0 0c2.761 0 5 4.029 5 9s-2.239 9-5 9-5-4.029-5-9 2.239-9 5-9zM3.6 9h16.8M3.6 15h16.8" />
+                </svg>
+                <span id="langLabel" class="text-sm font-medium">JP</span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white fixed font-medium top-16 left-0 right-0 z-50 shadow-md transition-all duration-300 overflow-y-auto max-h-screen" aria-hidden="true">
+            <nav class="flex flex-col items-center py-4 space-y-2 text-black font-medium" aria-label="モバイルメニュー">
+                <a href="/" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">INNERSHIFT</a>
+                <a href="/is360" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">IS360</a>
+                <a href="/gateway" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">Gateway</a>
+                <a href="/journal" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">JOURNAL</a>
+                <a href="/contact" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">お問い合わせ</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-24">
+        <!-- Hero Section -->
+        <section id="about-intro" class="section-padding fade-in-section">
+            <div class="mx-auto px-4 md:px-6 text-center">
+                <img src="./assets/images/About.jpeg" alt="" class="w-[70%] h-auto mx-auto mb-8 opacity-90 animate-fadeIn" style="border-radius: 30px;" loading="lazy">
+                
+                <h1 class="text-4xl md:text-5xl font-serif font-light mb-8 animate-fadeInSlow">INNERSHIFTについて</h1>
+                <p class="text-xl md:text-2xl mb-8 leading-relaxed animate-fadeIn" style="transition-delay: 0.3s;">
+                    気づきが行動に変わる。<br class="md:hidden">変容が、組織に根づく。
+                </p>
+                <p class="text-lg font-light max-w-2xl mx-auto leading-relaxed animate-fadeIn" style="transition-delay: 0.6s;">
+                    INNERSHIFTは、感性・理論・実践の三位一体から<br class="md:hidden">変化を設計するリーダーのための実装型プラットフォームです。
+                </p>
+                <!-- <img src="./assets/images/image.jpg" alt="" class="w-32 h-auto mx-auto mt-12 opacity-60 animate-fadeIn" style="transition-delay: 0.9s;" loading="lazy"> -->
+            </div>
+        </section>
+
+        <!-- Section A: About Core -->
+        <section id="about-core" class="section-padding bg-white fade-in-section">
+            <div class="max-w-5xl mx-auto px-4 md:px-6">
+                <div class="flex flex-col lg:flex-row justify-between gap-8 lg:gap-12">
+                    <div class="space-y-6 md:space-y-8 text-base md:text-lg leading-relaxed opacity-85 flex-1">
+                        <h2 class="text-xl sm:text-2xl font-serif font-light mb-8 sm:mb-12">INNERSHIFTとは</h2>
+                        <p class="fade-in-section" style="transition-delay: 0.3s;">
+                            言葉にならない違和感を抱えている。<br>
+                            考えても、伝わらない。<br>
+                            わかっていても、動けない。
+                        </p>
+                        <a href="" class="block hover:scale-105  duration-700">
+                          <img src="./assets/images/image.jpg" alt="悩むビジネスパーソンのイメージ" class="w-full h-auto my-6 rounded-lg image-frame fade-in-section" style="transition-delay: 0.6s;" loading="lazy">
+                        </a>
+
+                        <p class="fade-in-section" style="transition-delay: 0.9s;">
+                            INNERSHIFTは、<span class="words-underline">「感性・理論・実践」</span>に向き合い、<br class="hidden sm:inline">
+                            リーダーが本来の力を取り戻すための変化のプロセスを、<br class="hidden sm:inline">
+                            構造的に支援します。
+                        </p>
+                        <p class="fade-in-section" style="transition-delay: 1.2s;">
+                            感性・理論・実践の三位一体を軸に、<br class="hidden sm:inline">
+                            気づきを深め、視点をひらき、行動へとつなげる——<br class="hidden sm:inline">
+                            INNERSHIFTは、このプロセスを構造として設計し、<br class="hidden sm:inline">
+                            リーダーの「私らしい変化」が、組織に根づく土台を支えます。
+                        </p>
+                    </div>
+                    
+                    <div class="flex-1 flex justify-center lg:justify-end fade-in-section" style="transition-delay: 0.3s;">
+                        <a href="/journal/profile-mogami" class="block hover:scale-105  duration-700">
+                          <img src="./assets/images/image.jpg" alt="リーダーシップの変容プロセスを表すイメージ" 
+                             class="w-full max-w-[400px] lg:max-w-[500px] h-auto lg:h-[400px] object-cover rounded-lg image-frame" loading="lazy">
+                         </a>
+                             
+                    </div>
+                </div>
+                
+                <!-- Diagram Section -->
+                <div class="mt-12 sm:mt-16 bg-white/30 p-8 rounded-lg border border-gray-100 flex flex-col items-center fade-in-section" style="transition-delay: 0.6s;">
+                    <!-- <img src="./assets/images/image.jpg" alt="三位一体構造図解" class="w-full max-w-2xl" loading="lazy"> -->
+                    <p class="mt-4 text-sm opacity-60">感性・理論・実践の三位一体構造</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section B: Leader's Attitude -->
+        <section id="about-attitude" class="section-padding fade-in-section">
+            <div class="max-w-5xl mx-auto px-4 md:px-6">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="md:w-1/2 fade-in-section" style="transition-delay: 0.3s;">
+                      <a href="" class="block hover:scale-105  duration-700">  
+                        <img src="./assets/images/image.jpg" alt="リーダーとしての在り方を考えるビジネスパーソン" class="w-full h-auto rounded-lg image-frame" loading="lazy">
+                      </a>
+
+                    </div>
+                    <div class="md:w-1/2">
+                        <h2 class="text-2xl font-serif font-light mb-8 md:mb-12 opacity-90 fade-in-section">リーダーの"あり方"を<br class="md:hidden">再定義する</h2>
+                        <div class="space-y-6 text-lg leading-relaxed opacity-85">
+                            <p class="fade-in-section" style="transition-delay: 0.6s;">
+                                組織の成果や関係性は、<br>
+                                リーダーであるあなたの「あり方」と深く関係しています。
+                            </p>
+                            <p class="fade-in-section" style="transition-delay: 0.9s;">
+                                どんな言葉で語り、誰と向き合い、<br>
+                                何を大切にするか。<br>
+                                その選択の積み重ねが、<br>
+                                あなたのリーダーシップをかたちづくっていきます。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section C: Trinity Process -->
+        <section id="about-trinity" class="section-padding bg-white  fade-in-section">
+            <div class="max-w-5xl mx-auto px-4 md:px-6">
+                <h2 class="text-2xl font-serif font-light mb-12 opacity-90">変化は、感性・理論・実践の<br class="md:hidden">三位一体から始まる</h2>
+                <div class="space-y-8 text-lg leading-relaxed opacity-85 mb-16">
+                    <p class="fade-in-section" style="transition-delay: 0.3s;">
+                        変化は、思いつきでは続きません。<br>
+                        感覚に気づき、それを言葉にし、<br>
+                        行動につなげる構造があってこそ、<br>
+                        あなたの変容は、組織に根づいていきます。
+                    </p>
+                    <a href="" class="block hover:scale-105  duration-700">
+                      <img src="./assets/images/image.jpg" alt="チームで話し合うビジネスパーソン" class="w-full h-auto my-6 rounded-lg image-frame fade-in-section" style="transition-delay: 0.6s;" loading="lazy">
+                    </a>
+                    <p class="fade-in-section" style="transition-delay: 0.9s;">
+                        INNERSHIFTは、このプロセスを<br>
+                        <span class="words-underline">「感性・理論・実践」</span>の三位一体で設計します。
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Sensibility -->
+                    <div class="trinity-item fade-in-section shadow-md p-5 border-2" style="transition-delay: 0.2s;border-radius: 15px;">
+                        <a href="" class="block hover:scale-105  duration-700">
+                          <img src="./assets/images/image.jpg" alt="" class="w-16 h-auto mb-4 mx-auto" loading="lazy" style="border-radius: 10px;">
+                        </a>
+                        <h3 class="text-xl font-serif font-light mb-6 opacity-90">感性</h3>
+                        <p class="opacity-80 leading-relaxed">
+                            言葉にならない違和感を考え、<br>
+                            自分の足元にある感覚をすくい上げる
+                        </p>
+                    </div>
+                    
+                    <!-- Theory -->
+                        <div class="trinity-item fade-in-section shadow-md p-5 border-2" style="transition-delay: 0.4s;border-radius: 15px;">
+                        <a href="" class="block hover:scale-105  duration-700">
+                          <img src="./assets/images/image.jpg" alt="" class="w-16 h-auto mb-4 mx-auto" loading="lazy" style="border-radius: 10px;">
+                        </a>
+                        <h3 class="text-xl font-serif font-light mb-6 opacity-90">理論</h3>
+                        <p class="opacity-80 leading-relaxed">
+                            対話の中で意味を問い直し、<br>
+                            前提や視点をひらいていく
+                        </p>
+                    </div>
+                    
+                    <!-- Practice -->
+                       <div class="trinity-item fade-in-section shadow-md p-5 border-2" style="transition-delay: 0.6s;border-radius: 15px;">
+                        <a href="" class="block hover:scale-105  duration-700">
+                          <img src="./assets/images/image.jpg" alt="" class="w-16 h-auto mb-4 mx-auto" loading="lazy" style="border-radius: 10px;">
+                        </a>
+                        <h3 class="text-xl font-serif font-light mb-6 opacity-90">実践</h3>
+                        <p class="opacity-80 leading-relaxed">
+                            小さな一歩を現場に投じ、<br>
+                            関係性と影響力を動かしていく
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-16 text-lg leading-relaxed opacity-85 fade-in-section" style="transition-delay: 0.3s;">
+                    <p>
+                        この三つが流れとしてつながるとき、「あなたらしいリーダーシップ」が、行動として立ち上がります。
+                    </p>
+                </div>
+                
+                <!-- Process Diagram -->
+                <div class="mt-16 bg-white/30 p-8 rounded-lg border border-gray-100 flex flex-col items-center fade-in-section" style="transition-delay: 0.6s;">
+                    <!-- <img src="./assets/images/image.jpg" alt="三位一体プロセス図解" class="w-full max-w-3xl" loading="lazy"> -->
+                    <p class="mt-4 text-sm opacity-60">INNERSHIFTの変容プロセス</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section D: IS360 -->
+        <section id="about-is360" class="section-padding fade-in-section">
+            <div class="max-w-5xl mx-auto px-4 md:px-6">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="md:w-1/2 order-2 md:order-1">
+                        <h2 class="text-2xl font-serif font-light mb-8 md:mb-12 opacity-90 fade-in-section">360度リーダーシップ分析<br class="md:hidden">（IS360）</h2>
+                        <div class="space-y-6 text-lg leading-relaxed opacity-85">
+                            <p class="fade-in-section" style="transition-delay: 0.3s;">
+                                「わかっているのに、言葉にできない」<br>
+                                「他者の声を聞いて、はじめて<br class="md:hidden">自分が見えてくる」<br>
+                                そんな経験はありませんか？
+                            </p>
+                            <p class="fade-in-section" style="transition-delay: 0.6s;">
+                                INNERSHIFTの360度リーダーシップ分析（IS360）は、
+                                感性・理論・実践の三位一体を軸に、<br>
+                                あなた自身の語りと、まわりの語りを
+                                言葉に変えていくプログラムです。
+                            </p>
+                            <p class="fade-in-section" style="transition-delay: 0.9s;">
+                                "こう在りたい"という感覚を、<br>
+                                "こう動こう"という意志へ。<br>
+                                IS360は、自分を見つめ、他者の語りと向き合い、<br>
+                                意味を問い直すプロセスを通じて、<br>
+                                あなたらしい変化のヒントときっかけを手渡します。
+                            </p>
+                            <div class="mt-8 fade-in-section" style="transition-delay: 1.2s;">
+                                <a href="/is360" class="inline-block text-sm border-b border-gray-400 pb-1 opacity-70 hover:opacity-100 transition-opacity">
+                                    IS360の詳細とプロセス事例
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 order-1 md:order-2 fade-in-section" style="transition-delay: 0.3s;">
+                        <a href="" class="block hover:scale-105  duration-700">
+                          <img src="./assets/images/image.jpg" alt="IS360の分析プロセスを表すイメージ" class="w-full h-auto rounded-lg image-frame" loading="lazy">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section E: Designer -->
+        <section id="about-designer" class="section-padding bg-white  fade-in-section">
+            <div class="max-w-5xl mx-auto px-4 md:px-6">
+                <h2 class="text-2xl font-serif font-light mb-12 opacity-90">設計者について</h2>
+                <div class="space-y-8 text-lg leading-relaxed opacity-85">
+                    <p class="fade-in-section" style="transition-delay: 0.3s;">
+                        INNERSHIFTは、経営情報学博士・ <b>最上雄太</b>が<br>
+                        設計・監修するリーダーのための<br>
+                        実装型プラットフォームです。
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-8 items-center fade-in-section" style="transition-delay: 0.6s;">
+                        <a href="/journal/profile-mogami" class="block hover:scale-105  duration-700" >
+                            <img src="./assets/images/image.jpg" alt="最上雄太が研究している様子" class="w-full h-auto rounded-lg image-frame" loading="lazy">
+                        </a>
+                        <div>
+                            <p>
+                                最上は、「語り」の専門家です。<br>
+                                経営情報学の理論研究、PMPとしての実務経験、<br>
+                                そしてエスノグラフィーによる語りの分析と構造化。<br>
+                                この3つの専門性の掛け合わせによって、<br>
+                                他にはない"リーダーの変化を構造として描く"<br>
+                                サービスが生まれました。
+                            </p>
+                        </div>
+                    </div>
+                    <p class="fade-in-section" style="transition-delay: 0.9s;">
+                        博士論文では、リーダーとフォロワー、組織の<br>
+                        あいだに生まれる「感情共鳴」のメカニズムを<br>
+                        理論化。その成果が、INNERSHIFTの設計思想の<br>
+                        中核をなしています。
+                    </p>
+                    <p class="fade-in-section" style="transition-delay: 1.2s;">
+                        INNERSHIFTは、「ありのままの現実を記述する」<br>
+                        ことを出発点に、「気づきが行動として根づく」<br>
+                        構造とプロセスを一貫して設計しています。<br>
+                        すべてのサービスにおいて、最上がその責任を<br>
+                        担っています。
+                    </p>
+                    <div class="mt-8 fade-in-section" style="transition-delay: 1.5s;">
+                        <a href="/journal/profile-mogami" class="inline-block text-sm border-b border-gray-400 pb-1 opacity-70 hover:opacity-100 transition-opacity">
+                         <b>最上雄太</b>のプロフィール
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Designer Signature & Portrait -->
+                <div class="mt-16 pt-8 border-t border-gray-100 flex flex-col md:flex-row items-center md:items-end justify-between gap-6 fade-in-section" style="transition-delay: 0.6s;">
+                    <div class="text-base opacity-80 text-center md:text-left order-2 md:order-1">
+                        <b>最上雄太</b>（経営情報学博士／INNERSHIFT設計者）
+                    </div>
+                    <div class="order-1 md:order-2">
+                      <a href="" class="block hover:scale-105  duration-700">
+                          <img src="./assets/images/portrait-mogami-formal.jpg" 
+                            alt="最上雄太 肖像" 
+                            class="w-[150px] h-auto rounded-full border border-gray-200 object-cover"
+                            loading="lazy">
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section F: Call to Action -->
+        <section id="about-links" class="section-padding fade-in-section">
+            <div class="max-w-5xl mx-auto px-4 md:px-6 text-center">
+                <h2 class="text-2xl font-serif font-light mb-8 opacity-90">あなたの変化が、<br class="md:hidden">ここから始まる</h2>
+                <p class="text-lg font-light opacity-80 mb-16 max-w-2xl mx-auto leading-relaxed fade-in-section" style="transition-delay: 0.3s;">
+                    INNERSHIFTが目指すのは、気づきを行動に変えること。<br>
+                    その一歩を、あなた自身の言葉で選ぶところから始まります。
+                </p>
+
+                <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                    <!-- Philosophy -->
+                    <a href="/journal/profile-mogami" class="link-card fade-in-section" style="transition-delay: 0.5s;">
+                        <img src="./assets/images/image.jpg" alt="INNERSHIFTの哲学について" class="w-full h-48 object-cover rounded-t-lg mb-4" loading="lazy">
+                        <h3 class="text-lg font-serif font-light mb-4 opacity-90">INNERSHIFTの思想に触れる</h3>
+                        <p class="text-sm opacity-70 leading-relaxed">
+                            設計者・<b>最上雄太</b>の研究と実践を通して、<br>
+                            土台となる哲学を知る
+                        </p>
+                    </a>
+                    
+                    <!-- Stories -->
+                    <a href="/journal" class="link-card fade-in-section" style="transition-delay: 1s;">
+                        <img src="./assets/images/image.jpg" alt="リーダーの変容ストーリー" class="w-full h-48 object-cover rounded-t-lg mb-4" loading="lazy">
+                        <h3 class="text-lg font-serif font-light mb-4 opacity-90">他のリーダーの変化を知る</h3>
+                        <p class="text-sm opacity-70 leading-relaxed">
+                            実際の変容ストーリーから、<br>
+                            変化の可能性を感じてみる
+                        </p>
+                    </a>
+                    
+                    <!-- Start -->
+                    <a href="/gateway" class="link-card fade-in-section" style="transition-delay: 1.5s;">
+                        <img src="./assets/images/image.jpg" alt="変化を始める" class="w-full h-48 object-cover rounded-t-lg mb-4" loading="lazy">
+                        <h3 class="text-lg font-serif font-light mb-4 opacity-90">自分の変化を始める</h3>
+                        <p class="text-sm opacity-70 leading-relaxed">
+                            まずは、自分のまなざしと語りから<br>
+                            リーダーシップを見つめ直す
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black/80 text-white py-16 fade-in-section">
+        <div class="max-w-5xl mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-lg font-serif font-light mb-6">INNERSHIFT</h4>
+                    <ul class="space-y-3 text-sm text-white/70">
+                        <li><a href="/about" class="hover:text-white transition-opacity">私たちについて</a></li>
+                        <li><a href="/philosophy" class="hover:text-white transition-opacity">哲学</a></li>
+                        <li><a href="/contact" class="hover:text-white transition-opacity">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm font-serif font-light mb-6">プログラム</h4>
+                    <ul class="space-y-3 text-sm text-white/70">
+                        <li><a href="/is360" class="hover:text-white transition-opacity">IS360</a></li>
+                        <li><a href="/gateway" class="hover:text-white transition-opacity">Gateway</a></li>
+                        <li><a href="/journal" class="hover:text-white transition-opacity">Journal</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm font-serif font-light mb-6">リソース</h4>
+                    <ul class="space-y-3 text-sm text-white/70">
+                        <li><a href="/articles" class="hover:text-white transition-opacity">記事</a></li>
+                        <li><a href="/case-studies" class="hover:text-white transition-opacity">事例</a></li>
+                        <li><a href="/faq" class="hover:text-white transition-opacity">よくある質問</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm font-serif font-light mb-6">その他</h4>
+                    <ul class="space-y-3 text-sm text-white/70">
+                        <li><a href="/privacy" class="hover:text-white transition-opacity">プライバシーポリシー</a></li>
+                        <li><a href="/terms" class="hover:text-white transition-opacity">利用規約</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-16 pt-8 border-t border-white/10 text-center text-sm text-white ">
+                &copy; 2025 INNERSHIFT. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Language toggle functionality
+        const langToggle = document.getElementById('langToggle');
+        const langLabel = document.getElementById('langLabel');
+        
+        if (langToggle && langLabel) {
+            langToggle.addEventListener('click', () => {
+                const currentLang = langLabel.textContent;
+                const newLang = currentLang === 'JP' ? 'EN' : 'JP';
+                langLabel.textContent = newLang;
+                langToggle.setAttribute('aria-pressed', newLang === 'EN');
+            });
+        }
+
+        // Intersection Observer for fade-in sections
+        const fadeInSections = document.querySelectorAll('.fade-in-section');
+        
+        if ('IntersectionObserver' in window) {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            fadeInSections.forEach(section => {
+                observer.observe(section);
+            });
+        } else {
+            // Fallback for browsers without IntersectionObserver
+            fadeInSections.forEach(section => {
+                section.classList.add('visible');
+            });
+        }
+        
+        // Reduce motion preference
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const animatedElements = document.querySelectorAll('[class*="animate-"], .fade-in-section');
+            animatedElements.forEach(el => {
+                el.style.animation = 'none';
+                el.style.transition = 'none';
+            });
+        }
+    </script>
+</body>
+</html>

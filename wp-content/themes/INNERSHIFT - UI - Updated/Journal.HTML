@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INNERSHIFT JOURNAL | リーダーシップの新しい視座</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background-color: #f8f7f1;
+      color: #2a2a2a;
+      line-height: 1.6;
+    }
+    
+    /* Journal Specific Styles */
+    .journal-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Hero Section */
+    .hero-section {
+      background: linear-gradient(135deg, #f8f7f1 0%, #e8e6d9 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-pattern {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNlZGVjZWIiIGZpbGwtb3BhY2l0eT0iMC41Ij48cGF0aCBkPSJNMzYgMzRjMC0yLjIgMS44LTQgNC00czQgMS44IDQgNC0xLjggNC00IDQtNC0xLjgtNC00eiIvPjwvZz48L2c+PC9zdmc+');
+      opacity: 0.3;
+    }
+    
+    /* Feature Section */
+    .feature-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .feature-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Article List */
+    .article-item {
+      border-bottom: 1px solid #eee;
+      transition: all 0.2s ease;
+    }
+    
+    .article-item:hover {
+      background-color: #f9f9f7;
+    }
+    
+    /* Navigation */
+    .nav-link {
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #2a2a2a;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Utility Classes */
+    .text-balance {
+      text-wrap: balance;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-90 backdrop-blur-sm shadow-sm">
+    <div class="journal-container flex items-center justify-between py-4">
+      <a href="/" class="text-lg font-bold tracking-widest text-gray-900">
+        <img src="./assets/images/INNERSHIFT_logotype-1.gif" alt="INNERSHIFT Logo" class="h-16">
+      </a>
+
+      <nav class="hidden md:flex space-x-8 items-center">
+        <a href="/" class="text-gray-700 hover:text-gray-900 transition nav-link">INNERSHIFT</a>
+        <a href="/is360" class="text-gray-700 hover:text-gray-900 transition nav-link">IS360</a>
+        <a href="/gateway" class="text-gray-700 hover:text-gray-900 transition nav-link">Gateway</a>
+        <a href="/journal" class="text-gray-900 font-medium nav-link">JOURNAL</a>
+        <a href="/contact" class="text-gray-700 hover:text-gray-900 transition nav-link">お問い合わせ</a>
+      </nav>
+
+      <button class="md:hidden text-gray-700">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section pt-32 pb-24 fade-in">
+    <div class="hero-pattern"></div>
+    <div class="journal-container relative z-10">
+      <div class="max-w-2xl">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-balance">INNERSHIFT JOURNAL</h1>
+        <p class="text-xl md:text-2xl text-gray-700 mb-8 text-balance">
+          リーダーシップの新しい視座を探求する、設計者視点の知的メディア空間
+        </p>
+        <div class="flex space-x-4">
+          <a href="#features" class="bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800 transition">
+            特集を見る
+          </a>
+          <a href="/gateway" class="bg-white text-gray-800 px-6 py-3 rounded-md border border-gray-300 hover:bg-gray-100 transition">
+            問いから始める
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Collections -->
+  <section id="features" class="py-16">
+    <div class="journal-container">
+      <h2 class="text-2xl md:text-3xl font-semibold mb-12 text-center">特集一覧</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Feature 1: Shared Leadership -->
+        <div class="feature-card fade-in" style="transition-delay: 0.1s">
+          <div class="p-6">
+            <span class="feature-tag bg-blue-100 text-blue-800 mb-4">イベント連動</span>
+            <h3 class="text-xl font-semibold mb-3">シェアド・リーダーシップ特集</h3>
+            <p class="text-gray-600 mb-4">産能大イベント連動／米井氏からの問いに応答する構造的考察</p>
+            <div class="flex items-center text-sm text-gray-500">
+              <span>JOURNAL記事: 8本</span>
+              <span class="mx-2">•</span>
+              <span>note連動: 8本</span>
+            </div>
+          </div>
+          <div class="border-t border-gray-100 px-6 py-4">
+            <a href="/journal/shared-leadership" class="text-blue-600 hover:text-blue-800 font-medium flex items-center justify-between">
+              特集を見る
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Feature 2: IS360 -->
+        <div class="feature-card fade-in" style="transition-delay: 0.2s">
+          <div class="p-6">
+            <span class="feature-tag bg-green-100 text-green-800 mb-4">Core Program</span>
+            <h3 class="text-xl font-semibold mb-3">IS360特集</h3>
+            <p class="text-gray-600 mb-4">INNERSHIFT Core Programs の思想・構造・プロセス・実装事例の可視化</p>
+            <div class="flex items-center text-sm text-gray-500">
+              <span>記事: 5本</span>
+              <span class="mx-2">•</span>
+              <span>PDF資料あり</span>
+            </div>
+          </div>
+          <div class="border-t border-gray-100 px-6 py-4">
+            <a href="/journal/is360" class="text-blue-600 hover:text-blue-800 font-medium flex items-center justify-between">
+              特集を見る
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Feature 3: Book Connection -->
+        <div class="feature-card fade-in" style="transition-delay: 0.3s">
+          <div class="p-6">
+            <span class="feature-tag bg-purple-100 text-purple-800 mb-4">書籍連動</span>
+            <h3 class="text-xl font-semibold mb-3">書籍『人を幸せにする経営』連動</h3>
+            <p class="text-gray-600 mb-4">書籍読者に開かれる"内省空間"として設計された4つの特集ページ</p>
+            <div class="flex items-center text-sm text-gray-500">
+              <span>4つのテーマ</span>
+              <span class="mx-2">•</span>
+              <span>診断導線</span>
+            </div>
+          </div>
+          <div class="border-t border-gray-100 px-6 py-4">
+            <a href="/journal/book-connection" class="text-blue-600 hover:text-blue-800 font-medium flex items-center justify-between">
+              特集を見る
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shared Leadership Feature Detail -->
+  <section class="py-16 bg-white">
+    <div class="journal-container">
+      <div class="flex flex-col md:flex-row gap-12">
+        <div class="md:w-1/3">
+          <h2 class="text-2xl font-semibold mb-6">シェアド・リーダーシップ特集</h2>
+          <p class="text-gray-600 mb-6">
+            産能大学校でのイベント連動企画。米井氏からの問いに対するINNERSHIFTの応答を構造的に考察します。
+          </p>
+          <div class="mb-6">
+            <h3 class="font-medium mb-3">この特集の特徴</h3>
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>JOURNAL記事8本 + note連動8本</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>寄稿原稿6章を基にした考察</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>イベントURLと連動</span>
+              </li>
+            </ul>
+          </div>
+          <a href="#" class="inline-block bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800 transition">
+            イベント詳細を見る
+          </a>
+        </div>
+        
+        <div class="md:w-2/3">
+          <h3 class="font-medium mb-6 pb-2 border-b border-gray-200">記事一覧</h3>
+          <div class="space-y-6">
+            <a href="#" class="article-item block p-4 rounded-lg">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h4 class="font-medium mb-2">シェアド・リーダーシップの構造的考察</h4>
+                  <p class="text-sm text-gray-500">2023年10月15日</p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </a>
+            
+            <a href="#" class="article-item block p-4 rounded-lg">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h4 class="font-medium mb-2">米井氏の問いに対する応答（前編）</h4>
+                  <p class="text-sm text-gray-500">2023年10月10日</p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </a>
+            
+            <a href="#" class="article-item block p-4 rounded-lg">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h4 class="font-medium mb-2">役割共有における関係性の再設計</h4>
+                  <p class="text-sm text-gray-500">2023年10月5日</p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </a>
+            
+            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center mt-4">
+              すべての記事を見る (8)
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IS360 Feature Detail -->
+  <section class="py-16 bg-gray-50">
+    <div class="journal-container">
+      <div class="flex flex-col md:flex-row gap-12">
+        <div class="md:w-1/3">
+          <h2 class="text-2xl font-semibold mb-6">IS360特集</h2>
+          <p class="text-gray-600 mb-6">
+            INNERSHIFT Core Programs の思想・構造・プロセス・実装事例を可視化する特集。
+          </p>
+          <div class="mb-6">
+            <h3 class="font-medium mb-3">この特集の特徴</h3>
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>IS360の設計思想と構造</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>CSTインタビューと設計語り</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Web保存用PDF資料</span>
+              </li>
+            </ul>
+          </div>
+          <a href="#" class="inline-block bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800 transition">
+            PDF資料をダウンロード
+          </a>
+        </div>
+        
+        <div class="md:w-2/3">
+          <h3 class="font-medium mb-6 pb-2 border-b border-gray-200">記事一覧</h3>
+          <div class="space-y-6">
+            <a href="#" class="article-item block p-4 rounded-lg">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h4 class="font-medium mb-2">IS360の設計思想と構造的価値</h4>
+                  <p class="text-sm text-gray-500">2023年9月28日</p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </a>
+            
+            <a href="#" class="article-item block p-4 rounded-lg">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h4 class="font-medium mb-2">CSTインタビュー：プロセス設計の背景</h4>
+                  <p class="text-sm text-gray-500">2023年9月20日</p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </a>
+            
+            <a href="#" class="article-item block p-4 rounded-lg">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h4 class="font-medium mb-2">実装事例：企業導入ケーススタディ</h4>
+                  <p class="text-sm text-gray-500">2023年9月15日</p>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </a>
+            
+            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center mt-4">
+              すべての記事を見る (5)
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Book Connection Feature Detail -->
+  <section class="py-16 bg-white">
+    <div class="journal-container">
+      <div class="flex flex-col md:flex-row gap-12">
+        <div class="md:w-1/3">
+          <h2 class="text-2xl font-semibold mb-6">書籍『人を幸せにする経営』連動</h2>
+          <p class="text-gray-600 mb-6">
+            書籍読者に開かれる"内省空間"として設計された4つの特集ページ。静かな問いから始まります。
+          </p>
+          <div class="mb-6">
+            <h3 class="font-medium mb-3">特集テーマ</h3>
+            <ul class="space-y-3 text-gray-600">
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>心理的安全性とリーダーシップ</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>カリスマの影とそのリスク</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>シェアド・リーダーシップ</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="h-5 w-5 text-purple-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>カリスマ実践ヒント</span>
+              </li>
+            </ul>
+          </div>
+          <a href="#" class="inline-block bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800 transition">
+            書籍詳細を見る
+          </a>
+        </div>
+        
+        <div class="md:w-2/3">
+          <h3 class="font-medium mb-6 pb-2 border-b border-gray-200">特集ページ一覧</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <a href="/gateway/safety" class="feature-card block p-6">
+              <h4 class="font-medium mb-2">心理的安全性</h4>
+              <p class="text-sm text-gray-600">安心して語れる空間のあり方とリーダーシップ</p>
+            </a>
+            
+            <a href="/gateway/charisma-dark" class="feature-card block p-6">
+              <h4 class="font-medium mb-2">カリスマの影</h4>
+              <p class="text-sm text-gray-600">魅力が支配に変わるリスクと問い直し</p>
+            </a>
+            
+            <a href="/gateway/shared-leadership" class="feature-card block p-6">
+              <h4 class="font-medium mb-2">シェアド・リーダーシップ</h4>
+              <p class="text-sm text-gray-600">役割の共有と関係性の再設計</p>
+            </a>
+            
+            <a href="/gateway/charisma-practice" class="feature-card block p-6">
+              <h4 class="font-medium mb-2">カリスマ実践ヒント</h4>
+              <p class="text-sm text-gray-600">日常的な"非カリスマ"行動のヒント</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Connection to Other Content -->
+  <section class="py-16 bg-gray-50">
+    <div class="journal-container text-center">
+      <h2 class="text-2xl md:text-3xl font-semibold mb-8">他のコンテンツと接続する</h2>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        <a href="/gateway" class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
+          <div class="text-blue-600 mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h3 class="font-medium">Gateway</h3>
+        </a>
+        
+        <a href="/is360" class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
+          <div class="text-green-600 mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="font-medium">IS360</h3>
+        </a>
+        
+        <a href="/top" class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
+          <div class="text-purple-600 mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+          </div>
+          <h3 class="font-medium">TOP</h3>
+        </a>
+        
+        <a href="/videos" class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
+          <div class="text-red-600 mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h3 class="font-medium">動画一覧</h3>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black bg-opacity-80 text-white py-12">
+    <div class="journal-container">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold mb-4">INNERSHIFT</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="/about" class="hover:text-white transition">私たちについて</a></li>
+            <li><a href="/philosophy" class="hover:text-white transition">哲学</a></li>
+            <li><a href="/contact" class="hover:text-white transition">お問い合わせ</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-sm font-semibold mb-4">プログラム</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="/is360" class="hover:text-white transition">IS360</a></li>
+            <li><a href="/gateway" class="hover:text-white transition">Gateway</a></li>
+            <li><a href="/journal" class="hover:text-white transition">Journal</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-sm font-semibold mb-4">リソース</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="/articles" class="hover:text-white transition">記事</a></li>
+            <li><a href="/case-studies" class="hover:text-white transition">事例</a></li>
+            <li><a href="/faq" class="hover:text-white transition">よくある質問</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-sm font-semibold mb-4">その他</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="/privacy" class="hover:text-white transition">プライバシーポリシー</a></li>
+            <li><a href="/terms" class="hover:text-white transition">利用規約</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="mt-12 pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
+        &copy; 2025 INNERSHIFT. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Intersection Observer for animations
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    fadeElements.forEach(element => {
+      observer.observe(element);
+    });
+  </script>
+</body>
+</html>

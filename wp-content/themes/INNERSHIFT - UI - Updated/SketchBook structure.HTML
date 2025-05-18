@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INNERSHIFT Sketchbook Program</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        isq: '#3b82f6',
+                        encounter: '#10b981',
+                        compass: '#f59e0b',
+                        reflected: '#8b5cf6',
+                        gift: '#ef4444',
+                        free: '#64748b',
+                        fog: '#e2e8f0',
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans JP', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .card-border-isq {
+            border-left: 4px solid #3b82f6;
+        }
+        .card-border-encounter {
+            border-left: 4px solid #10b981;
+        }
+        .card-border-compass {
+            border-left: 4px solid #f59e0b;
+        }
+        .card-border-reflected {
+            border-left: 4px solid #8b5cf6;
+        }
+        .card-border-gift {
+            border-left: 4px solid #ef4444;
+        }
+        .card-border-free {
+            border-left: 4px solid #64748b;
+        }
+        .word-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            padding: 20px;
+        }
+        .word-cloud-item {
+            transition: all 0.3s ease;
+        }
+        .word-cloud-item:hover {
+            transform: scale(1.1);
+        }
+        .timeline-container {
+            display: flex;
+            overflow-x: auto;
+            padding: 20px 0;
+            gap: 16px;
+        }
+        .timeline-item {
+            flex: 0 0 auto;
+            width: 200px;
+        }
+        .branch-line {
+            position: relative;
+        }
+        .branch-line::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -16px;
+            width: 16px;
+            height: 2px;
+            background-color: #94a3b8;
+        }
+        [data-mode="first"] {
+            opacity: 1;
+        }
+        [data-mode="rewrite"] {
+            opacity: 0.9;
+        }
+        [data-mode="now"] {
+            opacity: 0.8;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: rgb(255, 254, 242);
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">INNERSHIFT Sketchbook</h1>
+            <p class="text-gray-600" style="font-family: sans-serif">内省の軌跡を記録し、育む空間</p>
+        </header>
+
+        <!-- Main Tabs -->
+        <div class="flex border-b border-gray-200 mb-6">
+            <button id="sketchbookTab" class="px-4 py-2 font-medium text-blue-600 border-b-2 border-blue-600">Sketchbook</button>
+            <button id="emotionCloudTab" class="px-4 py-2 font-medium text-gray-500 hover:text-gray-700">Emotion Cloud</button>
+            <button id="timeAxisTab" class="px-4 py-2 font-medium text-gray-500 hover:text-gray-700">Time Axis</button>
+        </div>
+
+        <!-- Sketchbook View -->
+        <div id="sketchbookView">
+            <!-- Viewpoint Tabs -->
+            <div class="flex overflow-x-auto h-8 flex justify-between mb-6 bg-white rounded-lg shadow-sm">
+                <button data-viewpoint="ISQ" class="viewpoint-tab font-medium text-white rounded-2xl w-24 bg-isq flex-shrink-0">ISQ</button>
+                <button data-viewpoint="Encounter" class="viewpoint-tab font-medium text-white  rounded-2xl w-24 bg-encounter flex-shrink-0">Encounter</button>
+                <button data-viewpoint="Compass" class="viewpoint-tab  rounded-2xl w-24 font-medium text-white bg-compass flex-shrink-0">Compass</button>
+                <button data-viewpoint="Reflected" class="viewpoint-tab rounded-2xl w-24 font-medium text-white bg-reflected flex-shrink-0">Reflected</button>
+                <button data-viewpoint="Gift" class="viewpoint-tab  rounded-2xl w-24 font-medium text-white bg-gift flex-shrink-0">Gift</button>
+            </div>
+
+            <!-- Question Input -->
+            <div class="bg-white rounded-lg shadow p-6 mb-8">
+                <div id="placeholder" class="text-gray-400 mb-4">最近、繰り返し浮かぶ問いはありますか？</div>
+                <textarea id="questionText" class="w-full border border-gray-300 rounded-lg p-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" rows="4" placeholder="ここに問いを記入してください..."></textarea>
+                <div class="flex flex-wrap gap-4 mt-4">
+                    <div class="flex-1 min-w-[200px]">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">My Theme</label>
+                        <div class="flex">
+                            <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">#</span>
+                            <input type="text" id="themeInput" class="flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-r-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="テーマを入力">
+                        </div>
+                    </div>
+                    <div class="flex-1 min-w-[200px]">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">タグ</label>
+                        <input type="text" id="tagInput" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="タグを追加 (複数はカンマ区切り)">
+                    </div>
+                    <div class="flex items-end">
+                        <button id="saveButton" class="px-4 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">保存</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold">あなたの問い</h2>
+                <div class="flex items-center">
+                    <span id="activeFilters" class="hidden mr-2 px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">◉ フィルター中</span>
+                    <button id="filterToggle" class="text-sm text-blue-600 hover:text-blue-800 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                        </svg>
+                        フィルター
+                    </button>
+                </div>
+            </div>
+
+            <div id="filterSection" class="hidden bg-white rounded-lg shadow p-4 mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div>
+                        <h4 class="font-medium text-gray-700 mb-2">視点</h4>
+                        <div class="flex flex-wrap gap-2" id="viewpointFilters">
+                            <button data-viewpoint="all" class="px-3 py-1 bg-blue-600 text-white text-xs rounded-full">すべて</button>
+                            <button data-viewpoint="ISQ" class="px-3 py-1 bg-isq text-white text-xs rounded-full">ISQ</button>
+                            <button data-viewpoint="Encounter" class="px-3 py-1 bg-encounter text-white text-xs rounded-full">Encounter</button>
+                            <button data-viewpoint="Compass" class="px-3 py-1 bg-compass text-white text-xs rounded-full">Compass</button>
+                            <button data-viewpoint="Reflected" class="px-3 py-1 bg-reflected text-white text-xs rounded-full">Reflected</button>
+                            <button data-viewpoint="Gift" class="px-3 py-1 bg-gift text-white text-xs rounded-full">Gift</button>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-medium text-gray-700 mb-2">テーマ</h4>
+                        <div class="flex flex-wrap gap-2" id="themeFilters">
+                            <button data-theme="all" class="px-3 py-1 bg-blue-600 text-white text-xs rounded-full">すべて</button>
+                            <!-- Dynamically populated -->
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-medium text-gray-700 mb-2">タグ</h4>
+                        <div class="flex flex-wrap gap-2" id="tagFilters">
+                            <button data-tag="all" class="px-3 py-1 bg-blue-600 text-white text-xs rounded-full">すべて</button>
+                            <!-- Dynamically populated -->
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-medium text-gray-700 mb-2">保存モード</h4>
+                        <div class="flex flex-wrap gap-2" id="modeFilters">
+                            <button data-mode="all" class="px-3 py-1 bg-blue-600 text-white text-xs rounded-full">すべて</button>
+                            <button data-mode="first" class="px-3 py-1 bg-gray-600 text-white text-xs rounded-full">初回記入</button>
+                            <button data-mode="rewrite" class="px-3 py-1 bg-gray-600 text-white text-xs rounded-full">再編集</button>
+                            <button data-mode="now" class="px-3 py-1 bg-gray-600 text-white text-xs rounded-full">今の気づき</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question Cards -->
+            <div id="questionCards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Cards will be dynamically added here -->
+            </div>
+
+            <!-- Load More -->
+            <div class="mt-8 text-center">
+                <button id="loadMore" class="px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">さらに読み込む</button>
+            </div>
+        </div>
+
+        <!-- Emotion Cloud View -->
+        <div id="emotionCloudView" class="hidden">
+            <div class="bg-white rounded-lg shadow p-6 mb-6">
+                <h2 class="text-xl font-semibold mb-4">Emotion Cloud</h2>
+                <p class="text-gray-600 mb-4">あなたの感情の分布を可視化しています</p>
+                <div id="wordCloud" class="word-cloud min-h-[300px]">
+                    <!-- Word cloud will be dynamically generated here -->
+                </div>
+                <div class="mt-4 text-center">
+                    <button id="showAllEmotions" class="text-sm text-blue-600 hover:text-blue-800">全て表示に戻る</button>
+                </div>
+            </div>
+            <div id="filteredEmotionCards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 hidden">
+                <!-- Filtered cards will appear here -->
+            </div>
+        </div>
+
+        <!-- Time Axis View -->
+        <div id="timeAxisView" class="hidden">
+            <div class="bg-white rounded-lg shadow p-6 mb-6">
+                <h2 class="text-xl font-semibold mb-4">Time Axis</h2>
+                <p class="text-gray-600 mb-4">時系列で問いの変遷を追います</p>
+                <div class="flex justify-between mb-4">
+                    <div class="flex space-x-2">
+                        <button data-period="week" class="px-3 py-1 bg-blue-600 text-white text-sm rounded-md">1週間</button>
+                        <button data-period="month" class="px-3 py-1 bg-gray-200 text-gray-700 text-sm rounded-md">1ヶ月</button>
+                        <button data-period="all" class="px-3 py-1 bg-gray-200 text-gray-700 text-sm rounded-md">すべて</button>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button data-sort="desc" class="px-3 py-1 bg-blue-600 text-white text-sm rounded-md">新しい順</button>
+                        <button data-sort="asc" class="px-3 py-1 bg-gray-200 text-gray-700 text-sm rounded-md">古い順</button>
+                    </div>
+                </div>
+                <div id="timelineContainer" class="timeline-container">
+                    <!-- Timeline items will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-2 text-sm">
+        <div class="container mx-auto px-4 flex justify-between">
+            <span id="statusMessage">準備完了</span>
+            <span id="autoSaveStatus" class="text-gray-300">自動保存: 有効</span>
+        </div>
+    </div>
+
+    <!-- Question Detail Modal -->
+    <div id="questionModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50">
+        <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 id="modalViewpoint" class="text-lg font-medium px-3 py-1 rounded-full text-white"></h3>
+                    <button id="closeModal" class="text-gray-400 hover:text-gray-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div id="modalQuestionText" class="prose max-w-none mb-6"></div>
+                <div class="flex flex-wrap gap-2 mb-6" id="modalTags"></div>
+                <div class="text-sm text-gray-500 mb-2">作成日: <span id="modalCreatedAt"></span></div>
+                <div class="text-sm text-gray-500 mb-6">更新日: <span id="modalUpdatedAt"></span></div>
+                
+                <h4 class="font-medium mb-2">編集履歴</h4>
+                <div id="editHistory" class="space-y-3 mb-6">
+                    <!-- Edit history will be dynamically added here -->
+                </div>
+                
+                <div class="border-t pt-4">
+                    <h4 class="font-medium mb-2">この問いを編集</h4>
+                    <textarea id="editQuestionText" class="w-full border border-gray-300 rounded-lg p-3 mb-3" rows="3"></textarea>
+                    <div class="flex justify-end space-x-3">
+                        <button id="saveAsRewrite" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">再編集として保存</button>
+                        <button id="saveAsNow" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">今の気づきとして保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Database setup
+        const DB_NAME = "INNERSHIFT_SKETCHBOOK";
+        const DB_VERSION = 2;
+        const STORE_NAME = "questions";
+        let db;
+        
+        // Viewpoint placeholders
+        const PLACEHOLDERS = {
+            ISQ: "最近、繰り返し浮かぶ問いはありますか？",
+            Encounter: "今日印象に残った出会いは何ですか？",
+            Compass: "どんな出来事があなたの感情を動かしましたか？",
+            Reflected: "誰かの声や表情から浮かんだ問いは？",
+            Gift: "誰かに伝えたい気づきはありますか？"
+        };
+        
+        // Current state
+        let currentViewpoint = "ISQ";
+        let currentFilters = {
+            viewpoint: "all",
+            theme: "all",
+            tag: "all",
+            mode: "all"
+        };
+        let currentPeriod = "week";
+        let currentSort = "desc";
+        let currentEmotionFilter = null;
+        let loadedCount = 0;
+        const PAGE_SIZE = 6;
+        let autoSaveInterval;
+        
+        // DOM elements
+        const viewpointTabs = document.querySelectorAll(".viewpoint-tab");
+        const placeholder = document.getElementById("placeholder");
+        const questionText = document.getElementById("questionText");
+        const themeInput = document.getElementById("themeInput");
+        const tagInput = document.getElementById("tagInput");
+        const saveButton = document.getElementById("saveButton");
+        const filterSection = document.getElementById("filterSection");
+        const filterToggle = document.getElementById("filterToggle");
+        const closeFilter = document.getElementById("closeFilter");
+        const activeFilters = document.getElementById("activeFilters");
+        const questionCards = document.getElementById("questionCards");
+        const statusMessage = document.getElementById("statusMessage");
+        const autoSaveStatus = document.getElementById("autoSaveStatus");
+        const loadMore = document.getElementById("loadMore");
+        const viewpointFilters = document.getElementById("viewpointFilters");
+        const themeFilters = document.getElementById("themeFilters");
+        const tagFilters = document.getElementById("tagFilters");
+        const modeFilters = document.getElementById("modeFilters");
+        
+        // View tabs
+        const sketchbookTab = document.getElementById("sketchbookTab");
+        const emotionCloudTab = document.getElementById("emotionCloudTab");
+        const timeAxisTab = document.getElementById("timeAxisTab");
+        const sketchbookView = document.getElementById("sketchbookView");
+        const emotionCloudView = document.getElementById("emotionCloudView");
+        const timeAxisView = document.getElementById("timeAxisView");
+        
+        // Emotion Cloud elements
+        const wordCloud = document.getElementById("wordCloud");
+        const showAllEmotions = document.getElementById("showAllEmotions");
+        const filteredEmotionCards = document.getElementById("filteredEmotionCards");
+        
+        // Time Axis elements
+        const timelineContainer = document.getElementById("timelineContainer");
+        
+        // Modal elements
+        const questionModal = document.getElementById("questionModal");
+        const closeModal = document.getElementById("closeModal");
+        const modalViewpoint = document.getElementById("modalViewpoint");
+        const modalQuestionText = document.getElementById("modalQuestionText");
+        const modalTags = document.getElementById("modalTags");
+        const modalCreatedAt = document.getElementById("modalCreatedAt");
+        const modalUpdatedAt = document.getElementById("modalUpdatedAt");
+        const editHistory = document.getElementById("editHistory");
+        const editQuestionText = document.getElementById("editQuestionText");
+        const saveAsRewrite = document.getElementById("saveAsRewrite");
+        const saveAsNow = document.getElementById("saveAsNow");
+        let currentModalQuestionId = null;
+        
+        // Initialize the application
+        document.addEventListener("DOMContentLoaded", function() {
+            initDB();
+            setupEventListeners();
+            startAutoSave();
+        });
+        
+        // Initialize IndexedDB
+        function initDB() {
+            const request = indexedDB.open(DB_NAME, DB_VERSION);
+            
+            request.onerror = function(event) {
+                updateStatus("データベースエラー: " + event.target.error, "error");
+            };
+            
+            request.onsuccess = function(event) {
+                db = event.target.result;
+                updateStatus("データベースに接続しました");
+                loadQuestions();
+                updateFilterOptions();
+            };
+            
+            request.onupgradeneeded = function(event) {
+                const db = event.target.result;
+                
+                // Create object store for questions
+                const store = db.createObjectStore(STORE_NAME, { keyPath: "question_id" });
+                
+                // Create indexes for filtering
+                store.createIndex("viewpoint", "viewpoint", { unique: false });
+                store.createIndex("theme_link", "theme_link", { unique: false });
+                store.createIndex("tag_labels", "tag_labels", { unique: false, multiEntry: true });
+                store.createIndex("edit_mode", "edit_mode", { unique: false });
+                store.createIndex("created_at", "created_at", { unique: false });
+                store.createIndex("emotion_label", "emotion_label", { unique: false });
+                
+                updateStatus("データベース構造を作成しました");
+                
+                // Add some sample data if empty
+                setTimeout(() => {
+                    const transaction = db.transaction([STORE_NAME], "readonly");
+                    const store = transaction.objectStore(STORE_NAME);
+                    const countRequest = store.count();
+                    
+                    countRequest.onsuccess = function() {
+                        if (countRequest.result === 0) {
+                            addSampleQuestions();
+                        }
+                    };
+                }, 500);
+            };
+        }
+        
+        
+        // Add sample questions for demo purposes
+        function addSampleQuestions() {
+            const sampleQuestions = [
+                {
+                    question_id: "q_1",
+                    question_text: "この仕事を続ける本当の理由は何か？",
+                    viewpoint: "ISQ",
+                    origin: "SelfInput",
+                    theme_link: "キャリア",
+                    tag_labels: ["仕事", "目的"],
+                    emotion_label: "困惑",
+                    edit_mode: "first",
+                    edit_history: [],
+                    created_at: new Date("2023-05-10T09:00:00").toISOString(),
+                    updated_at: new Date("2023-05-10T09:00:00").toISOString(),
+                    deleted: false
+                },
+                {
+                    question_id: "q_2",
+                    question_text: "同僚の反対意見に感じた違和感の正体は？",
+                    viewpoint: "Compass",
+                    origin: "Encounter",
+                    theme_link: "人間関係",
+                    tag_labels: ["感情", "コミュニケーション"],
+                    emotion_label: "違和感",
+                    edit_mode: "first",
+                    edit_history: [],
+                    created_at: new Date("2023-05-12T14:30:00").toISOString(),
+                    updated_at: new Date("2023-05-12T14:30:00").toISOString(),
+                    deleted: false
+                },
+                {
+                    question_id: "q_3",
+                    question_text: "プロジェクト成功時に感じた空虚感の意味",
+                    viewpoint: "Compass",
+                    origin: "SelfInput",
+                    theme_link: "達成感",
+                    tag_labels: ["感情", "成功"],
+                    emotion_label: "空虚感",
+                    edit_mode: "rewrite",
+                    edit_history: [
+                        {
+                            text: "なぜ成功しても満足できないのか？",
+                            timestamp: new Date("2023-05-08T11:20:00").toISOString()
+                        }
+                    ],
+                    created_at: new Date("2023-05-08T11:20:00").toISOString(),
+                    updated_at: new Date("2023-05-15T16:45:00").toISOString(),
+                    deleted: false
+                },
+                {
+                    question_id: "q_4",
+                    question_text: "メンターの「十分だ」という言葉から考えたいこと",
+                    viewpoint: "Reflected",
+                    origin: "Encounter",
+                    theme_link: "成長",
+                    tag_labels: ["他者", "学習"],
+                    emotion_label: "刺激",
+                    edit_mode: "first",
+                    edit_history: [],
+                    created_at: new Date("2023-05-14T18:15:00").toISOString(),
+                    updated_at: new Date("2023-05-14T18:15:00").toISOString(),
+                    deleted: false
+                },
+                {
+                    question_id: "q_5",
+                    question_text: "チームに伝えたい本当の価値とは？",
+                    viewpoint: "Gift",
+                    origin: "SelfInput",
+                    theme_link: "リーダーシップ",
+                    tag_labels: ["共有", "価値観"],
+                    emotion_label: "共有欲",
+                    edit_mode: "now",
+                    edit_history: [],
+                    created_at: new Date("2023-05-16T10:00:00").toISOString(),
+                    updated_at: new Date("2023-05-16T10:00:00").toISOString(),
+                    deleted: false
+                },
+                {
+                    question_id: "q_6",
+                    question_text: "朝のコーヒーを飲みながら考えた小さな疑問",
+                    viewpoint: "Encounter",
+                    origin: "Daily",
+                    theme_link: "日常",
+                    tag_labels: ["気付き", "習慣"],
+                    emotion_label: "好奇心",
+                    edit_mode: "first",
+                    edit_history: [],
+                    created_at: new Date("2023-05-17T08:30:00").toISOString(),
+                    updated_at: new Date("2023-05-17T08:30:00").toISOString(),
+                    deleted: false
+                }
+            ];
+            
+            const transaction = db.transaction([STORE_NAME], "readwrite");
+            const store = transaction.objectStore(STORE_NAME);
+            
+            sampleQuestions.forEach(question => {
+                store.add(question);
+            });
+            
+            transaction.oncomplete = function() {
+                updateStatus("サンプルデータを追加しました");
+                loadQuestions();
+                updateFilterOptions();
+            };
+            
+            transaction.onerror = function(event) {
+                updateStatus("サンプルデータの追加に失敗しました: " + event.target.error, "error");
+            };
+        }
+        
+        // Set up event listeners
+        function setupEventListeners() {
+            // Viewpoint tabs
+            viewpointTabs.forEach(tab => {
+                tab.addEventListener("click", function() {
+                    viewpointTabs.forEach(t => t.classList.remove("active"));
+                    this.classList.add("active");
+                    currentViewpoint = this.dataset.viewpoint;
+                    placeholder.textContent = PLACEHOLDERS[currentViewpoint];
+                });
+            });
+            
+            // Save question
+            saveButton.addEventListener("click", saveQuestion);
+            
+            // Filter toggle
+            filterToggle.addEventListener("click", function() {
+                filterSection.classList.toggle("hidden");
+                this.innerHTML = filterSection.classList.contains("hidden") ? 
+                    '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" /></svg>フィルター' : 
+                    '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>閉じる';
+            });
+            
+            // View tabs
+            sketchbookTab.addEventListener("click", function() {
+                sketchbookTab.classList.add("text-blue-600", "border-blue-600");
+                sketchbookTab.classList.remove("text-gray-500", "hover:text-gray-700");
+                emotionCloudTab.classList.remove("text-blue-600", "border-blue-600");
+                emotionCloudTab.classList.add("text-gray-500", "hover:text-gray-700");
+                timeAxisTab.classList.remove("text-blue-600", "border-blue-600");
+                timeAxisTab.classList.add("text-gray-500", "hover:text-gray-700");
+                
+                sketchbookView.classList.remove("hidden");
+                emotionCloudView.classList.add("hidden");
+                timeAxisView.classList.add("hidden");
+            });
+            
+            emotionCloudTab.addEventListener("click", function() {
+                emotionCloudTab.classList.add("text-blue-600", "border-blue-600");
+                emotionCloudTab.classList.remove("text-gray-500", "hover:text-gray-700");
+                sketchbookTab.classList.remove("text-blue-600", "border-blue-600");
+                sketchbookTab.classList.add("text-gray-500", "hover:text-gray-700");
+                timeAxisTab.classList.remove("text-blue-600", "border-blue-600");
+                timeAxisTab.classList.add("text-gray-500", "hover:text-gray-700");
+                
+                emotionCloudView.classList.remove("hidden");
+                sketchbookView.classList.add("hidden");
+                timeAxisView.classList.add("hidden");
+                generateEmotionCloud();
+            });
+            
+            timeAxisTab.addEventListener("click", function() {
+                timeAxisTab.classList.add("text-blue-600", "border-blue-600");
+                timeAxisTab.classList.remove("text-gray-500", "hover:text-gray-700");
+                sketchbookTab.classList.remove("text-blue-600", "border-blue-600");
+                sketchbookTab.classList.add("text-gray-500", "hover:text-gray-700");
+                emotionCloudTab.classList.remove("text-blue-600", "border-blue-600");
+                emotionCloudTab.classList.add("text-gray-500", "hover:text-gray-700");
+                
+                timeAxisView.classList.remove("hidden");
+                sketchbookView.classList.add("hidden");
+                emotionCloudView.classList.add("hidden");
+                generateTimeAxis();
+            });
+            
+            // Filter event listeners
+            viewpointFilters.addEventListener("click", function(e) {
+                if (e.target.dataset.viewpoint) {
+                    document.querySelectorAll("#viewpointFilters button").forEach(btn => {
+                        btn.classList.remove("bg-blue-600", "text-white");
+                        btn.classList.add("bg-gray-200", "text-gray-700");
+                    });
+                    e.target.classList.remove("bg-gray-200", "text-gray-700");
+                    e.target.classList.add("bg-blue-600", "text-white");
+                    currentFilters.viewpoint = e.target.dataset.viewpoint;
+                    applyFilters();
+                }
+            });
+            
+            themeFilters.addEventListener("click", function(e) {
+                if (e.target.dataset.theme) {
+                    document.querySelectorAll("#themeFilters button").forEach(btn => {
+                        btn.classList.remove("bg-blue-600", "text-white");
+                        btn.classList.add("bg-gray-200", "text-gray-700");
+                    });
+                    e.target.classList.remove("bg-gray-200", "text-gray-700");
+                    e.target.classList.add("bg-blue-600", "text-white");
+                    currentFilters.theme = e.target.dataset.theme;
+                    applyFilters();
+                }
+            });
+            
+            tagFilters.addEventListener("click", function(e) {
+                if (e.target.dataset.tag) {
+                    document.querySelectorAll("#tagFilters button").forEach(btn => {
+                        btn.classList.remove("bg-blue-600", "text-white");
+                        btn.classList.add("bg-gray-200", "text-gray-700");
+                    });
+                    e.target.classList.remove("bg-gray-200", "text-gray-700");
+                    e.target.classList.add("bg-blue-600", "text-white");
+                    currentFilters.tag = e.target.dataset.tag;
+                    applyFilters();
+                }
+            });
+            
+            modeFilters.addEventListener("click", function(e) {
+                if (e.target.dataset.mode) {
+                    document.querySelectorAll("#modeFilters button").forEach(btn => {
+                        btn.classList.remove("bg-blue-600", "text-white");
+                        btn.classList.add("bg-gray-200", "text-gray-700");
+                    });
+                    e.target.classList.remove("bg-gray-200", "text-gray-700");
+                    e.target.classList.add("bg-blue-600", "text-white");
+                    currentFilters.mode = e.target.dataset.mode;
+                    applyFilters();
+                }
+            });
+            
+            // Load more questions
+            loadMore.addEventListener("click", loadMoreQuestions);
+            
+            // Emotion Cloud events
+            showAllEmotions.addEventListener("click", function() {
+                filteredEmotionCards.classList.add("hidden");
+                wordCloud.classList.remove("hidden");
+                currentEmotionFilter = null;
+            });
+            
+            // Time Axis events
+            document.querySelectorAll("[data-period]").forEach(btn => {
+                btn.addEventListener("click", function() {
+                    document.querySelectorAll("[data-period]").forEach(b => {
+                        b.classList.remove("bg-blue-600", "text-white");
+                        b.classList.add("bg-gray-200", "text-gray-700");
+                    });
+                    this.classList.remove("bg-gray-200", "text-gray-700");
+                    this.classList.add("bg-blue-600", "text-white");
+                    currentPeriod = this.dataset.period;
+                    generateTimeAxis();
+                });
+            });
+            
+            document.querySelectorAll("[data-sort]").forEach(btn => {
+                btn.addEventListener("click", function() {
+                    document.querySelectorAll("[data-sort]").forEach(b => {
+                        b.classList.remove("bg-blue-600", "text-white");
+                        b.classList.add("bg-gray-200", "text-gray-700");
+                    });
+                    this.classList.remove("bg-gray-200", "text-gray-700");
+                    this.classList.add("bg-blue-600", "text-white");
+                    currentSort = this.dataset.sort;
+                    generateTimeAxis();
+                });
+            });
+            
+            // Modal events
+            closeModal.addEventListener("click", function() {
+                questionModal.classList.add("hidden");
+            });
+            
+            saveAsRewrite.addEventListener("click", saveEditedQuestion.bind(null, "rewrite"));
+            saveAsNow.addEventListener("click", saveEditedQuestion.bind(null, "now"));
+            
+            // Auto-save when typing
+            questionText.addEventListener("input", autoSaveDraft);
+        }
+        
+        // Save question to IndexedDB
+        function saveQuestion() {
+            if (!questionText.value.trim()) {
+                updateStatus("問い本文を入力してください", "error");
+                questionText.focus();
+                return;
+            }
+            
+            const transaction = db.transaction([STORE_NAME], "readwrite");
+            const store = transaction.objectStore(STORE_NAME);
+            
+            const question = {
+                question_id: "q_" + Date.now(),
+                question_text: questionText.value,
+                viewpoint: currentViewpoint,
+                origin: "SelfInput",
+                theme_link: themeInput.value || "霧",
+                tag_labels: tagInput.value ? tagInput.value.split(",").map(tag => tag.trim()) : [],
+                emotion_label: getEmotionLabelForViewpoint(currentViewpoint),
+                edit_mode: "first",
+                edit_history: [],
+                created_at: new Date().toISOString(),
+                updated_at: new Date().toISOString(),
+                deleted: false
+            };
+            
+            const request = store.add(question);
+            
+            request.onsuccess = function() {
+                updateStatus("問いを保存しました");
+                questionText.value = "";
+                themeInput.value = "";
+                tagInput.value = "";
+                loadQuestions();
+                updateFilterOptions();
+            };
+            
+            request.onerror = function(event) {
+                updateStatus("問いの保存に失敗しました: " + event.target.error, "error");
+            };
+        }
+        
+        // Get default emotion label based on viewpoint
+        function getEmotionLabelForViewpoint(viewpoint) {
+            const emotions = {
+                ISQ: "探求",
+                Encounter: "気付き",
+                Compass: "違和感",
+                Reflected: "刺激",
+                Gift: "共有欲",
+                Free: "好奇心"
+            };
+            return emotions[viewpoint] || "未分類";
+        }
+        
+        // Load questions from IndexedDB with filters
+        function loadQuestions() {
+            loadedCount = 0;
+            questionCards.innerHTML = "";
+            loadMoreQuestions();
+        }
+        
+        // Load more questions (pagination)
+        function loadMoreQuestions() {
+            const transaction = db.transaction([STORE_NAME], "readonly");
+            const store = transaction.objectStore(STORE_NAME);
+            const index = store.index("created_at");
+            
+            // Apply filters
+            let keyRange = null;
+            if (currentFilters.viewpoint !== "all") {
+                keyRange = IDBKeyRange.only(currentFilters.viewpoint);
+                store = store.index("viewpoint");
+            }
+            
+            const request = index.getAll(keyRange);
+            
+            request.onsuccess = function() {
+                let questions = request.result;
+                
+                // Apply additional filters
+                questions = questions.filter(question => {
+                    if (currentFilters.theme !== "all" && question.theme_link !== currentFilters.theme) return false;
+                    if (currentFilters.tag !== "all" && !question.tag_labels.includes(currentFilters.tag)) return false;
+                    if (currentFilters.mode !== "all" && question.edit_mode !== currentFilters.mode) return false;
+                    return true;
+                });
+                
+                // Sort by created_at (newest first)
+                questions.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                
+                // Check if there are more questions to load
+                if (loadedCount >= questions.length) {
+                    loadMore.classList.add("hidden");
+                    return;
+                }
+                
+                // Display next page of questions
+                const nextQuestions = questions.slice(loadedCount, loadedCount + PAGE_SIZE);
+                nextQuestions.forEach(question => {
+                    displayQuestionCard(question);
+                });
+                
+                loadedCount += PAGE_SIZE;
+                
+                // Show or hide load more button
+                loadMore.classList.toggle("hidden", loadedCount >= questions.length);
+                
+                // Show active filters indicator if any filter is not "all"
+                const isFiltering = Object.values(currentFilters).some(val => val !== "all");
+                activeFilters.classList.toggle("hidden", !isFiltering);
+            };
+            
+            request.onerror = function(event) {
+                updateStatus("問いの読み込みに失敗しました: " + event.target.error, "error");
+            };
+        }
+        
+        // Display a question as a card
+        function displayQuestionCard(question) {
+            const card = document.createElement("div");
+            card.className = "bg-white rounded-lg shadow overflow-hidden fade-in card-border-" + question.viewpoint.toLowerCase();
+            card.dataset.id = question.question_id;
+            card.dataset.viewpoint = question.viewpoint;
+            card.dataset.theme = question.theme_link;
+            card.dataset.mode = question.edit_mode;
+            
+            let tagsHTML = "";
+            if (question.tag_labels && question.tag_labels.length > 0) {
+                tagsHTML = question.tag_labels.map(tag => 
+                    `<span class="inline-block bg-gray-100 rounded-full px-2 py-1 text-xs font-medium text-gray-700 mr-1 mb-1">${tag}</span>`
+                ).join("");
+            }
+            
+            card.innerHTML = `
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="px-2 py-1 text-xs font-medium rounded-full text-white bg-${question.viewpoint.toLowerCase()}">${question.viewpoint}</span>
+                        <span class="text-xs text-gray-500">${formatDate(question.created_at)}</span>
+                    </div>
+                    <div class="mb-3 line-clamp-3">${question.question_text}</div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-blue-600">#${question.theme_link}</span>
+                        <div class="flex space-x-2">
+                            <button class="view-detail text-xs text-gray-500 hover:text-blue-600">詳細</button>
+                        </div>
+                    </div>
+                    ${tagsHTML ? `<div class="mt-2">${tagsHTML}</div>` : ''}
+                </div>
+            `;
+            
+            // Add event listener for view detail
+            card.querySelector(".view-detail").addEventListener("click", function() {
+                showQuestionDetail(question.question_id);
+            });
+            
+            questionCards.appendChild(card);
+        }
+        
+        // Apply filters to questions
+        function applyFilters() {
+            loadQuestions();
+        }
+        
+        // Update filter options based on available data
+        function updateFilterOptions() {
+            const transaction = db.transaction([STORE_NAME], "readonly");
+            const store = transaction.objectStore(STORE_NAME);
+            const request = store.getAll();
+            
+            request.onsuccess = function() {
+                const questions = request.result;
+                
+                // Collect unique themes and tags
+                const themes = new Set();
+                const tags = new Set();
+                
+                questions.forEach(question => {
+                    if (question.theme_link) {
+                        themes.add(question.theme_link);
+                    }
+                    
+                    if (question.tag_labels && question.tag_labels.length > 0) {
+                        question.tag_labels.forEach(tag => tags.add(tag));
+                    }
+                });
+                
+                // Update theme filters
+                themeFilters.innerHTML = '<button data-theme="all" class="px-3 py-1 bg-blue-600 text-white text-xs rounded-full">すべて</button>';
+                themes.forEach(theme => {
+                    const button = document.createElement("button");
+                    button.className = "px-3 py-1 bg-gray-200 text-gray-700 text-xs rounded-full";
+                    button.dataset.theme = theme;
+                    button.textContent = theme;
+                    themeFilters.appendChild(button);
+                });
+                
+                // Update tag filters
+                tagFilters.innerHTML = '<button data-tag="all" class="px-3 py-1 bg-blue-600 text-white text-xs rounded-full">すべて</button>';
+                tags.forEach(tag => {
+                    const button = document.createElement("button");
+                    button.className = "px-3 py-1 bg-gray-200 text-gray-700 text-xs rounded-full";
+                    button.dataset.tag = tag;
+                    button.textContent = tag;
+                    tagFilters.appendChild(button);
+                });
+                
+                // Add event listeners to new filter buttons
+                document.querySelectorAll("#themeFilters button").forEach(btn => {
+                    if (!btn.dataset.theme) return;
+                    btn.addEventListener("click", function() {
+                        document.querySelectorAll("#themeFilters button").forEach(b => {
+                            b.classList.remove("bg-blue-600", "text-white");
+                            b.classList.add("bg-gray-200", "text-gray-700");
+                        });
+                        this.classList.remove("bg-gray-200", "text-gray-700");
+                        this.classList.add("bg-blue-600", "text-white");
+                        currentFilters.theme = this.dataset.theme;
+                        applyFilters();
+                    });
+                });
+                
+                document.querySelectorAll("#tagFilters button").forEach(btn => {
+                    if (!btn.dataset.tag) return;
+                    btn.addEventListener("click", function() {
+                        document.querySelectorAll("#tagFilters button").forEach(b => {
+                            b.classList.remove("bg-blue-600", "text-white");
+                            b.classList.add("bg-gray-200", "text-gray-700");
+                        });
+                        this.classList.remove("bg-gray-200", "text-gray-700");
+                        this.classList.add("bg-blue-600", "text-white");
+                        currentFilters.tag = this.dataset.tag;
+                        applyFilters();
+                    });
+                });
+            };
+        }
+        
+        // Show question detail in modal
+        function showQuestionDetail(questionId) {
+            const transaction = db.transaction([STORE_NAME], "readonly");
+            const store = transaction.objectStore(STORE_NAME);
+            const request = store.get(questionId);
+            
+            request.onsuccess = function() {
+                const question = request.result;
+                if (!question) return;
+                
+                currentModalQuestionId = question.question_id;
+                
+                // Set modal content
+                modalViewpoint.textContent = question.viewpoint;
+                modalViewpoint.className = `px-3 py-1 rounded-full text-white bg-${question.viewpoint.toLowerCase()} text-sm font-medium`;
+                modalQuestionText.textContent = question.question_text;
+                
+                // Set tags
+                modalTags.innerHTML = "";
+                if (question.tag_labels && question.tag_labels.length > 0) {
+                    question.tag_labels.forEach(tag => {
+                        const tagElement = document.createElement("span");
+                        tagElement.className = "inline-block bg-gray-100 rounded-full px-2 py-1 text-xs font-medium text-gray-700 mr-1 mb-1";
+                        tagElement.textContent = tag;
+                        modalTags.appendChild(tagElement);
+                    });
+                }
+                
+                // Set dates
+                modalCreatedAt.textContent = formatDate(question.created_at, true);
+                modalUpdatedAt.textContent = formatDate(question.updated_at, true);
+                
+                // Set edit history
+                editHistory.innerHTML = "";
+                if (question.edit_history && question.edit_history.length > 0) {
+                    question.edit_history.forEach((item, index) => {
+                        const historyItem = document.createElement("div");
+                        historyItem.className = "bg-gray-50 p-3 rounded";
+                        historyItem.innerHTML = `
+                            <div class="text-xs text-gray-500 mb-1">${formatDate(item.timestamp, true)}</div>
+                            <div class="text-sm">${item.text}</div>
+                        `;
+                        editHistory.appendChild(historyItem);
+                    });
+                } else {
+                    editHistory.innerHTML = '<div class="text-gray-500 text-sm">編集履歴はありません</div>';
+                }
+                
+                // Set edit text
+                editQuestionText.value = question.question_text;
+                
+                // Show modal
+                questionModal.classList.remove("hidden");
+            };
+        }
+        
+        // Save edited question
+        function saveEditedQuestion(editMode) {
+            if (!editQuestionText.value.trim()) {
+                alert("問い本文を入力してください");
+                return;
+            }
+            
+            const transaction = db.transaction([STORE_NAME], "readwrite");
+            const store = transaction.objectStore(STORE_NAME);
+            const getRequest = store.get(currentModalQuestionId);
+            
+            getRequest.onsuccess = function() {
+                const originalQuestion = getRequest.result;
+                if (!originalQuestion) return;
+                
+                // Create updated question
+                const updatedQuestion = {
+                    ...originalQuestion,
+                    question_text: editQuestionText.value,
+                    edit_mode: editMode,
+                    updated_at: new Date().toISOString()
+                };
+                
+                // For rewrite mode, add to edit history
+                if (editMode === "rewrite") {
+                    updatedQuestion.edit_history = [
+                        ...(originalQuestion.edit_history || []),
+                        {
+                            text: originalQuestion.question_text,
+                            timestamp: originalQuestion.updated_at
+                        }
+                    ];
+                }
+                
+                // For now mode, create a new question
+                if (editMode === "now") {
+                    updatedQuestion.question_id = "q_" + Date.now();
+                    updatedQuestion.edit_mode = "now";
+                    updatedQuestion.edit_history = [];
+                    updatedQuestion.created_at = new Date().toISOString();
+                    
+                    // Add the new question
+                    store.add(updatedQuestion);
+                } else {
+                    // Update existing question
+                    store.put(updatedQuestion);
+                }
+                
+                transaction.oncomplete = function() {
+                    updateStatus(`問いを${editMode === "now" ? "新規保存" : "更新"}しました`);
+                    questionModal.classList.add("hidden");
+                    loadQuestions();
+                    updateFilterOptions();
+                };
+                
+                transaction.onerror = function(event) {
+                    updateStatus("問いの保存に失敗しました: " + event.target.error, "error");
+                };
+            };
+        }
+        
+        // Generate Emotion Cloud visualization
+        function generateEmotionCloud() {
+            const transaction = db.transaction([STORE_NAME], "readonly");
+            const store = transaction.objectStore(STORE_NAME);
+            const request = store.getAll();
+            
+            request.onsuccess = function() {
+                const questions = request.result;
+                
+                // Count emotion frequencies
+                const emotionCounts = {};
+                questions.forEach(question => {
+                    if (question.emotion_label) {
+                        emotionCounts[question.emotion_label] = (emotionCounts[question.emotion_label] || 0) + 1;
+                    }
+                });
+                
+                // Sort emotions by frequency
+                const sortedEmotions = Object.keys(emotionCounts).sort((a, b) => emotionCounts[b] - emotionCounts[a]);
+                
+                // Generate word cloud
+                wordCloud.innerHTML = "";
+                sortedEmotions.slice(0, 12).forEach(emotion => {
+                    const count = emotionCounts[emotion];
+                    const size = Math.min(24, 12 + count * 2); // Scale size based on frequency
+                    
+                    const emotionElement = document.createElement("div");
+                    emotionElement.className = "word-cloud-item cursor-pointer";
+                    emotionElement.style.fontSize = `${size}px`;
+                    emotionElement.textContent = emotion;
+                    emotionElement.addEventListener("click", function() {
+                        filterByEmotion(emotion);
+                    });
+                    
+                    wordCloud.appendChild(emotionElement);
+                });
+                
+                if (sortedEmotions.length === 0) {
+                    wordCloud.innerHTML = '<div class="text-gray-500">感情データがありません</div>';
+                }
+            };
+        }
+        
+        // Filter questions by emotion
+        function filterByEmotion(emotion) {
+            currentEmotionFilter = emotion;
+            
+            const transaction = db.transaction([STORE_NAME], "readonly");
+            const store = transaction.objectStore(STORE_NAME);
+            const index = store.index("emotion_label");
+            const request = index.getAll(IDBKeyRange.only(emotion));
+            
+            request.onsuccess = function() {
+                const questions = request.result;
+                
+                // Hide word cloud and show filtered cards
+                wordCloud.classList.add("hidden");
+                filteredEmotionCards.classList.remove("hidden");
+                filteredEmotionCards.innerHTML = "";
+                
+                if (questions.length === 0) {
+                    filteredEmotionCards.innerHTML = '<div class="col-span-3 text-center text-gray-500 py-8">該当する問いが見つかりません</div>';
+                    return;
+                }
+                
+                // Sort by created_at (newest first)
+                questions.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                
+                // Display filtered questions
+                questions.forEach(question => {
+                    const card = document.createElement("div");
+                    card.className = "bg-white rounded-lg shadow overflow-hidden card-border-" + question.viewpoint.toLowerCase();
+                    
+                    let tagsHTML = "";
+                    if (question.tag_labels && question.tag_labels.length > 0) {
+                        tagsHTML = question.tag_labels.map(tag => 
+                            `<span class="inline-block bg-gray-100 rounded-full px-2 py-1 text-xs font-medium text-gray-700 mr-1 mb-1">${tag}</span>`
+                        ).join("");
+                    }
+                    
+                    card.innerHTML = `
+                        <div class="p-4">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="px-2 py-1 text-xs font-medium rounded-full text-white bg-${question.viewpoint.toLowerCase()}">${question.viewpoint}</span>
+                                <span class="text-xs text-gray-500">${formatDate(question.created_at)}</span>
+                            </div>
+                            <div class="mb-3 line-clamp-3">${question.question_text}</div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-blue-600">#${question.theme_link}</span>
+                                <div class="flex space-x-2">
+                                    <button class="view-detail text-xs text-gray-500 hover:text-blue-600">詳細</button>
+                                </div>
+                            </div>
+                            ${tagsHTML ? `<div class="mt-2">${tagsHTML}</div>` : ''}
+                        </div>
+                    `;
+                    
+                    // Add event listener for view detail
+                    card.querySelector(".view-detail").addEventListener("click", function() {
+                        showQuestionDetail(question.question_id);
+                    });
+                    
+                    filteredEmotionCards.appendChild(card);
+                });
+            };
+        }
+        
+        // Generate Time Axis visualization
+        function generateTimeAxis() {
+            const transaction = db.transaction([STORE_NAME], "readonly");
+            const store = transaction.objectStore(STORE_NAME);
+            const request = store.getAll();
+            
+            request.onsuccess = function() {
+                let questions = request.result;
+                
+                // Apply period filter
+                const now = new Date();
+                if (currentPeriod === "week") {
+                    const oneWeekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+                    questions = questions.filter(q => new Date(q.created_at) >= oneWeekAgo);
+                } else if (currentPeriod === "month") {
+                    const oneMonthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+                    questions = questions.filter(q => new Date(q.created_at) >= oneMonthAgo);
+                }
+                
+                // Sort questions
+                questions.sort((a, b) => {
+                    const dateA = new Date(a.created_at);
+                    const dateB = new Date(b.created_at);
+                    return currentSort === "asc" ? dateA - dateB : dateB - dateA;
+                });
+                
+                // Group by date
+                const questionsByDate = {};
+                questions.forEach(question => {
+                    const date = new Date(question.created_at).toDateString();
+                    if (!questionsByDate[date]) {
+                        questionsByDate[date] = [];
+                    }
+                    questionsByDate[date].push(question);
+                });
+                
+                // Display timeline
+                timelineContainer.innerHTML = "";
+                
+                if (Object.keys(questionsByDate).length === 0) {
+                    timelineContainer.innerHTML = '<div class="text-center text-gray-500 py-8 w-full">該当する問いが見つかりません</div>';
+                    return;
+                }
+                
+                Object.entries(questionsByDate).forEach(([date, dateQuestions]) => {
+                    const dateElement = document.createElement("div");
+                    dateElement.className = "timeline-item";
+                    
+                    const dateHeader = document.createElement("div");
+                    dateHeader.className = "text-sm font-medium text-gray-700 mb-2";
+                    dateHeader.textContent = new Date(date).toLocaleDateString();
+                    
+                    dateElement.appendChild(dateHeader);
+                    
+                    dateQuestions.forEach((question, index) => {
+                        const hasBranch = question.edit_history && question.edit_history.length > 0;
+                        
+                        const questionElement = document.createElement("div");
+                        questionElement.className = `bg-white rounded-lg shadow p-3 mb-2 ${hasBranch ? "branch-line" : ""}`;
+                        
+                        questionElement.innerHTML = `
+                            <div class="flex justify-between items-start mb-1">
+                                <span class="px-2 py-1 text-xs font-medium rounded-full text-white bg-${question.viewpoint.toLowerCase()}">${question.viewpoint}</span>
+                                <span class="text-xs text-gray-500">${new Date(question.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+                            </div>
+                            <div class="text-sm line-clamp-2 mb-1">${question.question_text}</div>
+                            <div class="text-xs text-blue-600">#${question.theme_link}</div>
+                        `;
+                        
+                        questionElement.addEventListener("click", function() {
+                            showQuestionDetail(question.question_id);
+                        });
+                        
+                        dateElement.appendChild(questionElement);
+                    });
+                    
+                    timelineContainer.appendChild(dateElement);
+                });
+            };
+        }
+        
+        // Start auto-save functionality
+        function startAutoSave() {
+            // Auto-save every 30 seconds if there's input
+            autoSaveInterval = setInterval(() => {
+                if (questionText.value.trim()) {
+                    autoSaveDraft();
+                }
+            }, 30000);
+            
+            updateStatus("自動保存が有効になりました");
+        }
+        // Add delete button to the question card
+function displayQuestionCard(question) {
+    const card = document.createElement("div");
+    card.className = "bg-white rounded-lg shadow overflow-hidden fade-in card-border-" + question.viewpoint.toLowerCase();
+    card.dataset.id = question.question_id;
+    card.dataset.viewpoint = question.viewpoint;
+    card.dataset.theme = question.theme_link;
+    card.dataset.mode = question.edit_mode;
+
+    let tagsHTML = "";
+    if (question.tag_labels && question.tag_labels.length > 0) {
+        tagsHTML = question.tag_labels.map(tag => 
+            `<span class="inline-block bg-gray-100 rounded-full px-2 py-1 text-xs font-medium text-gray-700 mr-1 mb-1">${tag}</span>`
+        ).join("");
+    }
+
+    card.innerHTML = `
+        <div class="p-4">
+            <div class="flex justify-between items-start mb-2">
+                <span class="px-2 py-1 text-xs font-medium rounded-full text-white bg-${question.viewpoint.toLowerCase()}">${question.viewpoint}</span>
+                <span class="text-xs text-gray-500">${formatDate(question.created_at)}</span>
+            </div>
+            <div class="mb-3 line-clamp-3">${question.question_text}</div>
+            <div class="flex justify-between items-center">
+                <span class="text-sm text-blue-600">#${question.theme_link}</span>
+                <div class="flex space-x-2">
+                    <button class="view-detail text-xs text-gray-500 hover:text-blue-600">詳細</button>
+                    <button class="delete-question text-xs text-red-500 hover:text-red-700">削除</button>
+                </div>
+            </div>
+            ${tagsHTML ? `<div class="mt-2">${tagsHTML}</div>` : ''}
+        </div>
+    `;
+
+    // Add event listener for view detail
+    card.querySelector(".view-detail").addEventListener("click", function () {
+        showQuestionDetail(question.question_id);
+    });
+
+    // Add event listener for delete button
+    card.querySelector(".delete-question").addEventListener("click", function () {
+        deleteQuestion(question.question_id);
+    });
+
+    questionCards.appendChild(card);
+}
+
+// Function to delete a question from IndexedDB
+function deleteQuestion(questionId) {
+    if (!confirm("この問いを削除してもよろしいですか？")) {
+        return;
+    }
+
+    const transaction = db.transaction([STORE_NAME], "readwrite");
+    const store = transaction.objectStore(STORE_NAME);
+
+    const request = store.delete(questionId);
+
+    request.onsuccess = function () {
+        updateStatus("問いを削除しました");
+        loadQuestions(); // Reload the questions to reflect the deletion
+    };
+
+    request.onerror = function (event) {
+        updateStatus("問いの削除に失敗しました: " + event.target.error, "error");
+    };
+}
+        // Auto-save draft question
+        function autoSaveDraft() {
+            // In a real app, you would save to localStorage or IndexedDB
+            autoSaveStatus.textContent = `自動保存: ${new Date().toLocaleTimeString()}`;
+        }
+        
+        // Format date for display
+        function formatDate(dateString, includeTime = false) {
+            const date = new Date(dateString);
+            if (includeTime) {
+                return date.toLocaleDateString() + " " + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            }
+            return date.toLocaleDateString();
+        }
+        
+        // Update status message
+        function updateStatus(message, type = "info") {
+            statusMessage.textContent = message;
+            // In a real app, you might change color based on type
+        }
+    </script>
+</body>
+</html>

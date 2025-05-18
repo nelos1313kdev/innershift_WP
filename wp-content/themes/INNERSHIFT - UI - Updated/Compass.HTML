@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INNERSHIFT | Emotion Compass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .fade-in-section.visible {
+            opacity: 1;
+            transform: none;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .mobile-menu-enter {
+            animation: slideDown 0.3s ease-out forwards;
+        }
+        
+        .menu {
+            border-bottom: 1px solid rgb(177, 177, 177);
+            background-color: rgb(255, 254, 242);
+        }
+        body{
+            background-color: rgba(255, 254, 242, 0.95);
+        }
+        
+    </style>
+</head>
+<body class="text-gray-800 font-sans">
+    <!-- Header -->
+    <header class="fixed menu top-0 left-0 right-0 z-50 backdrop-blur-sm shadow-sm">
+        <div class="w-full mx-auto flex items-center justify-between px-4 py-3 md:py-4 lg:px-8">
+            <!-- Logo -->
+            <a href="/" class="text-lg font-bold tracking-widest text-gray-900 ml-5 sm:ml-0">
+                <img src="./assets/images/INNERSHIFT_logotype-1.gif" alt="INNERSHIFT Logo" 
+                     class="w-[100px] h-[60px] sm:w-[110px] sm:h-[65px] md:w-[120px] md:h-[70px] lg:w-[130px] lg:h-[75px] xl:w-[140px] xl:h-[80px] 2xl:w-[150px] 2xl:h-[85px] 
+                            transition-transform duration-300 hover:scale-105" />
+            </a>
+        
+            <!-- Mobile Menu Toggle -->
+            <button id="menuToggle" class="md:hidden text-gray-700 focus:outline-none hover:bg-gray-100 rounded-lg p-2 transition-colors duration-200" 
+                    aria-label="メニューを開く">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-3 lg:space-x-8 text-sm md:text-base font-medium text-black tracking-wide relative">
+                <a href="/" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">INNERSHIFT</a>
+                <a href="/is360" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">IS360</a>
+                <a href="/gateway" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600 pl-4">Gateway</a>
+                <a href="/journal" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">JOURNAL</a>
+                <a href="/contact" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">お問い合わせ</a>
+                <a href="/about" class="hover:underline hover:underline-offset-4 transition-all duration-300 hover:text-gray-600">About</a>
+            </nav>
+        
+            <!-- Language Toggle Button -->
+            <button id="langToggle" class="ml-4 flex items-center space-x-1 text-gray-700 focus:outline-none bg-gray-100 hover:bg-gray-200 rounded-md px-3 py-2" aria-label="Toggle Language">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3C7.029 3 3 7.029 3 12s4.029 9 9 9 9-4.029 9-9-4.029-9-9-9zm0 0c2.761 0 5 4.029 5 9s-2.239 9-5 9-5-4.029-5-9 2.239-9 5-9zM3.6 9h16.8M3.6 15h16.8" />
+                </svg>
+                <span id="langLabel" class="text-sm font-medium ml-1">JP</span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white fixed font-medium top-16 left-0 right-0 z-50 shadow-md transition-all duration-300 overflow-y-auto max-h-screen">
+            <nav class="flex flex-col items-center py-4 space-y-2 text-black font-medium">
+                <a href="/" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">INNERSHIFT</a>
+                <a href="/is360" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">IS360</a>
+                <a href="/gateway" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">Gateway</a>
+                <a href="/journal" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">JOURNAL</a>
+                <a href="/contact" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">お問い合わせ</a>
+                <a href="/about" class="block w-full text-center py-3 hover:bg-gray-50 transition-colors duration-200">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="compass-container max-w-3xl mx-auto px-4 py-8 mt-28">
+        <!-- Header with progress indicator -->
+        <header class="compass-header text-center mb-8 fade-in-section">
+            <div class="progress-indicator flex justify-center gap-2 mb-4">
+                <div class="progress-step w-2 h-2 rounded-full bg-gray-300 transition-all duration-300 active:bg-gray-600 active:scale-125"></div>
+                <div class="progress-step w-2 h-2 rounded-full bg-gray-300 transition-all duration-300"></div>
+            </div>
+            <h1 class="compass-title text-2xl font-bold text-gray-900 mb-1">Emotion Compass</h1>
+            <p class="compass-subtitle text-gray-500 transition-all duration-300" id="step-subtitle">いまの感情に近い場所を選んでください</p>
+        </header>
+
+        <main class="compass-main">
+            <!-- Emotion Selection Screen -->
+            <div id="emotion-selection" class="emotion-selection flex flex-col items-center fade-in-section active">
+                <div class="compass-grid-container w-full bg-white rounded-xl shadow-sm p-6 mb-6">
+                    <div class="compass-grid relative w-full aspect-square rounded-lg overflow-hidden" style="background-color: rgba(255, 254, 242, 0.95);">
+                        <!-- Horizontal Axis -->
+                        <div class="compass-axis absolute w-full h-px bg-gray-300 top-1/2 left-0 flex justify-between">
+                            <span class="axis-label text-xs text-gray-500 bg-gray-50 px-2">不安</span>
+                            <span class="axis-label text-xs text-gray-500 bg-gray-50 px-2">安心</span>
+                        </div>
+                        <!-- Vertical Axis -->
+                        <div class="compass-axis absolute w-px h-full bg-gray-300 left-1/2 top-0 flex flex-col justify-between">
+                            <span class="axis-label text-xs text-gray-500  px-2">興奮</span>
+                            <span class="axis-label text-xs text-gray-500  px-2">沈静</span>
+                        </div>
+                        <!-- Emotion Points -->
+                        <div class="emotion-points absolute w-full h-full" id="emotion-points">
+                            <!-- Emotion points will be generated by JavaScript -->
+                        </div>
+                        <!-- Center Point -->
+                        <div class="compass-center-point absolute w-2 h-2 bg-gray-600 rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"></div>
+                    </div>
+                </div>
+                <div class="selection-hint flex items-center gap-2 p-3 shadow rounded-lg w-full fade-in-section">
+                    <span class="hint-icon flex items-center justify-center w-5 h-5 bg-gray-400 text-white rounded-full text-xs font-bold">?</span>
+                    <p class="text-sm text-gray-500">グラデーション上でいまの感情に近い場所をタップしてください</p>
+                </div>
+            </div>
+
+            <!-- Message Display Screen -->
+            <div id="message-screen" class="message-screen hidden flex-col w-full fade-in-section">
+                <div class="emotion-display flex justify-between items-center mb-5">
+                    <div class="emotion-tag bg-gray-600 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1" id="emotion-tag">
+                        <span id="emotion-label"></span>
+                    </div>
+                    <div class="emotion-intensity flex items-center gap-2 flex-grow max-w-[150px]">
+                        <span class="intensity-label text-xs text-gray-500 whitespace-nowrap">強度</span>
+                        <div class="intensity-bar h-1.5 bg-gray-200 rounded-full w-full overflow-hidden">
+                            <div class="intensity-level h-full bg-gray-600 rounded-full" id="intensity-level"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="message-display bg-white p-6 rounded-xl shadow-sm mb-6 fade-in-section">
+                    <div class="message-container relative z-10">
+                        <p class="text-lg text-gray-900 text-center leading-relaxed" id="compass-message"></p>
+                    </div>
+                    <div class="message-source flex items-center gap-1 justify-center mt-3 text-xs text-gray-400">
+                        <span class="source-icon">✧</span>
+                        <span>Emotion Compassからのヒント</span>
+                    </div>
+                </div>
+                
+                <div class="compass-actions flex justify-between gap-3 mt-auto">
+                    <button id="skip-btn" class="secondary-btn flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-white text-black-600 border border-gray-300 hover:bg-gray-50 hover:border-gray-400 transition-all">
+                        <span class="btn-icon">→</span>
+                        <span class="btn-text whitespace-nowrap">スキップする</span>
+                    </button>
+                    <button id="save-btn" class="primary-btn flex-1 flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-gray-600 text-white hover:bg-gray-700 hover:shadow-md transition-all">
+                        <span class="btn-icon">✓</span>
+                        <span class="btn-text whitespace-nowrap">この言葉を記録する</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white rounded-lg shadow-lg opacity-0 transition-opacity duration-300 z-50">
+            <div class="toast-content px-5 py-3 text-sm font-medium"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-80 text-white py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">INNERSHIFT</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="/about" class="hover:text-white transition">私たちについて</a></li>
+                        <li><a href="/philosophy" class="hover:text-white transition">哲学</a></li>
+                        <li><a href="/contact" class="hover:text-white transition">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold mb-4">プログラム</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="/is360" class="hover:text-white transition">IS360</a></li>
+                        <li><a href="/gateway" class="hover:text-white transition">Gateway</a></li>
+                        <li><a href="/journal" class="hover:text-white transition">Journal</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold mb-4">リソース</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="/articles" class="hover:text-white transition">記事</a></li>
+                        <li><a href="/case-studies" class="hover:text-white transition">事例</a></li>
+                        <li><a href="/faq" class="hover:text-white transition">よくある質問</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-semibold mb-4">その他</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="/privacy" class="hover:text-white transition">プライバシーポリシー</a></li>
+                        <li><a href="/terms" class="hover:text-white transition">利用規約</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
+                &copy; 2025 INNERSHIFT. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced Emotion Compass Module Implementation
+        document.addEventListener('DOMContentLoaded', function() {  
+            // DOM Elements
+            const emotionSelection = document.getElementById('emotion-selection');
+            const messageScreen = document.getElementById('message-screen');
+            const emotionLabel = document.getElementById('emotion-label');
+            const emotionTag = document.getElementById('emotion-tag');
+            const compassMessage = document.getElementById('compass-message');
+            const saveBtn = document.getElementById('save-btn');
+            const skipBtn = document.getElementById('skip-btn');
+            const toast = document.getElementById('toast');
+            const toastContent = document.querySelector('.toast-content');
+            const emotionPointsContainer = document.getElementById('emotion-points');
+            const progressSteps = document.querySelectorAll('.progress-step');
+            const stepSubtitle = document.getElementById('step-subtitle');
+            const intensityLevel = document.getElementById('intensity-level');
+
+            // Emotion data structure
+            const emotions = [
+                { name: "喜び", x: 70, y: 30, color: "#f59e0b", group: "positive", intensity: 0.7 },
+                { name: "興奮", x: 80, y: 20, color: "#ef4444", group: "high-energy", intensity: 0.9 },
+                { name: "安心", x: 60, y: 60, color: "#10b981", group: "calm", intensity: 0.5 },
+                { name: "平穏", x: 50, y: 50, color: "#a5b4fc", group: "neutral", intensity: 0.3 },
+                { name: "悲しみ", x: 30, y: 70, color: "#64748b", group: "low-energy", intensity: 0.6 },
+                { name: "焦り", x: 70, y: 80, color: "#dc2626", group: "anxious", intensity: 0.8 },
+                { name: "不安", x: 30, y: 30, color: "#8b5cf6", group: "anxious", intensity: 0.7 },
+                { name: "怒り", x: 80, y: 70, color: "#b91c1c", group: "high-energy", intensity: 0.85 },
+                { name: "期待", x: 65, y: 40, color: "#fbbf24", group: "positive", intensity: 0.65 },
+                { name: "疲労", x: 40, y: 60, color: "#94a3b8", group: "low-energy", intensity: 0.55 }
+            ];
+
+            // Messages for each emotion group
+            const groupMessages = {
+                "positive": [
+                    "この気持ちを大切にできる瞬間はありますか？",
+                    "喜びを分かち合いたい人はいますか？",
+                    "この感情が教えてくれることは何ですか？"
+                ],
+                "high-energy": [
+                    "このエネルギーをどこに向けたいですか？",
+                    "興奮の奥にある本当の気持ちは何ですか？",
+                    "この感情とどう向き合いたいですか？"
+                ],
+                "calm": [
+                    "安心できる場所や瞬間を思い出せますか？",
+                    "この平穏さから何が生まれるでしょうか？",
+                    "今の状態をどう維持したいですか？"
+                ],
+                "neutral": [
+                    "今の状態を観察してみましょう",
+                    "何か小さな変化に気づきますか？",
+                    "この穏やかさから何が見えますか？"
+                ],
+                "low-energy": [
+                    "この感情が伝えたいことは何ですか？",
+                    "悲しみとどう共存できますか？",
+                    "今の自分に必要なものは何ですか？"
+                ],
+                "anxious": [
+                    "不安の正体は何だと思いますか？",
+                    "この焦りが教えてくれることは？",
+                    "一つ深呼吸して、感じていることを観察してみましょう"
+                ]
+            };
+
+            // Current state
+            let currentState = {
+                selectedEmotion: null,
+                selectedGroup: null,
+                message: null,
+                saved: false,
+                currentStep: 1,
+                totalSteps: 2
+            };
+
+            // Initialize the app
+            function init() {
+                renderEmotionPoints();
+                setupEventListeners();
+                updateProgressIndicator();
+                setupIntersectionObserver();
+            }
+
+            // Set up Intersection Observer for fade-in effects
+            function setupIntersectionObserver() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, {
+                    threshold: 0.1
+                });
+
+                document.querySelectorAll('.fade-in-section').forEach(section => {
+                    observer.observe(section);
+                });
+            }
+
+            // Render emotion points on the compass grid
+            function renderEmotionPoints() {
+                emotionPointsContainer.innerHTML = '';
+                
+                emotions.forEach(emotion => {
+                    const point = document.createElement('div');
+                    point.className = 'emotion-point absolute w-6 h-6 rounded-full border-2 border-white shadow-sm cursor-pointer transition-all hover:scale-125 z-20';
+                    point.style.left = `${emotion.x}%`;
+                    point.style.top = `${emotion.y}%`;
+                    point.style.backgroundColor = emotion.color;
+                    point.dataset.name = emotion.name;
+                    point.dataset.group = emotion.group;
+                    point.dataset.intensity = emotion.intensity;
+                    
+                    point.addEventListener('click', function() {
+                        selectEmotion(emotion);
+                    });
+                    
+                    emotionPointsContainer.appendChild(point);
+                });
+            }
+
+            // Set up event listeners
+            function setupEventListeners() {
+                // Save button
+                saveBtn.addEventListener('click', saveCompassEntry);
+                
+                // Skip button
+                skipBtn.addEventListener('click', skipCompassEntry);
+                
+                // Keyboard navigation
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' && !messageScreen.classList.contains('hidden')) {
+                        saveCompassEntry();
+                    }
+                    if (e.key === 'Escape' && !messageScreen.classList.contains('hidden')) {
+                        skipCompassEntry();
+                    }
+                });
+            }
+
+            // Select an emotion
+            function selectEmotion(emotion) {
+                // Update current state
+                currentState.selectedEmotion = emotion.name;
+                currentState.selectedGroup = emotion.group;
+                
+                // Select a random message for this group
+                const messages = groupMessages[emotion.group];
+                currentState.message = messages[Math.floor(Math.random() * messages.length)];
+                
+                // Update UI
+                emotionLabel.textContent = emotion.name;
+                emotionTag.style.backgroundColor = emotion.color;
+                compassMessage.textContent = currentState.message;
+                intensityLevel.style.width = `${emotion.intensity * 100}%`;
+                intensityLevel.style.backgroundColor = emotion.color;
+                
+                // Update progress indicator
+                currentState.currentStep = 2;
+                updateProgressIndicator();
+                
+                // Update subtitle
+                stepSubtitle.textContent = "このヒントについて考えてみましょう";
+                
+                // Switch screens
+                emotionSelection.classList.remove('active');
+                messageScreen.classList.remove('hidden');
+                messageScreen.classList.add('flex');
+            }
+
+            // Save the compass entry
+            function saveCompassEntry() {
+                // Create the compass entry
+                const compassEntry = {
+                    emotion: currentState.selectedEmotion,
+                    group: currentState.selectedGroup,
+                    message: currentState.message,
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Simulate saving
+                console.log("Saving compass entry:", compassEntry);
+                currentState.saved = true;
+                
+                // Show feedback
+                showToast("記録が保存されました");
+                
+                // Reset after delay
+                setTimeout(() => {
+                    resetCompass();
+                }, 1500);
+            }
+
+            // Skip without saving
+            function skipCompassEntry() {
+                showToast("記録されていません（スキップ）");
+                setTimeout(() => {
+                    resetCompass();
+                }, 1000);
+            }
+
+            // Reset the compass
+            function resetCompass() {
+                // Reset state
+                currentState = {
+                    selectedEmotion: null,
+                    selectedGroup: null,
+                    message: null,
+                    saved: false,
+                    currentStep: 1,
+                    totalSteps: 2
+                };
+                
+                // Update UI
+                updateProgressIndicator();
+                stepSubtitle.textContent = "いまの感情に近い場所を選んでください";
+                
+                // Switch back to selection screen
+                messageScreen.classList.add('hidden');
+                messageScreen.classList.remove('flex');
+                emotionSelection.classList.add('active');
+            }
+
+            // Update progress indicator
+            function updateProgressIndicator() {
+                progressSteps.forEach((step, index) => {
+                    if (index < currentState.currentStep) {
+                        step.classList.add('active', 'bg-gray-600', 'scale-125');
+                        step.classList.remove('bg-gray-300');
+                    } else {
+                        step.classList.remove('active', 'bg-gray-600', 'scale-125');
+                        step.classList.add('bg-gray-300');
+                    }
+                });
+            }
+
+            // Show toast notification
+            function showToast(message) {
+                toastContent.textContent = message;
+                toast.classList.add('opacity-100');
+                
+                setTimeout(() => {
+                    toast.classList.remove('opacity-100');
+                }, 3000);
+            }
+
+            // Mobile Menu Toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('mobile-menu-enter');
+                }
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+
+            // Language toggle functionality
+            const langToggle = document.getElementById('langToggle');
+            const langLabel = document.getElementById('langLabel');
+            
+            if (langToggle && langLabel) {
+                langToggle.addEventListener('click', () => {
+                    const currentLang = langLabel.textContent;
+                    langLabel.textContent = currentLang === 'JP' ? 'EN' : 'JP';
+                });
+            }
+
+            // Initialize the app
+            init();
+        });
+    </script>
+</body>
+</html>
